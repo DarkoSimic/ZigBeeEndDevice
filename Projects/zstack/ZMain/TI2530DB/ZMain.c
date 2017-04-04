@@ -157,7 +157,6 @@ int main( void )
   WatchDogEnable( WDTIMX );
 #endif
 
-  //uartSend(0x0F);
  osal_start_system(); // No Return from here
 
   return 0;  // Shouldn't get here.
