@@ -379,6 +379,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
           
          //Receive "The" Message
          GenericApp_MessageMSGCB( MSGpkt );
+         
 
           break;
 
@@ -754,11 +755,6 @@ static void GenericApp_SendTheMessage( void )
       
    theOpticalData[4] = '\0';
    
-   HalLcdWriteString("###################################",0);
-   HalLcdWriteString(theOpticalData,0);
-   HalLcdWriteString("###################################",0);
-  
- 
    if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                         GENERICAPP_CLUSTERID,
                         (byte)osal_strlen( theOpticalData ) + 1,
