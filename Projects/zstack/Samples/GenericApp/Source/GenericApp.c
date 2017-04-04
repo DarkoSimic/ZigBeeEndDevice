@@ -443,7 +443,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
       
       dstAddr.addrMode = Addr16Bit;
       dstAddr.addr.shortAddr = NLME_GetShortAddr();
-      ZDP_EndDeviceBindReq( &dstAddr, 0x0000, 
+      ZDP_EndDeviceBindReq( &dstAddr, NLME_GetShortAddr(),
                             GenericApp_epDesc.endPoint,
                             GENERICAPP_PROFID,
                             GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
@@ -466,10 +466,10 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
     GenericApp_SendTheMessage();
      
     
-     //Setup to send message again evry 100 ms
+     //Setup to send message again evry 1000 ms
      osal_start_timerEx( GenericApp_TaskID,
                          GENERICAPP_SEND_MSG_EVT,
-                         100);
+                         1000);
     
     
     }
