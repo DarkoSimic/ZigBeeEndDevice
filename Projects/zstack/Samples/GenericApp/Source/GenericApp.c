@@ -443,7 +443,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
       
       dstAddr.addrMode = Addr16Bit;
       dstAddr.addr.shortAddr = NLME_GetShortAddr();
-      ZDP_EndDeviceBindReq( &dstAddr, 0x0000, 
+      ZDP_EndDeviceBindReq( &dstAddr, 0x0000,
                             GenericApp_epDesc.endPoint,
                             GENERICAPP_PROFID,
                             GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
