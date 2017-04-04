@@ -112,7 +112,7 @@
 
 #define MAGNETIC_SENSOR                0
 #define OPTICAL_SENSOR                 1
-   
+#define HELLO_WORLD                    0 
 /*********************************************************************
  * CONSTANTS
  */
@@ -141,7 +141,7 @@ uint16 SAddr[MAX_NUMBER_OF_ENDDEVICES] = {0,0};
 
 uint8 index = 0;
 
-int brojac = 0;
+int brojac = 0; 
 
 
 // This list should be filled with Application specific Cluster IDs.
@@ -775,8 +775,8 @@ static void GenericApp_SendTheMessage( void )
       // Error occurred in request to send.
       HalLcdWriteString("Podatak nije poslan.",0);
    }
- 
-#elseif MAGNETIC_SENSOR
+#endif  
+#if MAGNETIC_SENSOR
 
 
   if ( !magneticSwitch_DoorDetection() )
@@ -809,8 +809,8 @@ static void GenericApp_SendTheMessage( void )
     
   }
   
-  
-#else
+#endif 
+#if HELLO_WORLD
 
   
   
