@@ -97,15 +97,13 @@ int main( void )
 
   // Initialization for board related stuff such as LEDs
   HAL_BOARD_INIT();
-    
-  //uartInit();
   
-  
+  //Initialization for pins for magnetic switch
   magneticSwitchInit();
   
+  //Initialization for analog to digital converter
   HalAdcInit();
   
-    
   // Make sure supply voltage is high enough to run
   zmain_vdd_check();
 

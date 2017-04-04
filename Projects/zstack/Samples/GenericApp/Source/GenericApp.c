@@ -108,7 +108,10 @@
 #define CLOSED 1
 #define OPENED 0
 // magnetic switch macros end
-   
+
+
+#define MAGNETIC_SENSOR                0
+#define OPTICAL_SENSOR                 1
    
 /*********************************************************************
  * CONSTANTS
@@ -249,15 +252,10 @@ void GenericApp_Init( uint8 task_id )
 
   GenericApp_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;
   GenericApp_DstAddr.endPoint = GENERICAPP_ENDPOINT;
-  GenericApp_DstAddr.addr.shortAddr = 0xFFFF; //0;// NLME_GetShortAddr();//1;
+  //This is address of Coordinator
+  GenericApp_DstAddr.addr.shortAddr = 0x0000;                                   
   
-  GenericApp_DstAddr1.addrMode = (afAddrMode_t)Addr16Bit;
-  GenericApp_DstAddr1.endPoint = GENERICAPP_ENDPOINT;
-  //GenericApp_DstAddr1.addr.shortAddr =  0x8740; //0;// NLME_GetShortAddr();//1;
-  
-  GenericApp_DstAddr2.addrMode = (afAddrMode_t)Addr16Bit;
-  GenericApp_DstAddr2.endPoint = GENERICAPP_ENDPOINT;
- // GenericApp_DstAddr2.addr.shortAddr = 0xE2CB;  //0;// NLME_GetShortAddr();//1;
+
 
   // Fill out the endpoint description.
   GenericApp_epDesc.endPoint = GENERICAPP_ENDPOINT;
@@ -344,22 +342,6 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
   {
     MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( GenericApp_TaskID );
     
-
-      
-     /* shortAddressOfEndDevice[0] = MSGpkt->macSrcAddr;
-      GenericApp_DstAddr1.addr.shortAddr = shortAddressOfEndDevice[0];
-    
-    
-    
-     //if(MSGpkt->macSrcAddr != shortAddressOfEndDevice[0] )
-     {
-           shortAddressOfEndDevice[1] = MSGpkt->macSrcAddr;
-           GenericApp_DstAddr2.addr.shortAddr = 0x903C;//shortAddressOfEndDevice[1];
-         
-           
-     }      
-      */
-    
     while ( MSGpkt )
     {
       switch ( MSGpkt->hdr.event )
@@ -407,88 +389,9 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
 
         case AF_INCOMING_MSG_CMD:
           
-          /*
-         shortAddressOfEndDevice[0] = MSGpkt->macSrcAddr;
-         if(MSGpkt->macSrcAddr != shortAddressOfEndDevice[0])
-         {
-           shortAddressOfEndDevice[1] = MSGpkt->macSrcAddr;
-         }
-                
-         
-         
-         GenericApp_DstAddr1.addr.shortAddr = shortAddressOfEndDevice[0];
-         GenericApp_DstAddr2.addr.shortAddr = shortAddressOfEndDevice[1];
-         */
-         /*if(0==brojac)
-         {
-          shortAddressOfEndDevice[0] = MSGpkt->macSrcAddr;
-          GenericApp_DstAddr1.addr.shortAddr = shortAddressOfEndDevice[0];
-    
-         }
-    */
-     //if(MSGpkt->macSrcAddr != shortAddressOfEndDevice[0] )
-     /*
-           shortAddressOfEndDevice[1] = MSGpkt->macSrcAddr;
-           GenericApp_DstAddr2.addr.shortAddr = 0x903C;//shortAddressOfEndDevice[1];
-         
-           
-     }    */  
-      
-          if(0==brojac)
-          {
-           shortAddressOfEndDevice[brojac] = MSGpkt->macSrcAddr;
-           brojac++;
-          }
-          else if(shortAddressOfEndDevice[brojac-1]!=MSGpkt->macSrcAddr)
-          {
-            shortAddressOfEndDevice[brojac] = MSGpkt->macSrcAddr;
-            brojac++;
-          }
-          
-          GenericApp_DstAddr1.addr.shortAddr = shortAddressOfEndDevice[0];
-          if(1<=brojac)
-          GenericApp_DstAddr2.addr.shortAddr = shortAddressOfEndDevice[1];
-          
-          //uartSend(GenericApp_DstAddr1.addr.shortAddr);
-          //uartSend(GenericApp_DstAddr2.addr.shortAddr);
-          
-
-          //SAddr[0]=shortAddressOfEndDevice[0];
-          //SAddr[1]=shortAddressOfEndDevice[1];
-          SAddr[0]=GenericApp_DstAddr1.addr.shortAddr;
-          SAddr[1]=GenericApp_DstAddr2.addr.shortAddr;
-          
-         // HalLcdWriteString("--------------------##########################------------",0);    
-     // HalLcdWriteString("Short address1:",0);
-     
-      for(i = 0;i<4;i++)
-      {
-        shAddr[3-i] =  SAddr[1] % 16  + '0';
-        SAddr[1] /= 16;
-      }
-      
-    //  HalLcdWriteString(shAddr,0);
-    //  HalLcdWriteString("--------------------------------",0);
-      
-    //  HalLcdWriteString("Short address0:",0);
-     
-      for(i = 0;i<4;i++)
-      {
-        shAddr[3-i] =  SAddr[0] % 16  + '0';
-        SAddr[0] /= 16;
-      }
-      
-     // HalLcdWriteString(shAddr,0);
-     // HalLcdWriteString("--------------------------------",0);
-          
-          
-          
-         // HalLcdWriteString("AF_INCOMING_MSG_CMD:",0);
-          
+         //Receive "The" Message
          GenericApp_MessageMSGCB( MSGpkt );
-         
-          
-         
+
           break;
 
         case ZDO_STATE_CHANGE:
@@ -524,14 +427,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
 
       // Next
       MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( GenericApp_TaskID );
-      
-    // if(MSGpkt->macSrcAddr != shortAddressOfEndDevice[0])
-  //   {
-    //       shortAddressOfEndDevice[1] = MSGpkt->macSrcAddr;
-   //  }       
-      
-     
-     // GenericApp_DstAddr2.addr.shortAddr = shortAddressOfEndDevice[1];   
+        
     }
 
     // return unprocessed events
@@ -584,12 +480,11 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
     GenericApp_SendTheMessage();
      
     
-     //Setup to send message again
+     //Setup to send message again evry 100 ms
      osal_start_timerEx( GenericApp_TaskID,
                          GENERICAPP_SEND_MSG_EVT,
-                         100); //txMsgDelay );
+                         100);
     
-    // osal_set_event(GenericApp_TaskID,GENERICAPP_SEND_MSG_EVT);
     
     }
     // return unprocessed events
@@ -962,45 +857,59 @@ static void GenericApp_SendTheMessage( void )
   uint8 i;
   
  
-  char theMessageData[] = "You are Coord from EndDevice1";
-  char theMessageData1[] = "You are EndDevice1";
-  char theMessageData2[] = "You are EndDevice2";
+  char theMessageData[] = "Hello World";
   char doorOpened[] = {'1'};
   char doorClosed[] = {'0'};
   char theOpticalData[5];
   uint16 optDat;
   
   
+   
+  
+#if OPTICAL_SENSOR
+  
   optDat = HalAdcRead(HAL_ADC_CHANNEL_1,HAL_ADC_RESOLUTION_12);
 
-  
-     // shortAdrress = NLME_GetShortAddr();
-      
-      for(i = 0;i<4;i++)
-      {
+   for(i = 0;i<4;i++)
+   {
         theOpticalData[3-i] =  optDat % 10  + '0';
         optDat /= 10;
-      }
+   }
       
-      theOpticalData[4] = '\0';
-       HalLcdWriteString("###################################",0);
+   theOpticalData[4] = '\0';
+   
+   HalLcdWriteString("###################################",0);
+   HalLcdWriteString(theOpticalData,0);
+   HalLcdWriteString("###################################",0);
   
+ 
+   if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                        GENERICAPP_CLUSTERID,
+                        (byte)osal_strlen( theOpticalData ) + 1,
+                        (byte *)&theOpticalData,
+                        &GenericApp_TransID,
+                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   {
+      // Successfully requested to be sent.
+      HalLcdWriteString("Podatak je poslan.",0);
+      //HalLcdWriteString(theMessageData,0);
+   }
+   else
+   {
+      // Error occurred in request to send.
+      HalLcdWriteString("Podatak nije poslan.",0);
+   }
+ 
+#elseif MAGNETIC_SENSOR
 
-        HalLcdWriteString(theOpticalData,0);
-        HalLcdWriteString("###################################",0);
-  
 
-  //&GenericApp_DstAddr
-  /*
-  GenericApp_DstAddr.addr.shortAddr = 0x0000;
-  
   if ( !magneticSwitch_DoorDetection() )
   {
     // Successfully requested to be sent.
     //HalLcdWriteString("Podatak je poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       //(byte)osal_strlen( theMessageData ) + 1,
+                       2,                                                       
                        (byte *)&doorOpened,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
@@ -1015,7 +924,7 @@ static void GenericApp_SendTheMessage( void )
     // HalLcdWriteString("Podatak nije poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       //(byte)osal_strlen( theMessageData ) + 1,
+                       2,                                                       
                        (byte *)&doorClosed,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
@@ -1023,72 +932,31 @@ static void GenericApp_SendTheMessage( void )
     HalLcdWriteString("Vrata su zatvorena.",0);
     
   }
-  */
-  
-  GenericApp_DstAddr.addr.shortAddr = 0x0000;
   
   
+#else
+
   
-    if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
-                         GENERICAPP_CLUSTERID,
-                         (byte)osal_strlen( theOpticalData ) + 1,
-                         (byte *)&theOpticalData,
-                         &GenericApp_TransID,
-                         AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
-    {
+  
+   if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                        GENERICAPP_CLUSTERID,
+                        (byte)osal_strlen( theMessageData ) + 1,
+                        (byte *)&theMessageData,
+                        &GenericApp_TransID,
+                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   {
       // Successfully requested to be sent.
       HalLcdWriteString("Podatak je poslan.",0);
       //HalLcdWriteString(theMessageData,0);
-    }
-    else
-    {
+   }
+   else
+   {
       // Error occurred in request to send.
       HalLcdWriteString("Podatak nije poslan.",0);
-    }
+   }
  
- 
-  
 
-  /*
-  if(GenericApp_DstAddr1.addr.shortAddr != 0 )
-  {
-    if ( AF_DataRequest( &GenericApp_DstAddr1, &GenericApp_epDesc,
-                         GENERICAPP_CLUSTERID,
-                         (byte)osal_strlen( theMessageData1 ) + 1,
-                         (byte *)&theMessageData1,
-                         &GenericApp_TransID,
-                         AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
-    {
-      // Successfully requested to be sent.
-      HalLcdWriteString("Podatak je poslan.",0);
-    }
-    else
-    {
-      // Error occurred in request to send.
-      HalLcdWriteString("Podatak nije poslan.",0);
-    }
-    
-  }
-  
-  if(GenericApp_DstAddr2.addr.shortAddr != 0)
-  {
-    if ( AF_DataRequest( &GenericApp_DstAddr2, &GenericApp_epDesc,
-                         GENERICAPP_CLUSTERID,
-                         (byte)osal_strlen( theMessageData2 ) + 1,
-                         (byte *)&theMessageData2,
-                         &GenericApp_TransID,
-                         AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
-    {
-      // Successfully requested to be sent.
-      HalLcdWriteString("Podatak je poslan.",0);
-    }
-    else
-    {
-      // Error occurred in request to send.
-      HalLcdWriteString("Podatak nije poslan.",0);
-    }
-  } 
-  */
+#endif
 }
 
 #if defined( IAR_ARMCM3_LM )
@@ -1134,6 +1002,13 @@ static void GenericApp_ProcessRtosMessage( void )
 #endif
 
 /*********************************************************************
+ * @fn      magneticSwitchInit()
+ *
+ * @brief   Initialize pins for magnetic switch
+ *
+ * @param   none
+ *
+ * @return  none
  */
 void magneticSwitchInit(void)
 {
