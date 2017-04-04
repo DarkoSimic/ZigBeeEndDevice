@@ -254,8 +254,6 @@ void GenericApp_Init( uint8 task_id )
   GenericApp_DstAddr.endPoint = GENERICAPP_ENDPOINT;
   //This is address of Coordinator
   GenericApp_DstAddr.addr.shortAddr = 0x0000;                                   
-  
-
 
   // Fill out the endpoint description.
   GenericApp_epDesc.endPoint = GENERICAPP_ENDPOINT;
@@ -353,17 +351,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
           break;
 
         case KEY_CHANGE:
-           
-           
-           dstAddr.addrMode = AddrBroadcast;
-           dstAddr.addr.shortAddr = NWK_BROADCAST_SHORTADDR;
-           ZDP_MatchDescReq( &dstAddr, NWK_BROADCAST_SHORTADDR,
-                        GENERICAPP_PROFID,
-                        GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
-                        GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
-                        FALSE );
-      
-           
+  
           // GenericApp_HandleKeys( ((keyChange_t *)MSGpkt)->state, ((keyChange_t *)MSGpkt)->keys );
           break;
 
@@ -438,9 +426,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
   //  (setup in GenericApp_Init()).
   if ( events & GENERICAPP_SEND_MSG_EVT )
   {
-    
-    
-    
+  
     if(keyPressSW4)
     {
      /*
@@ -456,8 +442,8 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
      */ 
       
       dstAddr.addrMode = Addr16Bit;
-      dstAddr.addr.shortAddr = NLME_GetShortAddr();//0x0000; // Coordinator
-      ZDP_EndDeviceBindReq( &dstAddr, 0x0000, //NLME_GetShortAddr(),
+      dstAddr.addr.shortAddr = NLME_GetShortAddr();
+      ZDP_EndDeviceBindReq( &dstAddr, 0x0000, 
                             GenericApp_epDesc.endPoint,
                             GENERICAPP_PROFID,
                             GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
@@ -697,142 +683,32 @@ static void GenericApp_HandleKeys( uint8 shift, uint8 keys )
  * @return  none
  */
 static void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
-{
-   /*
+{ 
   uint8 i;
  
- 
-  
-  
-  
+
   switch ( pkt->clusterId )
   {
     case GENERICAPP_CLUSTERID:
-      rxMsgCount += 1;  // Count this message
-      HalLedSet ( HAL_LED_4, HAL_LED_MODE_BLINK );  // Blink an LED
-
-/*
-#if defined( LCD_SUPPORTED )
-      HalLcdWriteString( (char*)pkt->cmd.Data, HAL_LCD_LINE_1 );
-      HalLcdWriteStringValue( "Rcvd:", rxMsgCount, 10, HAL_LCD_LINE_2 );
-#elif defined( WIN32 )
-      //WPRINTSTR( pkt->cmd.Data );
-       
-      while(*(pkt->cmd.Data + i) != '\0')
-      { 
-        uartSend(*(pkt->cmd.Data + i++));
-      }
-#endif
-      break;*//*
-      if(prevData != *pkt->cmd.Data)
-      {
-        coin = 1;
-      }
       
-      if(*pkt->cmd.Data== '0')
-      {
+            // Count this message
+            rxMsgCount += 1;  
       
-       
-       if(coin)
-       {
-        HalLcdWriteString ( "Door closed", 0);
-        coin=0;
-       }
-       }
-      else
-      {
-       if(coin) 
-       {
-         HalLcdWriteString (  "Door opened", 0);
-         coin=0;
-       }
-      }
-      prevData = *pkt->cmd.Data;
-     /* HalLcdWriteString("-------------",0);
-      for(i = 0;i < pkt->cmd.DataLength;i++)
-      {
-        uartSend(*(pkt->cmd.Data + i));
-      }
-      HalLcdWriteString("",0);
-      HalLcdWriteString("-------------",0);*//*
-      //HalLcdWriteString("Podatak je primljen.",0);
-      break;
+            HalLcdWriteString("--------------------------------",0);
+            HalLcdWriteString("Received data:",0);
       
-  default:
-   // HalLcdWriteString("Podatak nije primljen.",0);
-        
-    break;
+            for(i = 0;i < pkt->cmd.DataLength;i++)
+            {
+            uartSend(*(pkt->cmd.Data + i));
+            }
       
-  }
-  
-  
-  */
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  uint8 i;
-  uint8 base = 1;
-  char shAddr[5];
-  shAddr[4]= '\0';
-  uint16 hexStr = 0;
-  
-  
-  
-  
-  switch ( pkt->clusterId )
-  {
-    case GENERICAPP_CLUSTERID:
-      rxMsgCount += 1;  // Count this message
-     // HalLedSet ( HAL_LED_4, HAL_LED_MODE_BLINK );  // Blink an LED
-
-/*
-#if defined( LCD_SUPPORTED )
-      HalLcdWriteString( (char*)pkt->cmd.Data, HAL_LCD_LINE_1 );
-      HalLcdWriteStringValue( "Rcvd:", rxMsgCount, 10, HAL_LCD_LINE_2 );
-#elif defined( WIN32 )
-      //WPRINTSTR( pkt->cmd.Data );
-       
-#endif
-      break;*/
-      
-      HalLcdWriteString("--------------------------------",0);
-      HalLcdWriteString("Received data:",0);
-      
-      for(i = 0;i < pkt->cmd.DataLength;i++)
-      {
-        uartSend(*(pkt->cmd.Data + i));
-      }
-      
-      HalLcdWriteString("",0);
-      HalLcdWriteString("--------------------------------",0);
-      //HalLcdWriteString("Short address:",0);
-     
-      for(i = 0;i<4;i++)
-      {
-        shAddr[3-i] =  shortAddressOfEndDevice[1] % 16  + '0';
-        shortAddressOfEndDevice[1] /= 16;
-      }
-      
-      //HalLcdWriteString(shAddr,0);
-      //HalLcdWriteString("--------------------------------",0);
+            HalLcdWriteString("",0);
+            HalLcdWriteString("--------------------------------",0);
       
       break;
       
-  default:
-    HalLcdWriteString("Podatak nije primljen.",0);
+    default:
+            HalLcdWriteString("Podatak nije primljen.",0);
         
     break;
       
