@@ -470,7 +470,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
      //Setup to send message again evry 1000 ms
      osal_start_timerEx( GenericApp_TaskID,
                          GENERICAPP_SEND_MSG_EVT,
-                         1000);
+                         2000);
     
     
     }
@@ -741,7 +741,7 @@ static void GenericApp_SendTheMessage( void )
   uint16 optDat;
   
   
-   
+   GenericApp_DstAddr.addr.shortAddr = 0x0000;   
   
 #if OPTICAL_SENSOR
   
