@@ -466,10 +466,10 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
     GenericApp_SendTheMessage();
      
     
-     //Setup to send message again evry 100 ms
+     //Setup to send message again evry 1000 ms
      osal_start_timerEx( GenericApp_TaskID,
                          GENERICAPP_SEND_MSG_EVT,
-                         100);
+                         1000);
     
     
     }
