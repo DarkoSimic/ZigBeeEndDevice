@@ -164,6 +164,8 @@ bool Hal_KeyIntEnable;            /* interrupt enable/disable flag */
 void halProcessKeyInterrupt(void);
 uint8 halGetJoyKeyInput(void);
 
+void halProcessKeyInterrupt(void);
+    
 
 
 /**************************************************************************************************
@@ -481,18 +483,20 @@ uint8 HalKeyExitSleep ( void )
  *
  * @return
  **************************************************************************************************/
-/*HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
+HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
 {
   HAL_ENTER_ISR();
 
   if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)
   {
-    halProcessKeyInterrupt();
+    //halProcessKeyInterrupt();
+    halMagneticInterrupt();
+    
   }
 
   
-    Clear the CPU interrupt flag for Port_0
-    PxIFG has to be cleared before PxIF
+    //Clear the CPU interrupt flag for Port_0
+    //PxIFG has to be cleared before PxIF
  
   HAL_KEY_SW_6_PXIFG = 0;
   HAL_KEY_CPU_PORT_0_IF = 0;
@@ -501,7 +505,7 @@ uint8 HalKeyExitSleep ( void )
   HAL_EXIT_ISR();
 }
 
-*/
+
 /**************************************************************************************************
  * @fn      halKeyPort2Isr
  *
@@ -531,6 +535,38 @@ HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
   CLEAR_SLEEP_MODE();
   HAL_EXIT_ISR();
 }
+/**************************************************************************************************
+ * @fn      halMagneticInterrupt
+ *
+ * @brief   Checks to see if it's a valid key interrupt.
+ *
+ * @param
+ *
+ * @return
+ **************************************************************************************************/
+void halMagneticInterrupt(void)
+{
+  bool valid=FALSE;
+
+  if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)  /* Interrupt Flag has been set */
+  {
+    HAL_KEY_SW_6_PXIFG = ~(HAL_KEY_SW_6_BIT); /* Clear Interrupt Flag */
+    valid = TRUE;
+  }
+
+  if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)  /* Interrupt Flag has been set */
+  {
+    HAL_KEY_JOY_MOVE_PXIFG = ~(HAL_KEY_JOY_MOVE_BIT); /* Clear Interrupt Flag */
+    valid = TRUE;
+  }
+
+  if (valid)
+  {
+    osal_start_timerEx (Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE);
+  }
+}
+
+
 
 #else
 

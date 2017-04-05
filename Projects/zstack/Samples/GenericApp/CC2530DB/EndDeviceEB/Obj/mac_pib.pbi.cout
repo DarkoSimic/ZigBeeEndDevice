@@ -1,96 +1,96 @@
-"C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mac\high_level\mac_pib.c"
+"C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\high_level\mac_pib.c"
 -std=c99
 -ferror-limit=100
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\lib\dlib
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\lib\dlib
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc\clib
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc\clib
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\Source
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\Source
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Projects\zstack\ZMain\TI2530DB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\ZMain\TI2530DB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\hal\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\hal\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\hal\target\CC2530EB
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\hal\target\CC2530EB
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mac\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mac\high_level
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\high_level
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mac\low_level\srf04
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\low_level\srf04
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mac\low_level\srf04\single_chip
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\low_level\srf04\single_chip
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\mt
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mt
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\osal\include
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\osal\include
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\services\saddr
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\services\saddr
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\services\sdata
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\services\sdata
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\af
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\af
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\nwk
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\nwk
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\sapi
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sapi
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\sec
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sec
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\sys
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sys
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\zdo
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\zdo
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\zmac
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\zmac
 -I
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\zmac\f8w
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\zmac\f8w
 -DNWK_AUTO_POLL=1
 -DZTOOL_P1=1
 -DMT_TASK=1
