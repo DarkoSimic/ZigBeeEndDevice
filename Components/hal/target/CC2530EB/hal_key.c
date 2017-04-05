@@ -88,6 +88,7 @@
 #include "hal_adc.h"
 #include "hal_key.h"
 #include "osal.h"
+#include "ioCC2530.h"
 
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
 
@@ -481,7 +482,7 @@ uint8 HalKeyExitSleep ( void )
  *
  * @return
  **************************************************************************************************/
-/*HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
+HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
 {
   HAL_ENTER_ISR();
 
@@ -491,8 +492,8 @@ uint8 HalKeyExitSleep ( void )
   }
 
   
-    Clear the CPU interrupt flag for Port_0
-    PxIFG has to be cleared before PxIF
+    //Clear the CPU interrupt flag for Port_0
+    //PxIFG has to be cleared before PxIF
  
   HAL_KEY_SW_6_PXIFG = 0;
   HAL_KEY_CPU_PORT_0_IF = 0;
@@ -501,7 +502,7 @@ uint8 HalKeyExitSleep ( void )
   HAL_EXIT_ISR();
 }
 
-*/
+
 /**************************************************************************************************
  * @fn      halKeyPort2Isr
  *

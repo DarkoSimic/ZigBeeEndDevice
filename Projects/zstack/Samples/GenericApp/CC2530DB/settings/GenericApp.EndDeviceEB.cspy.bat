@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.general.xcl" --backend -f "C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.general.xcl" --backend -f "C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\settings\GenericApp.EndDeviceEB.driver.xcl" 
 
 @echo off 
 :end

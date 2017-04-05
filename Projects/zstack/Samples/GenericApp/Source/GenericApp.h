@@ -99,6 +99,10 @@ extern uint8 magneticSwitch_DoorDetection(void);
 
 void magneticSwitchInit(void);
 
+void motionInit(void);
+
+uint8 motionDetection(void);
+
 /*********************************************************************
 *********************************************************************/
 

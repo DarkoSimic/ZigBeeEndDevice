@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               03/Apr/2017  15:43:24
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               05/Apr/2017  10:45:03
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -12,15 +12,13 @@
 //    Dptr setup         =  1,16
 //                          
 //    Source file        =  
-//        C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Components\hal\target\CC2530EB\hal_lcd.c
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c
 //    Command line       =  
-//        -f "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg"
+//        -f
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
 //        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
 //        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
-//        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
 //        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
 //        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x0422
 //        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
@@ -35,66 +33,63 @@
 //        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
 //        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
 //        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
-//        -DREJOIN_POLL_RATE=440 "C:\Users\bsavanovic\Desktop\New folder
-//        (3)\Z-Stack Mesh 1.0.0\Components\hal\target\CC2530EB\hal_lcd.c" -D
-//        NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D
-//        LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
-//        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List"
-//        -lA "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List"
-//        --diag_suppress Pe001,Pa010 -o "C:\Users\bsavanovic\Desktop\New
-//        folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\Obj" -e
-//        --no_code_motion --debug --core=plain --dptr=16,1 --data_model=large
-//        --code_model=banked --calling_convention=xdata_reentrant
-//        --place_constants=data_rom --nr_virtual_regs 16 -I
-//        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\" -I
-//        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
-//        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
-//        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+//        -DREJOIN_POLL_RATE=440
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC
+//        -D LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_code_motion --debug --core=plain --dptr=16,1
+//        --data_model=large --code_model=banked
+//        --calling_convention=xdata_reentrant --place_constants=data_rom
+//        --nr_virtual_regs 16 -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
 //        -Ohz --require_prototypes
 //    List file          =  
-//        C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-//        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_lcd.s51
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_lcd.s51
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -138,7 +133,6 @@
         EXTERN ?XSP
         EXTERN ?XSTACK_DISP0_8
         EXTERN ?XSTACK_DISP101_8
-        EXTERN __INIT_XDATA_Z
 
         PUBLIC `??HalLcdDisplayPercentBar::?relay`
         FUNCTION `??HalLcdDisplayPercentBar::?relay`,0203H
@@ -182,9 +176,8 @@
         ARGFRAME XSTACK, 0, STACK
         LOCFRAME ISTACK, 2, STACK
         PUBLIC HalLcdWriteScreen
-        FUNCTION HalLcdWriteScreen,021203H
+        FUNCTION HalLcdWriteScreen,0203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
         PUBLIC HalLcdWriteString
         FUNCTION HalLcdWriteString,0a1203H
         ARGFRAME XSTACK, 44, STACK
@@ -204,13 +197,11 @@
         ARGFRAME XSTACK, 1, STACK
         LOCFRAME XSTACK, 41, STACK
         PUBLIC HalLcd_HW_Clear
-        FUNCTION HalLcd_HW_Clear,021203H
+        FUNCTION HalLcd_HW_Clear,0203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
         PUBLIC HalLcd_HW_ClearAllSpecChars
-        FUNCTION HalLcd_HW_ClearAllSpecChars,021203H
+        FUNCTION HalLcd_HW_ClearAllSpecChars,0203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
         PUBLIC HalLcd_HW_Control
         FUNCTION HalLcd_HW_Control,0203H
         ARGFRAME XSTACK, 0, STACK
@@ -220,9 +211,8 @@
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         PUBLIC HalLcd_HW_SetContrast
-        FUNCTION HalLcd_HW_SetContrast,021203H
+        FUNCTION HalLcd_HW_SetContrast,0203H
         ARGFRAME XSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
         PUBLIC HalLcd_HW_WaitUs
         FUNCTION HalLcd_HW_WaitUs,080203H
         ARGFRAME XSTACK, 0, STACK
@@ -468,7 +458,7 @@ HalLcd_HW_WriteLine SYMBOL "HalLcd_HW_WriteLine"
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
 
-// C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\hal\target\CC2530EB\hal_lcd.c
+// C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c
 //    1 /**************************************************************************************************
 //    2   Filename:       hal_lcd.c
 //    3   Revised:        $Date: 2012-09-30 16:36:36 -0700 (Sun, 30 Sep 2012) $
@@ -712,13 +702,7 @@ P0SEL:
 //  199  *                                       LOCAL VARIABLES
 //  200  **************************************************************************************************/
 //  201 
-
-        RSEG XDATA_Z:XDATA:NOROOT(0)
-        DATA16
 //  202 static uint8 *Lcd_Line1;
-Lcd_Line1:
-        DS 2
-        REQUIRE __INIT_XDATA_Z
 //  203 
 //  204 /**************************************************************************************************
 //  205  *                                       FUNCTIONS - API
@@ -751,7 +735,7 @@ HalLcdInit:
           CFI Block cfiBlock0 Using cfiCommon0
           CFI Function HalLcdInit
         CODE
-//  229 { HalLcd_HW_Init();
+//  229 { 
         FUNCALL HalLcdInit, HalLcd_HW_Init
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -771,18 +755,19 @@ HalLcdInit:
           CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
+//  230   
+//  231   HalLcd_HW_Init();
         ; Setup parameters for call to function HalLcd_HW_Init
         LCALL   `??HalLcd_HW_Init::?relay`; Banked call to: HalLcd_HW_Init
-//  230 #if (HAL_LCD == TRUE)
-//  231   Lcd_Line1 = NULL;
-        MOV     DPTR,#Lcd_Line1
-        CLR     A
-        MOVX    @DPTR,A
-        INC     DPTR
-        MOVX    @DPTR,A
-//  232  
-//  233 #endif
-//  234 }
+//  232 
+//  233 /*
+//  234 #if (HAL_LCD == TRUE)
+//  235   Lcd_Line1 = NULL;
+//  236  
+//  237 #endif
+//  238   
+//  239   */
+//  240 }
         POP     DPH
           CFI DPH0 SameValue
           CFI CFA_SP SP+-4
@@ -791,43 +776,43 @@ HalLcdInit:
           CFI CFA_SP SP+-3
         LJMP    ?BRET
           CFI EndBlock cfiBlock0
-//  235 
-//  236 /*************************************************************************************************
-//  237  *                    LCD EMULATION FUNCTIONS
-//  238  *
-//  239  * Some evaluation boards are equipped with Liquid Crystal Displays
-//  240  * (LCD) which may be used to display diagnostic information. These
-//  241  * functions provide LCD emulation, sending the diagnostic strings
-//  242  * to Z-Tool via the RS232 serial port. These functions are enabled
-//  243  * when the "LCD_SUPPORTED" compiler flag is placed in the makefile.
+//  241 
+//  242 /*************************************************************************************************
+//  243  *                    LCD EMULATION FUNCTIONS
 //  244  *
-//  245  * Most applications update both lines (1 and 2) of the LCD whenever
-//  246  * text is posted to the device. This emulator assumes that line 1 is
-//  247  * updated first (saved locally) and the formatting and send operation
-//  248  * is triggered by receipt of line 2. Nothing will be transmitted if
-//  249  * only line 1 is updated.
+//  245  * Some evaluation boards are equipped with Liquid Crystal Displays
+//  246  * (LCD) which may be used to display diagnostic information. These
+//  247  * functions provide LCD emulation, sending the diagnostic strings
+//  248  * to Z-Tool via the RS232 serial port. These functions are enabled
+//  249  * when the "LCD_SUPPORTED" compiler flag is placed in the makefile.
 //  250  *
-//  251  *************************************************************************************************/
-//  252 
-//  253 
-//  254 /**************************************************************************************************
-//  255  * @fn      HalLcdWriteString
+//  251  * Most applications update both lines (1 and 2) of the LCD whenever
+//  252  * text is posted to the device. This emulator assumes that line 1 is
+//  253  * updated first (saved locally) and the formatting and send operation
+//  254  * is triggered by receipt of line 2. Nothing will be transmitted if
+//  255  * only line 1 is updated.
 //  256  *
-//  257  * @brief   Write a string to the LCD
-//  258  *
-//  259  * @param   str    - pointer to the string that will be displayed
-//  260  *          option - display options
-//  261  *
-//  262  * @return  None
-//  263  **************************************************************************************************/
+//  257  *************************************************************************************************/
+//  258 
+//  259 
+//  260 /**************************************************************************************************
+//  261  * @fn      HalLcdWriteString
+//  262  *
+//  263  * @brief   Write a string to the LCD
+//  264  *
+//  265  * @param   str    - pointer to the string that will be displayed
+//  266  *          option - display options
+//  267  *
+//  268  * @return  None
+//  269  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  264 void HalLcdWriteString ( char *str, uint8 option)
+//  270 void HalLcdWriteString ( char *str, uint8 option)
 HalLcdWriteString:
           CFI Block cfiBlock1 Using cfiCommon0
           CFI Function HalLcdWriteString
         CODE
-//  265 {
+//  271 {
         FUNCALL HalLcdWriteString, HalLcd_HW_Write
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -870,29 +855,29 @@ HalLcdWriteString:
         MOV     R6,A
         MOV     A,R3
         MOV     R7,A
-//  266 #if (HAL_LCD == TRUE)
-//  267 
-//  268   uint8 strLen = 0;
-//  269   uint8 totalLen = 0;
-//  270   uint8 *buf;
-//  271   uint8 tmpLen;
-//  272 
-//  273 #endif 
-//  274   
-//  275   uint8 i = 0;
+//  272 #if (HAL_LCD == TRUE)
+//  273 
+//  274   uint8 strLen = 0;
+//  275   uint8 totalLen = 0;
+//  276   uint8 *buf;
+//  277   uint8 tmpLen;
+//  278 
+//  279 #endif 
+//  280   
+//  281   uint8 i = 0;
         MOV     ?V0,#0x0
         SJMP    ??HalLcdWriteString_0
-//  276   
-//  277   
-//  278   while(*(str + i) != '\0')
-//  279   {
-//  280     HalLcd_HW_Write(*(str + i++));
+//  282   
+//  283   
+//  284   while(*(str + i) != '\0')
+//  285   {
+//  286     HalLcd_HW_Write(*(str + i++));
 ??HalLcdWriteString_1:
         ; Setup parameters for call to function HalLcd_HW_Write
         MOV     R1,A
         LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
         INC     ?V0
-//  281   }
+//  287   }
 ??HalLcdWriteString_0:
         MOV     R0,?V0
         MOV     A,R6
@@ -903,87 +888,108 @@ HalLcdWriteString:
         MOV     DPH,A
         MOVX    A,@DPTR
         JNZ     ??HalLcdWriteString_1
-//  282   
-//  283   HalLcd_HW_Write(10);
+//  288   
+//  289   HalLcd_HW_Write(10);
         ; Setup parameters for call to function HalLcd_HW_Write
         MOV     R1,#0xa
-        SJMP    ?Subroutine0
-//  284   
-//  285  /*
-//  286   if ( Lcd_Line1 == NULL )
-//  287   {
-//  288     Lcd_Line1 = osal_mem_alloc( HAL_LCD_MAX_CHARS+1 );
-//  289     HalLcdWriteString( "TexasInstruments", 1 );
-//  290   }
-//  291 
-//  292   strLen = (uint8)osal_strlen( (char*)str );
-//  293 
-//  294   /* Check boundries 
-//  295   if ( strLen > HAL_LCD_MAX_CHARS )
-//  296     strLen = HAL_LCD_MAX_CHARS;
-//  297 
-//  298   if ( option == HAL_LCD_LINE_1 )
-//  299   {
-//  300     /* Line 1 gets saved for later 
-//  301     osal_memcpy( Lcd_Line1, str, strLen );
-//  302     Lcd_Line1[strLen] = '\0';
-//  303   }
-//  304   else
-//  305   {
-//  306     /* Line 2 triggers action 
-//  307     tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
-//  308     totalLen =  tmpLen + 1 + strLen + 1;
-//  309     buf = osal_mem_alloc( totalLen );
-//  310     if ( buf != NULL )
-//  311     {
-//  312       /* Concatenate strings 
-//  313       osal_memcpy( buf, Lcd_Line1, tmpLen );
-//  314       buf[tmpLen++] = ' ';
-//  315       osal_memcpy( &buf[tmpLen], str, strLen );
-//  316       buf[tmpLen+strLen] = '\0';
-//  317 
-//  318       /* Send it out 
-//  319 #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
-//  320 
-//  321 #if defined(SERIAL_DEBUG_SUPPORTED)
-//  322       debug_str( (uint8*)buf );
-//  323 #endif //LCD_SUPPORTED
-//  324 
-//  325 #endif //ZTOOL_P1
-//  326 
-//  327       /* Free mem 
-//  328       osal_mem_free( buf );
-//  329     }
-//  330   }
-//  331 
-//  332   /* Display the string 
-//  333   HalLcd_HW_WriteLine (option, str);
-//  334 
-//  335 #endif //HAL_LCD
-//  336 */
-//  337   
-//  338 }
           CFI EndBlock cfiBlock1
-//  339 
-//  340 /**************************************************************************************************
-//  341  * @fn      HalLcdWriteValue
-//  342  *
-//  343  * @brief   Write a value to the LCD
-//  344  *
-//  345  * @param   value  - value that will be displayed
-//  346  *          radix  - 8, 10, 16
-//  347  *          option - display options
-//  348  *
-//  349  * @return  None
-//  350  **************************************************************************************************/
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  290   
+//  291  /*
+//  292   if ( Lcd_Line1 == NULL )
+//  293   {
+//  294     Lcd_Line1 = osal_mem_alloc( HAL_LCD_MAX_CHARS+1 );
+//  295     HalLcdWriteString( "TexasInstruments", 1 );
+//  296   }
+//  297 
+//  298   strLen = (uint8)osal_strlen( (char*)str );
+//  299 
+//  300   /* Check boundries 
+//  301   if ( strLen > HAL_LCD_MAX_CHARS )
+//  302     strLen = HAL_LCD_MAX_CHARS;
+//  303 
+//  304   if ( option == HAL_LCD_LINE_1 )
+//  305   {
+//  306     /* Line 1 gets saved for later 
+//  307     osal_memcpy( Lcd_Line1, str, strLen );
+//  308     Lcd_Line1[strLen] = '\0';
+//  309   }
+//  310   else
+//  311   {
+//  312     /* Line 2 triggers action 
+//  313     tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
+//  314     totalLen =  tmpLen + 1 + strLen + 1;
+//  315     buf = osal_mem_alloc( totalLen );
+//  316     if ( buf != NULL )
+//  317     {
+//  318       /* Concatenate strings 
+//  319       osal_memcpy( buf, Lcd_Line1, tmpLen );
+//  320       buf[tmpLen++] = ' ';
+//  321       osal_memcpy( &buf[tmpLen], str, strLen );
+//  322       buf[tmpLen+strLen] = '\0';
+//  323 
+//  324       /* Send it out 
+//  325 #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
+//  326 
+//  327 #if defined(SERIAL_DEBUG_SUPPORTED)
+//  328       debug_str( (uint8*)buf );
+//  329 #endif //LCD_SUPPORTED
+//  330 
+//  331 #endif //ZTOOL_P1
+//  332 
+//  333       /* Free mem 
+//  334       osal_mem_free( buf );
+//  335     }
+//  336   }
+//  337 
+//  338   /* Display the string 
+//  339   HalLcd_HW_WriteLine (option, str);
+//  340 
+//  341 #endif //HAL_LCD
+//  342 */
+//  343   
+//  344 }
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  351 void HalLcdWriteValue ( uint32 value, const uint8 radix, uint8 option)
-HalLcdWriteValue:
+?Subroutine0:
           CFI Block cfiBlock2 Using cfiCommon0
+          CFI NoFunction
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock2
+//  345 
+//  346 /**************************************************************************************************
+//  347  * @fn      HalLcdWriteValue
+//  348  *
+//  349  * @brief   Write a value to the LCD
+//  350  *
+//  351  * @param   value  - value that will be displayed
+//  352  *          radix  - 8, 10, 16
+//  353  *          option - display options
+//  354  *
+//  355  * @return  None
+//  356  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  357 void HalLcdWriteValue ( uint32 value, const uint8 radix, uint8 option)
+HalLcdWriteValue:
+          CFI Block cfiBlock3 Using cfiCommon0
           CFI Function HalLcdWriteValue
         CODE
-//  352 {
+//  358 {
         FUNCALL HalLcdWriteValue, _ltoa
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1037,10 +1043,11 @@ HalLcdWriteValue:
           CFI CFA_XSP16 add(XSP16, 39)
         MOV     A,R1
         MOV     R6,A
-//  353 #if (HAL_LCD == TRUE)
-//  354   uint8 buf[HAL_LCD_MAX_BUFF];
-//  355 
-//  356   _ltoa( value, &buf[0], radix );
+//  359   
+//  360 #if (HAL_LCD == TRUE)
+//  361   uint8 buf[HAL_LCD_MAX_BUFF];
+//  362 
+//  363   _ltoa( value, &buf[0], radix );
         ; Setup parameters for call to function _ltoa
         MOV     R0,?XSP + 0
         MOV     R1,?XSP + 1
@@ -1055,158 +1062,72 @@ HalLcdWriteValue:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 39)
-//  357   HalLcdWriteString( (char*)buf, option );
+//  364   HalLcdWriteString( (char*)buf, option );
         ; Setup parameters for call to function HalLcdWriteString
         MOV     A,#0x27
         LCALL   ?XSTACK_DISP0_8
         LCALL   ?Subroutine4 & 0xFFFF
 ??CrossCallReturnLabel_5:
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  358 #endif
-//  359 }
+//  365 #endif
+//  366 }
         MOV     A,#0x19
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 14)
         MOV     R7,#0x6
         LJMP    ?BANKED_LEAVE_XDATA
-          CFI EndBlock cfiBlock2
-//  360 
-//  361 /**************************************************************************************************
-//  362  * @fn      HalLcdWriteScreen
-//  363  *
-//  364  * @brief   Write a value to the LCD
-//  365  *
-//  366  * @param   line1  - string that will be displayed on line 1
-//  367  *          line2  - string that will be displayed on line 2
-//  368  *
-//  369  * @return  None
-//  370  **************************************************************************************************/
+          CFI EndBlock cfiBlock3
+//  367 
+//  368 /**************************************************************************************************
+//  369  * @fn      HalLcdWriteScreen
+//  370  *
+//  371  * @brief   Write a value to the LCD
+//  372  *
+//  373  * @param   line1  - string that will be displayed on line 1
+//  374  *          line2  - string that will be displayed on line 2
+//  375  *
+//  376  * @return  None
+//  377  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  371 void HalLcdWriteScreen( char *line1, char *line2 )
+//  378 void HalLcdWriteScreen( char *line1, char *line2 )
 HalLcdWriteScreen:
-          CFI Block cfiBlock3 Using cfiCommon0
+          CFI Block cfiBlock4 Using cfiCommon0
           CFI Function HalLcdWriteScreen
         CODE
-//  372 {
-        FUNCALL HalLcdWriteScreen, HalLcdWriteString
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL HalLcdWriteScreen, HalLcdWriteString
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        MOV     A,#-0x9
-        LCALL   ?BANKED_ENTER_XDATA
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-        ; Saved register size: 9
+//  379 {
+        ; Saved register size: 0
         ; Auto size: 0
-        MOV     A,R4
-        MOV     R6,A
-        MOV     A,R5
-        MOV     R7,A
-//  373 #if (HAL_LCD == TRUE)
-//  374   HalLcdWriteString( line1, 1 );
-        ; Setup parameters for call to function HalLcdWriteString
-        MOV     R1,#0x1
-        LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  375   HalLcdWriteString( line2, 2 );
-        ; Setup parameters for call to function HalLcdWriteString
-        MOV     R1,#0x2
-        MOV     A,R6
-        MOV     R2,A
-        MOV     A,R7
-        MOV     R3,A
-        LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  376 #endif
-//  377 }
-        SJMP    ??Subroutine6_0
-          CFI EndBlock cfiBlock3
-
-        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-?Subroutine0:
-          CFI Block cfiBlock4 Using cfiCommon0
-          CFI NoFunction
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
+//  380   /*
+//  381 #if (HAL_LCD == TRUE)
+//  382   HalLcdWriteString( line1, 1 );
+//  383   HalLcdWriteString( line2, 2 );
+//  384 #endif
+//  385   */
+//  386 }
+        LJMP    ?BRET
           CFI EndBlock cfiBlock4
-        REQUIRE ??Subroutine6_0
-        ; // Fall through to label ??Subroutine6_0
+//  387 
+//  388 /**************************************************************************************************
+//  389  * @fn      HalLcdWriteStringValue
+//  390  *
+//  391  * @brief   Write a string followed by a value to the LCD
+//  392  *
+//  393  * @param   title  - Title that will be displayed before the value
+//  394  *          value  - value
+//  395  *          format - redix
+//  396  *          line   - line number
+//  397  *
+//  398  * @return  None
+//  399  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-??Subroutine6_0:
-          CFI Block cfiBlock5 Using cfiCommon0
-          CFI NoFunction
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-        MOV     R7,#0x1
-        LJMP    ?BANKED_LEAVE_XDATA
-          CFI EndBlock cfiBlock5
-//  378 
-//  379 /**************************************************************************************************
-//  380  * @fn      HalLcdWriteStringValue
-//  381  *
-//  382  * @brief   Write a string followed by a value to the LCD
-//  383  *
-//  384  * @param   title  - Title that will be displayed before the value
-//  385  *          value  - value
-//  386  *          format - redix
-//  387  *          line   - line number
-//  388  *
-//  389  * @return  None
-//  390  **************************************************************************************************/
-
-        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  391 void HalLcdWriteStringValue( char *title, uint16 value, uint8 format, uint8 line )
+//  400 void HalLcdWriteStringValue( char *title, uint16 value, uint8 format, uint8 line )
 HalLcdWriteStringValue:
-          CFI Block cfiBlock6 Using cfiCommon0
+          CFI Block cfiBlock5 Using cfiCommon0
           CFI Function HalLcdWriteStringValue
         CODE
-//  392 {
+//  401 {
         FUNCALL HalLcdWriteStringValue, osal_strlen
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1289,16 +1210,16 @@ HalLcdWriteStringValue:
         MOV     ?V2,R4
         MOV     ?V3,R5
         MOV     ?V0,R1
-//  393   uint8 tmpLen;
-//  394   uint8 buf[HAL_LCD_MAX_BUFF];
-//  395   uint32 err;
-//  396 
-//  397   tmpLen = (uint8)osal_strlen( (char*)title );
+//  402   uint8 tmpLen;
+//  403   uint8 buf[HAL_LCD_MAX_BUFF];
+//  404   uint32 err;
+//  405 
+//  406   tmpLen = (uint8)osal_strlen( (char*)title );
         ; Setup parameters for call to function osal_strlen
         LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
         MOV     A,R2
         MOV     ?V1,A
-//  398   osal_memcpy( buf, title, tmpLen );
+//  407   osal_memcpy( buf, title, tmpLen );
         ; Setup parameters for call to function osal_memcpy
         MOV     ?V4,R6
         MOV     ?V5,R7
@@ -1314,11 +1235,11 @@ HalLcdWriteStringValue:
         MOV     A,#0x3
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 40)
-//  399   buf[tmpLen] = ' ';
+//  408   buf[tmpLen] = ' ';
         MOV     R0,?V1
         LCALL   ?Subroutine2 & 0xFFFF
-//  400   err = (uint32)(value);
-//  401   _ltoa( err, &buf[tmpLen+1], format );
+//  409   err = (uint32)(value);
+//  410   _ltoa( err, &buf[tmpLen+1], format );
 ??CrossCallReturnLabel_0:
         ; Setup parameters for call to function _ltoa
         INC     DPTR
@@ -1337,37 +1258,37 @@ HalLcdWriteStringValue:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 40)
-//  402   HalLcdWriteString( (char*)buf, line );
+//  411   HalLcdWriteString( (char*)buf, line );
         ; Setup parameters for call to function HalLcdWriteString
         MOV     A,#0x28
         LCALL   ?XSTACK_DISP0_8
         LCALL   ?Subroutine4 & 0xFFFF
 ??CrossCallReturnLabel_6:
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  403   
-//  404  /* 
-//  405 #if (HAL_LCD == TRUE)
-//  406   uint8 tmpLen;
-//  407   uint8 buf[HAL_LCD_MAX_BUFF];
-//  408   uint32 err;
-//  409 
-//  410   tmpLen = (uint8)osal_strlen( (char*)title );
-//  411   osal_memcpy( buf, title, tmpLen );
-//  412   buf[tmpLen] = ' ';
-//  413   err = (uint32)(value);
-//  414   _ltoa( err, &buf[tmpLen+1], format );
-//  415   HalLcdWriteString( (char*)buf, line );		
-//  416 #endif
-//  417 */
-//  418 }
+//  412   
+//  413  /* 
+//  414 #if (HAL_LCD == TRUE)
+//  415   uint8 tmpLen;
+//  416   uint8 buf[HAL_LCD_MAX_BUFF];
+//  417   uint32 err;
+//  418 
+//  419   tmpLen = (uint8)osal_strlen( (char*)title );
+//  420   osal_memcpy( buf, title, tmpLen );
+//  421   buf[tmpLen] = ' ';
+//  422   err = (uint32)(value);
+//  423   _ltoa( err, &buf[tmpLen+1], format );
+//  424   HalLcdWriteString( (char*)buf, line );		
+//  425 #endif
+//  426 */
+//  427 }
         MOV     A,#0x19
-          CFI EndBlock cfiBlock6
+          CFI EndBlock cfiBlock5
         REQUIRE ?Subroutine1
         ; // Fall through to label ?Subroutine1
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine1:
-          CFI Block cfiBlock7 Using cfiCommon0
+          CFI Block cfiBlock6 Using cfiCommon0
           CFI NoFunction
           CFI CFA_SP SP+0
           CFI CFA_XSP16 add(XSP16, 40)
@@ -1392,11 +1313,11 @@ HalLcdWriteStringValue:
           CFI Valid
         MOV     R7,#0x7
         LJMP    ?BANKED_LEAVE_XDATA
-          CFI EndBlock cfiBlock7
+          CFI EndBlock cfiBlock6
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine4:
-          CFI Block cfiCond8 Using cfiCommon0
+          CFI Block cfiCond7 Using cfiCommon0
           CFI Function HalLcdWriteValue
           CFI Conditional ??CrossCallReturnLabel_5
           CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
@@ -1415,18 +1336,42 @@ HalLcdWriteStringValue:
           CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI CFA_SP SP+-2
           CFI CFA_XSP16 add(XSP16, 39)
+          CFI Block cfiCond8 Using cfiCommon0
+          CFI (cfiCond8) Function HalLcdWriteStringValue
+          CFI (cfiCond8) Conditional ??CrossCallReturnLabel_6
+          CFI (cfiCond8) R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond8) VB load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond8) V0 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond8) V1 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond8) V2 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond8) V3 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond8) V4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond8) V5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond8) V6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond8) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond8) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond8) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond8) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond8) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond8) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond8) CFA_SP SP+-2
+          CFI (cfiCond8) CFA_XSP16 add(XSP16, 40)
           CFI Block cfiCond9 Using cfiCommon0
-          CFI (cfiCond9) Function HalLcdWriteStringValue
-          CFI (cfiCond9) Conditional ??CrossCallReturnLabel_6
-          CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond9) V4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond9) V5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond9) V6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond9) Function HalLcdWriteStringValueValue
+          CFI (cfiCond9) Conditional ??CrossCallReturnLabel_7
+          CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond9) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond9) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond9) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond9) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond9) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond9) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond9) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
           CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
           CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
           CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
@@ -1434,67 +1379,43 @@ HalLcdWriteStringValue:
           CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
           CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI (cfiCond9) CFA_SP SP+-2
-          CFI (cfiCond9) CFA_XSP16 add(XSP16, 40)
-          CFI Block cfiCond10 Using cfiCommon0
-          CFI (cfiCond10) Function HalLcdWriteStringValueValue
-          CFI (cfiCond10) Conditional ??CrossCallReturnLabel_7
-          CFI (cfiCond10) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
-          CFI (cfiCond10) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
-          CFI (cfiCond10) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
-          CFI (cfiCond10) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
-          CFI (cfiCond10) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond10) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond10) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond10) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond10) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond10) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond10) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond10) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond10) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI (cfiCond10) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI (cfiCond10) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI (cfiCond10) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI (cfiCond10) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI (cfiCond10) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI (cfiCond10) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond10) CFA_SP SP+-2
-          CFI (cfiCond10) CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiPicker11 Using cfiCommon1
-          CFI (cfiPicker11) NoFunction
-          CFI (cfiPicker11) Picker
+          CFI (cfiCond9) CFA_XSP16 add(XSP16, 44)
+          CFI Block cfiPicker10 Using cfiCommon1
+          CFI (cfiPicker10) NoFunction
+          CFI (cfiPicker10) Picker
         MOVX    A,@DPTR
         MOV     R1,A
         MOV     R2,?XSP + 0
         MOV     R3,?XSP + 1
         RET
+          CFI EndBlock cfiCond7
           CFI EndBlock cfiCond8
           CFI EndBlock cfiCond9
-          CFI EndBlock cfiCond10
-          CFI EndBlock cfiPicker11
-//  419 
-//  420 /**************************************************************************************************
-//  421  * @fn      HalLcdWriteStringValue
-//  422  *
-//  423  * @brief   Write a string followed by a value to the LCD
-//  424  *
-//  425  * @param   title   - Title that will be displayed before the value
-//  426  *          value1  - value #1
-//  427  *          format1 - redix of value #1
-//  428  *          value2  - value #2
-//  429  *          format2 - redix of value #2
-//  430  *          line    - line number
+          CFI EndBlock cfiPicker10
+//  428 
+//  429 /**************************************************************************************************
+//  430  * @fn      HalLcdWriteStringValue
 //  431  *
-//  432  * @return  None
-//  433  **************************************************************************************************/
+//  432  * @brief   Write a string followed by a value to the LCD
+//  433  *
+//  434  * @param   title   - Title that will be displayed before the value
+//  435  *          value1  - value #1
+//  436  *          format1 - redix of value #1
+//  437  *          value2  - value #2
+//  438  *          format2 - redix of value #2
+//  439  *          line    - line number
+//  440  *
+//  441  * @return  None
+//  442  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  434 void HalLcdWriteStringValueValue( char *title, uint16 value1, uint8 format1,
+//  443 void HalLcdWriteStringValueValue( char *title, uint16 value1, uint8 format1,
 HalLcdWriteStringValueValue:
-          CFI Block cfiBlock12 Using cfiCommon0
+          CFI Block cfiBlock11 Using cfiCommon0
           CFI Function HalLcdWriteStringValueValue
         CODE
-//  435                                   uint16 value2, uint8 format2, uint8 line )
-//  436 {
+//  444                                   uint16 value2, uint8 format2, uint8 line )
+//  445 {
         FUNCALL HalLcdWriteStringValueValue, osal_strlen
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1604,22 +1525,22 @@ HalLcdWriteStringValueValue:
         MOV     ?V4,R4
         MOV     ?V5,R5
         MOV     ?V0,R1
-//  437 
-//  438 #if (HAL_LCD == TRUE)
-//  439 
-//  440   uint8 tmpLen;
-//  441   uint8 buf[HAL_LCD_MAX_BUFF];
-//  442   uint32 err;
-//  443 
-//  444   tmpLen = (uint8)osal_strlen( (char*)title );
+//  446 
+//  447 #if (HAL_LCD == TRUE)
+//  448 
+//  449   uint8 tmpLen;
+//  450   uint8 buf[HAL_LCD_MAX_BUFF];
+//  451   uint32 err;
+//  452 
+//  453   tmpLen = (uint8)osal_strlen( (char*)title );
         ; Setup parameters for call to function osal_strlen
         LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
         MOV     A,R2
         MOV     ?V2,A
-//  445   if ( tmpLen )
+//  454   if ( tmpLen )
         JZ      ??HalLcdWriteStringValueValue_0
-//  446   {
-//  447     osal_memcpy( buf, title, tmpLen );
+//  455   {
+//  456     osal_memcpy( buf, title, tmpLen );
         ; Setup parameters for call to function osal_memcpy
         MOV     ?V8,R6
         MOV     ?V9,R7
@@ -1635,15 +1556,15 @@ HalLcdWriteStringValueValue:
         MOV     A,#0x3
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 44)
-//  448     buf[tmpLen++] = ' ';
+//  457     buf[tmpLen++] = ' ';
         MOV     R0,?V2
         LCALL   ?Subroutine2 & 0xFFFF
-//  449   }
+//  458   }
 ??CrossCallReturnLabel_1:
         INC     ?V2
-//  450 
-//  451   err = (uint32)(value1);
-//  452   _ltoa( err, &buf[tmpLen], format1 );
+//  459 
+//  460   err = (uint32)(value1);
+//  461   _ltoa( err, &buf[tmpLen], format1 );
 ??HalLcdWriteStringValueValue_0:
         ; Setup parameters for call to function _ltoa
         MOV     R0,?V2
@@ -1661,15 +1582,15 @@ HalLcdWriteStringValueValue:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 44)
-//  453   tmpLen = (uint8)osal_strlen( (char*)buf );
+//  462   tmpLen = (uint8)osal_strlen( (char*)buf );
         ; Setup parameters for call to function osal_strlen
         MOV     R2,?XSP + 0
         MOV     R3,?XSP + 1
         LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
         MOV     A,R2
         MOV     ?V2,A
-//  454 
-//  455   buf[tmpLen++] = ',';
+//  463 
+//  464   buf[tmpLen++] = ',';
         MOV     R0,A
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
@@ -1681,11 +1602,11 @@ HalLcdWriteStringValueValue:
         MOV     DPH,A
         MOV     A,#0x2c
         MOVX    @DPTR,A
-//  456   buf[tmpLen++] = ' ';
+//  465   buf[tmpLen++] = ' ';
         INC     R0
         LCALL   ?Subroutine2 & 0xFFFF
-//  457   err = (uint32)(value2);
-//  458   _ltoa( err, &buf[tmpLen], format2 );
+//  466   err = (uint32)(value2);
+//  467   _ltoa( err, &buf[tmpLen], format2 );
 ??CrossCallReturnLabel_2:
         ; Setup parameters for call to function _ltoa
         INC     R0
@@ -1712,27 +1633,27 @@ HalLcdWriteStringValueValue:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 44)
-//  459 
-//  460   HalLcdWriteString( (char *)buf, line );		
+//  468 
+//  469   HalLcdWriteString( (char *)buf, line );		
         ; Setup parameters for call to function HalLcdWriteString
         MOV     A,#0x2f
         LCALL   ?XSTACK_DISP0_8
         LCALL   ?Subroutine4 & 0xFFFF
 ??CrossCallReturnLabel_7:
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  461 
-//  462 #endif
-//  463 }
+//  470 
+//  471 #endif
+//  472 }
         MOV     A,#0x19
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 19)
         MOV     R7,#0xb
         LJMP    ?BANKED_LEAVE_XDATA
-          CFI EndBlock cfiBlock12
+          CFI EndBlock cfiBlock11
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine3:
-          CFI Block cfiCond13 Using cfiCommon0
+          CFI Block cfiCond12 Using cfiCommon0
           CFI Function HalLcdWriteStringValueValue
           CFI Conditional ??CrossCallReturnLabel_3
           CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
@@ -1756,33 +1677,33 @@ HalLcdWriteStringValueValue:
           CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI CFA_SP SP+-2
           CFI CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiCond14 Using cfiCommon0
-          CFI (cfiCond14) Function HalLcdWriteStringValueValue
-          CFI (cfiCond14) Conditional ??CrossCallReturnLabel_4
-          CFI (cfiCond14) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
-          CFI (cfiCond14) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
-          CFI (cfiCond14) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
-          CFI (cfiCond14) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
-          CFI (cfiCond14) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond14) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond14) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond14) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond14) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond14) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond14) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond14) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond14) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI (cfiCond14) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI (cfiCond14) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI (cfiCond14) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI (cfiCond14) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI (cfiCond14) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI (cfiCond14) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond14) CFA_SP SP+-2
-          CFI (cfiCond14) CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiPicker15 Using cfiCommon1
-          CFI (cfiPicker15) NoFunction
-          CFI (cfiPicker15) Picker
+          CFI Block cfiCond13 Using cfiCommon0
+          CFI (cfiCond13) Function HalLcdWriteStringValueValue
+          CFI (cfiCond13) Conditional ??CrossCallReturnLabel_4
+          CFI (cfiCond13) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond13) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond13) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond13) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond13) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond13) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond13) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond13) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond13) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond13) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond13) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond13) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond13) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond13) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond13) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond13) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond13) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond13) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond13) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond13) CFA_SP SP+-2
+          CFI (cfiCond13) CFA_XSP16 add(XSP16, 44)
+          CFI Block cfiPicker14 Using cfiCommon1
+          CFI (cfiPicker14) NoFunction
+          CFI (cfiPicker14) Picker
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
         MOV     A,DPL
@@ -1793,13 +1714,13 @@ HalLcdWriteStringValueValue:
         MOV     ?V3,A
         MOV     R0,#?V2
         RET
+          CFI EndBlock cfiCond12
           CFI EndBlock cfiCond13
-          CFI EndBlock cfiCond14
-          CFI EndBlock cfiPicker15
+          CFI EndBlock cfiPicker14
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine2:
-          CFI Block cfiCond16 Using cfiCommon0
+          CFI Block cfiCond15 Using cfiCommon0
           CFI Function HalLcdWriteStringValue
           CFI Conditional ??CrossCallReturnLabel_0
           CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
@@ -1819,9 +1740,33 @@ HalLcdWriteStringValueValue:
           CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI CFA_SP SP+-2
           CFI CFA_XSP16 add(XSP16, 40)
+          CFI Block cfiCond16 Using cfiCommon0
+          CFI (cfiCond16) Function HalLcdWriteStringValueValue
+          CFI (cfiCond16) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond16) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond16) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond16) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond16) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond16) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond16) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond16) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond16) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond16) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond16) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond16) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond16) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond16) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond16) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond16) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond16) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond16) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond16) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond16) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond16) CFA_SP SP+-2
+          CFI (cfiCond16) CFA_XSP16 add(XSP16, 44)
           CFI Block cfiCond17 Using cfiCommon0
           CFI (cfiCond17) Function HalLcdWriteStringValueValue
-          CFI (cfiCond17) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond17) Conditional ??CrossCallReturnLabel_2
           CFI (cfiCond17) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
           CFI (cfiCond17) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
           CFI (cfiCond17) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
@@ -1843,61 +1788,37 @@ HalLcdWriteStringValueValue:
           CFI (cfiCond17) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI (cfiCond17) CFA_SP SP+-2
           CFI (cfiCond17) CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiCond18 Using cfiCommon0
-          CFI (cfiCond18) Function HalLcdWriteStringValueValue
-          CFI (cfiCond18) Conditional ??CrossCallReturnLabel_2
-          CFI (cfiCond18) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
-          CFI (cfiCond18) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
-          CFI (cfiCond18) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
-          CFI (cfiCond18) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
-          CFI (cfiCond18) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond18) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond18) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond18) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond18) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond18) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond18) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond18) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond18) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI (cfiCond18) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI (cfiCond18) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI (cfiCond18) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI (cfiCond18) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI (cfiCond18) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI (cfiCond18) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond18) CFA_SP SP+-2
-          CFI (cfiCond18) CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiPicker19 Using cfiCommon1
-          CFI (cfiPicker19) NoFunction
-          CFI (cfiPicker19) Picker
+          CFI Block cfiPicker18 Using cfiCommon1
+          CFI (cfiPicker18) NoFunction
+          CFI (cfiPicker18) Picker
         LCALL   ?Subroutine5 & 0xFFFF
 ??CrossCallReturnLabel_9:
         MOV     A,#0x20
         MOVX    @DPTR,A
         RET
+          CFI EndBlock cfiCond15
           CFI EndBlock cfiCond16
           CFI EndBlock cfiCond17
-          CFI EndBlock cfiCond18
-          CFI EndBlock cfiPicker19
-//  464 
-//  465 /**************************************************************************************************
-//  466  * @fn      HalLcdDisplayPercentBar
-//  467  *
-//  468  * @brief   Display percentage bar on the LCD
-//  469  *
-//  470  * @param   title   -
-//  471  *          value   -
-//  472  *
-//  473  * @return  None
-//  474  **************************************************************************************************/
+          CFI EndBlock cfiPicker18
+//  473 
+//  474 /**************************************************************************************************
+//  475  * @fn      HalLcdDisplayPercentBar
+//  476  *
+//  477  * @brief   Display percentage bar on the LCD
+//  478  *
+//  479  * @param   title   -
+//  480  *          value   -
+//  481  *
+//  482  * @return  None
+//  483  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  475 void HalLcdDisplayPercentBar( char *title, uint8 value )
+//  484 void HalLcdDisplayPercentBar( char *title, uint8 value )
 HalLcdDisplayPercentBar:
-          CFI Block cfiBlock20 Using cfiCommon0
+          CFI Block cfiBlock19 Using cfiCommon0
           CFI Function HalLcdDisplayPercentBar
         CODE
-//  476 {
+//  485 {
         FUNCALL HalLcdDisplayPercentBar, HalLcdWriteString
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1973,44 +1894,44 @@ HalLcdDisplayPercentBar:
           CFI CFA_XSP16 add(XSP16, 32)
         MOV     A,R1
         MOV     R6,A
-//  477 #if (HAL_LCD == TRUE)
-//  478 
-//  479   uint8 percent;
-//  480   uint8 leftOver;
-//  481   uint8 buf[17];
-//  482   uint32 err;
-//  483   uint8 x;
-//  484 
-//  485   /* Write the title: */
-//  486   HalLcdWriteString( title, HAL_LCD_LINE_1 );
+//  486 #if (HAL_LCD == TRUE)
+//  487 
+//  488   uint8 percent;
+//  489   uint8 leftOver;
+//  490   uint8 buf[17];
+//  491   uint32 err;
+//  492   uint8 x;
+//  493 
+//  494   /* Write the title: */
+//  495   HalLcdWriteString( title, HAL_LCD_LINE_1 );
         ; Setup parameters for call to function HalLcdWriteString
         MOV     R1,#0x1
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  487 
-//  488   if ( value > 100 )
+//  496 
+//  497   if ( value > 100 )
         MOV     A,R6
         CLR     C
         SUBB    A,#0x65
         JC      ??HalLcdDisplayPercentBar_0
-//  489     value = 100;
+//  498     value = 100;
         MOV     R6,#0x64
-//  490 
-//  491   /* convert to blocks */
-//  492   percent = (uint8)(value / 10);
+//  499 
+//  500   /* convert to blocks */
+//  501   percent = (uint8)(value / 10);
 ??HalLcdDisplayPercentBar_0:
         MOV     B,#0xa
         MOV     A,R6
         DIV     AB
         MOV     ?V0,A
-//  493   leftOver = (uint8)(value % 10);
+//  502   leftOver = (uint8)(value % 10);
         MOV     A,R6
         MOV     B,#0xa
         DIV     AB
         MOV     A,B
         MOV     ?V1,A
-//  494 
-//  495   /* Make window */
-//  496   osal_memcpy( buf, "[          ]  ", 15 );
+//  503 
+//  504   /* Make window */
+//  505   osal_memcpy( buf, "[          ]  ", 15 );
         ; Setup parameters for call to function osal_memcpy
         MOV     ?V4,#`?<Constant "[          ]  ">` & 0xff
         MOV     ?V5,#(`?<Constant "[          ]  ">` >> 8) & 0xff
@@ -2026,13 +1947,13 @@ HalLcdDisplayPercentBar:
         MOV     A,#0x3
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 32)
-//  497 
-//  498   for ( x = 0; x < percent; x ++ )
+//  506 
+//  507   for ( x = 0; x < percent; x ++ )
         MOV     R7,#0x0
         MOV     A,?V0
         JZ      ??HalLcdDisplayPercentBar_1
-//  499   {
-//  500     buf[1+x] = '>';
+//  508   {
+//  509     buf[1+x] = '>';
         MOV     R0,A
         MOV     R1,#0x0
         MOV     R2,#0x3e
@@ -2050,16 +1971,16 @@ HalLcdDisplayPercentBar:
         MOV     R1,A
         ORL     A,R0
         JNZ     ??HalLcdDisplayPercentBar_2
-//  501   }
+//  510   }
         MOV     R7,?V0
-//  502 
-//  503   if ( leftOver >= 5 )
+//  511 
+//  512   if ( leftOver >= 5 )
 ??HalLcdDisplayPercentBar_1:
         MOV     A,?V1
         CLR     C
         SUBB    A,#0x5
         JC      ??HalLcdDisplayPercentBar_3
-//  504     buf[1+x] = '+';
+//  513     buf[1+x] = '+';
         MOV     A,R7
         MOV     R0,A
         LCALL   ?Subroutine5 & 0xFFFF
@@ -2067,9 +1988,9 @@ HalLcdDisplayPercentBar:
         INC     DPTR
         MOV     A,#0x2b
         MOVX    @DPTR,A
-//  505 
-//  506   err = (uint32)value;
-//  507   _ltoa( err, (uint8*)&buf[13], 10 );
+//  514 
+//  515   err = (uint32)value;
+//  516   _ltoa( err, (uint8*)&buf[13], 10 );
 ??HalLcdDisplayPercentBar_3:
         ; Setup parameters for call to function _ltoa
         MOV     A,#0xd
@@ -2090,24 +2011,24 @@ HalLcdDisplayPercentBar:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 32)
-//  508 
-//  509   HalLcdWriteString( (char*)buf, HAL_LCD_LINE_2 );
+//  517 
+//  518   HalLcdWriteString( (char*)buf, HAL_LCD_LINE_2 );
         ; Setup parameters for call to function HalLcdWriteString
         MOV     R1,#0x2
         MOV     R2,?XSP + 0
         MOV     R3,?XSP + 1
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  510 
-//  511 #endif
-//  512 
-//  513 }
+//  519 
+//  520 #endif
+//  521 
+//  522 }
         MOV     A,#0x11
         LJMP    ?Subroutine1 & 0xFFFF
-          CFI EndBlock cfiBlock20
+          CFI EndBlock cfiBlock19
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine5:
-          CFI Block cfiCond21 Using cfiCommon0
+          CFI Block cfiCond20 Using cfiCommon0
           CFI Function HalLcdWriteStringValue
           CFI Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_0
           CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
@@ -2127,9 +2048,33 @@ HalLcdDisplayPercentBar:
           CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI CFA_SP SP+-4
           CFI CFA_XSP16 add(XSP16, 40)
+          CFI Block cfiCond21 Using cfiCommon0
+          CFI (cfiCond21) Function HalLcdWriteStringValueValue
+          CFI (cfiCond21) Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_1
+          CFI (cfiCond21) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond21) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond21) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond21) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond21) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond21) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond21) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond21) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond21) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond21) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond21) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond21) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond21) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond21) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond21) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond21) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond21) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond21) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond21) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond21) CFA_SP SP+-4
+          CFI (cfiCond21) CFA_XSP16 add(XSP16, 44)
           CFI Block cfiCond22 Using cfiCommon0
           CFI (cfiCond22) Function HalLcdWriteStringValueValue
-          CFI (cfiCond22) Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_1
+          CFI (cfiCond22) Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_2
           CFI (cfiCond22) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
           CFI (cfiCond22) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
           CFI (cfiCond22) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
@@ -2152,52 +2097,28 @@ HalLcdDisplayPercentBar:
           CFI (cfiCond22) CFA_SP SP+-4
           CFI (cfiCond22) CFA_XSP16 add(XSP16, 44)
           CFI Block cfiCond23 Using cfiCommon0
-          CFI (cfiCond23) Function HalLcdWriteStringValueValue
-          CFI (cfiCond23) Conditional ??CrossCallReturnLabel_9, ??CrossCallReturnLabel_2
-          CFI (cfiCond23) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
-          CFI (cfiCond23) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
-          CFI (cfiCond23) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
-          CFI (cfiCond23) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
-          CFI (cfiCond23) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond23) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond23) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond23) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond23) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond23) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond23) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond23) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond23) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond23) Function HalLcdDisplayPercentBar
+          CFI (cfiCond23) Conditional ??CrossCallReturnLabel_8
+          CFI (cfiCond23) R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond23) VB load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond23) V0 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond23) V1 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond23) V2 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond23) V3 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond23) V4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond23) V5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond23) V6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
           CFI (cfiCond23) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
           CFI (cfiCond23) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
           CFI (cfiCond23) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
           CFI (cfiCond23) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
           CFI (cfiCond23) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
           CFI (cfiCond23) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond23) CFA_SP SP+-4
-          CFI (cfiCond23) CFA_XSP16 add(XSP16, 44)
-          CFI Block cfiCond24 Using cfiCommon0
-          CFI (cfiCond24) Function HalLcdDisplayPercentBar
-          CFI (cfiCond24) Conditional ??CrossCallReturnLabel_8
-          CFI (cfiCond24) R6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
-          CFI (cfiCond24) VB load(1, XDATA, add(CFA_XSP16, literal(-14)))
-          CFI (cfiCond24) V0 load(1, XDATA, add(CFA_XSP16, literal(-13)))
-          CFI (cfiCond24) V1 load(1, XDATA, add(CFA_XSP16, literal(-12)))
-          CFI (cfiCond24) V2 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond24) V3 load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond24) V4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond24) V5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond24) V6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI (cfiCond24) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI (cfiCond24) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI (cfiCond24) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI (cfiCond24) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI (cfiCond24) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI (cfiCond24) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond24) CFA_SP SP+-2
-          CFI (cfiCond24) CFA_XSP16 add(XSP16, 32)
-          CFI Block cfiPicker25 Using cfiCommon1
-          CFI (cfiPicker25) NoFunction
-          CFI (cfiPicker25) Picker
+          CFI (cfiCond23) CFA_SP SP+-2
+          CFI (cfiCond23) CFA_XSP16 add(XSP16, 32)
+          CFI Block cfiPicker24 Using cfiCommon1
+          CFI (cfiPicker24) NoFunction
+          CFI (cfiPicker24) Picker
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
         MOV     A,DPL
@@ -2207,413 +2128,335 @@ HalLcdDisplayPercentBar:
         ADDC    A,DPH
         MOV     DPH,A
         RET
+          CFI EndBlock cfiCond20
           CFI EndBlock cfiCond21
           CFI EndBlock cfiCond22
           CFI EndBlock cfiCond23
-          CFI EndBlock cfiCond24
-          CFI EndBlock cfiPicker25
-//  514 
-//  515 #if (HAL_LCD == TRUE)
-//  516 /**************************************************************************************************
-//  517  *                                    HARDWARE LCD
-//  518  **************************************************************************************************/
-//  519 
-//  520 /**************************************************************************************************
-//  521  * @fn      halLcd_ConfigIO
-//  522  *
-//  523  * @brief   Configure IO lines needed for LCD control.
-//  524  *
-//  525  * @param   None
-//  526  *
-//  527  * @return  None
-//  528  **************************************************************************************************/
-//  529 static void halLcd_ConfigIO(void)
-//  530 {
-//  531   /* GPIO configuration */
-//  532   HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
-//  533   HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
-//  534   HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
-//  535 }
-//  536 
-//  537 /**************************************************************************************************
-//  538  * @fn      halLcd_ConfigSPI
-//  539  *
-//  540  * @brief   Configure SPI lines needed for talking to LCD.
-//  541  *
-//  542  * @param   None
-//  543  *
-//  544  * @return  None
-//  545  **************************************************************************************************/
-//  546 static void halLcd_ConfigSPI(void)
-//  547 {
-//  548   /* UART/SPI Peripheral configuration */
-//  549 
-//  550    uint8 baud_exponent;
-//  551    uint8 baud_mantissa;
-//  552 
-//  553   /* Set SPI on UART 1 alternative 2 */
-//  554   PERCFG |= 0x02;
-//  555 
-//  556   /* Configure clk, master out and master in lines */
-//  557   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
-//  558   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
-//  559   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
-//  560 
-//  561 
-//  562   /* Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
-//  563    * Confirm on board that this results in 1MHz spi clk.
-//  564    */
-//  565   baud_exponent = 15;
-//  566   baud_mantissa =  0;
-//  567 
-//  568   /* Configure SPI */
-//  569   U1UCR  = 0x80;      /* Flush and goto IDLE state. 8-N-1. */
-//  570   U1CSR  = 0x00;      /* SPI mode, master. */
-//  571   U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
-//  572   U1BAUD = baud_mantissa;
-//  573 }
-//  574 
-//  575 /**************************************************************************************************
-//  576  * @fn      HalLcd_HW_Init
-//  577  *
-//  578  * @brief   Initilize HW LCD Driver.
-//  579  *
-//  580  * @param   None
-//  581  *
-//  582  * @return  None
-//  583  **************************************************************************************************/
+          CFI EndBlock cfiPicker24
+//  523 
+//  524 #if (HAL_LCD == TRUE)
+//  525 /**************************************************************************************************
+//  526  *                                    HARDWARE LCD
+//  527  **************************************************************************************************/
+//  528 
+//  529 /**************************************************************************************************
+//  530  * @fn      halLcd_ConfigIO
+//  531  *
+//  532  * @brief   Configure IO lines needed for LCD control.
+//  533  *
+//  534  * @param   None
+//  535  *
+//  536  * @return  None
+//  537  **************************************************************************************************/
+//  538 static void halLcd_ConfigIO(void)
+//  539 {/*
+//  540   /* GPIO configuration *//*
+//  541   HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
+//  542   HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
+//  543   HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
+//  544 */
+//  545 }
+//  546 
+//  547 /**************************************************************************************************
+//  548  * @fn      halLcd_ConfigSPI
+//  549  *
+//  550  * @brief   Configure SPI lines needed for talking to LCD.
+//  551  *
+//  552  * @param   None
+//  553  *
+//  554  * @return  None
+//  555  **************************************************************************************************/
+//  556 static void halLcd_ConfigSPI(void)
+//  557 {
+//  558   /* UART/SPI Peripheral configuration */
+//  559 /*
+//  560    uint8 baud_exponent;
+//  561    uint8 baud_mantissa;
+//  562 
+//  563   /* Set SPI on UART 1 alternative 2 *//*
+//  564   PERCFG |= 0x02;
+//  565 
+//  566   /* Configure clk, master out and master in lines *//*
+//  567   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
+//  568   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
+//  569   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
+//  570 
+//  571 
+//  572   /* Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
+//  573    * Confirm on board that this results in 1MHz spi clk.
+//  574    *//*
+//  575   baud_exponent = 15;
+//  576   baud_mantissa =  0;
+//  577 
+//  578   /* Configure SPI *//*
+//  579   U1UCR  = 0x80;      /* Flush and goto IDLE state. 8-N-1. *//*
+//  580   U1CSR  = 0x00;      /* SPI mode, master. *//*
+//  581   U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
+//  582   U1BAUD = baud_mantissa;
+//  583   */
+//  584 }
+//  585 
+//  586 /**************************************************************************************************
+//  587  * @fn      HalLcd_HW_Init
+//  588  *
+//  589  * @brief   Initilize HW LCD Driver.
+//  590  *
+//  591  * @param   None
+//  592  *
+//  593  * @return  None
+//  594  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  584 void HalLcd_HW_Init(void)
+//  595 void HalLcd_HW_Init(void)
 HalLcd_HW_Init:
-          CFI Block cfiBlock26 Using cfiCommon0
+          CFI Block cfiBlock25 Using cfiCommon0
           CFI Function HalLcd_HW_Init
         CODE
-//  585 {
+//  596 {
         ; Saved register size: 0
         ; Auto size: 0
-//  586   
-//  587   CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
+//  597   
+//  598   CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
         MOV     0xc6,#0x0
-//  588     
-//  589   
-//  590     PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
-        MOV     0xf1,#0x0
-//  591     P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
-        MOV     0xf3,#0xc
-//  592     
-//  593   
-//  594     U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
-        MOV     0x86,#-0x40
-//  595     U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
-        MOV     0xc5,#0x8
-//  596  
-//  597     
-//  598     U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
-        MOV     0xc2,#0x3a
 //  599     
 //  600   
-//  601   
-//  602   /* Initialize LCD IO lines 
-//  603   halLcd_ConfigIO();
-//  604 
-//  605   /* Initialize SPI 
-//  606   halLcd_ConfigSPI();
-//  607 
-//  608   /* Perform reset 
-//  609   LCD_ACTIVATE_RESET();
-//  610   HalLcd_HW_WaitUs(15000); // 15 ms
-//  611   LCD_RELEASE_RESET();
-//  612   HalLcd_HW_WaitUs(15); // 15 us
-//  613 
-//  614   /* Perform the initialization sequence 
-//  615   FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
-//  616 
-//  617   /* Set contrast 
-//  618   HalLcd_HW_SetContrast(15);
-//  619 
-//  620   /* Set power 
-//  621   SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
-//  622   SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
-//  623   SET_BIAS_CTRL(BIAS_1_5);
-//  624   HalLcd_HW_WaitUs(21000);// 21 ms
-//  625 
-//  626   /* Clear the display 
-//  627   HalLcd_HW_Clear();
-//  628   HalLcd_HW_ClearAllSpecChars();
-//  629   SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
-//  630 */
-//  631 
-//  632 }
+//  601     PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
+        MOV     0xf1,#0x0
+//  602     P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+        MOV     0xf3,#0xc
+//  603     
+//  604   
+//  605     U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
+        MOV     0x86,#-0x40
+//  606     U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
+        MOV     0xc5,#0x8
+//  607  
+//  608     
+//  609     U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
+        MOV     0xc2,#0x3a
+//  610     
+//  611   
+//  612   
+//  613   /* Initialize LCD IO lines 
+//  614   halLcd_ConfigIO();
+//  615 
+//  616   /* Initialize SPI 
+//  617   halLcd_ConfigSPI();
+//  618 
+//  619   /* Perform reset 
+//  620   LCD_ACTIVATE_RESET();
+//  621   HalLcd_HW_WaitUs(15000); // 15 ms
+//  622   LCD_RELEASE_RESET();
+//  623   HalLcd_HW_WaitUs(15); // 15 us
+//  624 
+//  625   /* Perform the initialization sequence 
+//  626   FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
+//  627 
+//  628   /* Set contrast 
+//  629   HalLcd_HW_SetContrast(15);
+//  630 
+//  631   /* Set power 
+//  632   SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
+//  633   SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
+//  634   SET_BIAS_CTRL(BIAS_1_5);
+//  635   HalLcd_HW_WaitUs(21000);// 21 ms
+//  636 
+//  637   /* Clear the display 
+//  638   HalLcd_HW_Clear();
+//  639   HalLcd_HW_ClearAllSpecChars();
+//  640   SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
+//  641 */
+//  642 
+//  643 }
         LJMP    ?BRET
-          CFI EndBlock cfiBlock26
+          CFI EndBlock cfiBlock25
         REQUIRE CLKCONCMD
         REQUIRE PERCFG
         REQUIRE P0SEL
         REQUIRE U0CSR
         REQUIRE U0GCR
         REQUIRE U0BAUD
-//  633 
-//  634 /**************************************************************************************************
-//  635  * @fn      HalLcd_HW_Control
-//  636  *
-//  637  * @brief   Write 1 command to the LCD
-//  638  *
-//  639  * @param   uint8 cmd - command to be written to the LCD
-//  640  *
-//  641  * @return  None
-//  642  **************************************************************************************************/
+//  644 
+//  645 /**************************************************************************************************
+//  646  * @fn      HalLcd_HW_Control
+//  647  *
+//  648  * @brief   Write 1 command to the LCD
+//  649  *
+//  650  * @param   uint8 cmd - command to be written to the LCD
+//  651  *
+//  652  * @return  None
+//  653  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  643 void HalLcd_HW_Control(uint8 cmd)
+//  654 void HalLcd_HW_Control(uint8 cmd)
 HalLcd_HW_Control:
-          CFI Block cfiBlock27 Using cfiCommon0
+          CFI Block cfiBlock26 Using cfiCommon0
           CFI Function HalLcd_HW_Control
         CODE
-//  644 {/*
+//  655 {/*
         ; Saved register size: 0
         ; Auto size: 0
-//  645   LCD_SPI_BEGIN();
-//  646   LCD_DO_CONTROL();
-//  647   LCD_SPI_TX(cmd);
-//  648   LCD_SPI_WAIT_RXRDY();
-//  649   LCD_SPI_END();
-//  650 */
-//  651 }
+//  656   LCD_SPI_BEGIN();
+//  657   LCD_DO_CONTROL();
+//  658   LCD_SPI_TX(cmd);
+//  659   LCD_SPI_WAIT_RXRDY();
+//  660   LCD_SPI_END();
+//  661 */
+//  662 }
         LJMP    ?BRET
-          CFI EndBlock cfiBlock27
-//  652 
-//  653 /**************************************************************************************************
-//  654  * @fn      HalLcd_HW_Write
-//  655  *
-//  656  * @brief   Write 1 byte to the LCD
-//  657  *
-//  658  * @param   uint8 data - data to be written to the LCD
-//  659  *
-//  660  * @return  None
-//  661  **************************************************************************************************/
+          CFI EndBlock cfiBlock26
+//  663 
+//  664 /**************************************************************************************************
+//  665  * @fn      HalLcd_HW_Write
+//  666  *
+//  667  * @brief   Write 1 byte to the LCD
+//  668  *
+//  669  * @param   uint8 data - data to be written to the LCD
+//  670  *
+//  671  * @return  None
+//  672  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  662 void HalLcd_HW_Write(uint8 data)
+//  673 void HalLcd_HW_Write(uint8 data)
 HalLcd_HW_Write:
-          CFI Block cfiBlock28 Using cfiCommon0
+          CFI Block cfiBlock27 Using cfiCommon0
           CFI Function HalLcd_HW_Write
         CODE
-//  663 {
+//  674 {
         ; Saved register size: 0
         ; Auto size: 0
-//  664   U0DBUF = data;
+//  675   U0DBUF = data;
         MOV     0xc1,R1
-//  665     
-//  666     while((U0CSR & 0x01) == 0x01)
+//  676     
+//  677     while((U0CSR & 0x01) == 0x01)
 ??HalLcd_HW_Write_0:
         MOV     A,0x86
         MOV     C,0xE0 /* A   */.0
         JC      ??HalLcd_HW_Write_0
-//  667     {
-//  668     }
-//  669   
-//  670   /*
-//  671   LCD_SPI_BEGIN();
-//  672   LCD_DO_WRITE();
-//  673   LCD_SPI_TX(data);
-//  674   LCD_SPI_WAIT_RXRDY();
-//  675   LCD_SPI_END();
-//  676 */
-//  677 }
+//  678     {
+//  679     }
+//  680   
+//  681   /*
+//  682   LCD_SPI_BEGIN();
+//  683   LCD_DO_WRITE();
+//  684   LCD_SPI_TX(data);
+//  685   LCD_SPI_WAIT_RXRDY();
+//  686   LCD_SPI_END();
+//  687 */
+//  688 }
         LJMP    ?BRET
-          CFI EndBlock cfiBlock28
+          CFI EndBlock cfiBlock27
         REQUIRE U0DBUF
         REQUIRE U0CSR
-//  678 
-//  679 /**************************************************************************************************
-//  680  * @fn          HalLcd_HW_SetContrast
-//  681  *
-//  682  * @brief       Set display contrast
-//  683  *
-//  684  * @param       uint8 value - contrast value
-//  685  *
-//  686  * @return      none
-//  687  **************************************************************************************************/
+//  689 
+//  690 /**************************************************************************************************
+//  691  * @fn          HalLcd_HW_SetContrast
+//  692  *
+//  693  * @brief       Set display contrast
+//  694  *
+//  695  * @param       uint8 value - contrast value
+//  696  *
+//  697  * @return      none
+//  698  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  688 void HalLcd_HW_SetContrast(uint8 value)
+//  699 void HalLcd_HW_SetContrast(uint8 value)
 HalLcd_HW_SetContrast:
-          CFI Block cfiBlock29 Using cfiCommon0
+          CFI Block cfiBlock28 Using cfiCommon0
           CFI Function HalLcd_HW_SetContrast
         CODE
-//  689 {
-        FUNCALL HalLcd_HW_SetContrast, HalLcd_HW_Write
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        MOV     A,#-0x9
-        LCALL   ?BANKED_ENTER_XDATA
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-        ; Saved register size: 9
+//  700 {
+        ; Saved register size: 0
         ; Auto size: 0
-//  690   SET_ICONRAM_ADDR(CONTRAST_CTRL_REGISTER);
-//  691   HalLcd_HW_Write(value);
-        ; Setup parameters for call to function HalLcd_HW_Write
-        LJMP    ?Subroutine0 & 0xFFFF
-//  692 }
-          CFI EndBlock cfiBlock29
-//  693 
-//  694 /**************************************************************************************************
-//  695  * @fn      HalLcd_HW_Clear
-//  696  *
-//  697  * @brief   Clear the HW LCD
-//  698  *
-//  699  * @param   None
-//  700  *
-//  701  * @return  None
-//  702  **************************************************************************************************/
+//  701   /*
+//  702   SET_ICONRAM_ADDR(CONTRAST_CTRL_REGISTER);
+//  703   HalLcd_HW_Write(value);
+//  704 */
+//  705 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock28
+//  706 
+//  707 /**************************************************************************************************
+//  708  * @fn      HalLcd_HW_Clear
+//  709  *
+//  710  * @brief   Clear the HW LCD
+//  711  *
+//  712  * @param   None
+//  713  *
+//  714  * @return  None
+//  715  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  703 void HalLcd_HW_Clear(void)
+//  716 void HalLcd_HW_Clear(void)
 HalLcd_HW_Clear:
-          CFI Block cfiBlock30 Using cfiCommon0
+          CFI Block cfiBlock29 Using cfiCommon0
           CFI Function HalLcd_HW_Clear
         CODE
-//  704 {
-        FUNCALL HalLcd_HW_Clear, HalLcd_HW_Write
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        MOV     A,#-0x9
-        LCALL   ?BANKED_ENTER_XDATA
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-        ; Saved register size: 9
+//  717 {/*
+        ; Saved register size: 0
         ; Auto size: 0
-//  705   uint8 n;
-//  706 
-//  707   SET_DDRAM_ADDR(0x00);
-//  708   for (n = 0; n < (LCD_MAX_LINE_COUNT * HAL_LCD_MAX_CHARS); n++)
-        MOV     R6,#0x30
-//  709   {
-//  710     HalLcd_HW_Write(' ');
-??HalLcd_HW_Clear_0:
-        ; Setup parameters for call to function HalLcd_HW_Write
-        MOV     R1,#0x20
-        LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
-//  711   }
-        DJNZ    R6,??HalLcd_HW_Clear_0
-//  712 }
-        LJMP    ??Subroutine6_0 & 0xFFFF
-          CFI EndBlock cfiBlock30
-//  713 
-//  714 /**************************************************************************************************
-//  715  * @fn      HalLcd_HW_ClearAllSpecChars
-//  716  *
-//  717  * @brief   Clear all special chars
-//  718  *
-//  719  * @param   None
-//  720  *
-//  721  * @return  None
-//  722  **************************************************************************************************/
+//  718   uint8 n;
+//  719 
+//  720   SET_DDRAM_ADDR(0x00);
+//  721   for (n = 0; n < (LCD_MAX_LINE_COUNT * HAL_LCD_MAX_CHARS); n++)
+//  722   {
+//  723     HalLcd_HW_Write(' ');
+//  724   }
+//  725   */
+//  726 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock29
+//  727 
+//  728 /**************************************************************************************************
+//  729  * @fn      HalLcd_HW_ClearAllSpecChars
+//  730  *
+//  731  * @brief   Clear all special chars
+//  732  *
+//  733  * @param   None
+//  734  *
+//  735  * @return  None
+//  736  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  723 void HalLcd_HW_ClearAllSpecChars(void)
+//  737 void HalLcd_HW_ClearAllSpecChars(void)
 HalLcd_HW_ClearAllSpecChars:
-          CFI Block cfiBlock31 Using cfiCommon0
+          CFI Block cfiBlock30 Using cfiCommon0
           CFI Function HalLcd_HW_ClearAllSpecChars
         CODE
-//  724 {
-        FUNCALL HalLcd_HW_ClearAllSpecChars, HalLcd_HW_Write
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 9, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 9, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        MOV     A,#-0x9
-        LCALL   ?BANKED_ENTER_XDATA
-          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI CFA_SP SP+0
-          CFI CFA_XSP16 add(XSP16, 9)
-        ; Saved register size: 9
+//  738 {
+        ; Saved register size: 0
         ; Auto size: 0
-//  725   uint8 n = 0;
-//  726 
-//  727   SET_GCRAM_CHAR(0);
-//  728   for (n = 0; n < (8 * 8); n++)
-        MOV     R6,#0x40
-//  729   {
-//  730     HalLcd_HW_Write(0x00);
-??HalLcd_HW_ClearAllSpecChars_0:
-        ; Setup parameters for call to function HalLcd_HW_Write
-        MOV     R1,#0x0
-        LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
-//  731   }
-        DJNZ    R6,??HalLcd_HW_ClearAllSpecChars_0
-//  732 }
-        LJMP    ??Subroutine6_0 & 0xFFFF
-          CFI EndBlock cfiBlock31
-//  733 
-//  734 /**************************************************************************************************
-//  735  * @fn      HalLcd_HW_WriteChar
-//  736  *
-//  737  * @brief   Write one char to the display
-//  738  *
-//  739  * @param   uint8 line - line number that the char will be displayed
-//  740  *          uint8 col - colum where the char will be displayed
-//  741  *
-//  742  * @return  None
-//  743  **************************************************************************************************/
+//  739   /*
+//  740   uint8 n = 0;
+//  741 
+//  742   SET_GCRAM_CHAR(0);
+//  743   for (n = 0; n < (8 * 8); n++)
+//  744   {
+//  745     HalLcd_HW_Write(0x00);
+//  746   }
+//  747   */
+//  748 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock30
+//  749 
+//  750 /**************************************************************************************************
+//  751  * @fn      HalLcd_HW_WriteChar
+//  752  *
+//  753  * @brief   Write one char to the display
+//  754  *
+//  755  * @param   uint8 line - line number that the char will be displayed
+//  756  *          uint8 col - colum where the char will be displayed
+//  757  *
+//  758  * @return  None
+//  759  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  744 void HalLcd_HW_WriteChar(uint8 line, uint8 col, char text)
+//  760 void HalLcd_HW_WriteChar(uint8 line, uint8 col, char text)
 HalLcd_HW_WriteChar:
-          CFI Block cfiBlock32 Using cfiCommon0
+          CFI Block cfiBlock31 Using cfiCommon0
           CFI Function HalLcd_HW_WriteChar
         CODE
-//  745 {
+//  761 {
         FUNCALL HalLcd_HW_WriteChar, HalLcd_HW_Write
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -2641,43 +2484,43 @@ HalLcd_HW_WriteChar:
         ; Saved register size: 9
         ; Auto size: 0
         MOV     A,R3
-//  746   HalLcd_HW_Write(text);
+//  762   HalLcd_HW_Write(text);
         ; Setup parameters for call to function HalLcd_HW_Write
         MOV     R1,A
         LJMP    ?Subroutine0 & 0xFFFF
-//  747   
-//  748   /*
-//  749   if (col < HAL_LCD_MAX_CHARS)
-//  750   {
-//  751     SET_DDRAM_ADDR((line - 1) * HAL_LCD_MAX_CHARS + col);
-//  752     HalLcd_HW_Write(text);
-//  753   }
-//  754   else
-//  755   {
-//  756     return;
-//  757   }
-//  758   */
-//  759 }
-          CFI EndBlock cfiBlock32
-//  760 
-//  761 /**************************************************************************************************
-//  762  * @fn          halLcdWriteLine
-//  763  *
-//  764  * @brief       Write one line on display
-//  765  *
-//  766  * @param       uint8 line - display line
-//  767  *              char *pText - text buffer to write
-//  768  *
-//  769  * @return      none
-//  770  **************************************************************************************************/
+//  763   
+//  764   /*
+//  765   if (col < HAL_LCD_MAX_CHARS)
+//  766   {
+//  767     SET_DDRAM_ADDR((line - 1) * HAL_LCD_MAX_CHARS + col);
+//  768     HalLcd_HW_Write(text);
+//  769   }
+//  770   else
+//  771   {
+//  772     return;
+//  773   }
+//  774   */
+//  775 }
+          CFI EndBlock cfiBlock31
+//  776 
+//  777 /**************************************************************************************************
+//  778  * @fn          halLcdWriteLine
+//  779  *
+//  780  * @brief       Write one line on display
+//  781  *
+//  782  * @param       uint8 line - display line
+//  783  *              char *pText - text buffer to write
+//  784  *
+//  785  * @return      none
+//  786  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  771 void HalLcd_HW_WriteLine(uint8 line, const char *pText)
+//  787 void HalLcd_HW_WriteLine(uint8 line, const char *pText)
 HalLcd_HW_WriteLine:
-          CFI Block cfiBlock33 Using cfiCommon0
+          CFI Block cfiBlock32 Using cfiCommon0
           CFI Function HalLcd_HW_WriteLine
         CODE
-//  772 {
+//  788 {
         FUNCALL HalLcd_HW_WriteLine, osal_strlen
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -2733,19 +2576,19 @@ HalLcd_HW_WriteLine:
         MOV     R6,A
         MOV     A,R3
         MOV     R7,A
-//  773   uint8 count;
-//  774   uint8 totalLength = (uint8)osal_strlen( (char *)pText );
+//  789   uint8 count;
+//  790   uint8 totalLength = (uint8)osal_strlen( (char *)pText );
         ; Setup parameters for call to function osal_strlen
         LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
         MOV     A,R2
         MOV     ?V1,A
-//  775 
-//  776   /* Write the content first */
-//  777   for (count=0; count<totalLength; count++)
+//  791 
+//  792   /* Write the content first */
+//  793   for (count=0; count<totalLength; count++)
         MOV     ?V0,#0x0
         SJMP    ??HalLcd_HW_WriteLine_0
-//  778   {
-//  779     HalLcd_HW_WriteChar(line, count, (*(pText++)));
+//  794   {
+//  795     HalLcd_HW_WriteChar(line, count, (*(pText++)));
 ??HalLcd_HW_WriteLine_1:
         ; Setup parameters for call to function HalLcd_HW_Write
         MOV     DPL,R6
@@ -2758,100 +2601,100 @@ HalLcd_HW_WriteLine:
         INC     DPTR
         MOV     R6,DPL
         MOV     R7,DPH
-//  780   }
+//  796   }
         INC     ?V0
 ??HalLcd_HW_WriteLine_0:
         MOV     A,?V0
         CLR     C
         SUBB    A,?V1
         JC      ??HalLcd_HW_WriteLine_1
-//  781 
-//  782   /* Write blank spaces to rest of the line */
-//  783   for(count=totalLength; count<HAL_LCD_MAX_CHARS;count++)
+//  797 
+//  798   /* Write blank spaces to rest of the line */
+//  799   for(count=totalLength; count<HAL_LCD_MAX_CHARS;count++)
         MOV     ?V0,?V1
         SJMP    ??HalLcd_HW_WriteLine_2
-//  784   {
-//  785     HalLcd_HW_WriteChar(line, count, ' ');
+//  800   {
+//  801     HalLcd_HW_WriteChar(line, count, ' ');
 ??HalLcd_HW_WriteLine_3:
         ; Setup parameters for call to function HalLcd_HW_Write
         MOV     R1,#0x20
         LCALL   `??HalLcd_HW_Write::?relay`; Banked call to: HalLcd_HW_Write
-//  786   }
+//  802   }
         INC     ?V0
 ??HalLcd_HW_WriteLine_2:
         MOV     A,?V0
         CLR     C
         SUBB    A,#0x10
         JC      ??HalLcd_HW_WriteLine_3
-//  787 }
+//  803 }
         MOV     R7,#0x2
         LJMP    ?BANKED_LEAVE_XDATA
-          CFI EndBlock cfiBlock33
-//  788 
-//  789 /**************************************************************************************************
-//  790  * @fn      HalLcd_HW_WaitUs
-//  791  *
-//  792  * @brief   wait for x us. @ 32MHz MCU clock it takes 32 "nop"s for 1 us delay.
-//  793  *
-//  794  * @param   x us. range[0-65536]
-//  795  *
-//  796  * @return  None
-//  797  **************************************************************************************************/
+          CFI EndBlock cfiBlock32
+//  804 
+//  805 /**************************************************************************************************
+//  806  * @fn      HalLcd_HW_WaitUs
+//  807  *
+//  808  * @brief   wait for x us. @ 32MHz MCU clock it takes 32 "nop"s for 1 us delay.
+//  809  *
+//  810  * @param   x us. range[0-65536]
+//  811  *
+//  812  * @return  None
+//  813  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  798 void HalLcd_HW_WaitUs(uint16 microSecs)
+//  814 void HalLcd_HW_WaitUs(uint16 microSecs)
 HalLcd_HW_WaitUs:
-          CFI Block cfiBlock34 Using cfiCommon0
+          CFI Block cfiBlock33 Using cfiCommon0
           CFI Function HalLcd_HW_WaitUs
         CODE
-//  799 {
+//  815 {
         ; Saved register size: 0
         ; Auto size: 0
         SJMP    ??HalLcd_HW_WaitUs_0
-//  800   while(microSecs--)
-//  801   {
-//  802     /* 32 NOPs == 1 usecs */
-//  803     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  816   while(microSecs--)
+//  817   {
+//  818     /* 32 NOPs == 1 usecs */
+//  819     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
 ??HalLcd_HW_WaitUs_1:
         nop
         nop
         nop
         nop
         nop
-//  804     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  820     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
         nop
         nop
         nop
         nop
         nop
-//  805     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  821     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
         nop
         nop
         nop
         nop
         nop
-//  806     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  822     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
         nop
         nop
         nop
         nop
         nop
-//  807     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  823     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
         nop
         nop
         nop
         nop
         nop
-//  808     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+//  824     asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
         nop
         nop
         nop
         nop
         nop
-//  809     asm("nop"); asm("nop");
+//  825     asm("nop"); asm("nop");
         nop
         nop
-//  810   }
+//  826   }
 ??HalLcd_HW_WaitUs_0:
         MOV     A,R2
         MOV     R0,A
@@ -2866,9 +2709,9 @@ HalLcd_HW_WaitUs:
         MOV     A,R0
         ORL     A,R1
         JNZ     ??HalLcd_HW_WaitUs_1
-//  811 }
+//  827 }
         LJMP    ?BRET
-          CFI EndBlock cfiBlock34
+          CFI EndBlock cfiBlock33
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 `??HalLcdInit::?relay`:
@@ -2988,26 +2831,24 @@ HalLcd_HW_WaitUs:
         DB "[          ]  "
 
         END
-//  812 #endif
-//  813 
-//  814 
-//  815 /**************************************************************************************************
-//  816 **************************************************************************************************/
-//  817 
-//  818 
-//  819 
+//  828 #endif
+//  829 
+//  830 
+//  831 /**************************************************************************************************
+//  832 **************************************************************************************************/
+//  833 
+//  834 
+//  835 
 // 
-// 866 bytes in segment BANKED_CODE
+// 802 bytes in segment BANKED_CODE
 //  96 bytes in segment BANK_RELAYS
 //   7 bytes in segment SFR_AN
 //  15 bytes in segment XDATA_ROM_C
-//   2 bytes in segment XDATA_Z
 // 
 //  96 bytes of CODE     memory
 //  15 bytes of CONST    memory
 //   0 bytes of DATA     memory (+ 7 bytes shared)
-// 866 bytes of HUGECODE memory
-//   2 bytes of XDATA    memory
+// 802 bytes of HUGECODE memory
 //
 //Errors: none
-//Warnings: 23
+//Warnings: 27
