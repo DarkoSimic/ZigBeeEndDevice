@@ -103,15 +103,17 @@
 
 
 // magnetic switch macros
-#define DOOR_CLOSED_DETECTION P1_2
+#define DOOR_CLOSED_DETECTION         P1_2
 #define TRUE 1
 #define CLOSED 1
 #define OPENED 0
 // magnetic switch macros end
 
-
+#define MOTION_DETECTION_PIN           P1_2  
+   
+#define MOTION_SENSOR                  1
 #define MAGNETIC_SENSOR                0
-#define OPTICAL_SENSOR                 1
+#define OPTICAL_SENSOR                 0
 #define HELLO_WORLD                    0 
 /*********************************************************************
  * CONSTANTS
@@ -737,11 +739,54 @@ static void GenericApp_SendTheMessage( void )
   char theMessageData[] = "Hello World";
   char doorOpened[] = {'1'};
   char doorClosed[] = {'0'};
+  char motionDetected[] = {'1'};
+  char motionNotDetected[] = {'0'};
+  
   char theOpticalData[5];
   uint16 optDat;
   
   
    GenericApp_DstAddr.addr.shortAddr = 0x0000;   
+//*****************************************************************************
+//Motion detection
+//*****************************************************************************
+ #if MOTION_SENSOR
+
+
+  if ( motionDetection() )
+  {
+    // Successfully requested to be sent.
+    //HalLcdWriteString("Podatak je poslan.",0);
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&motionDetected,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+    
+    HalLcdWriteString("Pokret je detektovan.",0);
+    
+  }
+  else
+  {
+    
+    // Error occurred in request to send.
+    // HalLcdWriteString("Podatak nije poslan.",0);
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&motionNotDetected,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+  
+    HalLcdWriteString("Nema kretanja.",0);
+    
+  }
+  
+#endif   
+//*****************************************************************************
+//Motion detection end
+//*****************************************************************************  
   
 #if OPTICAL_SENSOR
   
@@ -806,6 +851,9 @@ static void GenericApp_SendTheMessage( void )
   }
   
 #endif 
+  
+  
+  
 #if HELLO_WORLD
 
   
@@ -914,6 +962,49 @@ uint8 magneticSwitch_DoorDetection()
         else
         {
           return 1;
+        }
+ 
+} 
+/*********************************************************************
+ * @fn      motionInit()
+ *
+ * @brief   Initialize pins for motion sensor
+ *
+ * @param   none
+ *
+ * @return  none
+ */
+void motionInit(void)
+{
+ // Set GPIO function for P1_3  
+ P1SEL &= 0xFC;
+ 
+ // Set inputs on P0_0
+ P1DIR &= 0xFC;
+ 
+ // Set pulldown for port 0 pins
+ P2INP |= 0x40;
+  
+}
+/*********************************************************************
+ * @fn      motionDetection()
+ *
+ * @brief   Detects there is motion or not
+ *
+ * @param   none
+ *
+ * @return  1 if motion detected, 0 if not
+ */
+uint8 motionDetection()
+{
+    
+        if(TRUE == MOTION_DETECTION_PIN) 
+        { 
+          return 1;
+        }
+        else
+        {
+          return 0;
         }
  
 }  
