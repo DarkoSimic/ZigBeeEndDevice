@@ -99,6 +99,7 @@ int main( void )
   HAL_BOARD_INIT();
   
   //Initialization for pins for magnetic switch
+  //and initilization for motion sensor pins
   magneticSwitchInit();
   
   //Initialization for analog to digital converter
