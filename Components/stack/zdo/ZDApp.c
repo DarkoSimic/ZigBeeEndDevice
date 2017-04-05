@@ -1069,11 +1069,11 @@ void ZDAppCheckForHoldKey( void )
   zdappHoldKeys = HalKeyRead();
   if ( zdappHoldKeys == SW_BYPASS_START )
   {
-    HalLcdWriteString("Ulazi u if.",0);
+    //HalLcdWriteString("Ulazi u if.",0);
   }
   else
   {
-    HalLcdWriteString("Ne ulazi u if.",0);
+    //HalLcdWriteString("Ne ulazi u if.",0);
   }
   // Hold down the SW_BYPASS_START key (see OnBoard.h)
   // while booting to avoid starting up the device.

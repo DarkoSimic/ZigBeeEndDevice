@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\mac\high_level\mac_pib.c"
 -std=c99
 -ferror-limit=100
@@ -43,13 +44,61 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\Ge
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac
 -I
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w
+=======
+"C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\high_level\mac_pib.c"
+-std=c99
+-ferror-limit=100
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\lib\dlib
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source
 -I
-C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc\clib
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB
 -I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w
+>>>>>>> 6a355e8fed9c0fc1d5a33ec4fa2991321ea06ae4
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\lib\dlib
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc\clib
+-I
+<<<<<<< HEAD
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB
 -I
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\Source
@@ -91,6 +140,49 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\stack\zdo
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\zmac
 -I
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\zmac\f8w
+=======
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\CC2530DB
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\Samples\GenericApp\Source
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Projects\zstack\ZMain\TI2530DB
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\hal\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\hal\target\CC2530EB
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\high_level
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\low_level\srf04
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mac\low_level\srf04\single_chip
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\mt
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\osal\include
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\services\saddr
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\services\sdata
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\af
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\nwk
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sapi
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sec
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\sys
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\stack\zdo
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\zmac
+-I
+C:\Users\simicd\Desktop\ZigBeeGIT\EndDevice\Components\zmac\f8w
+>>>>>>> 6a355e8fed9c0fc1d5a33ec4fa2991321ea06ae4
 -DNWK_AUTO_POLL=1
 -DZTOOL_P1=1
 -DMT_TASK=1
