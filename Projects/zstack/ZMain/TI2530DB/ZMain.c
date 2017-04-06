@@ -143,7 +143,7 @@ int main( void )
   osal_int_enable( INTS_ALL );
 
   // Final board initialization
-  //InitBoard( OB_READY );
+  InitBoard( OB_READY );
 
   // Display information about this device
   zmain_dev_info();

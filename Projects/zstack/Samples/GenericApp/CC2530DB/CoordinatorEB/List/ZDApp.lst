@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                03/Apr/2017  15:32:59
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  08:49:18
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -12,16 +12,14 @@
 #    Dptr setup         =  1,16
 #                          
 #    Source file        =  
-#        C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Components\stack\zdo\ZDApp.c
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\stack\zdo\ZDApp.c
 #    Command line       =  
-#        -f "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg"
+#        -f
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
 #        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
 #        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
-#        -DZDO_COORDINATOR -DRTR_NWK) -f "C:\Users\bsavanovic\Desktop\New
-#        folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        -DZDO_COORDINATOR -DRTR_NWK) -f
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
 #        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
 #        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x0422
 #        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
@@ -36,72 +34,69 @@
 #        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
 #        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
 #        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
-#        -DREJOIN_POLL_RATE=440 "C:\Users\bsavanovic\Desktop\New folder
-#        (3)\Z-Stack Mesh 1.0.0\Components\stack\zdo\ZDApp.c" -D ZTOOL_P1 -D
-#        MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC
-#        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List"
-#        -lA "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List"
-#        --diag_suppress Pe001,Pa010 -o "C:\Users\bsavanovic\Desktop\New folder
-#        (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj"
+#        -DREJOIN_POLL_RATE=440
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\stack\zdo\ZDApp.c
+#        -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D
+#        LCD_SUPPORTED=DEBUG -lC
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List
+#        -lA
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj
 #        -e --no_code_motion --debug --core=plain --dptr=16,1
 #        --data_model=large --code_model=banked
 #        --calling_convention=xdata_reentrant --place_constants=data_rom
-#        --nr_virtual_regs 16 -I "C:\Users\bsavanovic\Desktop\New folder
-#        (3)\Z-Stack Mesh 1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
-#        "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
-#        -I "C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        --nr_virtual_regs 16 -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
 #        -Ohz --require_prototypes
 #    List file          =  
-#        C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\ZDApp.lst
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\ZDApp.lst
 #    Object file        =  
-#        C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh
-#        1.0.0\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\ZDApp.r51
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\ZDApp.r51
 #
 ###############################################################################
 
-C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\zdo\ZDApp.c
+C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\stack\zdo\ZDApp.c
       1          /**************************************************************************************************
       2            Filename:       ZDApp.c
       3            Revised:        $Date: 2014-06-03 18:29:46 -0700 (Tue, 03 Jun 2014) $
@@ -2276,46 +2271,31 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
    \   000008   90....       MOV     DPTR,#zdappHoldKeys
    \   00000B   F0           MOVX    @DPTR,A
    1070            if ( zdappHoldKeys == SW_BYPASS_START )
-   \   00000C   6401         XRL     A,#0x1
-   \   00000E   7900         MOV     R1,#0x0
-   \   000010   7006         JNZ     ??ZDAppCheckForHoldKey_0
    1071            {
-   1072              HalLcdWriteString("Ulazi u if.",0);
-   \   000012                ; Setup parameters for call to function HalLcdWriteString
-   \   000012   7A..         MOV     R2,#`?<Constant "Ulazi u if.">` & 0xff
-   \   000014   7B..         MOV     R3,#(`?<Constant "Ulazi u if.">` >> 8) & 0xff
-   \   000016   8004         SJMP    ??ZDAppCheckForHoldKey_1
+   1072              //HalLcdWriteString("Ulazi u if.",0);
    1073            }
    1074            else
    1075            {
-   1076              HalLcdWriteString("Ne ulazi u if.",0);
-   \                     ??ZDAppCheckForHoldKey_0:
-   \   000018                ; Setup parameters for call to function HalLcdWriteString
-   \   000018   7A..         MOV     R2,#`?<Constant "Ne ulazi u if.">` & 0xff
-   \   00001A   7B..         MOV     R3,#(`?<Constant "Ne ulazi u if.">` >> 8) & 0xff
-   \                     ??ZDAppCheckForHoldKey_1:
-   \   00001C   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+   1076              //HalLcdWriteString("Ne ulazi u if.",0);
    1077            }
    1078            // Hold down the SW_BYPASS_START key (see OnBoard.h)
    1079            // while booting to avoid starting up the device.
    1080            if ( zdappHoldKeys == SW_BYPASS_START )
-   \   00001F   90....       MOV     DPTR,#zdappHoldKeys
-   \   000022   E0           MOVX    A,@DPTR
-   \   000023   6401         XRL     A,#0x1
-   \   000025   7005         JNZ     ??ZDAppCheckForHoldKey_2
+   \   00000C   6401         XRL     A,#0x1
+   \   00000E   7005         JNZ     ??ZDAppCheckForHoldKey_0
    1081            {
    1082              
    1083              
    1084              // Change the device state to HOLD on start up
    1085              devState = DEV_HOLD;
-   \   000027   90....       MOV     DPTR,#devState
-   \   00002A   E4           CLR     A
-   \   00002B   F0           MOVX    @DPTR,A
+   \   000010   90....       MOV     DPTR,#devState
+   \   000013   E4           CLR     A
+   \   000014   F0           MOVX    @DPTR,A
    1086            }
    1087          #endif // HAL_KEY
    1088          }
-   \                     ??ZDAppCheckForHoldKey_2:
-   \   00002C   02....       LJMP    ??Subroutine49_0 & 0xFFFF
+   \                     ??ZDAppCheckForHoldKey_0:
+   \   000015   02....       LJMP    ??Subroutine49_0 & 0xFFFF
    1089          
    1090          /*********************************************************************
    1091           * @fn      ZDApp_ProcessOSALMsg()
@@ -8767,6 +8747,22 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
    \                     `?<Initializer for ZDApp_SavedPollRate>`:
    \   000000   E803         DW 1000
 
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_64:
+   \   000000   64000000     DD 100
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_4e2:
+   \   000000   E2040000     DD 1250
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_258:
+   \   000000   58020000     DD 600
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3e8:
+   \   000000   E8030000     DD 1000
+
    \                                 In  segment BANK_RELAYS, align 1
    \                     `??ZDApp_Init::?relay`:
    \   000000   12....       LCALL   ?BDISPATCH
@@ -9126,35 +9122,6 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
    \                     `??ZDApp_AgeOutPendingBindEntry::?relay`:
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    ZDApp_AgeOutPendingBindEntry
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     `?<Constant "Ulazi u if.">`:
-   \   000000   556C617A     DB "Ulazi u if."
-   \            69207520
-   \            69662E00
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     `?<Constant "Ne ulazi u if.">`:
-   \   000000   4E652075     DB "Ne ulazi u if."
-   \            6C617A69
-   \            20752069
-   \            662E00  
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     __Constant_64:
-   \   000000   64000000     DD 100
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     __Constant_4e2:
-   \   000000   E2040000     DD 1250
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     __Constant_258:
-   \   000000   58020000     DD 600
-
-   \                                 In  segment XDATA_ROM_C, align 1
-   \                     __Constant_3e8:
-   \   000000   E8030000     DD 1000
    3555          #endif
    3556          #endif
    3557          
@@ -9168,7 +9135,6 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
       0      0   AddrMgrWriteNVRequest
       2      0   ZDAppCheckForHoldKey
         2      0   -> HalKeyRead
-        2      0   -> HalLcdWriteString
       2     12   ZDAppDetermineDeviceType
         2      0   -> nwk_ExtPANIDValid
       0     45   ZDApp_AgeOutPendingBindEntry
@@ -9433,8 +9399,6 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
 
    Bytes  Function/Label
    -----  --------------
-      15  ?<Constant "Ne ulazi u if.">
-      12  ?<Constant "Ulazi u if.">
        2  ?<Initializer for ZDApp_SavedPollRate>
        6  ?<Initializer for ZDApp_epDesc>
        1  ?<Initializer for continueJoining>
@@ -9506,7 +9470,7 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
        3  AddrMgrWriteNVRequest
        6  AddrMgrWriteNVRequest::?relay
        1  MatchRsps
-      47  ZDAppCheckForHoldKey
+      24  ZDAppCheckForHoldKey
        6  ZDAppCheckForHoldKey::?relay
       76  ZDAppDetermineDeviceType
        6  ZDAppDetermineDeviceType::?relay
@@ -9677,16 +9641,16 @@ C:\Users\bsavanovic\Desktop\New folder (3)\Z-Stack Mesh 1.0.0\Components\stack\z
        1  zdoDiscCounter
 
  
- 6 947 bytes in segment BANKED_CODE
+ 6 924 bytes in segment BANKED_CODE
    432 bytes in segment BANK_RELAYS
     12 bytes in segment XDATA_I
     12 bytes in segment XDATA_ID
-    43 bytes in segment XDATA_ROM_C
+    16 bytes in segment XDATA_ROM_C
     61 bytes in segment XDATA_Z
  
    444 bytes of CODE     memory
-    27 bytes of CONST    memory (+ 16 bytes shared)
- 6 947 bytes of HUGECODE memory
+     0 bytes of CONST    memory (+ 16 bytes shared)
+ 6 924 bytes of HUGECODE memory
     73 bytes of XDATA    memory
 
 Errors: none

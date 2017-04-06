@@ -103,18 +103,18 @@
 
 
 // magnetic switch macros
-#define DOOR_CLOSED_DETECTION         P1_2
-#define TRUE 1
-#define CLOSED 1
-#define OPENED 0
+#define DOOR_CLOSED_DETECTION         P2_0
+#define TRUE                          1
+#define CLOSED                        1
+#define OPENED                        0
 // magnetic switch macros end
 
-#define MOTION_DETECTION_PIN           P1_2  
+#define MOTION_DETECTION_PIN          P1_2  
    
-#define MOTION_SENSOR                  1
-#define MAGNETIC_SENSOR                0
-#define OPTICAL_SENSOR                 0
-#define HELLO_WORLD                    0 
+#define MOTION_SENSOR                 0
+#define MAGNETIC_SENSOR               0
+#define OPTICAL_SENSOR                0
+#define HELLO_WORLD                   1 
 /*********************************************************************
  * CONSTANTS
  */
@@ -209,9 +209,13 @@ static uint32 txMsgDelay = GENERICAPP_SEND_MSG_TIMEOUT;
 static void GenericApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg );
 static void GenericApp_HandleKeys( byte shift, byte keys );
 static void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
-static void GenericApp_SendTheMessage( void );
 
 static void GenericApp_EndPointList(uint16);
+
+static void GenericApp_SendTheMessage( void );
+ 
+void MagneticSwitch_SendTheMessage( void );
+void MotionSensor_SendTheMessage( void );
 
 
 
@@ -380,7 +384,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
         case AF_INCOMING_MSG_CMD:
           
          //Receive "The" Message
-         GenericApp_MessageMSGCB( MSGpkt );
+         //GenericApp_MessageMSGCB( MSGpkt );
          
 
           break;
@@ -466,13 +470,13 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
      
       
     // Send "the" message
-    GenericApp_SendTheMessage();
+    //GenericApp_SendTheMessage();
      
     
      //Setup to send message again evry 1000 ms
-     osal_start_timerEx( GenericApp_TaskID,
-                         GENERICAPP_SEND_MSG_EVT,
-                         2000);
+     //osal_start_timerEx( GenericApp_TaskID,
+     //                    GENERICAPP_SEND_MSG_EVT,
+     //                    2000);
     
     
     }
@@ -696,7 +700,98 @@ static void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
 
 
 }
+/*********************************************************************
+ * @fn      MagneticSwitch_SendTheMessage
+ *
+ * @brief   Send state of the door
+ *
+ * @param   none
+ *
+ * @return  none
+ */
+void MotionSensor_SendTheMessage( void )
+{
 
+  char motionDetected[] = {'1'};
+  //char motionNotDetected[] = {'0'};
+   
+  if ( motionDetection() )
+  {
+    // Successfully requested to be sent.
+   
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&motionDetected,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+    
+    HalLcdWriteString("Pokret je detektovan.",0);
+    
+  }
+/*  else
+  {
+    
+    // Error occurred in request to send.
+    // HalLcdWriteString("Podatak nije poslan.",0);
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&motionNotDetected,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+  
+    HalLcdWriteString("Nema kretanja.",0);
+    
+  }*/
+
+}
+/*********************************************************************
+ * @fn      MagneticSwitch_SendTheMessage
+ *
+ * @brief   Send state of the door
+ *
+ * @param   none
+ *
+ * @return  none
+ */
+void MagneticSwitch_SendTheMessage( void )
+{
+
+  char doorOpened[] = {'1'};
+  char doorClosed[] = {'0'};
+  
+  if ( !magneticSwitch_DoorDetection() )
+  {
+    // Successfully requested to be sent.
+    //HalLcdWriteString("Podatak je poslan.",0);
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&doorOpened,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+    
+    HalLcdWriteString("######VRATA SU OTVORENA######",0);
+    
+  }
+  else
+  {
+    
+    // Error occurred in request to send.
+    // HalLcdWriteString("Podatak nije poslan.",0);
+    AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                       GENERICAPP_CLUSTERID,
+                       2,                                                       
+                       (byte *)&doorClosed,
+                       &GenericApp_TransID,
+                       AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
+  
+    HalLcdWriteString("######VRATA SU ZATVORENA######",0);
+    
+  }
+
+}
 /*********************************************************************
  * @fn      GenericApp_SendTheMessage
  *
@@ -723,7 +818,7 @@ static void GenericApp_SendTheMessage( void )
   uint16 optDat;
   
   
-   GenericApp_DstAddr.addr.shortAddr = 0x0000;   
+  
 //*****************************************************************************
 //Motion detection
 //*****************************************************************************
@@ -975,7 +1070,7 @@ void motionInit(void)
 uint8 motionDetection()
 {
     
-        if(TRUE == MOTION_DETECTION_PIN) 
+        if(TRUE == P0_1) 
         { 
           return 1;
         }

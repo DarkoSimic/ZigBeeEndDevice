@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               05/Apr/2017  10:45:03
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:03
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -147,6 +147,8 @@
         ARGFRAME XSTACK, 0, STACK
         LOCFRAME ISTACK, 2, STACK
         PUBLIC Hal_TaskID
+        PUBLIC MagneticSwitchFlag
+        PUBLIC MotionSensorFlag
         PUBWEAK __Constant_64
         
           CFI Names cfiNames0
@@ -245,8 +247,6 @@ HalDmaInit          SYMBOL "HalDmaInit"
 `??HalDmaInit::?relay` SYMBOL "?relay", HalDmaInit
 HalKeyInit          SYMBOL "HalKeyInit"
 `??HalKeyInit::?relay` SYMBOL "?relay", HalKeyInit
-HalKeyPoll          SYMBOL "HalKeyPoll"
-`??HalKeyPoll::?relay` SYMBOL "?relay", HalKeyPoll
 HalLcdInit          SYMBOL "HalLcdInit"
 `??HalLcdInit::?relay` SYMBOL "?relay", HalLcdInit
 HalLedInit          SYMBOL "HalLedInit"
@@ -257,6 +257,10 @@ HalUARTInit         SYMBOL "HalUARTInit"
 `??HalUARTInit::?relay` SYMBOL "?relay", HalUARTInit
 HalUARTPoll         SYMBOL "HalUARTPoll"
 `??HalUARTPoll::?relay` SYMBOL "?relay", HalUARTPoll
+MagneticSwitch_SendTheMessage SYMBOL "MagneticSwitch_SendTheMessage"
+`??MagneticSwitch_SendTheMessage::?relay` SYMBOL "?relay", MagneticSwitch_SendTheMessage
+MotionSensor_SendTheMessage SYMBOL "MotionSensor_SendTheMessage"
+`??MotionSensor_SendTheMessage::?relay` SYMBOL "?relay", MotionSensor_SendTheMessage
 osal_msg_deallocate SYMBOL "osal_msg_deallocate"
 `??osal_msg_deallocate::?relay` SYMBOL "?relay", osal_msg_deallocate
 osal_msg_receive    SYMBOL "osal_msg_receive"
@@ -280,8 +284,6 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         FUNCTION `??HalDmaInit::?relay`,00H
         EXTERN `??HalKeyInit::?relay`
         FUNCTION `??HalKeyInit::?relay`,00H
-        EXTERN `??HalKeyPoll::?relay`
-        FUNCTION `??HalKeyPoll::?relay`,00H
         EXTERN `??HalLcdInit::?relay`
         FUNCTION `??HalLcdInit::?relay`,00H
         EXTERN `??HalLedInit::?relay`
@@ -292,6 +294,10 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         FUNCTION `??HalUARTInit::?relay`,00H
         EXTERN `??HalUARTPoll::?relay`
         FUNCTION `??HalUARTPoll::?relay`,00H
+        EXTERN `??MagneticSwitch_SendTheMessage::?relay`
+        FUNCTION `??MagneticSwitch_SendTheMessage::?relay`,00H
+        EXTERN `??MotionSensor_SendTheMessage::?relay`
+        FUNCTION `??MotionSensor_SendTheMessage::?relay`,00H
         EXTERN `??osal_msg_deallocate::?relay`
         FUNCTION `??osal_msg_deallocate::?relay`,00H
         EXTERN `??osal_msg_receive::?relay`
@@ -324,13 +330,6 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         ARGFRAME ISTACK, 2, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN HalKeyPoll
-        FUNCTION HalKeyPoll,0202H
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 10, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN HalLcdInit
@@ -369,6 +368,20 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN Hal_KeyIntEnable
+        EXTERN MagneticSwitch_SendTheMessage
+        FUNCTION MagneticSwitch_SendTheMessage,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MotionSensor_SendTheMessage
+        FUNCTION MotionSensor_SendTheMessage,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
         EXTERN osal_msg_deallocate
         FUNCTION osal_msg_deallocate,0202H
         ARGFRAME ISTACK, 0, STACK
@@ -468,35 +481,57 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
 //   74 #endif
 //   75 
 //   76 /**************************************************************************************************
-//   77  *                                      GLOBAL VARIABLES
+//   77  *                                      EXTERNAL FUNCTIONS
 //   78  **************************************************************************************************/
+//   79 
+//   80 extern void MagneticSwitch_SendTheMessage( void );
+//   81 extern void MotionSensor_SendTheMessage( void );
+//   82 
+//   83 /**************************************************************************************************
+//   84  *                                      GLOBAL VARIABLES
+//   85  **************************************************************************************************/
 
         RSEG XDATA_Z:XDATA:NOROOT(0)
         DATA8
-//   79 uint8 Hal_TaskID;
+//   86 uint8 Hal_TaskID;
 Hal_TaskID:
         DS 1
         REQUIRE __INIT_XDATA_Z
-//   80 
-//   81 extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
-//   82 
-//   83 /**************************************************************************************************
-//   84  * @fn      Hal_Init
-//   85  *
-//   86  * @brief   Hal Initialization function.
-//   87  *
-//   88  * @param   task_id - Hal TaskId
-//   89  *
-//   90  * @return  None
-//   91  **************************************************************************************************/
+//   87 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   88 uint8 MagneticSwitchFlag = 0;
+MagneticSwitchFlag:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   89 uint8 MotionSensorFlag = 0;
+MotionSensorFlag:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   90 
+//   91 extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
+//   92 
+//   93 /**************************************************************************************************
+//   94  * @fn      Hal_Init
+//   95  *
+//   96  * @brief   Hal Initialization function.
+//   97  *
+//   98  * @param   task_id - Hal TaskId
+//   99  *
+//  100  * @return  None
+//  101  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//   92 void Hal_Init( uint8 task_id )
+//  102 void Hal_Init( uint8 task_id )
 Hal_Init:
           CFI Block cfiBlock0 Using cfiCommon0
           CFI Function Hal_Init
         CODE
-//   93 {
+//  103 {
         PUSH    DPL
           CFI DPL0 Frame(CFA_SP, 4)
           CFI CFA_SP SP+-4
@@ -505,16 +540,16 @@ Hal_Init:
           CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//   94   /* Register task ID */
-//   95   Hal_TaskID = task_id;
+//  104   /* Register task ID */
+//  105   Hal_TaskID = task_id;
         MOV     A,R1
         MOV     DPTR,#Hal_TaskID
         MOVX    @DPTR,A
-//   96 
-//   97 #ifdef CC2591_COMPRESSION_WORKAROUND
-//   98   osal_start_reload_timer( Hal_TaskID, PERIOD_RSSI_RESET_EVT, PERIOD_RSSI_RESET_TIMEOUT );
-//   99 #endif
-//  100 }
+//  106 
+//  107 #ifdef CC2591_COMPRESSION_WORKAROUND
+//  108   osal_start_reload_timer( Hal_TaskID, PERIOD_RSSI_RESET_EVT, PERIOD_RSSI_RESET_TIMEOUT );
+//  109 #endif
+//  110 }
           CFI EndBlock cfiBlock0
         REQUIRE ?Subroutine0
         ; // Fall through to label ?Subroutine0
@@ -534,24 +569,24 @@ Hal_Init:
           CFI DPL0 SameValue
         LJMP    ?BRET
           CFI EndBlock cfiBlock1
-//  101 
-//  102 /**************************************************************************************************
-//  103  * @fn      Hal_DriverInit
-//  104  *
-//  105  * @brief   Initialize HW - These need to be initialized before anyone.
-//  106  *
-//  107  * @param   task_id - Hal TaskId
-//  108  *
-//  109  * @return  None
-//  110  **************************************************************************************************/
+//  111 
+//  112 /**************************************************************************************************
+//  113  * @fn      Hal_DriverInit
+//  114  *
+//  115  * @brief   Initialize HW - These need to be initialized before anyone.
+//  116  *
+//  117  * @param   task_id - Hal TaskId
+//  118  *
+//  119  * @return  None
+//  120  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  111 void HalDriverInit (void)
+//  121 void HalDriverInit (void)
 HalDriverInit:
           CFI Block cfiBlock2 Using cfiCommon0
           CFI Function HalDriverInit
         CODE
-//  112 {
+//  122 {
         FUNCALL HalDriverInit, HalAdcInit
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -637,91 +672,91 @@ HalDriverInit:
           CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//  113   /* TIMER */
-//  114 #if (defined HAL_TIMER) && (HAL_TIMER == TRUE)
-//  115 #endif
-//  116 
-//  117   /* ADC */
-//  118 #if (defined HAL_ADC) && (HAL_ADC == TRUE)
-//  119   HalAdcInit();
+//  123   /* TIMER */
+//  124 #if (defined HAL_TIMER) && (HAL_TIMER == TRUE)
+//  125 #endif
+//  126 
+//  127   /* ADC */
+//  128 #if (defined HAL_ADC) && (HAL_ADC == TRUE)
+//  129   HalAdcInit();
         ; Setup parameters for call to function HalAdcInit
         LCALL   `??HalAdcInit::?relay`; Banked call to: HalAdcInit
-//  120 #endif
-//  121 
-//  122   /* DMA */
-//  123 #if (defined HAL_DMA) && (HAL_DMA == TRUE)
-//  124   // Must be called before the init call to any module that uses DMA.
-//  125   HalDmaInit();
+//  130 #endif
+//  131 
+//  132   /* DMA */
+//  133 #if (defined HAL_DMA) && (HAL_DMA == TRUE)
+//  134   // Must be called before the init call to any module that uses DMA.
+//  135   HalDmaInit();
         ; Setup parameters for call to function HalDmaInit
         LCALL   `??HalDmaInit::?relay`; Banked call to: HalDmaInit
-//  126 #endif
-//  127 
-//  128   /* AES */
-//  129 #if (defined HAL_AES) && (HAL_AES == TRUE)
-//  130   HalAesInit();
-        ; Setup parameters for call to function HalAesInit
-        LCALL   `??HalAesInit::?relay`; Banked call to: HalAesInit
-//  131 #endif
-//  132 
-//  133   /* LCD */
-//  134 #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-//  135   HalLcdInit();
-        ; Setup parameters for call to function HalLcdInit
-        LCALL   `??HalLcdInit::?relay`; Banked call to: HalLcdInit
 //  136 #endif
 //  137 
-//  138   /* LED */
-//  139 #if (defined HAL_LED) && (HAL_LED == TRUE)
-//  140   HalLedInit();
-        ; Setup parameters for call to function HalLedInit
-        LCALL   `??HalLedInit::?relay`; Banked call to: HalLedInit
+//  138   /* AES */
+//  139 #if (defined HAL_AES) && (HAL_AES == TRUE)
+//  140   HalAesInit();
+        ; Setup parameters for call to function HalAesInit
+        LCALL   `??HalAesInit::?relay`; Banked call to: HalAesInit
 //  141 #endif
 //  142 
-//  143   /* UART */
-//  144 #if (defined HAL_UART) && (HAL_UART == TRUE)
-//  145   HalUARTInit();
-        ; Setup parameters for call to function HalUARTInit
-        LCALL   `??HalUARTInit::?relay`; Banked call to: HalUARTInit
+//  143   /* LCD */
+//  144 #if (defined HAL_LCD) && (HAL_LCD == TRUE)
+//  145   HalLcdInit();
+        ; Setup parameters for call to function HalLcdInit
+        LCALL   `??HalLcdInit::?relay`; Banked call to: HalLcdInit
 //  146 #endif
 //  147 
-//  148   /* KEY */
-//  149 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
-//  150   HalKeyInit();
-        ; Setup parameters for call to function HalKeyInit
-        LCALL   `??HalKeyInit::?relay`; Banked call to: HalKeyInit
+//  148   /* LED */
+//  149 #if (defined HAL_LED) && (HAL_LED == TRUE)
+//  150   HalLedInit();
+        ; Setup parameters for call to function HalLedInit
+        LCALL   `??HalLedInit::?relay`; Banked call to: HalLedInit
 //  151 #endif
-//  152   
-//  153   /* SPI */
-//  154 #if (defined HAL_SPI) && (HAL_SPI == TRUE)
-//  155   HalSpiInit();
+//  152 
+//  153   /* UART */
+//  154 #if (defined HAL_UART) && (HAL_UART == TRUE)
+//  155   HalUARTInit();
+        ; Setup parameters for call to function HalUARTInit
+        LCALL   `??HalUARTInit::?relay`; Banked call to: HalUARTInit
 //  156 #endif
 //  157 
-//  158   /* HID */
-//  159 #if (defined HAL_HID) && (HAL_HID == TRUE)
-//  160   usbHidInit();
+//  158   /* KEY */
+//  159 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+//  160   HalKeyInit();
+        ; Setup parameters for call to function HalKeyInit
+        LCALL   `??HalKeyInit::?relay`; Banked call to: HalKeyInit
 //  161 #endif
-//  162 }
+//  162   
+//  163   /* SPI */
+//  164 #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+//  165   HalSpiInit();
+//  166 #endif
+//  167 
+//  168   /* HID */
+//  169 #if (defined HAL_HID) && (HAL_HID == TRUE)
+//  170   usbHidInit();
+//  171 #endif
+//  172 }
         SJMP    ?Subroutine0
           CFI EndBlock cfiBlock2
-//  163 
-//  164 /**************************************************************************************************
-//  165  * @fn      Hal_ProcessEvent
-//  166  *
-//  167  * @brief   Hal Process Event
-//  168  *
-//  169  * @param   task_id - Hal TaskId
-//  170  *          events - events
-//  171  *
-//  172  * @return  None
-//  173  **************************************************************************************************/
+//  173 
+//  174 /**************************************************************************************************
+//  175  * @fn      Hal_ProcessEvent
+//  176  *
+//  177  * @brief   Hal Process Event
+//  178  *
+//  179  * @param   task_id - Hal TaskId
+//  180  *          events - events
+//  181  *
+//  182  * @return  None
+//  183  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  174 uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
+//  184 uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
 Hal_ProcessEvent:
           CFI Block cfiBlock3 Using cfiCommon0
           CFI Function Hal_ProcessEvent
         CODE
-//  175 {
+//  185 {
         FUNCALL Hal_ProcessEvent, osal_msg_receive
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -766,7 +801,18 @@ Hal_ProcessEvent:
         ARGFRAME XSTACK, 10, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL Hal_ProcessEvent, HalKeyPoll
+        FUNCALL Hal_ProcessEvent, MagneticSwitch_SendTheMessage
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Hal_ProcessEvent, MotionSensor_SendTheMessage
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 10, STACK
@@ -810,99 +856,130 @@ Hal_ProcessEvent:
         MOV     R6,A
         MOV     A,R3
         MOV     R7,A
-//  176   uint8 *msgPtr;
-//  177 
-//  178   (void)task_id;  // Intentionally unreferenced parameter
-//  179 
-//  180   if ( events & SYS_EVENT_MSG )
+//  186   uint8 *msgPtr;
+//  187 
+//  188   (void)task_id;  // Intentionally unreferenced parameter
+//  189 
+//  190   if ( events & SYS_EVENT_MSG )
         ANL     A,#0x80
         JZ      ??Hal_ProcessEvent_0
-//  181   {
-//  182     msgPtr = osal_msg_receive(Hal_TaskID);
+//  191   {
+//  192     msgPtr = osal_msg_receive(Hal_TaskID);
         ; Setup parameters for call to function osal_msg_receive
         SJMP    ??Hal_ProcessEvent_1
-//  183 
-//  184     while (msgPtr)
-//  185     {
-//  186       /* Do something here - for now, just deallocate the msg and move on */
-//  187 
-//  188       /* De-allocate */
-//  189       osal_msg_deallocate( msgPtr );
+//  193 
+//  194     while (msgPtr)
+//  195     {
+//  196       /* Do something here - for now, just deallocate the msg and move on */
+//  197 
+//  198       /* De-allocate */
+//  199       osal_msg_deallocate( msgPtr );
 ??Hal_ProcessEvent_2:
         ; Setup parameters for call to function osal_msg_deallocate
         LCALL   `??osal_msg_deallocate::?relay`; Banked call to: osal_msg_deallocate
-//  190       /* Next */
-//  191       msgPtr = osal_msg_receive( Hal_TaskID );
+//  200       /* Next */
+//  201       msgPtr = osal_msg_receive( Hal_TaskID );
         ; Setup parameters for call to function osal_msg_receive
 ??Hal_ProcessEvent_1:
         MOV     DPTR,#Hal_TaskID
         MOVX    A,@DPTR
         MOV     R1,A
         LCALL   `??osal_msg_receive::?relay`; Banked call to: osal_msg_receive
-//  192     }
+//  202     }
         MOV     A,R2
         ORL     A,R3
         JNZ     ??Hal_ProcessEvent_2
-//  193     return events ^ SYS_EVENT_MSG;
+//  203     return events ^ SYS_EVENT_MSG;
         MOV     A,R6
         MOV     R2,A
         MOV     A,R7
         XRL     A,#0x80
         SJMP    ??Hal_ProcessEvent_3
-//  194   }
-//  195 
-//  196 #if (defined HAL_BUZZER) && (HAL_BUZZER == TRUE)
-//  197   if (events & HAL_BUZZER_EVENT)
-//  198   {
-//  199     HalBuzzerStop();
-//  200     return events ^ HAL_BUZZER_EVENT;
-//  201   }
-//  202 #endif
-//  203 
-//  204 #ifdef CC2591_COMPRESSION_WORKAROUND
-//  205   if ( events & PERIOD_RSSI_RESET_EVT )
-//  206   {
-//  207     macRxResetRssi();
-//  208     return (events ^ PERIOD_RSSI_RESET_EVT);
-//  209   }
-//  210 #endif
-//  211 
-//  212   if ( events & HAL_LED_BLINK_EVENT )
+//  204   }
+//  205 
+//  206 #if (defined HAL_BUZZER) && (HAL_BUZZER == TRUE)
+//  207   if (events & HAL_BUZZER_EVENT)
+//  208   {
+//  209     HalBuzzerStop();
+//  210     return events ^ HAL_BUZZER_EVENT;
+//  211   }
+//  212 #endif
+//  213 
+//  214 #ifdef CC2591_COMPRESSION_WORKAROUND
+//  215   if ( events & PERIOD_RSSI_RESET_EVT )
+//  216   {
+//  217     macRxResetRssi();
+//  218     return (events ^ PERIOD_RSSI_RESET_EVT);
+//  219   }
+//  220 #endif
+//  221 
+//  222   if ( events & HAL_LED_BLINK_EVENT )
 ??Hal_ProcessEvent_0:
         MOV     A,R6
         ANL     A,#0x20
         JZ      ??Hal_ProcessEvent_4
-//  213   {
-//  214 #if (defined (BLINK_LEDS)) && (HAL_LED == TRUE)
-//  215     HalLedUpdate();
+//  223   {
+//  224 #if (defined (BLINK_LEDS)) && (HAL_LED == TRUE)
+//  225     HalLedUpdate();
         ; Setup parameters for call to function HalLedUpdate
         LCALL   `??HalLedUpdate::?relay`; Banked call to: HalLedUpdate
-//  216 #endif /* BLINK_LEDS && HAL_LED */
-//  217     return events ^ HAL_LED_BLINK_EVENT;
+//  226 #endif /* BLINK_LEDS && HAL_LED */
+//  227     return events ^ HAL_LED_BLINK_EVENT;
         MOV     A,R6
         XRL     A,#0x20
         SJMP    ??Hal_ProcessEvent_5
-//  218   }
-//  219 
-//  220   if (events & HAL_KEY_EVENT)
+//  228   }
+//  229 
+//  230   if (events & HAL_KEY_EVENT)
 ??Hal_ProcessEvent_4:
         MOV     A,R6
         ANL     A,#0x10
         JZ      ??Hal_ProcessEvent_6
-//  221   {
-//  222 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
-//  223     /* Check for keys */
-//  224     HalKeyPoll();
-        ; Setup parameters for call to function HalKeyPoll
-        LCALL   `??HalKeyPoll::?relay`; Banked call to: HalKeyPoll
-//  225 
-//  226     /* if interrupt disabled, do next polling */
-//  227     if (!Hal_KeyIntEnable)
+//  231   {
+//  232 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+//  233     /* Check for keys */
+//  234     //HalKeyPoll();
+//  235     
+//  236     if(MagneticSwitchFlag == 1)
+        MOV     DPTR,#MagneticSwitchFlag
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??Hal_ProcessEvent_7
+//  237     {
+//  238       MagneticSwitch_SendTheMessage();
+        ; Setup parameters for call to function MagneticSwitch_SendTheMessage
+        LCALL   `??MagneticSwitch_SendTheMessage::?relay`; Banked call to: MagneticSwitch_SendTheMessage
+//  239       MagneticSwitchFlag = 0;
+        MOV     DPTR,#MagneticSwitchFlag
+        CLR     A
+        MOVX    @DPTR,A
+//  240     }
+//  241     if(MotionSensorFlag == 1)
+??Hal_ProcessEvent_7:
+        MOV     DPTR,#MotionSensorFlag
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??Hal_ProcessEvent_8
+//  242     {
+//  243       MotionSensor_SendTheMessage();
+        ; Setup parameters for call to function MotionSensor_SendTheMessage
+        LCALL   `??MotionSensor_SendTheMessage::?relay`; Banked call to: MotionSensor_SendTheMessage
+//  244       MotionSensorFlag = 0;
+        MOV     DPTR,#MotionSensorFlag
+        CLR     A
+        MOVX    @DPTR,A
+//  245     }
+//  246     
+//  247     
+//  248     
+//  249     /* if interrupt disabled, do next polling */
+//  250     if (!Hal_KeyIntEnable)
+??Hal_ProcessEvent_8:
         MOV     DPTR,#Hal_KeyIntEnable
         MOVX    A,@DPTR
-        JNZ     ??Hal_ProcessEvent_7
-//  228     {
-//  229       osal_start_timerEx( Hal_TaskID, HAL_KEY_EVENT, 100);
+        JNZ     ??Hal_ProcessEvent_9
+//  251     {
+//  252       osal_start_timerEx( Hal_TaskID, HAL_KEY_EVENT, 100);
         ; Setup parameters for call to function osal_start_timerEx
         MOV     DPTR,#__Constant_64
         LCALL   ?PUSH_XSTACK8_X_FOUR
@@ -916,10 +993,10 @@ Hal_ProcessEvent:
         MOV     A,#0x4
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 10)
-//  230     }
-//  231 #endif
-//  232     return events ^ HAL_KEY_EVENT;
-??Hal_ProcessEvent_7:
+//  253     }
+//  254 #endif
+//  255     return events ^ HAL_KEY_EVENT;
+??Hal_ProcessEvent_9:
         MOV     A,R6
         XRL     A,#0x10
 ??Hal_ProcessEvent_5:
@@ -927,60 +1004,60 @@ Hal_ProcessEvent:
         MOV     A,R7
 ??Hal_ProcessEvent_3:
         MOV     R3,A
-        SJMP    ??Hal_ProcessEvent_8
-//  233   }
-//  234 
-//  235 #if defined POWER_SAVING
-//  236   if ( events & HAL_SLEEP_TIMER_EVENT )
-//  237   {
-//  238     halRestoreSleepLevel();
-//  239     return events ^ HAL_SLEEP_TIMER_EVENT;
-//  240   }
-//  241 
-//  242   if ( events & HAL_PWRMGR_HOLD_EVENT )
-//  243   {
-//  244     (void)osal_pwrmgr_task_state(Hal_TaskID, PWRMGR_HOLD);
-//  245 
-//  246     (void)osal_stop_timerEx(Hal_TaskID, HAL_PWRMGR_CONSERVE_EVENT);
-//  247     (void)osal_clear_event(Hal_TaskID, HAL_PWRMGR_CONSERVE_EVENT);
-//  248 
-//  249     return (events & ~(HAL_PWRMGR_HOLD_EVENT | HAL_PWRMGR_CONSERVE_EVENT));
-//  250   }
-//  251 
-//  252   if ( events & HAL_PWRMGR_CONSERVE_EVENT )
-//  253   {
-//  254     (void)osal_pwrmgr_task_state(Hal_TaskID, PWRMGR_CONSERVE);
-//  255     return events ^ HAL_PWRMGR_CONSERVE_EVENT;
+        SJMP    ??Hal_ProcessEvent_10
 //  256   }
-//  257 #endif
-//  258 
-//  259   return 0;
+//  257 
+//  258 #if defined POWER_SAVING
+//  259   if ( events & HAL_SLEEP_TIMER_EVENT )
+//  260   {
+//  261     halRestoreSleepLevel();
+//  262     return events ^ HAL_SLEEP_TIMER_EVENT;
+//  263   }
+//  264 
+//  265   if ( events & HAL_PWRMGR_HOLD_EVENT )
+//  266   {
+//  267     (void)osal_pwrmgr_task_state(Hal_TaskID, PWRMGR_HOLD);
+//  268 
+//  269     (void)osal_stop_timerEx(Hal_TaskID, HAL_PWRMGR_CONSERVE_EVENT);
+//  270     (void)osal_clear_event(Hal_TaskID, HAL_PWRMGR_CONSERVE_EVENT);
+//  271 
+//  272     return (events & ~(HAL_PWRMGR_HOLD_EVENT | HAL_PWRMGR_CONSERVE_EVENT));
+//  273   }
+//  274 
+//  275   if ( events & HAL_PWRMGR_CONSERVE_EVENT )
+//  276   {
+//  277     (void)osal_pwrmgr_task_state(Hal_TaskID, PWRMGR_CONSERVE);
+//  278     return events ^ HAL_PWRMGR_CONSERVE_EVENT;
+//  279   }
+//  280 #endif
+//  281 
+//  282   return 0;
 ??Hal_ProcessEvent_6:
         MOV     R2,#0x0
         MOV     R3,#0x0
-??Hal_ProcessEvent_8:
+??Hal_ProcessEvent_10:
         MOV     R7,#0x2
         LJMP    ?BANKED_LEAVE_XDATA
-//  260 }
+//  283 }
           CFI EndBlock cfiBlock3
-//  261 
-//  262 /**************************************************************************************************
-//  263  * @fn      Hal_ProcessPoll
-//  264  *
-//  265  * @brief   This routine will be called by OSAL to poll UART, TIMER...
-//  266  *
-//  267  * @param   task_id - Hal TaskId
-//  268  *
-//  269  * @return  None
-//  270  **************************************************************************************************/
+//  284 
+//  285 /**************************************************************************************************
+//  286  * @fn      Hal_ProcessPoll
+//  287  *
+//  288  * @brief   This routine will be called by OSAL to poll UART, TIMER...
+//  289  *
+//  290  * @param   task_id - Hal TaskId
+//  291  *
+//  292  * @return  None
+//  293  **************************************************************************************************/
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  271 void Hal_ProcessPoll ()
+//  294 void Hal_ProcessPoll ()
 Hal_ProcessPoll:
           CFI Block cfiBlock4 Using cfiCommon0
           CFI Function Hal_ProcessPoll
         CODE
-//  272 {
+//  295 {
         FUNCALL Hal_ProcessPoll, HalUARTPoll
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1000,29 +1077,29 @@ Hal_ProcessPoll:
           CFI CFA_SP SP+-5
         ; Saved register size: 2
         ; Auto size: 0
-//  273 #if defined( POWER_SAVING )
-//  274   /* Allow sleep before the next OSAL event loop */
-//  275   ALLOW_SLEEP_MODE();
-//  276 #endif
-//  277   
-//  278   /* UART Poll */
-//  279 #if (defined HAL_UART) && (HAL_UART == TRUE)
-//  280   HalUARTPoll();
+//  296 #if defined( POWER_SAVING )
+//  297   /* Allow sleep before the next OSAL event loop */
+//  298   ALLOW_SLEEP_MODE();
+//  299 #endif
+//  300   
+//  301   /* UART Poll */
+//  302 #if (defined HAL_UART) && (HAL_UART == TRUE)
+//  303   HalUARTPoll();
         ; Setup parameters for call to function HalUARTPoll
         LCALL   `??HalUARTPoll::?relay`; Banked call to: HalUARTPoll
-//  281 #endif
-//  282   
-//  283   /* SPI Poll */
-//  284 #if (defined HAL_SPI) && (HAL_SPI == TRUE)
-//  285   HalSpiPoll();
-//  286 #endif
-//  287 
-//  288   /* HID poll */
-//  289 #if (defined HAL_HID) && (HAL_HID == TRUE)
-//  290   usbHidProcessEvents();
-//  291 #endif
-//  292  
-//  293 }
+//  304 #endif
+//  305   
+//  306   /* SPI Poll */
+//  307 #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+//  308   HalSpiPoll();
+//  309 #endif
+//  310 
+//  311   /* HID poll */
+//  312 #if (defined HAL_HID) && (HAL_HID == TRUE)
+//  313   usbHidProcessEvents();
+//  314 #endif
+//  315  
+//  316 }
         LJMP    ?Subroutine0 & 0xFFFF
           CFI EndBlock cfiBlock4
 
@@ -1060,20 +1137,20 @@ __Constant_64:
         DC24    Hal_ProcessPoll
 
         END
-//  294 
-//  295 /**************************************************************************************************
-//  296 **************************************************************************************************/
-//  297 
+//  317 
+//  318 /**************************************************************************************************
+//  319 **************************************************************************************************/
+//  320 
 // 
-// 157 bytes in segment BANKED_CODE
+// 186 bytes in segment BANKED_CODE
 //  24 bytes in segment BANK_RELAYS
 //   4 bytes in segment XDATA_ROM_C
-//   1 byte  in segment XDATA_Z
+//   3 bytes in segment XDATA_Z
 // 
 //  24 bytes of CODE     memory
 //   0 bytes of CONST    memory (+ 4 bytes shared)
-// 157 bytes of HUGECODE memory
-//   1 byte  of XDATA    memory
+// 186 bytes of HUGECODE memory
+//   3 bytes of XDATA    memory
 //
 //Errors: none
 //Warnings: none

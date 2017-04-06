@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                05/Apr/2017  10:45:07
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  12:17:07
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -353,112 +353,115 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000078   12....       LCALL   `??osal_int_enable::?relay`; Banked call to: osal_int_enable
     144          
     145            // Final board initialization
-    146            //InitBoard( OB_READY );
+    146            InitBoard( OB_READY );
+   \   00007B                ; Setup parameters for call to function InitBoard
+   \   00007B   7902         MOV     R1,#0x2
+   \   00007D   12....       LCALL   `??InitBoard::?relay`; Banked call to: InitBoard
     147          
     148            // Display information about this device
     149            zmain_dev_info();
-   \   00007B   7A..         MOV     R2,#(aExtendedAddress + 7) & 0xff
-   \   00007D   7B..         MOV     R3,#((aExtendedAddress + 7) >> 8) & 0xff
-   \   00007F   7C00         MOV     R4,#0x0
+   \   000080   7A..         MOV     R2,#(aExtendedAddress + 7) & 0xff
+   \   000082   7B..         MOV     R3,#((aExtendedAddress + 7) >> 8) & 0xff
+   \   000084   7C00         MOV     R4,#0x0
    \                     ??main_4:
-   \   000081   8A82         MOV     DPL,R2
-   \   000083   8B83         MOV     DPH,R3
-   \   000085   E0           MOVX    A,@DPTR
-   \   000086   C4           SWAP    A
-   \   000087   540F         ANL     A,#0xf
-   \   000089   FD           MOV     R5,A
-   \   00008A   EC           MOV     A,R4
-   \   00008B   FE           MOV     R6,A
-   \   00008C   7401         MOV     A,#0x1
-   \   00008E   2E           ADD     A,R6
-   \   00008F   FC           MOV     R4,A
-   \   000090   ED           MOV     A,R5
-   \   000091   C3           CLR     C
-   \   000092   940A         SUBB    A,#0xa
-   \   000094   5004         JNC     ??main_5
-   \   000096   7830         MOV     R0,#0x30
-   \   000098   8002         SJMP    ??main_6
+   \   000086   8A82         MOV     DPL,R2
+   \   000088   8B83         MOV     DPH,R3
+   \   00008A   E0           MOVX    A,@DPTR
+   \   00008B   C4           SWAP    A
+   \   00008C   540F         ANL     A,#0xf
+   \   00008E   FD           MOV     R5,A
+   \   00008F   EC           MOV     A,R4
+   \   000090   FE           MOV     R6,A
+   \   000091   7401         MOV     A,#0x1
+   \   000093   2E           ADD     A,R6
+   \   000094   FC           MOV     R4,A
+   \   000095   ED           MOV     A,R5
+   \   000096   C3           CLR     C
+   \   000097   940A         SUBB    A,#0xa
+   \   000099   5004         JNC     ??main_5
+   \   00009B   7830         MOV     R0,#0x30
+   \   00009D   8002         SJMP    ??main_6
    \                     ??main_5:
-   \   00009A   7837         MOV     R0,#0x37
+   \   00009F   7837         MOV     R0,#0x37
    \                     ??main_6:
-   \   00009C   E8           MOV     A,R0
-   \   00009D   2D           ADD     A,R5
-   \   00009E   C0E0         PUSH    A
-   \   0000A0   85..82       MOV     DPL,?XSP + 0
-   \   0000A3   85..83       MOV     DPH,?XSP + 1
-   \   0000A6   E582         MOV     A,DPL
-   \   0000A8   2E           ADD     A,R6
-   \   0000A9   F582         MOV     DPL,A
-   \   0000AB   E4           CLR     A
-   \   0000AC   3583         ADDC    A,DPH
-   \   0000AE   F583         MOV     DPH,A
-   \   0000B0   D0E0         POP     A
-   \   0000B2   F0           MOVX    @DPTR,A
-   \   0000B3   8A82         MOV     DPL,R2
-   \   0000B5   8B83         MOV     DPH,R3
-   \   0000B7   E0           MOVX    A,@DPTR
-   \   0000B8   540F         ANL     A,#0xf
-   \   0000BA   FD           MOV     R5,A
-   \   0000BB   EC           MOV     A,R4
-   \   0000BC   FF           MOV     R7,A
-   \   0000BD   7401         MOV     A,#0x1
-   \   0000BF   2C           ADD     A,R4
-   \   0000C0   FC           MOV     R4,A
-   \   0000C1   ED           MOV     A,R5
-   \   0000C2   C3           CLR     C
-   \   0000C3   940A         SUBB    A,#0xa
-   \   0000C5   5004         JNC     ??main_7
-   \   0000C7   7830         MOV     R0,#0x30
-   \   0000C9   8002         SJMP    ??main_8
+   \   0000A1   E8           MOV     A,R0
+   \   0000A2   2D           ADD     A,R5
+   \   0000A3   C0E0         PUSH    A
+   \   0000A5   85..82       MOV     DPL,?XSP + 0
+   \   0000A8   85..83       MOV     DPH,?XSP + 1
+   \   0000AB   E582         MOV     A,DPL
+   \   0000AD   2E           ADD     A,R6
+   \   0000AE   F582         MOV     DPL,A
+   \   0000B0   E4           CLR     A
+   \   0000B1   3583         ADDC    A,DPH
+   \   0000B3   F583         MOV     DPH,A
+   \   0000B5   D0E0         POP     A
+   \   0000B7   F0           MOVX    @DPTR,A
+   \   0000B8   8A82         MOV     DPL,R2
+   \   0000BA   8B83         MOV     DPH,R3
+   \   0000BC   E0           MOVX    A,@DPTR
+   \   0000BD   540F         ANL     A,#0xf
+   \   0000BF   FD           MOV     R5,A
+   \   0000C0   EC           MOV     A,R4
+   \   0000C1   FF           MOV     R7,A
+   \   0000C2   7401         MOV     A,#0x1
+   \   0000C4   2C           ADD     A,R4
+   \   0000C5   FC           MOV     R4,A
+   \   0000C6   ED           MOV     A,R5
+   \   0000C7   C3           CLR     C
+   \   0000C8   940A         SUBB    A,#0xa
+   \   0000CA   5004         JNC     ??main_7
+   \   0000CC   7830         MOV     R0,#0x30
+   \   0000CE   8002         SJMP    ??main_8
    \                     ??main_7:
-   \   0000CB   7837         MOV     R0,#0x37
+   \   0000D0   7837         MOV     R0,#0x37
    \                     ??main_8:
-   \   0000CD   E8           MOV     A,R0
-   \   0000CE   2D           ADD     A,R5
-   \   0000CF   C0E0         PUSH    A
-   \   0000D1   85..82       MOV     DPL,?XSP + 0
-   \   0000D4   85..83       MOV     DPH,?XSP + 1
-   \   0000D7   E582         MOV     A,DPL
-   \   0000D9   2F           ADD     A,R7
-   \   0000DA   F582         MOV     DPL,A
-   \   0000DC   E4           CLR     A
-   \   0000DD   3583         ADDC    A,DPH
-   \   0000DF   F583         MOV     DPH,A
-   \   0000E1   D0E0         POP     A
-   \   0000E3   F0           MOVX    @DPTR,A
-   \   0000E4   EA           MOV     A,R2
-   \   0000E5   24FF         ADD     A,#-0x1
-   \   0000E7   EB           MOV     A,R3
-   \   0000E8   34FF         ADDC    A,#-0x1
-   \   0000EA   1A           DEC     R2
-   \   0000EB   FB           MOV     R3,A
-   \   0000EC   EC           MOV     A,R4
-   \   0000ED   C3           CLR     C
-   \   0000EE   9410         SUBB    A,#0x10
-   \   0000F0   408F         JC      ??main_4
-   \   0000F2   7410         MOV     A,#0x10
-   \   0000F4   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000F7   E4           CLR     A
-   \   0000F8   F0           MOVX    @DPTR,A
-   \   0000F9                ; Setup parameters for call to function HalLcdWriteString
-   \   0000F9   7901         MOV     R1,#0x1
-   \   0000FB   7A..         MOV     R2,#`?<Constant "IEEE: ">` & 0xff
-   \   0000FD   7B..         MOV     R3,#(`?<Constant "IEEE: ">` >> 8) & 0xff
-   \   0000FF   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-   \   000102                ; Setup parameters for call to function HalLcdWriteString
-   \   000102   7902         MOV     R1,#0x2
-   \   000104   AA..         MOV     R2,?XSP + 0
-   \   000106   AB..         MOV     R3,?XSP + 1
-   \   000108   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+   \   0000D2   E8           MOV     A,R0
+   \   0000D3   2D           ADD     A,R5
+   \   0000D4   C0E0         PUSH    A
+   \   0000D6   85..82       MOV     DPL,?XSP + 0
+   \   0000D9   85..83       MOV     DPH,?XSP + 1
+   \   0000DC   E582         MOV     A,DPL
+   \   0000DE   2F           ADD     A,R7
+   \   0000DF   F582         MOV     DPL,A
+   \   0000E1   E4           CLR     A
+   \   0000E2   3583         ADDC    A,DPH
+   \   0000E4   F583         MOV     DPH,A
+   \   0000E6   D0E0         POP     A
+   \   0000E8   F0           MOVX    @DPTR,A
+   \   0000E9   EA           MOV     A,R2
+   \   0000EA   24FF         ADD     A,#-0x1
+   \   0000EC   EB           MOV     A,R3
+   \   0000ED   34FF         ADDC    A,#-0x1
+   \   0000EF   1A           DEC     R2
+   \   0000F0   FB           MOV     R3,A
+   \   0000F1   EC           MOV     A,R4
+   \   0000F2   C3           CLR     C
+   \   0000F3   9410         SUBB    A,#0x10
+   \   0000F5   408F         JC      ??main_4
+   \   0000F7   7410         MOV     A,#0x10
+   \   0000F9   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000FC   E4           CLR     A
+   \   0000FD   F0           MOVX    @DPTR,A
+   \   0000FE                ; Setup parameters for call to function HalLcdWriteString
+   \   0000FE   7901         MOV     R1,#0x1
+   \   000100   7A..         MOV     R2,#`?<Constant "IEEE: ">` & 0xff
+   \   000102   7B..         MOV     R3,#(`?<Constant "IEEE: ">` >> 8) & 0xff
+   \   000104   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+   \   000107                ; Setup parameters for call to function HalLcdWriteString
+   \   000107   7902         MOV     R1,#0x2
+   \   000109   AA..         MOV     R2,?XSP + 0
+   \   00010B   AB..         MOV     R3,?XSP + 1
+   \   00010D   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
     150          
     151            /* Display the device info on the LCD */
     152          #ifdef LCD_SUPPORTED
     153            zmain_lcd_init();
-   \   00010B                ; Setup parameters for call to function HalLcdWriteString
-   \   00010B   7901         MOV     R1,#0x1
-   \   00010D   7A..         MOV     R2,#`?<Constant "TexasInstruments">` & 0xff
-   \   00010F   7B..         MOV     R3,#(`?<Constant "TexasInstruments">` >> 8) & 0xff
-   \   000111   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+   \   000110                ; Setup parameters for call to function HalLcdWriteString
+   \   000110   7901         MOV     R1,#0x1
+   \   000112   7A..         MOV     R2,#`?<Constant "TexasInstruments">` & 0xff
+   \   000114   7B..         MOV     R3,#(`?<Constant "TexasInstruments">` >> 8) & 0xff
+   \   000116   12....       LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
     154          #endif
     155          
     156          #ifdef WDT_IN_PM1
@@ -467,22 +470,22 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
     159          #endif
     160          
     161           osal_start_system(); // No Return from here
-   \   000114                ; Setup parameters for call to function osal_start_system
-   \   000114   12....       LCALL   `??osal_start_system::?relay`; Banked call to: osal_start_system
+   \   000119                ; Setup parameters for call to function osal_start_system
+   \   000119   12....       LCALL   `??osal_start_system::?relay`; Banked call to: osal_start_system
     162          
     163            return 0;  // Shouldn't get here.
-   \   000117   7A00         MOV     R2,#0x0
-   \   000119   7B00         MOV     R3,#0x0
-   \   00011B   7411         MOV     A,#0x11
-   \   00011D   12....       LCALL   ?DEALLOC_XSTACK8
-   \   000120   02....       LJMP    ?BRET
-   \   000123                REQUIRE SLEEPCMD
-   \   000123                REQUIRE SLEEPSTA
-   \   000123                REQUIRE CLKCONCMD
-   \   000123                REQUIRE CLKCONSTA
-   \   000123                REQUIRE _A_P1
-   \   000123                REQUIRE P1DIR
-   \   000123                REQUIRE P0INP
+   \   00011C   7A00         MOV     R2,#0x0
+   \   00011E   7B00         MOV     R3,#0x0
+   \   000120   7411         MOV     A,#0x11
+   \   000122   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000125   02....       LJMP    ?BRET
+   \   000128                REQUIRE SLEEPCMD
+   \   000128                REQUIRE SLEEPSTA
+   \   000128                REQUIRE CLKCONCMD
+   \   000128                REQUIRE CLKCONSTA
+   \   000128                REQUIRE _A_P1
+   \   000128                REQUIRE P1DIR
+   \   000128                REQUIRE P0INP
     164          } // main()
     165          
     166          /*********************************************************************
@@ -994,13 +997,13 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
        1  SLEEPCMD
        1  SLEEPSTA
        1  _A_P1
-     291  main
+     296  main
        6  main::?relay
      367  zmain_ext_addr
        6  zmain_ext_addr::?relay
 
  
- 669 bytes in segment BANKED_CODE
+ 674 bytes in segment BANKED_CODE
   12 bytes in segment BANK_RELAYS
    7 bytes in segment SFR_AN
   32 bytes in segment XDATA_ROM_C
@@ -1008,7 +1011,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
   12 bytes of CODE     memory
   32 bytes of CONST    memory
    0 bytes of DATA     memory (+ 7 bytes shared)
- 669 bytes of HUGECODE memory
+ 674 bytes of HUGECODE memory
 
 Errors: none
 Warnings: none

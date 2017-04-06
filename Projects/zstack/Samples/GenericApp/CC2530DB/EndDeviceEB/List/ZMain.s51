@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               05/Apr/2017  10:45:07
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:07
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -882,6 +882,17 @@ main:
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL main, InitBoard
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
         FUNCALL main, HalLcdWriteString
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1052,7 +1063,10 @@ main:
         LCALL   `??osal_int_enable::?relay`; Banked call to: osal_int_enable
 //  144 
 //  145   // Final board initialization
-//  146   //InitBoard( OB_READY );
+//  146   InitBoard( OB_READY );
+        ; Setup parameters for call to function InitBoard
+        MOV     R1,#0x2
+        LCALL   `??InitBoard::?relay`; Banked call to: InitBoard
 //  147 
 //  148   // Display information about this device
 //  149   zmain_dev_info();
@@ -1844,7 +1858,7 @@ zmain_ext_addr:
 //  388 
 //  389 
 // 
-// 669 bytes in segment BANKED_CODE
+// 674 bytes in segment BANKED_CODE
 //  12 bytes in segment BANK_RELAYS
 //   7 bytes in segment SFR_AN
 //  32 bytes in segment XDATA_ROM_C
@@ -1852,7 +1866,7 @@ zmain_ext_addr:
 //  12 bytes of CODE     memory
 //  32 bytes of CONST    memory
 //   0 bytes of DATA     memory (+ 7 bytes shared)
-// 669 bytes of HUGECODE memory
+// 674 bytes of HUGECODE memory
 //
 //Errors: none
 //Warnings: none

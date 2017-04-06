@@ -135,11 +135,11 @@ void InitBoard( uint8 level )
   else  // !OB_COLD
   {
     /* Initialize Key stuff */
-    #if defined (ISR_KEYINTERRUPT)
+    //#if defined (ISR_KEYINTERRUPT)
     HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE , OnBoard_KeyCallback);
-    #else
-    HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);
-    #endif
+    //#else
+    //HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);
+    //#endif
   }
 }
 

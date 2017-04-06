@@ -97,6 +97,14 @@
  **************************************************************************************************/
 
 /**************************************************************************************************
+ *                                              EXTERN VARIABLES
+ **************************************************************************************************/
+
+extern uint8 MagneticSwitchFlag;
+extern uint8 MotionSensorFlag;
+
+   
+/**************************************************************************************************
  *                                            CONSTANTS
  **************************************************************************************************/
 #define HAL_KEY_RISING_EDGE   0
@@ -114,9 +122,11 @@
 #define HAL_KEY_SW_6_SEL    P0SEL
 #define HAL_KEY_SW_6_DIR    P0DIR
 
+
+
 /* edge interrupt */
 #define HAL_KEY_SW_6_EDGEBIT  BV(0)
-#define HAL_KEY_SW_6_EDGE     HAL_KEY_FALLING_EDGE
+#define HAL_KEY_SW_6_EDGE     HAL_KEY_RISING_EDGE
 
 
 /* SW_6 interrupts */
@@ -134,7 +144,7 @@
 
 /* edge interrupt */
 #define HAL_KEY_JOY_MOVE_EDGEBIT  BV(3)
-#define HAL_KEY_JOY_MOVE_EDGE     HAL_KEY_FALLING_EDGE
+#define HAL_KEY_JOY_MOVE_EDGE     HAL_KEY_RISING_EDGE
 
 /* Joy move interrupts */
 #define HAL_KEY_JOY_MOVE_IEN      IEN2  /* CPU interrupt mask register */
@@ -166,7 +176,9 @@ void halProcessKeyInterrupt(void);
 uint8 halGetJoyKeyInput(void);
 
 void halProcessKeyInterrupt(void);
-    
+void halMagneticInterrupt(void); 
+
+extern void HalLcdWriteString ( char *, uint8 );
 
 
 /**************************************************************************************************
@@ -279,6 +291,8 @@ void HalKeyConfig (bool interruptEnable, halKeyCBack_t cback)
 
   /* Key now is configured */
   HalKeyConfigured = TRUE;
+  
+  
 }
 
 
@@ -294,6 +308,8 @@ void HalKeyConfig (bool interruptEnable, halKeyCBack_t cback)
 uint8 HalKeyRead ( void )
 {
   uint8 keys = 0;
+  
+  
 
   if (HAL_PUSH_BUTTON1())
   {
@@ -423,20 +439,22 @@ uint8 halGetJoyKeyInput(void)
  **************************************************************************************************/
 void halProcessKeyInterrupt (void)
 {
-  bool valid=FALSE;
-
-  if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)  /* Interrupt Flag has been set */
+  bool valid=TRUE;
+  /*
+  if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)  // Interrupt Flag has been set 
   {
-    HAL_KEY_SW_6_PXIFG = ~(HAL_KEY_SW_6_BIT); /* Clear Interrupt Flag */
+    HAL_KEY_SW_6_PXIFG = ~(HAL_KEY_SW_6_BIT);  //Clear Interrupt Flag 
     valid = TRUE;
   }
 
-  if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)  /* Interrupt Flag has been set */
+  if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)  // Interrupt Flag has been set
   {
-    HAL_KEY_JOY_MOVE_PXIFG = ~(HAL_KEY_JOY_MOVE_BIT); /* Clear Interrupt Flag */
+    HAL_KEY_JOY_MOVE_PXIFG = ~(HAL_KEY_JOY_MOVE_BIT); // Clear Interrupt Flag 
     valid = TRUE;
   }
-
+  */
+    
+    
   if (valid)
   {
     osal_start_timerEx (Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE);
@@ -487,14 +505,18 @@ uint8 HalKeyExitSleep ( void )
 HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
 {
   HAL_ENTER_ISR();
+  
+  MotionSensorFlag = 1;
 
   if (HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT)
   {
-    //halProcessKeyInterrupt();
-    halMagneticInterrupt();
+    halProcessKeyInterrupt();
     
   }
 
+    
+ 
+  
   
     //Clear the CPU interrupt flag for Port_0
     //PxIFG has to be cleared before PxIF
@@ -520,11 +542,13 @@ HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
 {
   HAL_ENTER_ISR();
   
+  MagneticSwitchFlag = 1;
+  
   if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
   {
     halProcessKeyInterrupt();
   }
-
+  
   /*
     Clear the CPU interrupt flag for Port_2
     PxIFG has to be cleared before PxIF

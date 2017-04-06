@@ -74,9 +74,19 @@
 #endif
 
 /**************************************************************************************************
+ *                                      EXTERNAL FUNCTIONS
+ **************************************************************************************************/
+
+extern void MagneticSwitch_SendTheMessage( void );
+extern void MotionSensor_SendTheMessage( void );
+
+/**************************************************************************************************
  *                                      GLOBAL VARIABLES
  **************************************************************************************************/
 uint8 Hal_TaskID;
+
+uint8 MagneticSwitchFlag = 0;
+uint8 MotionSensorFlag = 0;
 
 extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
 
@@ -221,8 +231,21 @@ uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
   {
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
     /* Check for keys */
-    HalKeyPoll();
-
+    //HalKeyPoll();
+    
+    if(MagneticSwitchFlag == 1)
+    {
+      MagneticSwitch_SendTheMessage();
+      MagneticSwitchFlag = 0;
+    }
+    if(MotionSensorFlag == 1)
+    {
+      MotionSensor_SendTheMessage();
+      MotionSensorFlag = 0;
+    }
+    
+    
+    
     /* if interrupt disabled, do next polling */
     if (!Hal_KeyIntEnable)
     {

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               05/Apr/2017  10:45:06
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:06
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -837,8 +837,6 @@ AddrMgrExtAddrSet   SYMBOL "AddrMgrExtAddrSet"
 `??AddrMgrExtAddrSet::?relay` SYMBOL "?relay", AddrMgrExtAddrSet
 HalKeyRead          SYMBOL "HalKeyRead"
 `??HalKeyRead::?relay` SYMBOL "?relay", HalKeyRead
-HalLcdWriteString   SYMBOL "HalLcdWriteString"
-`??HalLcdWriteString::?relay` SYMBOL "?relay", HalLcdWriteString
 HalLedBlink         SYMBOL "HalLedBlink"
 `??HalLedBlink::?relay` SYMBOL "?relay", HalLedBlink
 HalLedSet           SYMBOL "HalLedSet"
@@ -1144,8 +1142,6 @@ ZDO_beaconNotifyIndCB SYMBOL "ZDO_beaconNotifyIndCB"
         FUNCTION `??AddrMgrExtAddrSet::?relay`,00H
         EXTERN `??HalKeyRead::?relay`
         FUNCTION `??HalKeyRead::?relay`,00H
-        EXTERN `??HalLcdWriteString::?relay`
-        FUNCTION `??HalLcdWriteString::?relay`,00H
         EXTERN `??HalLedBlink::?relay`
         FUNCTION `??HalLedBlink::?relay`,00H
         EXTERN `??HalLedSet::?relay`
@@ -1333,13 +1329,6 @@ ZDO_beaconNotifyIndCB SYMBOL "ZDO_beaconNotifyIndCB"
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN HalKeyRead
         FUNCTION HalKeyRead,0202H
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN HalLcdWriteString
-        FUNCTION HalLcdWriteString,0202H
         ARGFRAME ISTACK, 2, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 0, STACK
@@ -4874,28 +4863,6 @@ ZDAppCheckForHoldKey:
         ARGFRAME XSTACK, 0, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL ZDAppCheckForHoldKey, HalLcdWriteString
-        LOCFRAME ISTACK, 2, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 0, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL ZDAppCheckForHoldKey, HalLcdWriteString
-        LOCFRAME ISTACK, 2, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 0, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
         PUSH    DPL
           CFI DPL0 Frame(CFA_SP, 4)
           CFI CFA_SP SP+-4
@@ -4914,33 +4881,18 @@ ZDAppCheckForHoldKey:
         MOV     DPTR,#zdappHoldKeys
         MOVX    @DPTR,A
 // 1070   if ( zdappHoldKeys == SW_BYPASS_START )
-        XRL     A,#0x1
-        MOV     R1,#0x0
-        JNZ     ??ZDAppCheckForHoldKey_0
 // 1071   {
-// 1072     HalLcdWriteString("Ulazi u if.",0);
-        ; Setup parameters for call to function HalLcdWriteString
-        MOV     R2,#`?<Constant "Ulazi u if.">` & 0xff
-        MOV     R3,#(`?<Constant "Ulazi u if.">` >> 8) & 0xff
-        SJMP    ??ZDAppCheckForHoldKey_1
+// 1072     //HalLcdWriteString("Ulazi u if.",0);
 // 1073   }
 // 1074   else
 // 1075   {
-// 1076     HalLcdWriteString("Ne ulazi u if.",0);
-??ZDAppCheckForHoldKey_0:
-        ; Setup parameters for call to function HalLcdWriteString
-        MOV     R2,#`?<Constant "Ne ulazi u if.">` & 0xff
-        MOV     R3,#(`?<Constant "Ne ulazi u if.">` >> 8) & 0xff
-??ZDAppCheckForHoldKey_1:
-        LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+// 1076     //HalLcdWriteString("Ne ulazi u if.",0);
 // 1077   }
 // 1078   // Hold down the SW_BYPASS_START key (see OnBoard.h)
 // 1079   // while booting to avoid starting up the device.
 // 1080   if ( zdappHoldKeys == SW_BYPASS_START )
-        MOV     DPTR,#zdappHoldKeys
-        MOVX    A,@DPTR
         XRL     A,#0x1
-        JNZ     ??ZDAppCheckForHoldKey_2
+        JNZ     ??ZDAppCheckForHoldKey_0
 // 1081   {
 // 1082     
 // 1083     
@@ -4952,7 +4904,7 @@ ZDAppCheckForHoldKey:
 // 1086   }
 // 1087 #endif // HAL_KEY
 // 1088 }
-??ZDAppCheckForHoldKey_2:
+??ZDAppCheckForHoldKey_0:
         LJMP    ??Subroutine56_0 & 0xFFFF
           CFI EndBlock cfiBlock30
 // 1089 
@@ -18200,6 +18152,26 @@ ZDApp_AgeOutPendingBindEntry:
         DATA16
         DW 1000
 
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_64:
+        DD 100
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_4e2:
+        DD 1250
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_258:
+        DD 600
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_3e8:
+        DD 1000
+
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 `??ZDApp_Init::?relay`:
         CODE
@@ -18704,36 +18676,6 @@ ZDApp_AgeOutPendingBindEntry:
         DATA24
         DC24    ZDApp_AgeOutPendingBindEntry
 
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA8
-`?<Constant "Ulazi u if.">`:
-        DB "Ulazi u if."
-
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA8
-`?<Constant "Ne ulazi u if.">`:
-        DB "Ne ulazi u if."
-
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA32
-__Constant_64:
-        DD 100
-
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA32
-__Constant_4e2:
-        DD 1250
-
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA32
-__Constant_258:
-        DD 600
-
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA32
-__Constant_3e8:
-        DD 1000
-
         END
 // 3555 #endif
 // 3556 #endif
@@ -18741,16 +18683,16 @@ __Constant_3e8:
 // 3558 /*********************************************************************
 // 3559 *********************************************************************/
 // 
-// 7 037 bytes in segment BANKED_CODE
+// 7 014 bytes in segment BANKED_CODE
 //   432 bytes in segment BANK_RELAYS
 //    11 bytes in segment XDATA_I
 //    11 bytes in segment XDATA_ID
-//    43 bytes in segment XDATA_ROM_C
+//    16 bytes in segment XDATA_ROM_C
 //    62 bytes in segment XDATA_Z
 // 
 //   443 bytes of CODE     memory
-//    27 bytes of CONST    memory (+ 16 bytes shared)
-// 7 037 bytes of HUGECODE memory
+//     0 bytes of CONST    memory (+ 16 bytes shared)
+// 7 014 bytes of HUGECODE memory
 //    73 bytes of XDATA    memory
 //
 //Errors: none
