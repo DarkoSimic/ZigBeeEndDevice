@@ -511,26 +511,12 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
  */
 static void GenericApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg )
 {
-  char shAddr[5];
-  uint16 SAddr[2];
-    shAddr[4] = '\0';
-    uint8 i = 0;
+ 
   switch ( inMsg->clusterID )
   {
     case End_Device_Bind_rsp:
       if ( ZDO_ParseBindRsp( inMsg ) == ZSuccess )
       {
-         HalLcdWriteString("End Device bind",0);
-         SAddr[1] = inMsg->macSrcAddr;
-          for(i = 0;i<4;i++)
-      {
-        shAddr[3-i] =  SAddr[1] % 16  + '0';
-        SAddr[1] /= 16;
-      }
-      
-      HalLcdWriteString(shAddr,0);
-      
-         
         // Light LED
         HalLedSet( HAL_LED_4, HAL_LED_MODE_ON );
       }
@@ -545,15 +531,6 @@ static void GenericApp_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg )
 
     case Match_Desc_rsp:
       {
-        HalLcdWriteString("End Device Match Desc",0);
-        SAddr[1] = inMsg->macSrcAddr;
-          for(i = 0;i<4;i++)
-      {
-        shAddr[3-i] =  SAddr[1] % 16  + '0';
-        SAddr[1] /= 16;
-      }
-      
-      HalLcdWriteString(shAddr,0);
         ZDO_ActiveEndpointRsp_t *pRsp = ZDO_ParseEPListRsp( inMsg );
         if ( pRsp )
         {
