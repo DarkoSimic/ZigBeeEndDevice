@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  12:17:03
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                20/Apr/2017  12:17:44
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -87,6 +87,8 @@
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 #        -I
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 #        -Ohz --require_prototypes
 #    List file          =  
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_drivers.lst
@@ -286,30 +288,26 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\common\hal_
     142          
     143            /* LCD */
     144          #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-    145            HalLcdInit();
-   \   00000D                ; Setup parameters for call to function HalLcdInit
-   \   00000D   12....       LCALL   `??HalLcdInit::?relay`; Banked call to: HalLcdInit
+    145           // HalLcdInit();
     146          #endif
     147          
     148            /* LED */
     149          #if (defined HAL_LED) && (HAL_LED == TRUE)
     150            HalLedInit();
-   \   000010                ; Setup parameters for call to function HalLedInit
-   \   000010   12....       LCALL   `??HalLedInit::?relay`; Banked call to: HalLedInit
+   \   00000D                ; Setup parameters for call to function HalLedInit
+   \   00000D   12....       LCALL   `??HalLedInit::?relay`; Banked call to: HalLedInit
     151          #endif
     152          
     153            /* UART */
     154          #if (defined HAL_UART) && (HAL_UART == TRUE)
-    155            HalUARTInit();
-   \   000013                ; Setup parameters for call to function HalUARTInit
-   \   000013   12....       LCALL   `??HalUARTInit::?relay`; Banked call to: HalUARTInit
+    155            //HalUARTInit();
     156          #endif
     157          
     158            /* KEY */
     159          #if (defined HAL_KEY) && (HAL_KEY == TRUE)
     160            HalKeyInit();
-   \   000016                ; Setup parameters for call to function HalKeyInit
-   \   000016   12....       LCALL   `??HalKeyInit::?relay`; Banked call to: HalKeyInit
+   \   000010                ; Setup parameters for call to function HalKeyInit
+   \   000010   12....       LCALL   `??HalKeyInit::?relay`; Banked call to: HalKeyInit
     161          #endif
     162            
     163            /* SPI */
@@ -322,7 +320,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\common\hal_
     170            usbHidInit();
     171          #endif
     172          }
-   \   000019   80..         SJMP    ?Subroutine0
+   \   000013   80..         SJMP    ?Subroutine0
     173          
     174          /**************************************************************************************************
     175           * @fn      Hal_ProcessEvent
@@ -611,9 +609,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\common\hal_
         2      0   -> HalAesInit
         2      0   -> HalDmaInit
         2      0   -> HalKeyInit
-        2      0   -> HalLcdInit
         2      0   -> HalLedInit
-        2      0   -> HalUARTInit
       2      0   Hal_Init
       0     14   Hal_ProcessEvent
         0     10   -> HalLedUpdate
@@ -631,7 +627,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\common\hal_
    Bytes  Function/Label
    -----  --------------
        7  ?Subroutine0
-      27  HalDriverInit
+      21  HalDriverInit
        6  HalDriverInit::?relay
        9  Hal_Init
        6  Hal_Init::?relay
@@ -645,14 +641,14 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\common\hal_
        4  __Constant_64
 
  
- 186 bytes in segment BANKED_CODE
+ 180 bytes in segment BANKED_CODE
   24 bytes in segment BANK_RELAYS
    4 bytes in segment XDATA_ROM_C
    3 bytes in segment XDATA_Z
  
   24 bytes of CODE     memory
    0 bytes of CONST    memory (+ 4 bytes shared)
- 186 bytes of HUGECODE memory
+ 180 bytes of HUGECODE memory
    3 bytes of XDATA    memory
 
 Errors: none

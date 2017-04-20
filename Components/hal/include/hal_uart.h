@@ -22,7 +22,7 @@
   its documentation for any purpose.
 
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -224,6 +224,37 @@ extern void HalUARTSuspend(void);
  * Resume UART after wakeup from sleep
  */
 extern void HalUARTResume(void);
+
+/*
+ * Initialize SPI at the startup
+ */
+void Hal_SPI_Master_Init(void);
+
+/*
+ *  Write a data to the SPI *
+ */
+void Hal_SPI_Master_Send(uint8 data);
+
+/*
+ * Read data from SPI
+ */
+uint8 Hal_SPI_Master_Receive(void);
+
+/*
+ *  Write a data to the SPI *
+ */
+void SPIDataPut(uint8 );
+
+/*
+ * Read data from SPI
+ */
+uint8 SPIDataGet(void);
+
+/*
+ * Chek is bit in register set to one
+ */
+char isBitSet(char , int );
+
 
 /***************************************************************************************************
 ***************************************************************************************************/

@@ -1,0 +1,1097 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                11/Apr/2017  09:31:18
+# Copyright 2004-2016 IAR Systems AB.
+# Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+#    Command line       =  
+#        -f
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+#        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x0422
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+#        -DREJOIN_POLL_RATE=440
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+#        -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC
+#        -D LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+#        -lA
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\Obj
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 16 -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz --require_prototypes
+#    List file          =  
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\bme280_support.lst
+#    Object file        =  
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\Obj\bme280_support.r51
+#
+###############################################################################
+
+C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+      1          /*
+      2          ****************************************************************************
+      3          * Copyright (C) 2015 - 2016 Bosch Sensortec GmbH
+      4          *
+      5          * bme280_support.c
+      6          * Date: 2016/07/04
+      7          * Revision: 1.0.6 $
+      8          *
+      9          * Usage: Sensor Driver support file for BME280 sensor
+     10          *
+     11          ****************************************************************************
+     12          * License:
+     13          *
+     14          * Redistribution and use in source and binary forms, with or without
+     15          * modification, are permitted provided that the following conditions are met:
+     16          *
+     17          *   Redistributions of source code must retain the above copyright
+     18          *   notice, this list of conditions and the following disclaimer.
+     19          *
+     20          *   Redistributions in binary form must reproduce the above copyright
+     21          *   notice, this list of conditions and the following disclaimer in the
+     22          *   documentation and/or other materials provided with the distribution.
+     23          *
+     24          *   Neither the name of the copyright holder nor the names of the
+     25          *   contributors may be used to endorse or promote products derived from
+     26          *   this software without specific prior written permission.
+     27          *
+     28          * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+     29          * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+     30          * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+     31          * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+     32          * DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDER
+     33          * OR CONTRIBUTORS BE LIABLE FOR ANY
+     34          * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+     35          * OR CONSEQUENTIAL DAMAGES(INCLUDING, BUT NOT LIMITED TO,
+     36          * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     37          * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     38          * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+     39          * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+     40          * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+     41          * ANY WAY OUT OF THE USE OF THIS
+     42          * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+     43          *
+     44          * The information provided is believed to be accurate and reliable.
+     45          * The copyright holder assumes no responsibility
+     46          * for the consequences of use
+     47          * of such information nor for any infringement of patents or
+     48          * other rights of third parties which may result from its use.
+     49          * No license is granted by implication or otherwise under any patent or
+     50          * patent rights of the copyright holder.
+     51          **************************************************************************/
+     52          /*---------------------------------------------------------------------------*/
+     53          /* Includes*/
+     54          /*---------------------------------------------------------------------------*/
+     55          #include "bme280.h"
+     56          
+     57          #define SPI_READ	0x80
+     58          #define SPI_WRITE	0x7F
+     59          
+     60          #define BME280_API
+     61          /*Enable the macro BME280_API to use this support file */
+     62          /*----------------------------------------------------------------------------*
+     63          *  The following functions are used for reading and writing of
+     64          *	sensor data using I2C or SPI communication
+     65          *----------------------------------------------------------------------------*/
+     66          #ifdef BME280_API
+     67          /*	\Brief: The function is used as I2C bus read
+     68           *	\Return : Status of the I2C read
+     69           *	\param dev_addr : The device address of the sensor
+     70           *	\param reg_addr : Address of the first register, will data is going to be read
+     71           *	\param reg_data : This data read from the sensor, which is hold in an array
+     72           *	\param cnt : The no of byte of data to be read
+     73           */
+     74          s8 BME280_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+     75           /*	\Brief: The function is used as I2C bus write
+     76           *	\Return : Status of the I2C write
+     77           *	\param dev_addr : The device address of the sensor
+     78           *	\param reg_addr : Address of the first register, will data is going to be written
+     79           *	\param reg_data : It is a value hold in the array,
+     80           *		will be used for write the value into the register
+     81           *	\param cnt : The no of byte of data to be write
+     82           */
+     83          s8 BME280_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+     84          /*	\Brief: The function is used as SPI bus write
+     85           *	\Return : Status of the SPI write
+     86           *	\param dev_addr : The device address of the sensor
+     87           *	\param reg_addr : Address of the first register, will data is going to be written
+     88           *	\param reg_data : It is a value hold in the array,
+     89           *		will be used for write the value into the register
+     90           *	\param cnt : The no of byte of data to be write
+     91           */
+     92          s8 BME280_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+     93          /*	\Brief: The function is used as SPI bus read
+     94           *	\Return : Status of the SPI read
+     95           *	\param dev_addr : The device address of the sensor
+     96           *	\param reg_addr : Address of the first register, will data is going to be read
+     97           *	\param reg_data : This data read from the sensor, which is hold in an array
+     98           *	\param cnt : The no of byte of data to be read */
+     99          extern s8 BME280_SPI_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+    100          /*
+    101           * \Brief: SPI/I2C init routine
+    102          */
+    103          //s8 I2C_routine(void);
+    104          //s8 SPI_routine(void);
+    105          #endif
+    106          /********************End of I2C/SPI function declarations***********************/
+    107          /*	Brief : The delay routine
+    108           *	\param : delay in ms
+    109          */
+    110          void BME280_delay_msek(u32 msek);
+    111          /* This function is an example for reading sensor data
+    112           *	\param: None
+    113           *	\return: communication result
+    114           */
+    115          s16 bme280_data_readout_template(struct bme280_t *bme280, struct value *val);
+    116          /*----------------------------------------------------------------------------*
+    117           *  struct bme280_t parameters can be accessed by using bme280
+    118           *	bme280_t having the following parameters
+    119           *	Bus write function pointer: BME280_WR_FUNC_PTR
+    120           *	Bus read function pointer: BME280_RD_FUNC_PTR
+    121           *	Delay function pointer: delay_msec
+    122           *	I2C address: dev_addr
+    123           *	Chip id of the sensor: chip_id
+    124           *---------------------------------------------------------------------------*/
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    125          struct bme280_t bme280;
+   \                     bme280:
+   \   000000                DS 51
+   \   000033                REQUIRE __INIT_XDATA_Z
+    126          /* This function is an example for reading sensor data
+    127           *	\param: None
+    128           *	\return: communication result
+    129           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    130          s16 bme280_data_readout_template(struct bme280_t *bme280, struct value *val)
+   \                     bme280_data_readout_template:
+    131          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000                REQUIRE ?V8
+   \   000000                REQUIRE ?V9
+   \   000000                REQUIRE ?V10
+   \   000000   74ED         MOV     A,#-0x13
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 19
+   \   000005                ; Auto size: 37
+   \   000005   74DB         MOV     A,#-0x25
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    132          	/* The variable used to assign the standby time*/
+    133          	u8 v_stand_by_time_u8 = BME280_INIT_VALUE;
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   E4           CLR     A
+   \   000015   F0           MOVX    @DPTR,A
+    134          	/* The variable used to read uncompensated temperature*/
+    135          	s32 v_data_uncomp_temp_s32 = BME280_INIT_VALUE;
+   \   000016   7409         MOV     A,#0x9
+   \   000018   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001B   12....       LCALL   ?Subroutine1 & 0xFFFF
+    136          	/* The variable used to read uncompensated pressure*/
+    137          	s32 v_data_uncomp_pres_s32 = BME280_INIT_VALUE;
+   \                     ??CrossCallReturnLabel_8:
+   \   00001E   7405         MOV     A,#0x5
+   \   000020   12....       LCALL   ?XSTACK_DISP0_8
+   \   000023   12....       LCALL   ?Subroutine1 & 0xFFFF
+    138          	/* The variable used to read uncompensated pressure*/
+    139          	s32 v_data_uncomp_hum_s32 = BME280_INIT_VALUE;
+   \                     ??CrossCallReturnLabel_9:
+   \   000026   04           INC     A
+   \   000027   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002A   12....       LCALL   ?Subroutine1 & 0xFFFF
+    140          	/* The variable used to read compensated temperature*/
+    141          	s32 v_comp_temp_s32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+   \                     ??CrossCallReturnLabel_10:
+   \   00002D   90....       MOV     DPTR,#`?<Constant {0, 0}>`
+   \   000030   741D         MOV     A,#0x1d
+   \   000032   12....       LCALL   ?XSTACK_DISP102_8
+   \   000035   7408         MOV     A,#0x8
+   \   000037   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    142          	/* The variable used to read compensated pressure*/
+    143          	u32 v_comp_press_u32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+   \   00003A   90....       MOV     DPTR,#`?<Constant {0, 0}>_1`
+   \   00003D   7415         MOV     A,#0x15
+   \   00003F   12....       LCALL   ?XSTACK_DISP102_8
+   \   000042   7408         MOV     A,#0x8
+   \   000044   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    144          	/* The variable used to read compensated humidity*/
+    145          	u32 v_comp_humidity_u32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+   \   000047   90....       MOV     DPTR,#`?<Constant {0, 0}>_2`
+   \   00004A   740D         MOV     A,#0xd
+   \   00004C   12....       LCALL   ?XSTACK_DISP102_8
+   \   00004F   7408         MOV     A,#0x8
+   \   000051   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    146          
+    147          	/* result of communication results*/
+    148          	s32 com_rslt = ERROR;
+    149          
+    150          
+    151          
+    152           /*********************** START INITIALIZATION ************************/
+    153            /*	Based on the user need configure I2C or SPI interface.
+    154            *	It is example code to explain how to use the bme280 API*/
+    155           	#ifdef BME280_API
+    156          	//I2C_routine();
+    157          	SPI_routine(bme280);
+   \   000054                ; Setup parameters for call to function SPI_routine
+   \   000054   12....       LCALL   `??SPI_routine::?relay`; Banked call to: SPI_routine
+    158          	#endif
+    159          /*--------------------------------------------------------------------------*
+    160           *  This function used to assign the value/reference of
+    161           *	the following parameters
+    162           *	I2C address
+    163           *	Bus Write
+    164           *	Bus read
+    165           *	Chip id
+    166          *-------------------------------------------------------------------------*/
+    167          	com_rslt = bme280_init(bme280);
+   \   000057                ; Setup parameters for call to function bme280_init
+   \   000057   EE           MOV     A,R6
+   \   000058   FA           MOV     R2,A
+   \   000059   EF           MOV     A,R7
+   \   00005A   FB           MOV     R3,A
+   \   00005B   12....       LCALL   `??bme280_init::?relay`; Banked call to: bme280_init
+   \   00005E   E9           MOV     A,R1
+   \   00005F   F5..         MOV     ?V10,A
+    168          
+    169          	/*	For initialization it is required to set the mode of
+    170          	 *	the sensor as "NORMAL"
+    171          	 *	data acquisition/read/write is possible in this mode
+    172          	 *	by using the below API able to set the power mode as NORMAL
+    173          	 */
+    174          	 
+    175          	/* Set the power mode as NORMAL*/
+    176          	com_rslt += bme280_set_power_mode(BME280_NORMAL_MODE);
+   \   000061                ; Setup parameters for call to function bme280_set_power_mode
+   \   000061   7903         MOV     R1,#0x3
+   \   000063   12....       LCALL   `??bme280_set_power_mode::?relay`; Banked call to: bme280_set_power_mode
+   \   000066   E9           MOV     A,R1
+   \   000067   F5..         MOV     ?V9,A
+    177          	/*	For reading the pressure, humidity and temperature data it is required to
+    178          	 *	set the OSS setting of humidity, pressure and temperature
+    179          	 * The "BME280_CTRLHUM_REG_OSRSH" register sets the humidity
+    180          	 * data acquisition options of the device.
+    181          	 * changes to this registers only become effective after a write operation to
+    182          	 * "BME280_CTRLMEAS_REG" register.
+    183          	 * In the code automated reading and writing of "BME280_CTRLHUM_REG_OSRSH"
+    184          	 * register first set the "BME280_CTRLHUM_REG_OSRSH" and then read and write
+    185          	 * the "BME280_CTRLMEAS_REG" register in the function*/
+    186          	com_rslt += bme280_set_oversamp_humidity(BME280_OVERSAMP_1X);
+   \   000069                ; Setup parameters for call to function bme280_set_oversamp_humidity
+   \   000069   7901         MOV     R1,#0x1
+   \   00006B   12....       LCALL   `??bme280_set_oversamp_humidity::?relay`; Banked call to: bme280_set_oversamp_humidity
+   \   00006E   E9           MOV     A,R1
+   \   00006F   F5..         MOV     ?V8,A
+    187          
+    188          	/* set the pressure oversampling*/
+    189          	com_rslt += bme280_set_oversamp_pressure(BME280_OVERSAMP_2X);
+   \   000071                ; Setup parameters for call to function bme280_set_oversamp_pressure
+   \   000071   7902         MOV     R1,#0x2
+   \   000073   12....       LCALL   `??bme280_set_oversamp_pressure::?relay`; Banked call to: bme280_set_oversamp_pressure
+   \   000076   E9           MOV     A,R1
+   \   000077   F5..         MOV     ?V5,A
+    190          	/* set the temperature oversampling*/
+    191          	com_rslt += bme280_set_oversamp_temperature(BME280_OVERSAMP_4X);
+   \   000079                ; Setup parameters for call to function bme280_set_oversamp_temperature
+   \   000079   7903         MOV     R1,#0x3
+   \   00007B   12....       LCALL   `??bme280_set_oversamp_temperature::?relay`; Banked call to: bme280_set_oversamp_temperature
+   \   00007E   E9           MOV     A,R1
+   \   00007F   F5..         MOV     ?V4,A
+    192          /*--------------------------------------------------------------------------*/
+    193          /*------------------------------------------------------------------------*
+    194          ************************* START GET and SET FUNCTIONS DATA ****************
+    195          *---------------------------------------------------------------------------*/
+    196          	/* This API used to Write the standby time of the sensor input
+    197          	 *	value have to be given
+    198          	 *	Normal mode comprises an automated perpetual cycling between an (active)
+    199          	 *	Measurement period and an (inactive) standby period.
+    200          	 *	The standby time is determined by the contents of the register t_sb.
+    201          	 *	Standby time can be set using BME280_STANDBYTIME_125_MS.
+    202          	 *	Usage Hint : bme280_set_standbydur(BME280_STANDBYTIME_125_MS)*/
+    203          
+    204          	com_rslt += bme280_set_standby_durn(BME280_STANDBY_TIME_1_MS);
+   \   000081                ; Setup parameters for call to function bme280_set_standby_durn
+   \   000081   7900         MOV     R1,#0x0
+   \   000083   12....       LCALL   `??bme280_set_standby_durn::?relay`; Banked call to: bme280_set_standby_durn
+   \   000086   E9           MOV     A,R1
+   \   000087   F5..         MOV     ?V3,A
+    205          
+    206          	/* This API used to read back the written value of standby time*/
+    207          	com_rslt += bme280_get_standby_durn(&v_stand_by_time_u8);
+   \   000089                ; Setup parameters for call to function bme280_get_standby_durn
+   \   000089   AA..         MOV     R2,?XSP + 0
+   \   00008B   AB..         MOV     R3,?XSP + 1
+   \   00008D   12....       LCALL   `??bme280_get_standby_durn::?relay`; Banked call to: bme280_get_standby_durn
+   \   000090   E9           MOV     A,R1
+   \   000091   F5..         MOV     ?V2,A
+    208          /*-----------------------------------------------------------------*
+    209          ************************* END GET and SET FUNCTIONS ****************
+    210          *------------------------------------------------------------------*/
+    211          
+    212          /************************* END INITIALIZATION *************************/
+    213          
+    214          /*------------------------------------------------------------------*
+    215          ************ START READ UNCOMPENSATED PRESSURE, TEMPERATURE
+    216          AND HUMIDITY DATA ********
+    217          *---------------------------------------------------------------------*/
+    218          	/* API is used to read the uncompensated temperature*/
+    219          	com_rslt += bme280_read_uncomp_temperature(&v_data_uncomp_temp_s32);
+   \   000093                ; Setup parameters for call to function bme280_read_uncomp_temperature
+   \   000093   7409         MOV     A,#0x9
+   \   000095   12....       LCALL   ?XSTACK_DISP101_8
+   \   000098   12....       LCALL   `??bme280_read_uncomp_temperature::?relay`; Banked call to: bme280_read_uncomp_temperature
+   \   00009B   E9           MOV     A,R1
+   \   00009C   F5..         MOV     ?V1,A
+    220          
+    221          	/* API is used to read the uncompensated pressure*/
+    222          	com_rslt += bme280_read_uncomp_pressure(&v_data_uncomp_pres_s32);
+   \   00009E                ; Setup parameters for call to function bme280_read_uncomp_pressure
+   \   00009E   7405         MOV     A,#0x5
+   \   0000A0   12....       LCALL   ?XSTACK_DISP101_8
+   \   0000A3   12....       LCALL   `??bme280_read_uncomp_pressure::?relay`; Banked call to: bme280_read_uncomp_pressure
+   \   0000A6   E9           MOV     A,R1
+   \   0000A7   F5..         MOV     ?V0,A
+    223          
+    224          	/* API is used to read the uncompensated humidity*/
+    225          	com_rslt += bme280_read_uncomp_humidity(&v_data_uncomp_hum_s32);
+   \   0000A9                ; Setup parameters for call to function bme280_read_uncomp_humidity
+   \   0000A9   7401         MOV     A,#0x1
+   \   0000AB   12....       LCALL   ?XSTACK_DISP101_8
+   \   0000AE   12....       LCALL   `??bme280_read_uncomp_humidity::?relay`; Banked call to: bme280_read_uncomp_humidity
+   \   0000B1   E9           MOV     A,R1
+   \   0000B2   FF           MOV     R7,A
+    226          
+    227          	/* API is used to read the uncompensated temperature,pressure
+    228          	and humidity data */
+    229          	com_rslt += bme280_read_uncomp_pressure_temperature_humidity(
+    230          	&v_data_uncomp_temp_s32, &v_data_uncomp_pres_s32, &v_data_uncomp_hum_s32);
+   \   0000B3                ; Setup parameters for call to function bme280_read_uncomp_pressure_temperature_humidity
+   \   0000B3   7401         MOV     A,#0x1
+   \   0000B5   12....       LCALL   ?XSTACK_DISP100_8
+   \   0000B8   88..         MOV     ?V6,R0
+   \   0000BA   89..         MOV     ?V7,R1
+   \   0000BC   78..         MOV     R0,#?V6
+   \   0000BE   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000C1   7407         MOV     A,#0x7
+   \   0000C3   12....       LCALL   ?XSTACK_DISP102_8
+   \   0000C6   740B         MOV     A,#0xb
+   \   0000C8   12....       LCALL   ?XSTACK_DISP101_8
+   \   0000CB   12....       LCALL   ??bme280_read_uncomp_pressure_temperature_humid; Banked call to: bme280_read_uncomp_pressure_temperature_humidity
+   \   0000CE   7402         MOV     A,#0x2
+   \   0000D0   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000D3   E9           MOV     A,R1
+   \   0000D4   FE           MOV     R6,A
+    231          /*--------------------------------------------------------------------*
+    232          ************ END READ UNCOMPENSATED PRESSURE AND TEMPERATURE********
+    233          *-------------------------------------------------------------------------*/
+    234          
+    235          /*------------------------------------------------------------------*
+    236          ************ START READ COMPENSATED PRESSURE, TEMPERATURE
+    237          AND HUMIDITY DATA ********
+    238          *---------------------------------------------------------------------*/
+    239          	/* API is used to compute the compensated temperature*/
+    240          	v_comp_temp_s32[0] = bme280_compensate_temperature_int32(
+    241          			v_data_uncomp_temp_s32);
+   \   0000D5                ; Setup parameters for call to function bme280_compensate_temperature_int32
+   \   0000D5   7409         MOV     A,#0x9
+   \   0000D7   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000DA   12....       LCALL   ?XLOAD_R2345
+   \   0000DD   12....       LCALL   `??bme280_compensate_temperature_int32::?relay`; Banked call to: bme280_compensate_temperature_int32
+   \   0000E0   EA           MOV     A,R2
+   \   0000E1   F8           MOV     R0,A
+   \   0000E2   EB           MOV     A,R3
+   \   0000E3   F9           MOV     R1,A
+   \   0000E4   EC           MOV     A,R4
+   \   0000E5   FA           MOV     R2,A
+   \   0000E6   ED           MOV     A,R5
+   \   0000E7   FB           MOV     R3,A
+   \   0000E8   741D         MOV     A,#0x1d
+   \   0000EA   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000ED   12....       LCALL   ?XSTORE_R0123
+    242          
+    243          	/* API is used to compute the compensated pressure*/
+    244          	v_comp_press_u32[0] = bme280_compensate_pressure_int32(
+    245          			v_data_uncomp_pres_s32);
+   \   0000F0                ; Setup parameters for call to function bme280_compensate_pressure_int32
+   \   0000F0   7405         MOV     A,#0x5
+   \   0000F2   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000F5   12....       LCALL   ?XLOAD_R2345
+   \   0000F8   12....       LCALL   `??bme280_compensate_pressure_int32::?relay`; Banked call to: bme280_compensate_pressure_int32
+   \   0000FB   7415         MOV     A,#0x15
+   \   0000FD   12....       LCALL   ?XSTACK_DISP0_8
+   \   000100   12....       LCALL   ?XSTORE_R2345
+    246          
+    247          	/* API is used to compute the compensated humidity*/
+    248          	v_comp_humidity_u32[0] = bme280_compensate_humidity_int32(
+    249          			v_data_uncomp_hum_s32);
+   \   000103                ; Setup parameters for call to function bme280_compensate_humidity_int32
+   \   000103   7401         MOV     A,#0x1
+   \   000105   12....       LCALL   ?XSTACK_DISP0_8
+   \   000108   12....       LCALL   ?XLOAD_R2345
+   \   00010B   12....       LCALL   `??bme280_compensate_humidity_int32::?relay`; Banked call to: bme280_compensate_humidity_int32
+   \   00010E   740D         MOV     A,#0xd
+   \   000110   12....       LCALL   ?XSTACK_DISP0_8
+   \   000113   12....       LCALL   ?XSTORE_R2345
+    250          
+    251          	/* API is used to read the compensated temperature, humidity and pressure*/
+    252          	com_rslt += bme280_read_pressure_temperature_humidity(
+    253          	&v_comp_press_u32[1], &v_comp_temp_s32[1],  &v_comp_humidity_u32[1]);
+   \   000116                ; Setup parameters for call to function bme280_read_pressure_temperature_humidity
+   \   000116   7411         MOV     A,#0x11
+   \   000118   12....       LCALL   ?XSTACK_DISP0_8
+   \   00011B   8582..       MOV     ?V6,DPL
+   \   00011E   8583..       MOV     ?V7,DPH
+   \   000121   78..         MOV     R0,#?V6
+   \   000123   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000126   7423         MOV     A,#0x23
+   \   000128   12....       LCALL   ?XSTACK_DISP0_8
+   \   00012B   AC82         MOV     R4,DPL
+   \   00012D   AD83         MOV     R5,DPH
+   \   00012F   741B         MOV     A,#0x1b
+   \   000131   12....       LCALL   ?XSTACK_DISP0_8
+   \   000134   AA82         MOV     R2,DPL
+   \   000136   AB83         MOV     R3,DPH
+   \   000138   12....       LCALL   `??bme280_read_pressure_temperature_humidity::?r`; Banked call to: bme280_read_pressure_temperature_humidity
+   \   00013B   7402         MOV     A,#0x2
+   \   00013D   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000140   E9           MOV     A,R1
+   \   000141   FC           MOV     R4,A
+    254          /*--------------------------------------------------------------------*
+    255          ************ END READ COMPENSATED PRESSURE, TEMPERATURE AND HUMIDITY ********
+    256          *-------------------------------------------------------------------------*/
+    257          
+    258          /*-----------------------------------------------------------------------*
+    259          ************************* START DE-INITIALIZATION ***********************
+    260          *-------------------------------------------------------------------------*/
+    261          	/*	For de-initialization it is required to set the mode of
+    262          	 *	the sensor as "SLEEP"
+    263          	 *	the device reaches the lowest power consumption only
+    264          	 *	In SLEEP mode no measurements are performed
+    265          	 *	All registers are accessible
+    266          	 *	by using the below API able to set the power mode as SLEEP*/
+    267          	 /* Set the power mode as SLEEP*/
+    268          	com_rslt += bme280_set_power_mode(BME280_SLEEP_MODE);
+    269          /*---------------------------------------------------------------------*
+    270          ************************* END DE-INITIALIZATION **********************
+    271          *---------------------------------------------------------------------*/
+    272          return com_rslt;
+   \   000142   E5..         MOV     A,?V10
+   \   000144   F8           MOV     R0,A
+   \   000145   33           RLC     A
+   \   000146   95E0         SUBB    A,0xE0 /* A   */
+   \   000148   F9           MOV     R1,A
+   \   000149   E5..         MOV     A,?V9
+   \   00014B   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_0:
+   \   00014E   E5..         MOV     A,?V8
+   \   000150   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   000153   E5..         MOV     A,?V5
+   \   000155   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   000158   E5..         MOV     A,?V4
+   \   00015A   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   00015D   E5..         MOV     A,?V3
+   \   00015F   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   000162   E5..         MOV     A,?V2
+   \   000164   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   000167   E5..         MOV     A,?V1
+   \   000169   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_6:
+   \   00016C   E5..         MOV     A,?V0
+   \   00016E   12....       LCALL   ?Subroutine0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000171   EF           MOV     A,R7
+   \   000172   33           RLC     A
+   \   000173   95E0         SUBB    A,0xE0 /* A   */
+   \   000175   FB           MOV     R3,A
+   \   000176   E8           MOV     A,R0
+   \   000177   2F           ADD     A,R7
+   \   000178   F8           MOV     R0,A
+   \   000179   E9           MOV     A,R1
+   \   00017A   3B           ADDC    A,R3
+   \   00017B   F9           MOV     R1,A
+   \   00017C   EE           MOV     A,R6
+   \   00017D   33           RLC     A
+   \   00017E   95E0         SUBB    A,0xE0 /* A   */
+   \   000180   FB           MOV     R3,A
+   \   000181   E8           MOV     A,R0
+   \   000182   2E           ADD     A,R6
+   \   000183   F8           MOV     R0,A
+   \   000184   E9           MOV     A,R1
+   \   000185   3B           ADDC    A,R3
+   \   000186   F9           MOV     R1,A
+   \   000187   EC           MOV     A,R4
+   \   000188   33           RLC     A
+   \   000189   95E0         SUBB    A,0xE0 /* A   */
+   \   00018B   FB           MOV     R3,A
+   \   00018C   E8           MOV     A,R0
+   \   00018D   2C           ADD     A,R4
+   \   00018E   FE           MOV     R6,A
+   \   00018F   E9           MOV     A,R1
+   \   000190   3B           ADDC    A,R3
+   \   000191   FF           MOV     R7,A
+   \   000192                ; Setup parameters for call to function bme280_set_power_mode
+   \   000192   7900         MOV     R1,#0x0
+   \   000194   12....       LCALL   `??bme280_set_power_mode::?relay`; Banked call to: bme280_set_power_mode
+   \   000197   E9           MOV     A,R1
+   \   000198   F8           MOV     R0,A
+   \   000199   33           RLC     A
+   \   00019A   95E0         SUBB    A,0xE0 /* A   */
+   \   00019C   F9           MOV     R1,A
+   \   00019D   EE           MOV     A,R6
+   \   00019E   28           ADD     A,R0
+   \   00019F   FA           MOV     R2,A
+   \   0001A0   EF           MOV     A,R7
+   \   0001A1   39           ADDC    A,R1
+   \   0001A2   FB           MOV     R3,A
+   \   0001A3   7425         MOV     A,#0x25
+   \   0001A5   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0001A8   7F0B         MOV     R7,#0xb
+   \   0001AA   02....       LJMP    ?BANKED_LEAVE_XDATA
+    273          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   E4           CLR     A
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   A3           INC     DPTR
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004   A3           INC     DPTR
+   \   000005   F0           MOVX    @DPTR,A
+   \   000006   A3           INC     DPTR
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   FA           MOV     R2,A
+   \   000001   33           RLC     A
+   \   000002   95E0         SUBB    A,0xE0 /* A   */
+   \   000004   FB           MOV     R3,A
+   \   000005   E8           MOV     A,R0
+   \   000006   2A           ADD     A,R2
+   \   000007   F8           MOV     R0,A
+   \   000008   E9           MOV     A,R1
+   \   000009   3B           ADDC    A,R3
+   \   00000A   F9           MOV     R1,A
+   \   00000B   22           RET
+    274          
+    275          #ifdef BME280_API
+    276          //#define SPI_READ	0x80
+    277          //#define SPI_WRITE	0x7F
+    278          #define BME280_DATA_INDEX					1
+    279          #define BME280_ADDRESS_INDEX			2
+    280          
+    281          /*---------------------------------------------------------------------------*
+    282           * The following function is used to map the SPI bus read, write and delay
+    283           * with global structure bme280
+    284           *--------------------------------------------------------------------------*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    285          s8 SPI_routine(struct bme280_t *bme280) {
+   \                     SPI_routine:
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    286          /*--------------------------------------------------------------------------*
+    287           *  By using bme280 the following structure parameter can be accessed
+    288           *	Bus write function pointer: BME280_WR_FUNC_PTR
+    289           *	Bus read function pointer: BME280_RD_FUNC_PTR
+    290           *	Delay function pointer: delay_msec
+    291           *--------------------------------------------------------------------------*/
+    292          
+    293          	bme280->bus_write = BME280_SPI_bus_write;
+   \   000004   EA           MOV     A,R2
+   \   000005   242D         ADD     A,#0x2d
+   \   000007   F582         MOV     DPL,A
+   \   000009   E4           CLR     A
+   \   00000A   3B           ADDC    A,R3
+   \   00000B   F583         MOV     DPH,A
+   \   00000D   74..         MOV     A,#`??BME280_SPI_bus_write::?relay` & 0xff
+   \   00000F   F0           MOVX    @DPTR,A
+   \   000010   A3           INC     DPTR
+   \   000011   74..         MOV     A,#(`??BME280_SPI_bus_write::?relay` >> 8) & 0xff
+   \   000013   F0           MOVX    @DPTR,A
+    294          	bme280->bus_read = BME280_SPI_bus_read;
+   \   000014   EA           MOV     A,R2
+   \   000015   242F         ADD     A,#0x2f
+   \   000017   F582         MOV     DPL,A
+   \   000019   E4           CLR     A
+   \   00001A   3B           ADDC    A,R3
+   \   00001B   F583         MOV     DPH,A
+   \   00001D   74..         MOV     A,#`??BME280_SPI_bus_read::?relay` & 0xff
+   \   00001F   F0           MOVX    @DPTR,A
+   \   000020   A3           INC     DPTR
+   \   000021   74..         MOV     A,#(`??BME280_SPI_bus_read::?relay` >> 8) & 0xff
+   \   000023   F0           MOVX    @DPTR,A
+    295          	bme280->delay_msec = BME280_delay_msek;
+   \   000024   EA           MOV     A,R2
+   \   000025   2431         ADD     A,#0x31
+   \   000027   F582         MOV     DPL,A
+   \   000029   E4           CLR     A
+   \   00002A   3B           ADDC    A,R3
+   \   00002B   F583         MOV     DPH,A
+   \   00002D   74..         MOV     A,#`??BME280_delay_msek::?relay` & 0xff
+   \   00002F   F0           MOVX    @DPTR,A
+   \   000030   A3           INC     DPTR
+   \   000031   74..         MOV     A,#(`??BME280_delay_msek::?relay` >> 8) & 0xff
+   \   000033   F0           MOVX    @DPTR,A
+    296          
+    297          	return BME280_INIT_VALUE;
+   \   000034   7900         MOV     R1,#0x0
+   \   000036   D083         POP     DPH
+   \   000038   D082         POP     DPL
+   \   00003A   02....       LJMP    ?BRET
+    298          }
+    299          
+    300          /************** I2C/SPI buffer length ******/
+    301          #define	I2C_BUFFER_LEN 										8
+    302          #define SPI_BUFFER_LEN 										10
+    303          
+    304          /*-------------------------------------------------------------------*
+    305          *	This is a sample code for read and write the data by using I2C/SPI
+    306          *	Use either I2C or SPI based on your need
+    307          *	The device address defined in the bme280.h file
+    308          *-----------------------------------------------------------------------*/
+    309           /*	\Brief: The function is used as I2C bus write
+    310           *	\Return : Status of the I2C write
+    311           *	\param dev_addr : The device address of the sensor
+    312           *	\param reg_addr : Address of the first register, will data is going to be written
+    313           *	\param reg_data : It is a value hold in the array,
+    314           *		will be used for write the value into the register
+    315           *	\param cnt : The no of byte of data to be write
+    316           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    317          s8 BME280_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+   \                     BME280_I2C_bus_write:
+    318          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    319          	s32 iError = BME280_INIT_VALUE;
+    320          	u8 array[I2C_BUFFER_LEN];
+                 	   ^
+Warning[Pe550]: variable "array" was set but never used
+    321          	u8 stringpos = BME280_INIT_VALUE;
+   \   000000   7800         MOV     R0,#0x0
+    322          	array[BME280_INIT_VALUE] = reg_addr;
+    323          	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+   \   000002   8001         SJMP    ??BME280_I2C_bus_write_0
+    324          		array[stringpos + BME280_DATA_INDEX] = *(reg_data + stringpos);
+   \                     ??BME280_I2C_bus_write_1:
+   \   000004   08           INC     R0
+   \                     ??BME280_I2C_bus_write_0:
+   \   000005   E8           MOV     A,R0
+   \   000006   C3           CLR     C
+   \   000007   9B           SUBB    A,R3
+   \   000008   40FA         JC      ??BME280_I2C_bus_write_1
+    325          	}
+    326          	/*
+    327          	* Please take the below function as your reference for
+    328          	* write the data using I2C communication
+    329          	* "IERROR = I2C_WRITE_STRING(DEV_ADDR, array, cnt+1)"
+    330          	* add your I2C write function here
+    331          	* iError is an return value of I2C read function
+    332          	* Please select your valid return value
+    333          	* In the driver SUCCESS defined as 0
+    334              * and FAILURE defined as -1
+    335          	* Note :
+    336          	* This is a full duplex operation,
+    337          	* The first read data is discarded, for that extra write operation
+    338          	* have to be initiated. For that cnt+1 operation done in the I2C write string function
+    339          	* For more information please refer data sheet SPI communication:
+    340          	*/
+    341          	return (s8)iError;
+   \   00000A   7900         MOV     R1,#0x0
+   \   00000C   02....       LJMP    ?BRET
+    342          }
+    343          
+    344           /*	\Brief: The function is used as I2C bus read
+    345           *	\Return : Status of the I2C read
+    346           *	\param dev_addr : The device address of the sensor
+    347           *	\param reg_addr : Address of the first register, will data is going to be read
+    348           *	\param reg_data : This data read from the sensor, which is hold in an array
+    349           *	\param cnt : The no of data byte of to be read
+    350           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    351          s8 BME280_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+   \                     BME280_I2C_bus_read:
+    352          {
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 8
+   \   000005   74F8         MOV     A,#-0x8
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0,R2
+   \   00000C   EC           MOV     A,R4
+   \   00000D   FE           MOV     R6,A
+   \   00000E   ED           MOV     A,R5
+   \   00000F   FF           MOV     R7,A
+    353          	s32 iError = BME280_INIT_VALUE;
+    354          	u8 array[I2C_BUFFER_LEN] = {BME280_INIT_VALUE};
+   \   000010   90....       MOV     DPTR,#`?<Constant {0, 0, 0, 0, 0, 0, 0, 0}>`
+   \   000013   AC..         MOV     R4,?XSP + 0
+   \   000015   AD..         MOV     R5,?XSP + 1
+   \   000017   7408         MOV     A,#0x8
+   \   000019   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    355          	u8 stringpos = BME280_INIT_VALUE;
+   \   00001C   7A00         MOV     R2,#0x0
+    356          	array[BME280_INIT_VALUE] = reg_addr;
+   \   00001E   85..82       MOV     DPL,?XSP + 0
+   \   000021   85..83       MOV     DPH,?XSP + 1
+   \   000024   E5..         MOV     A,?V0
+   \   000026   F0           MOVX    @DPTR,A
+    357          	/* Please take the below function as your reference
+    358          	 * for read the data using I2C communication
+    359          	 * add your I2C rad function here.
+    360          	 * "IERROR = I2C_WRITE_READ_STRING(DEV_ADDR, ARRAY, ARRAY, 1, CNT)"
+    361          	 * iError is an return value of SPI write function
+    362          	 * Please select your valid return value
+    363               * In the driver SUCCESS defined as 0
+    364               * and FAILURE defined as -1
+    365          	 */
+    366          	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+   \   000027   8021         SJMP    ??BME280_I2C_bus_read_0
+    367          		*(reg_data + stringpos) = array[stringpos];
+   \                     ??BME280_I2C_bus_read_1:
+   \   000029   EA           MOV     A,R2
+   \   00002A   F8           MOV     R0,A
+   \   00002B   85..82       MOV     DPL,?XSP + 0
+   \   00002E   85..83       MOV     DPH,?XSP + 1
+   \   000031   E582         MOV     A,DPL
+   \   000033   28           ADD     A,R0
+   \   000034   F582         MOV     DPL,A
+   \   000036   E4           CLR     A
+   \   000037   3583         ADDC    A,DPH
+   \   000039   F583         MOV     DPH,A
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   C0E0         PUSH    A
+   \   00003E   EE           MOV     A,R6
+   \   00003F   28           ADD     A,R0
+   \   000040   F582         MOV     DPL,A
+   \   000042   E4           CLR     A
+   \   000043   3F           ADDC    A,R7
+   \   000044   F583         MOV     DPH,A
+   \   000046   D0E0         POP     A
+   \   000048   F0           MOVX    @DPTR,A
+    368          	}
+   \   000049   0A           INC     R2
+   \                     ??BME280_I2C_bus_read_0:
+   \   00004A   EA           MOV     A,R2
+   \   00004B   C3           CLR     C
+   \   00004C   9B           SUBB    A,R3
+   \   00004D   40DA         JC      ??BME280_I2C_bus_read_1
+    369          	return (s8)iError;
+   \   00004F   7900         MOV     R1,#0x0
+   \   000051   7408         MOV     A,#0x8
+   \   000053   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000056   7F01         MOV     R7,#0x1
+   \   000058   02....       LJMP    ?BANKED_LEAVE_XDATA
+    370          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??bme280_data_readout_template::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    bme280_data_readout_template
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??SPI_routine::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SPI_routine
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??BME280_I2C_bus_write::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BME280_I2C_bus_write
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??BME280_I2C_bus_read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BME280_I2C_bus_read
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0, 0}>`:
+   \   000000   00000000     DD 0
+   \   000004   00000000     DD 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0, 0}>_1`:
+   \   000000   00000000     DD 0
+   \   000004   00000000     DD 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0, 0}>_2`:
+   \   000000   00000000     DD 0
+   \   000004   00000000     DD 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0, 0, 0, 0, 0, 0, 0, 0}>`:
+   \   000000   00           DB 0
+   \   000001   00           DB 0
+   \   000002   00           DB 0
+   \   000003   00           DB 0
+   \   000004   00           DB 0
+   \   000005   00           DB 0
+   \   000006   00           DB 0
+   \   000007   00           DB 0
+    371          
+    372          /*	\Brief: The function is used as SPI bus read
+    373           *	\Return : Status of the SPI read
+    374           *	\param dev_addr : The device address of the sensor
+    375           *	\param reg_addr : Address of the first register, will data is going to be read
+    376           *	\param reg_data : This data read from the sensor, which is hold in an array
+    377           *	\param cnt : The no of byte of data to be read
+    378           */
+    379          /*s8 BME280_SPI_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+    380          {
+    381          	s32 iError = BME280_INIT_VALUE;
+    382          	unsigned long ulTmp;
+    383          	u8 array [SPI_BUFFER_LEN] = {0,};
+    384          	u8 stringpos; 
+    385          	
+    386          	/*	For the SPI mode only 7 bits of register addresses are used.
+                 	^
+Warning[Pe009]: nested comment is not allowed
+    387          	The MSB of register address is declared the bit what functionality it is
+    388          	read/write (read as 1/write as BME280_INIT_VALUE)
+    389          	
+    390          	array[BME280_INIT_VALUE] = reg_addr|SPI_READ;   //read routine is initiated register address is mask with 0x80
+    391          	
+    392          	//GPIO_PORTD_DATA_R = 0x00;
+    393          	
+    394          	//SSIDataPut(SSI0_BASE, array[BME280_INIT_VALUE]);
+    395          	//while(SSIBusy(SSI0_BASE))
+    396          	{
+    397          	}
+    398          	
+    399          	
+    400          	* Please take the below function as your reference for
+    401          	* read the data using SPI communication
+    402          	* " IERROR = SPI_READ_WRITE_STRING(ARRAY, ARRAY, CNT+1)"
+    403          	* add your SPI read function here
+    404          	* iError is an return value of SPI read function
+    405          	* Please select your valid return value
+    406          	* In the driver SUCCESS defined as 0
+    407          	* and FAILURE defined as -1
+    408          	* Note :
+    409          	* This is a full duplex operation,
+    410          	* The first read data is discarded, for that extra write operation
+    411          	* have to be initiated. For that cnt+1 operation done in the SPI read
+    412          	* and write string function
+    413          	* For more information please refer data sheet SPI communication:
+    414          	
+    415          	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) 
+    416          	{
+    417          		//SSIDataPut(SSI0_BASE, 0xAA);
+    418          		//while(SSIBusy(SSI0_BASE))
+    419          		{
+    420          		} 
+    421          		
+    422          		//SSIDataGet(SSI0_BASE, &ulTmp);
+    423          		array[stringpos + BME280_DATA_INDEX] = ulTmp & 0xFF;
+    424          		*(reg_data + stringpos) = array[stringpos+BME280_DATA_INDEX];
+    425          	}
+    426          	
+    427          	//GPIO_PORTD_DATA_R = 0x02;
+    428          	
+    429          	return (s8)iError;
+    430          }
+    431          */
+    432          /*	\Brief: The function is used as SPI bus write
+    433           *	\Return : Status of the SPI write
+    434           *	\param dev_addr : The device address of the sensor
+    435           *	\param reg_addr : Address of the first register, where data is to be written
+    436           *	\param reg_data : It is a value hold in the array,
+    437           *		will be used for write the value into the register
+    438           *	\param cnt : The no of byte of data to be write
+    439           */
+    440             
+    441          /*   
+    442          s8 BME280_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+    443          {
+    444          	s32 iError = BME280_INIT_VALUE;
+    445          	u8 array[SPI_BUFFER_LEN * BME280_ADDRESS_INDEX];
+    446          	u8 stringpos = BME280_INIT_VALUE;
+    447          	u8 index = BME280_INIT_VALUE;
+    448          	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+    449          		/* the operation of (reg_addr++)&0x7F done as per the
+                 		^
+Warning[Pe009]: nested comment is not allowed
+    450          		SPI communication protocol specified in the data sheet
+    451          		index = stringpos * BME280_ADDRESS_INDEX;
+    452          		array[index] = (reg_addr++) & SPI_WRITE;
+    453          		array[index + BME280_DATA_INDEX] = *(reg_data + stringpos);
+    454          	}
+    455          	/* Please take the below function as your reference
+                 	^
+Warning[Pe009]: nested comment is not allowed
+    456          	 * for write the data using SPI communication
+    457          	 * add your SPI write function here.
+    458          	 * "IERROR = SPI_WRITE_STRING(ARRAY, CNT*2)"
+    459          	 * iError is an return value of SPI write function
+    460          	 * Please select your valid return value
+    461          	 * In the driver SUCCESS defined as 0
+    462          	 * and FAILURE defined as -1
+    463          	 
+    464          	return (s8)iError;
+    465          }
+    466          */
+    467          /*	Brief : The delay routine
+    468           *	\param : delay in ms
+    469          */
+    470             
+    471           /*
+    472          void BME280_delay_msek(u32 msek)
+    473          {
+    474          	//SysCtlDelay(msek * 16000 / 3);
+    475          }
+    476             */
+    477          #endif
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      1     17   BME280_I2C_bus_read
+      0      0   BME280_I2C_bus_write
+      2     56   SPI_routine
+      0     58   bme280_data_readout_template
+        0     56   -> SPI_routine
+        0     56   -> bme280_compensate_humidity_int32
+        0     56   -> bme280_compensate_pressure_int32
+        0     56   -> bme280_compensate_temperature_int32
+        0     56   -> bme280_get_standby_durn
+        0     56   -> bme280_init
+        0     58   -> bme280_read_pressure_temperature_humidity
+        0     56   -> bme280_read_uncomp_humidity
+        0     56   -> bme280_read_uncomp_pressure
+        0     58   -> bme280_read_uncomp_pressure_temperature_humidity
+        0     56   -> bme280_read_uncomp_temperature
+        0     56   -> bme280_set_oversamp_humidity
+        0     56   -> bme280_set_oversamp_pressure
+        0     56   -> bme280_set_oversamp_temperature
+        0     56   -> bme280_set_power_mode
+        0     56   -> bme280_set_standby_durn
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       8  ?<Constant {0, 0, 0, 0, 0, 0, 0, 0}>
+       8  ?<Constant {0, 0}>
+       8  ?<Constant {0, 0}>_1
+       8  ?<Constant {0, 0}>_2
+      12  ?Subroutine0
+       9  ?Subroutine1
+      91  BME280_I2C_bus_read
+       6  BME280_I2C_bus_read::?relay
+      15  BME280_I2C_bus_write
+       6  BME280_I2C_bus_write::?relay
+      61  SPI_routine
+       6  SPI_routine::?relay
+      51  bme280
+     429  bme280_data_readout_template
+       6  bme280_data_readout_template::?relay
+
+ 
+ 617 bytes in segment BANKED_CODE
+  24 bytes in segment BANK_RELAYS
+  32 bytes in segment XDATA_ROM_C
+  51 bytes in segment XDATA_Z
+ 
+  24 bytes of CODE     memory
+  32 bytes of CONST    memory
+ 617 bytes of HUGECODE memory
+  51 bytes of XDATA    memory
+
+Errors: none
+Warnings: 4

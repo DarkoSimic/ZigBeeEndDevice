@@ -515,8 +515,6 @@ HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
   }
 
     
- 
-  
   
     //Clear the CPU interrupt flag for Port_0
     //PxIFG has to be cleared before PxIF
@@ -549,6 +547,8 @@ HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
     halProcessKeyInterrupt();
   }
   
+  
+
   /*
     Clear the CPU interrupt flag for Port_2
     PxIFG has to be cleared before PxIF

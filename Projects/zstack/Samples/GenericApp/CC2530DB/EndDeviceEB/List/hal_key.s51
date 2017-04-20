@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:03
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               20/Apr/2017  12:17:44
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -87,6 +87,8 @@
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 //        -I
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 //        -Ohz --require_prototypes
 //    List file          =  
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_key.s51
@@ -1596,27 +1598,25 @@ halKeyPort0Isr:
 //  515   }
 //  516 
 //  517     
-//  518  
-//  519   
-//  520   
-//  521     //Clear the CPU interrupt flag for Port_0
-//  522     //PxIFG has to be cleared before PxIF
-//  523  
-//  524   HAL_KEY_SW_6_PXIFG = 0;
+//  518   
+//  519     //Clear the CPU interrupt flag for Port_0
+//  520     //PxIFG has to be cleared before PxIF
+//  521  
+//  522   HAL_KEY_SW_6_PXIFG = 0;
 ??halKeyPort0Isr_0:
         MOV     0x89,#0x0
-//  525   HAL_KEY_CPU_PORT_0_IF = 0;
+//  523   HAL_KEY_CPU_PORT_0_IF = 0;
         CLR     0xc0.5
-//  526   
-//  527   CLEAR_SLEEP_MODE();
-//  528   HAL_EXIT_ISR();
+//  524   
+//  525   CLEAR_SLEEP_MODE();
+//  526   HAL_EXIT_ISR();
           CFI EndBlock cfiBlock10
         REQUIRE ?Subroutine2
         REQUIRE _A_IEN0
         REQUIRE P0IFG
         REQUIRE _A_IRCON
         ; // Fall through to label ?Subroutine2
-//  529 }
+//  527 }
 
         RSEG NEAR_CODE:CODE:NOROOT(0)
 ?Subroutine2:
@@ -1645,25 +1645,25 @@ halKeyPort0Isr:
         MOV     R7,#0x1
         LJMP    ?INTERRUPT_LEAVE_XSP
           CFI EndBlock cfiBlock11
-//  530 
-//  531 
-//  532 /**************************************************************************************************
-//  533  * @fn      halKeyPort2Isr
+//  528 
+//  529 
+//  530 /**************************************************************************************************
+//  531  * @fn      halKeyPort2Isr
+//  532  *
+//  533  * @brief   Port2 ISR
 //  534  *
-//  535  * @brief   Port2 ISR
+//  535  * @param
 //  536  *
-//  537  * @param
-//  538  *
-//  539  * @return
-//  540  **************************************************************************************************/
+//  537  * @return
+//  538  **************************************************************************************************/
 
         RSEG NEAR_CODE:CODE:NOROOT(0)
-//  541 HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
+//  539 HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
 halKeyPort2Isr:
           CFI Block cfiBlock12 Using cfiCommon1
           CFI Function halKeyPort2Isr
         CODE
-//  542 {
+//  540 {
         FUNCALL halKeyPort2Isr, halProcessKeyInterrupt
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1697,28 +1697,30 @@ halKeyPort2Isr:
           CFI CFA_XSP16 add(XSP16, 14)
         ; Saved register size: 14
         ; Auto size: 0
-//  543   HAL_ENTER_ISR();
+//  541   HAL_ENTER_ISR();
         MOV     C,0xa8.7
         CLR     A
         RLC     A
         MOV     R6,A
         SETB    0xa8.7
-//  544   
-//  545   MagneticSwitchFlag = 1;
+//  542   
+//  543   MagneticSwitchFlag = 1;
         MOV     DPTR,#MagneticSwitchFlag
         MOV     A,#0x1
         MOVX    @DPTR,A
-//  546   
-//  547   if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
+//  544   
+//  545   if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
         MOV     A,0x8b
         MOV     C,0xE0 /* A   */.0
         JNC     ??halKeyPort2Isr_0
-//  548   {
-//  549     halProcessKeyInterrupt();
+//  546   {
+//  547     halProcessKeyInterrupt();
         ; Setup parameters for call to function halProcessKeyInterrupt
         LCALL   `??halProcessKeyInterrupt::?relay`; Banked call to: halProcessKeyInterrupt
-//  550   }
-//  551   
+//  548   }
+//  549   
+//  550   
+//  551 
 //  552   /*
 //  553     Clear the CPU interrupt flag for Port_2
 //  554     PxIFG has to be cleared before PxIF

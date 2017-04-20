@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:04
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               20/Apr/2017  12:17:45
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -87,6 +87,8 @@
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 //        -I
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 //        -Ohz --require_prototypes
 //    List file          =  
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_uart.s51
@@ -112,10 +114,13 @@
         RSEG PSTACK:XDATA:NOROOT(0)
         RSEG XSTACK:XDATA:NOROOT(0)
 
+        EXTERN ?V0
+        EXTERN ?V1
         EXTERN ?BANKED_ENTER_XDATA
         EXTERN ?BANKED_LEAVE_XDATA
         EXTERN ?BDISPATCH
         EXTERN ?BRET
+        EXTERN ?SS_SHR
         EXTERN __INIT_XDATA_Z
 
         PUBLIC `??HalUARTInit::?relay`
@@ -134,8 +139,21 @@
         FUNCTION `??HalUARTSuspend::?relay`,0203H
         PUBLIC `??HalUARTWrite::?relay`
         FUNCTION `??HalUARTWrite::?relay`,0203H
+        PUBLIC `??Hal_SPI_Master_Init::?relay`
+        FUNCTION `??Hal_SPI_Master_Init::?relay`,0203H
+        PUBLIC `??Hal_SPI_Master_Receive::?relay`
+        FUNCTION `??Hal_SPI_Master_Receive::?relay`,0203H
+        PUBLIC `??Hal_SPI_Master_Send::?relay`
+        FUNCTION `??Hal_SPI_Master_Send::?relay`,0203H
         PUBLIC `??Hal_UART_RxBufLen::?relay`
         FUNCTION `??Hal_UART_RxBufLen::?relay`,0203H
+        PUBLIC `??SPIDataGet::?relay`
+        FUNCTION `??SPIDataGet::?relay`,0203H
+        PUBLIC `??SPIDataPut::?relay`
+        FUNCTION `??SPIDataPut::?relay`,0203H
+        PUBLIC `??isBitSet::?relay`
+        FUNCTION `??isBitSet::?relay`,0203H
+        PUBWEAK CLKCONCMD
         PUBWEAK DMAIRQ
         PUBLIC HalUARTInit
         FUNCTION HalUARTInit,0203H
@@ -163,12 +181,42 @@
         FUNCTION HalUARTWrite,0203H
         ARGFRAME XSTACK, 0, STACK
         LOCFRAME XSTACK, 9, STACK
+        PUBLIC Hal_SPI_Master_Init
+        FUNCTION Hal_SPI_Master_Init,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC Hal_SPI_Master_Receive
+        FUNCTION Hal_SPI_Master_Receive,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC Hal_SPI_Master_Send
+        FUNCTION Hal_SPI_Master_Send,080203H
+        ARGFRAME XSTACK, 0, STACK
         PUBLIC Hal_UART_RxBufLen
         FUNCTION Hal_UART_RxBufLen,0203H
         ARGFRAME XSTACK, 0, STACK
+        PUBWEAK P0SEL
+        PUBWEAK P1DIR
+        PUBWEAK P1SEL
+        PUBWEAK PERCFG
+        PUBLIC SPIDataGet
+        FUNCTION SPIDataGet,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC SPIDataPut
+        FUNCTION SPIDataPut,0203H
+        ARGFRAME XSTACK, 0, STACK
         PUBWEAK ST0
+        PUBWEAK U0BAUD
         PUBWEAK U0CSR
         PUBWEAK U0DBUF
+        PUBWEAK U0GCR
+        PUBWEAK U1BAUD
+        PUBWEAK U1DBUF
+        PUBWEAK U1GCR
+        PUBWEAK _A_P1
+        PUBWEAK _A_U1CSR
+        PUBLIC isBitSet
+        FUNCTION isBitSet,080203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
         
           CFI Names cfiNames0
           CFI StackFrame CFA_SP SP IDATA
@@ -341,8 +389,20 @@ HalUARTSuspend      SYMBOL "HalUARTSuspend"
 `??HalUARTSuspend::?relay` SYMBOL "?relay", HalUARTSuspend
 HalUARTWrite        SYMBOL "HalUARTWrite"
 `??HalUARTWrite::?relay` SYMBOL "?relay", HalUARTWrite
+Hal_SPI_Master_Init SYMBOL "Hal_SPI_Master_Init"
+`??Hal_SPI_Master_Init::?relay` SYMBOL "?relay", Hal_SPI_Master_Init
+Hal_SPI_Master_Receive SYMBOL "Hal_SPI_Master_Receive"
+`??Hal_SPI_Master_Receive::?relay` SYMBOL "?relay", Hal_SPI_Master_Receive
+Hal_SPI_Master_Send SYMBOL "Hal_SPI_Master_Send"
+`??Hal_SPI_Master_Send::?relay` SYMBOL "?relay", Hal_SPI_Master_Send
 Hal_UART_RxBufLen   SYMBOL "Hal_UART_RxBufLen"
 `??Hal_UART_RxBufLen::?relay` SYMBOL "?relay", Hal_UART_RxBufLen
+SPIDataGet          SYMBOL "SPIDataGet"
+`??SPIDataGet::?relay` SYMBOL "?relay", SPIDataGet
+SPIDataPut          SYMBOL "SPIDataPut"
+`??SPIDataPut::?relay` SYMBOL "?relay", SPIDataPut
+isBitSet            SYMBOL "isBitSet"
+`??isBitSet::?relay` SYMBOL "?relay", isBitSet
 
 // C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_uart.c
 //    1 /**************************************************************************************************
@@ -369,7 +429,7 @@ Hal_UART_RxBufLen   SYMBOL "Hal_UART_RxBufLen"
 //   22   its documentation for any purpose.
 //   23 
 //   24   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-//   25   PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//   25   PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
 //   26   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
 //   27   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
 //   28   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -396,6 +456,12 @@ U0CSR:
         DATA8
         DS 1
 
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+
         ASEGN SFR_AN:DATA:NOROOT,095H
 // unsigned char volatile __sfr ST0
 ST0:
@@ -408,9 +474,75 @@ U0DBUF:
         DATA8
         DS 1
 
+        ASEGN SFR_AN:DATA:NOROOT,0c2H
+// unsigned char volatile __sfr U0BAUD
+U0BAUD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c5H
+// unsigned char volatile __sfr U0GCR
+U0GCR:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c6H
+// unsigned char volatile __sfr CLKCONCMD
+CLKCONCMD:
+        DATA8
+        DS 1
+
         ASEGN SFR_AN:DATA:NOROOT,0d1H
 // unsigned char volatile __sfr DMAIRQ
 DMAIRQ:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f1H
+// unsigned char volatile __sfr PERCFG
+PERCFG:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f4H
+// unsigned char volatile __sfr P1SEL
+P1SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f8H
+// union <unnamed> volatile __sfr _A_U1CSR
+_A_U1CSR:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f9H
+// unsigned char volatile __sfr U1DBUF
+U1DBUF:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0faH
+// unsigned char volatile __sfr U1BAUD
+U1BAUD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fcH
+// unsigned char volatile __sfr U1GCR
+U1GCR:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0feH
+// unsigned char volatile __sfr P1DIR
+P1DIR:
         DATA8
         DS 1
 //   45 #include "hal_defs.h"
@@ -708,7 +840,7 @@ HalUARTWrite:
 //  197   (void)buf;
 //  198   (void)len;
 //  199   uint8 i;
-//  200   
+//  200 
 //  201   for(i=0;i<len;i++)
         MOV     R6,#0x0
         SJMP    ??HalUARTWrite_0
@@ -725,7 +857,7 @@ HalUARTWrite:
         MOV     DPH,A
         MOVX    A,@DPTR
         MOV     0xc1,A
-//  204     
+//  204 
 //  205     while((U0CSR & 0x01) == 0x01)
 ??HalUARTWrite_2:
         MOV     A,0x86
@@ -789,7 +921,7 @@ HalUARTSuspend:
 //  242 {
         ; Saved register size: 0
         ; Auto size: 0
-//  243   
+//  243 
 //  244   /*
 //  245 #if HAL_UART_DMA
 //  246   HalUARTSuspendDMA();
@@ -821,7 +953,7 @@ HalUARTResume:
 //  264 {
         ; Saved register size: 0
         ; Auto size: 0
-//  265   
+//  265 
 //  266   /*
 //  267 #if HAL_UART_DMA
 //  268   HalUARTResumeDMA();
@@ -908,13 +1040,305 @@ Hal_UART_RxBufLen:
 //  329   return 0;
 //  330 #endif
 //  331   */
-//  332   
+//  332 
 //  333   return 0;
         MOV     R2,#0x0
         MOV     R3,#0x0
         LJMP    ?BRET
 //  334 }
           CFI EndBlock cfiBlock11
+//  335 /**************************************************************************************************
+//  336  * @fn      Hal_SPI_Master_Init()
+//  337  *
+//  338  * @brief   Initialize SPI master
+//  339  *
+//  340  * @param   None
+//  341  *
+//  342  * @return  None
+//  343  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  344 void Hal_SPI_Master_Init()
+Hal_SPI_Master_Init:
+          CFI Block cfiBlock12 Using cfiCommon0
+          CFI Function Hal_SPI_Master_Init
+        CODE
+//  345 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  346      //Podesavanje clocka na 32MHz
+//  347      CLKCONCMD =0x00;
+        MOV     0xc6,#0x0
+//  348 
+//  349      //Podesavanje primarnih funkcija modula
+//  350      PERCFG = (0x02);
+        MOV     0xf1,#0x2
+//  351      //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+//  352      P1SEL |= 0xF0;
+        ORL     0xf4,#0xf0
+//  353 
+//  354      //Postavja baud rate na 9600
+//  355      U1BAUD = 0x3A;
+        MOV     0xfa,#0x3a
+//  356 
+//  357      //Postavljanje SPI moda i da bude master
+//  358      U1CSR &= 0x1F;
+        ANL     0xf8,#0x1f
+//  359      //Podesavanje baud exponenta i CPOL=CPHA=0 (LSB)
+//  360      U1GCR = 0x28;
+        MOV     0xfc,#0x28
+//  361 
+//  362      P1DIR |= 0x08;
+        ORL     0xfe,#0x8
+//  363     
+//  364     
+//  365     P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+        MOV     0xf3,#0xc
+//  366     
+//  367   
+//  368     U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
+        MOV     0x86,#-0x40
+//  369     U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
+        MOV     0xc5,#0x8
+//  370  
+//  371     
+//  372     U0BAUD = 0x3A;
+        MOV     0xc2,#0x3a
+//  373 
+//  374 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock12
+        REQUIRE CLKCONCMD
+        REQUIRE PERCFG
+        REQUIRE P1SEL
+        REQUIRE U1BAUD
+        REQUIRE _A_U1CSR
+        REQUIRE U1GCR
+        REQUIRE P1DIR
+        REQUIRE P0SEL
+        REQUIRE U0CSR
+        REQUIRE U0GCR
+        REQUIRE U0BAUD
+//  375 /**************************************************************************************************
+//  376  * @fn      Hal_SPI_Master_Send()
+//  377  *
+//  378  * @brief   Send data over SPI.
+//  379  *
+//  380  * @param   data - data to sand
+//  381  *
+//  382  * @return  None
+//  383  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  384 void Hal_SPI_Master_Send(uint8 data)
+Hal_SPI_Master_Send:
+          CFI Block cfiBlock13 Using cfiCommon0
+          CFI Function Hal_SPI_Master_Send
+        CODE
+//  385 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  386     uint8 i;
+//  387 
+//  388     P1_2 = 0;
+        CLR     0x90.2
+//  389 
+//  390     for(i=0;i<1000;i++)
+//  391     {
+//  392       asm("NOP");
+??Hal_SPI_Master_Send_0:
+        NOP
+//  393     }
+        SJMP    ??Hal_SPI_Master_Send_0
+          CFI EndBlock cfiBlock13
+        REQUIRE _A_P1
+        REQUIRE U0CSR
+//  394 
+//  395     SPIDataPut(data);
+//  396     while(!isBitSet(U0CSR,1))
+//  397     {
+//  398     }
+//  399 
+//  400 
+//  401     for(i=0;i<1000;i++)
+//  402     {
+//  403       asm("NOP");
+//  404     }
+//  405     P1_2 = 1;
+//  406 
+//  407 
+//  408 }
+//  409 /**************************************************************************************************
+//  410  * @fn      Hal_SPI_Master_Receive()
+//  411  *
+//  412  * @brief   Receive data from SPI.
+//  413  *
+//  414  * @param   None
+//  415  *
+//  416  * @return  Received data
+//  417  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  418 uint8 Hal_SPI_Master_Receive()
+Hal_SPI_Master_Receive:
+          CFI Block cfiBlock14 Using cfiCommon0
+          CFI Function Hal_SPI_Master_Receive
+        CODE
+//  419 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  420     char data;
+//  421 
+//  422     P1_2 = 0;
+        CLR     0x90.2
+//  423 
+//  424 
+//  425     data = SPIDataGet();
+        MOV     R1,0xf9+0x0
+??Hal_SPI_Master_Receive_0:
+        MOV     C,0xf8.0
+        JC      ??Hal_SPI_Master_Receive_0
+//  426 
+//  427 
+//  428 
+//  429     P1_2 = 1;
+        SETB    0x90.2
+//  430 
+//  431 
+//  432     return data;
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock14
+        REQUIRE _A_P1
+        REQUIRE U1DBUF
+        REQUIRE _A_U1CSR
+//  433 
+//  434 
+//  435 }
+//  436 
+//  437 /**************************************************************************************************
+//  438  * @fn      SPIDataPut()
+//  439  *
+//  440  * @brief   Send data over SPI.
+//  441  *
+//  442  * @param   data - data to sand
+//  443  *
+//  444  * @return  None
+//  445  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  446 void SPIDataPut(uint8 data)
+SPIDataPut:
+          CFI Block cfiBlock15 Using cfiCommon0
+          CFI Function SPIDataPut
+        CODE
+//  447 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  448 
+//  449     U1DBUF =  data;
+        MOV     0xf9,R1
+//  450     while((U1CSR & 0x01) == 0x01)
+??SPIDataPut_0:
+        MOV     C,0xf8.0
+        JC      ??SPIDataPut_0
+//  451     {
+//  452     }
+//  453     
+//  454     
+//  455 
+//  456 }
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock15
+        REQUIRE U1DBUF
+        REQUIRE _A_U1CSR
+//  457 /**************************************************************************************************
+//  458  * @fn      SPIDataGet()
+//  459  *
+//  460  * @brief   Receive data from SPI.
+//  461  *
+//  462  * @param   None
+//  463  *
+//  464  * @return  Received data
+//  465  **************************************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  466 uint8 SPIDataGet()
+SPIDataGet:
+          CFI Block cfiBlock16 Using cfiCommon0
+          CFI Function SPIDataGet
+        CODE
+//  467 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  468     uint8 data;
+//  469 
+//  470     data = U1DBUF;
+        MOV     R1,0xf9+0x0
+//  471     while((U1CSR & 0x01) == 0x01)
+??SPIDataGet_0:
+        MOV     C,0xf8.0
+        JC      ??SPIDataGet_0
+//  472     {
+//  473     }
+//  474 
+//  475     return data;
+        LJMP    ?BRET
+          CFI EndBlock cfiBlock16
+        REQUIRE U1DBUF
+        REQUIRE _A_U1CSR
+//  476 
+//  477 }
+//  478 /**************************************************************************************************
+//  479  * @fn      isBitSet()
+//  480  *
+//  481  * @brief   Chek is bit set in register
+//  482  *
+//  483  * @param   byte - data from register, position - position on register
+//  484  *
+//  485  * @return  '1' for bit is set, '0' if bit is cleared
+//  486  **************************************************************************************************/
+//  487 
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  488 char isBitSet(char byte, int position)
+isBitSet:
+          CFI Block cfiBlock17 Using cfiCommon0
+          CFI Function isBitSet
+        CODE
+//  489 {
+        REQUIRE ?V0
+        REQUIRE ?V1
+        PUSH    ?V0
+          CFI V0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH    ?V1
+          CFI V1 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R4,A
+//  490 
+//  491     return ((byte >> (position) ) & 1);
+        MOV     ?V0,R4
+        MOV     ?V1,#0x0
+        MOV     A,R2
+        MOV     R0,#?V0
+        LCALL   ?SS_SHR
+        MOV     A,?V0
+        ANL     A,#0x1
+        MOV     R1,A
+        POP     ?V1
+          CFI V1 SameValue
+          CFI CFA_SP SP+-4
+        POP     ?V0
+          CFI V0 SameValue
+          CFI CFA_SP SP+-3
+        LJMP    ?BRET
+//  492 
+//  493 
+//  494 }
+          CFI EndBlock cfiBlock17
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 `??HalUARTIsrDMA::?relay`:
@@ -979,20 +1403,61 @@ Hal_UART_RxBufLen:
         DATA24
         DC24    Hal_UART_RxBufLen
 
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Hal_SPI_Master_Init::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Hal_SPI_Master_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Hal_SPI_Master_Send::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Hal_SPI_Master_Send
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Hal_SPI_Master_Receive::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Hal_SPI_Master_Receive
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??SPIDataPut::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    SPIDataPut
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??SPIDataGet::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    SPIDataGet
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??isBitSet::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    isBitSet
+
         END
-//  335 
-//  336 /******************************************************************************
-//  337 ******************************************************************************/
+//  495 /******************************************************************************
+//  496 ******************************************************************************/
 // 
-// 136 bytes in segment BANKED_CODE
-//  54 bytes in segment BANK_RELAYS
-//   4 bytes in segment SFR_AN
+// 237 bytes in segment BANKED_CODE
+//  90 bytes in segment BANK_RELAYS
+//  16 bytes in segment SFR_AN
 // 526 bytes in segment XDATA_Z
 // 
-//  54 bytes of CODE     memory
-//   0 bytes of DATA     memory (+ 4 bytes shared)
-// 136 bytes of HUGECODE memory
+//  90 bytes of CODE     memory
+//   0 bytes of DATA     memory (+ 16 bytes shared)
+// 237 bytes of HUGECODE memory
 // 526 bytes of XDATA    memory
 //
 //Errors: none
-//Warnings: 2
+//Warnings: 4

@@ -142,7 +142,7 @@ void HalDriverInit (void)
 
   /* LCD */
 #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-  HalLcdInit();
+ // HalLcdInit();
 #endif
 
   /* LED */
@@ -152,7 +152,7 @@ void HalDriverInit (void)
 
   /* UART */
 #if (defined HAL_UART) && (HAL_UART == TRUE)
-  HalUARTInit();
+  //HalUARTInit();
 #endif
 
   /* KEY */

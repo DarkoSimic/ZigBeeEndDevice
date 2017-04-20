@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  12:17:03
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                20/Apr/2017  12:17:44
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -87,6 +87,8 @@
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 #        -I
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 #        -Ohz --require_prototypes
 #    List file          =  
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_key.lst
@@ -1018,26 +1020,24 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC25
     515            }
     516          
     517              
-    518           
-    519            
-    520            
-    521              //Clear the CPU interrupt flag for Port_0
-    522              //PxIFG has to be cleared before PxIF
-    523           
-    524            HAL_KEY_SW_6_PXIFG = 0;
+    518            
+    519              //Clear the CPU interrupt flag for Port_0
+    520              //PxIFG has to be cleared before PxIF
+    521           
+    522            HAL_KEY_SW_6_PXIFG = 0;
    \                     ??halKeyPort0Isr_0:
    \   00001D   758900       MOV     0x89,#0x0
-    525            HAL_KEY_CPU_PORT_0_IF = 0;
+    523            HAL_KEY_CPU_PORT_0_IF = 0;
    \   000020   C2C5         CLR     0xc0.5
-    526            
-    527            CLEAR_SLEEP_MODE();
-    528            HAL_EXIT_ISR();
+    524            
+    525            CLEAR_SLEEP_MODE();
+    526            HAL_EXIT_ISR();
    \   000022                REQUIRE ?Subroutine2
    \   000022                REQUIRE _A_IEN0
    \   000022                REQUIRE P0IFG
    \   000022                REQUIRE _A_IRCON
    \   000022                ; // Fall through to label ?Subroutine2
-    529          }
+    527          }
 
    \                                 In  segment NEAR_CODE, align 1, keep-with-next
    \                     ?Subroutine2:
@@ -1046,49 +1046,51 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC25
    \   000003   92AF         MOV     0xa8.7,C
    \   000005   7F01         MOV     R7,#0x1
    \   000007   02....       LJMP    ?INTERRUPT_LEAVE_XSP
-    530          
-    531          
-    532          /**************************************************************************************************
-    533           * @fn      halKeyPort2Isr
+    528          
+    529          
+    530          /**************************************************************************************************
+    531           * @fn      halKeyPort2Isr
+    532           *
+    533           * @brief   Port2 ISR
     534           *
-    535           * @brief   Port2 ISR
+    535           * @param
     536           *
-    537           * @param
-    538           *
-    539           * @return
-    540           **************************************************************************************************/
+    537           * @return
+    538           **************************************************************************************************/
 
    \                                 In  segment NEAR_CODE, align 1, keep-with-next
-    541          HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
+    539          HAL_ISR_FUNCTION( halKeyPort2Isr, P2INT_VECTOR )
    \                     halKeyPort2Isr:
-    542          {
+    540          {
    \   000000   C0E0         PUSH    A
    \   000002   74F2         MOV     A,#-0xe
    \   000004   12....       LCALL   ?INTERRUPT_ENTER_XSP
    \   000007                ; Saved register size: 14
    \   000007                ; Auto size: 0
-    543            HAL_ENTER_ISR();
+    541            HAL_ENTER_ISR();
    \   000007   A2AF         MOV     C,0xa8.7
    \   000009   E4           CLR     A
    \   00000A   33           RLC     A
    \   00000B   FE           MOV     R6,A
    \   00000C   D2AF         SETB    0xa8.7
-    544            
-    545            MagneticSwitchFlag = 1;
+    542            
+    543            MagneticSwitchFlag = 1;
    \   00000E   90....       MOV     DPTR,#MagneticSwitchFlag
    \   000011   7401         MOV     A,#0x1
    \   000013   F0           MOVX    @DPTR,A
-    546            
-    547            if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
+    544            
+    545            if (HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT)
    \   000014   E58B         MOV     A,0x8b
    \   000016   A2E0         MOV     C,0xE0 /* A   */.0
    \   000018   5003         JNC     ??halKeyPort2Isr_0
-    548            {
-    549              halProcessKeyInterrupt();
+    546            {
+    547              halProcessKeyInterrupt();
    \   00001A                ; Setup parameters for call to function halProcessKeyInterrupt
    \   00001A   12....       LCALL   `??halProcessKeyInterrupt::?relay`; Banked call to: halProcessKeyInterrupt
-    550            }
-    551            
+    548            }
+    549            
+    550            
+    551          
     552            /*
     553              Clear the CPU interrupt flag for Port_2
     554              PxIFG has to be cleared before PxIF

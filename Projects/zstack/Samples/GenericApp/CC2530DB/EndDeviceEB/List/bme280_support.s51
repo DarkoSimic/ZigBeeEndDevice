@@ -1,0 +1,2012 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               11/Apr/2017  09:31:18
+// Copyright 2004-2016 IAR Systems AB.
+// Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+//    Command line       =  
+//        -f
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x0422
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+//        -DREJOIN_POLL_RATE=440
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC
+//        -D LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+//        -lA
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\Obj
+//        -e --no_code_motion --debug --core=plain --dptr=16,1
+//        --data_model=large --code_model=banked
+//        --calling_convention=xdata_reentrant --place_constants=data_rom
+//        --nr_virtual_regs 16 -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -Ohz --require_prototypes
+//    List file          =  
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\bme280_support.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME bme280_support
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?V4
+        EXTERN ?V5
+        EXTERN ?V6
+        EXTERN ?V7
+        EXTERN ?V8
+        EXTERN ?V9
+        EXTERN ?V10
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?MOVE_LONG8_XDATA_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_DISP100_8
+        EXTERN ?XSTACK_DISP101_8
+        EXTERN ?XSTACK_DISP102_8
+        EXTERN ?XSTORE_R0123
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC `??BME280_I2C_bus_read::?relay`
+        FUNCTION `??BME280_I2C_bus_read::?relay`,0203H
+        PUBLIC `??BME280_I2C_bus_write::?relay`
+        FUNCTION `??BME280_I2C_bus_write::?relay`,0203H
+        PUBLIC `??SPI_routine::?relay`
+        FUNCTION `??SPI_routine::?relay`,0203H
+        PUBLIC `??bme280_data_readout_template::?relay`
+        FUNCTION `??bme280_data_readout_template::?relay`,0203H
+        PUBLIC BME280_I2C_bus_read
+        FUNCTION BME280_I2C_bus_read,080203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 17, STACK
+        PUBLIC BME280_I2C_bus_write
+        FUNCTION BME280_I2C_bus_write,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC SPI_routine
+        FUNCTION SPI_routine,0203H
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC bme280
+        PUBLIC bme280_data_readout_template
+        FUNCTION bme280_data_readout_template,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 58, STACK
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+          CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI V8 SameValue
+          CFI V9 SameValue
+          CFI V10 SameValue
+          CFI V11 SameValue
+          CFI V12 SameValue
+          CFI V13 SameValue
+          CFI V14 SameValue
+          CFI V15 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+        
+          CFI Common cfiCommon1 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-2
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B SameValue
+          CFI A SameValue
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 SameValue
+          CFI R1 SameValue
+          CFI R2 SameValue
+          CFI R3 SameValue
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI V8 SameValue
+          CFI V9 SameValue
+          CFI V10 SameValue
+          CFI V11 SameValue
+          CFI V12 SameValue
+          CFI V13 SameValue
+          CFI V14 SameValue
+          CFI V15 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT SameValue
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon1
+        
+`?<Name BME280_SPI_bus_read 0>` SYMBOL "BME280_SPI_bus_read"
+`??BME280_SPI_bus_read::?relay` SYMBOL "?relay", `?<Name BME280_SPI_bus_read 0>`
+`?<Name BME280_SPI_bus_write 2>` SYMBOL "BME280_SPI_bus_write"
+`??BME280_SPI_bus_write::?relay` SYMBOL "?relay", `?<Name BME280_SPI_bus_write 2>`
+`?<Name BME280_delay_msek 4>` SYMBOL "BME280_delay_msek"
+`??BME280_delay_msek::?relay` SYMBOL "?relay", `?<Name BME280_delay_msek 4>`
+bme280_compensate_humidity_int32 SYMBOL "bme280_compensate_humidity_int32"
+`??bme280_compensate_humidity_int32::?relay` SYMBOL "?relay", bme280_compensate_humidity_int32
+bme280_compensate_pressure_int32 SYMBOL "bme280_compensate_pressure_int32"
+`??bme280_compensate_pressure_int32::?relay` SYMBOL "?relay", bme280_compensate_pressure_int32
+bme280_compensate_temperature_int32 SYMBOL "bme280_compensate_temperature_int32"
+`??bme280_compensate_temperature_int32::?relay` SYMBOL "?relay", bme280_compensate_temperature_int32
+bme280_get_standby_durn SYMBOL "bme280_get_standby_durn"
+`??bme280_get_standby_durn::?relay` SYMBOL "?relay", bme280_get_standby_durn
+bme280_init         SYMBOL "bme280_init"
+`??bme280_init::?relay` SYMBOL "?relay", bme280_init
+bme280_read_pressure_temperature_humidity SYMBOL "bme280_read_pressure_temperature_humidity"
+`??bme280_read_pressure_temperature_humidity::?r` SYMBOL "?relay", bme280_read_pressure_temperature_humidity
+bme280_read_uncomp_humidity SYMBOL "bme280_read_uncomp_humidity"
+`??bme280_read_uncomp_humidity::?relay` SYMBOL "?relay", bme280_read_uncomp_humidity
+bme280_read_uncomp_pressure SYMBOL "bme280_read_uncomp_pressure"
+`??bme280_read_uncomp_pressure::?relay` SYMBOL "?relay", bme280_read_uncomp_pressure
+bme280_read_uncomp_pressure_temperature_humidity SYMBOL "bme280_read_uncomp_pressure_temperature_humidity"
+??bme280_read_uncomp_pressure_temperature_humid SYMBOL "?relay", bme280_read_uncomp_pressure_temperature_humidity
+bme280_read_uncomp_temperature SYMBOL "bme280_read_uncomp_temperature"
+`??bme280_read_uncomp_temperature::?relay` SYMBOL "?relay", bme280_read_uncomp_temperature
+bme280_set_oversamp_humidity SYMBOL "bme280_set_oversamp_humidity"
+`??bme280_set_oversamp_humidity::?relay` SYMBOL "?relay", bme280_set_oversamp_humidity
+bme280_set_oversamp_pressure SYMBOL "bme280_set_oversamp_pressure"
+`??bme280_set_oversamp_pressure::?relay` SYMBOL "?relay", bme280_set_oversamp_pressure
+bme280_set_oversamp_temperature SYMBOL "bme280_set_oversamp_temperature"
+`??bme280_set_oversamp_temperature::?relay` SYMBOL "?relay", bme280_set_oversamp_temperature
+bme280_set_power_mode SYMBOL "bme280_set_power_mode"
+`??bme280_set_power_mode::?relay` SYMBOL "?relay", bme280_set_power_mode
+bme280_set_standby_durn SYMBOL "bme280_set_standby_durn"
+`??bme280_set_standby_durn::?relay` SYMBOL "?relay", bme280_set_standby_durn
+BME280_I2C_bus_read SYMBOL "BME280_I2C_bus_read"
+`??BME280_I2C_bus_read::?relay` SYMBOL "?relay", BME280_I2C_bus_read
+BME280_I2C_bus_write SYMBOL "BME280_I2C_bus_write"
+`??BME280_I2C_bus_write::?relay` SYMBOL "?relay", BME280_I2C_bus_write
+SPI_routine         SYMBOL "SPI_routine"
+`??SPI_routine::?relay` SYMBOL "?relay", SPI_routine
+bme280_data_readout_template SYMBOL "bme280_data_readout_template"
+`??bme280_data_readout_template::?relay` SYMBOL "?relay", bme280_data_readout_template
+
+        EXTERN `??BME280_SPI_bus_read::?relay`
+        FUNCTION `??BME280_SPI_bus_read::?relay`,00H
+        EXTERN `??BME280_SPI_bus_write::?relay`
+        FUNCTION `??BME280_SPI_bus_write::?relay`,00H
+        EXTERN `??BME280_delay_msek::?relay`
+        FUNCTION `??BME280_delay_msek::?relay`,00H
+        EXTERN `??bme280_compensate_humidity_int32::?relay`
+        FUNCTION `??bme280_compensate_humidity_int32::?relay`,00H
+        EXTERN `??bme280_compensate_pressure_int32::?relay`
+        FUNCTION `??bme280_compensate_pressure_int32::?relay`,00H
+        EXTERN `??bme280_compensate_temperature_int32::?relay`
+        FUNCTION `??bme280_compensate_temperature_int32::?relay`,00H
+        EXTERN `??bme280_get_standby_durn::?relay`
+        FUNCTION `??bme280_get_standby_durn::?relay`,00H
+        EXTERN `??bme280_init::?relay`
+        FUNCTION `??bme280_init::?relay`,00H
+        EXTERN `??bme280_read_pressure_temperature_humidity::?r`
+        FUNCTION `??bme280_read_pressure_temperature_humidity::?r`,00H
+        EXTERN `??bme280_read_uncomp_humidity::?relay`
+        FUNCTION `??bme280_read_uncomp_humidity::?relay`,00H
+        EXTERN `??bme280_read_uncomp_pressure::?relay`
+        FUNCTION `??bme280_read_uncomp_pressure::?relay`,00H
+        EXTERN ??bme280_read_uncomp_pressure_temperature_humid
+        FUNCTION ??bme280_read_uncomp_pressure_temperature_humid,00H
+        EXTERN `??bme280_read_uncomp_temperature::?relay`
+        FUNCTION `??bme280_read_uncomp_temperature::?relay`,00H
+        EXTERN `??bme280_set_oversamp_humidity::?relay`
+        FUNCTION `??bme280_set_oversamp_humidity::?relay`,00H
+        EXTERN `??bme280_set_oversamp_pressure::?relay`
+        FUNCTION `??bme280_set_oversamp_pressure::?relay`,00H
+        EXTERN `??bme280_set_oversamp_temperature::?relay`
+        FUNCTION `??bme280_set_oversamp_temperature::?relay`,00H
+        EXTERN `??bme280_set_power_mode::?relay`
+        FUNCTION `??bme280_set_power_mode::?relay`,00H
+        EXTERN `??bme280_set_standby_durn::?relay`
+        FUNCTION `??bme280_set_standby_durn::?relay`,00H
+        EXTERN bme280_compensate_humidity_int32
+        FUNCTION bme280_compensate_humidity_int32,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_compensate_pressure_int32
+        FUNCTION bme280_compensate_pressure_int32,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_compensate_temperature_int32
+        FUNCTION bme280_compensate_temperature_int32,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_get_standby_durn
+        FUNCTION bme280_get_standby_durn,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_init
+        FUNCTION bme280_init,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_read_pressure_temperature_humidity
+        FUNCTION bme280_read_pressure_temperature_humidity,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 58, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_read_uncomp_humidity
+        FUNCTION bme280_read_uncomp_humidity,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_read_uncomp_pressure
+        FUNCTION bme280_read_uncomp_pressure,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_read_uncomp_pressure_temperature_humidity
+        FUNCTION bme280_read_uncomp_pressure_temperature_humidity,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 58, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_read_uncomp_temperature
+        FUNCTION bme280_read_uncomp_temperature,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_set_oversamp_humidity
+        FUNCTION bme280_set_oversamp_humidity,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_set_oversamp_pressure
+        FUNCTION bme280_set_oversamp_pressure,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_set_oversamp_temperature
+        FUNCTION bme280_set_oversamp_temperature,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_set_power_mode
+        FUNCTION bme280_set_power_mode,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN bme280_set_standby_durn
+        FUNCTION bme280_set_standby_durn,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\bme280_support.c
+//    1 /*
+//    2 ****************************************************************************
+//    3 * Copyright (C) 2015 - 2016 Bosch Sensortec GmbH
+//    4 *
+//    5 * bme280_support.c
+//    6 * Date: 2016/07/04
+//    7 * Revision: 1.0.6 $
+//    8 *
+//    9 * Usage: Sensor Driver support file for BME280 sensor
+//   10 *
+//   11 ****************************************************************************
+//   12 * License:
+//   13 *
+//   14 * Redistribution and use in source and binary forms, with or without
+//   15 * modification, are permitted provided that the following conditions are met:
+//   16 *
+//   17 *   Redistributions of source code must retain the above copyright
+//   18 *   notice, this list of conditions and the following disclaimer.
+//   19 *
+//   20 *   Redistributions in binary form must reproduce the above copyright
+//   21 *   notice, this list of conditions and the following disclaimer in the
+//   22 *   documentation and/or other materials provided with the distribution.
+//   23 *
+//   24 *   Neither the name of the copyright holder nor the names of the
+//   25 *   contributors may be used to endorse or promote products derived from
+//   26 *   this software without specific prior written permission.
+//   27 *
+//   28 * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+//   29 * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+//   30 * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//   31 * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//   32 * DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDER
+//   33 * OR CONTRIBUTORS BE LIABLE FOR ANY
+//   34 * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+//   35 * OR CONSEQUENTIAL DAMAGES(INCLUDING, BUT NOT LIMITED TO,
+//   36 * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+//   37 * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+//   38 * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+//   39 * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//   40 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+//   41 * ANY WAY OUT OF THE USE OF THIS
+//   42 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+//   43 *
+//   44 * The information provided is believed to be accurate and reliable.
+//   45 * The copyright holder assumes no responsibility
+//   46 * for the consequences of use
+//   47 * of such information nor for any infringement of patents or
+//   48 * other rights of third parties which may result from its use.
+//   49 * No license is granted by implication or otherwise under any patent or
+//   50 * patent rights of the copyright holder.
+//   51 **************************************************************************/
+//   52 /*---------------------------------------------------------------------------*/
+//   53 /* Includes*/
+//   54 /*---------------------------------------------------------------------------*/
+//   55 #include "bme280.h"
+//   56 
+//   57 #define SPI_READ	0x80
+//   58 #define SPI_WRITE	0x7F
+//   59 
+//   60 #define BME280_API
+//   61 /*Enable the macro BME280_API to use this support file */
+//   62 /*----------------------------------------------------------------------------*
+//   63 *  The following functions are used for reading and writing of
+//   64 *	sensor data using I2C or SPI communication
+//   65 *----------------------------------------------------------------------------*/
+//   66 #ifdef BME280_API
+//   67 /*	\Brief: The function is used as I2C bus read
+//   68  *	\Return : Status of the I2C read
+//   69  *	\param dev_addr : The device address of the sensor
+//   70  *	\param reg_addr : Address of the first register, will data is going to be read
+//   71  *	\param reg_data : This data read from the sensor, which is hold in an array
+//   72  *	\param cnt : The no of byte of data to be read
+//   73  */
+//   74 s8 BME280_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+//   75  /*	\Brief: The function is used as I2C bus write
+//   76  *	\Return : Status of the I2C write
+//   77  *	\param dev_addr : The device address of the sensor
+//   78  *	\param reg_addr : Address of the first register, will data is going to be written
+//   79  *	\param reg_data : It is a value hold in the array,
+//   80  *		will be used for write the value into the register
+//   81  *	\param cnt : The no of byte of data to be write
+//   82  */
+//   83 s8 BME280_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+//   84 /*	\Brief: The function is used as SPI bus write
+//   85  *	\Return : Status of the SPI write
+//   86  *	\param dev_addr : The device address of the sensor
+//   87  *	\param reg_addr : Address of the first register, will data is going to be written
+//   88  *	\param reg_data : It is a value hold in the array,
+//   89  *		will be used for write the value into the register
+//   90  *	\param cnt : The no of byte of data to be write
+//   91  */
+//   92 s8 BME280_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+//   93 /*	\Brief: The function is used as SPI bus read
+//   94  *	\Return : Status of the SPI read
+//   95  *	\param dev_addr : The device address of the sensor
+//   96  *	\param reg_addr : Address of the first register, will data is going to be read
+//   97  *	\param reg_data : This data read from the sensor, which is hold in an array
+//   98  *	\param cnt : The no of byte of data to be read */
+//   99 extern s8 BME280_SPI_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+//  100 /*
+//  101  * \Brief: SPI/I2C init routine
+//  102 */
+//  103 //s8 I2C_routine(void);
+//  104 //s8 SPI_routine(void);
+//  105 #endif
+//  106 /********************End of I2C/SPI function declarations***********************/
+//  107 /*	Brief : The delay routine
+//  108  *	\param : delay in ms
+//  109 */
+//  110 void BME280_delay_msek(u32 msek);
+//  111 /* This function is an example for reading sensor data
+//  112  *	\param: None
+//  113  *	\return: communication result
+//  114  */
+//  115 s16 bme280_data_readout_template(struct bme280_t *bme280, struct value *val);
+//  116 /*----------------------------------------------------------------------------*
+//  117  *  struct bme280_t parameters can be accessed by using bme280
+//  118  *	bme280_t having the following parameters
+//  119  *	Bus write function pointer: BME280_WR_FUNC_PTR
+//  120  *	Bus read function pointer: BME280_RD_FUNC_PTR
+//  121  *	Delay function pointer: delay_msec
+//  122  *	I2C address: dev_addr
+//  123  *	Chip id of the sensor: chip_id
+//  124  *---------------------------------------------------------------------------*/
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  125 struct bme280_t bme280;
+bme280:
+        DS 51
+        REQUIRE __INIT_XDATA_Z
+//  126 /* This function is an example for reading sensor data
+//  127  *	\param: None
+//  128  *	\return: communication result
+//  129  */
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  130 s16 bme280_data_readout_template(struct bme280_t *bme280, struct value *val)
+bme280_data_readout_template:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function bme280_data_readout_template
+        CODE
+//  131 {
+        FUNCALL bme280_data_readout_template, SPI_routine
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_init
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_power_mode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_oversamp_humidity
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_oversamp_pressure
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_oversamp_temperature
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_standby_durn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_get_standby_durn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_read_uncomp_temperature
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_read_uncomp_pressure
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_read_uncomp_humidity
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_read_uncomp_pressure_temperature_humidity
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 58, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 58, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_compensate_temperature_int32
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_compensate_pressure_int32
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_compensate_humidity_int32
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_read_pressure_temperature_humidity
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 58, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 58, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL bme280_data_readout_template, bme280_set_power_mode
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 56, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 56, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        REQUIRE ?V4
+        REQUIRE ?V5
+        REQUIRE ?V6
+        REQUIRE ?V7
+        REQUIRE ?V8
+        REQUIRE ?V9
+        REQUIRE ?V10
+        MOV     A,#-0x13
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 19)
+        ; Saved register size: 19
+        ; Auto size: 37
+        MOV     A,#-0x25
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 56)
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  132 	/* The variable used to assign the standby time*/
+//  133 	u8 v_stand_by_time_u8 = BME280_INIT_VALUE;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        CLR     A
+        MOVX    @DPTR,A
+//  134 	/* The variable used to read uncompensated temperature*/
+//  135 	s32 v_data_uncomp_temp_s32 = BME280_INIT_VALUE;
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?Subroutine1 & 0xFFFF
+//  136 	/* The variable used to read uncompensated pressure*/
+//  137 	s32 v_data_uncomp_pres_s32 = BME280_INIT_VALUE;
+??CrossCallReturnLabel_8:
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?Subroutine1 & 0xFFFF
+//  138 	/* The variable used to read uncompensated pressure*/
+//  139 	s32 v_data_uncomp_hum_s32 = BME280_INIT_VALUE;
+??CrossCallReturnLabel_9:
+        INC     A
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?Subroutine1 & 0xFFFF
+//  140 	/* The variable used to read compensated temperature*/
+//  141 	s32 v_comp_temp_s32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+??CrossCallReturnLabel_10:
+        MOV     DPTR,#`?<Constant {0, 0}>`
+        MOV     A,#0x1d
+        LCALL   ?XSTACK_DISP102_8
+        MOV     A,#0x8
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  142 	/* The variable used to read compensated pressure*/
+//  143 	u32 v_comp_press_u32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+        MOV     DPTR,#`?<Constant {0, 0}>_1`
+        MOV     A,#0x15
+        LCALL   ?XSTACK_DISP102_8
+        MOV     A,#0x8
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  144 	/* The variable used to read compensated humidity*/
+//  145 	u32 v_comp_humidity_u32[2] = {BME280_INIT_VALUE, BME280_INIT_VALUE};
+        MOV     DPTR,#`?<Constant {0, 0}>_2`
+        MOV     A,#0xd
+        LCALL   ?XSTACK_DISP102_8
+        MOV     A,#0x8
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  146 
+//  147 	/* result of communication results*/
+//  148 	s32 com_rslt = ERROR;
+//  149 
+//  150 
+//  151 
+//  152  /*********************** START INITIALIZATION ************************/
+//  153   /*	Based on the user need configure I2C or SPI interface.
+//  154   *	It is example code to explain how to use the bme280 API*/
+//  155  	#ifdef BME280_API
+//  156 	//I2C_routine();
+//  157 	SPI_routine(bme280);
+        ; Setup parameters for call to function SPI_routine
+        LCALL   `??SPI_routine::?relay`; Banked call to: SPI_routine
+//  158 	#endif
+//  159 /*--------------------------------------------------------------------------*
+//  160  *  This function used to assign the value/reference of
+//  161  *	the following parameters
+//  162  *	I2C address
+//  163  *	Bus Write
+//  164  *	Bus read
+//  165  *	Chip id
+//  166 *-------------------------------------------------------------------------*/
+//  167 	com_rslt = bme280_init(bme280);
+        ; Setup parameters for call to function bme280_init
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   `??bme280_init::?relay`; Banked call to: bme280_init
+        MOV     A,R1
+        MOV     ?V10,A
+//  168 
+//  169 	/*	For initialization it is required to set the mode of
+//  170 	 *	the sensor as "NORMAL"
+//  171 	 *	data acquisition/read/write is possible in this mode
+//  172 	 *	by using the below API able to set the power mode as NORMAL
+//  173 	 */
+//  174 	 
+//  175 	/* Set the power mode as NORMAL*/
+//  176 	com_rslt += bme280_set_power_mode(BME280_NORMAL_MODE);
+        ; Setup parameters for call to function bme280_set_power_mode
+        MOV     R1,#0x3
+        LCALL   `??bme280_set_power_mode::?relay`; Banked call to: bme280_set_power_mode
+        MOV     A,R1
+        MOV     ?V9,A
+//  177 	/*	For reading the pressure, humidity and temperature data it is required to
+//  178 	 *	set the OSS setting of humidity, pressure and temperature
+//  179 	 * The "BME280_CTRLHUM_REG_OSRSH" register sets the humidity
+//  180 	 * data acquisition options of the device.
+//  181 	 * changes to this registers only become effective after a write operation to
+//  182 	 * "BME280_CTRLMEAS_REG" register.
+//  183 	 * In the code automated reading and writing of "BME280_CTRLHUM_REG_OSRSH"
+//  184 	 * register first set the "BME280_CTRLHUM_REG_OSRSH" and then read and write
+//  185 	 * the "BME280_CTRLMEAS_REG" register in the function*/
+//  186 	com_rslt += bme280_set_oversamp_humidity(BME280_OVERSAMP_1X);
+        ; Setup parameters for call to function bme280_set_oversamp_humidity
+        MOV     R1,#0x1
+        LCALL   `??bme280_set_oversamp_humidity::?relay`; Banked call to: bme280_set_oversamp_humidity
+        MOV     A,R1
+        MOV     ?V8,A
+//  187 
+//  188 	/* set the pressure oversampling*/
+//  189 	com_rslt += bme280_set_oversamp_pressure(BME280_OVERSAMP_2X);
+        ; Setup parameters for call to function bme280_set_oversamp_pressure
+        MOV     R1,#0x2
+        LCALL   `??bme280_set_oversamp_pressure::?relay`; Banked call to: bme280_set_oversamp_pressure
+        MOV     A,R1
+        MOV     ?V5,A
+//  190 	/* set the temperature oversampling*/
+//  191 	com_rslt += bme280_set_oversamp_temperature(BME280_OVERSAMP_4X);
+        ; Setup parameters for call to function bme280_set_oversamp_temperature
+        MOV     R1,#0x3
+        LCALL   `??bme280_set_oversamp_temperature::?relay`; Banked call to: bme280_set_oversamp_temperature
+        MOV     A,R1
+        MOV     ?V4,A
+//  192 /*--------------------------------------------------------------------------*/
+//  193 /*------------------------------------------------------------------------*
+//  194 ************************* START GET and SET FUNCTIONS DATA ****************
+//  195 *---------------------------------------------------------------------------*/
+//  196 	/* This API used to Write the standby time of the sensor input
+//  197 	 *	value have to be given
+//  198 	 *	Normal mode comprises an automated perpetual cycling between an (active)
+//  199 	 *	Measurement period and an (inactive) standby period.
+//  200 	 *	The standby time is determined by the contents of the register t_sb.
+//  201 	 *	Standby time can be set using BME280_STANDBYTIME_125_MS.
+//  202 	 *	Usage Hint : bme280_set_standbydur(BME280_STANDBYTIME_125_MS)*/
+//  203 
+//  204 	com_rslt += bme280_set_standby_durn(BME280_STANDBY_TIME_1_MS);
+        ; Setup parameters for call to function bme280_set_standby_durn
+        MOV     R1,#0x0
+        LCALL   `??bme280_set_standby_durn::?relay`; Banked call to: bme280_set_standby_durn
+        MOV     A,R1
+        MOV     ?V3,A
+//  205 
+//  206 	/* This API used to read back the written value of standby time*/
+//  207 	com_rslt += bme280_get_standby_durn(&v_stand_by_time_u8);
+        ; Setup parameters for call to function bme280_get_standby_durn
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??bme280_get_standby_durn::?relay`; Banked call to: bme280_get_standby_durn
+        MOV     A,R1
+        MOV     ?V2,A
+//  208 /*-----------------------------------------------------------------*
+//  209 ************************* END GET and SET FUNCTIONS ****************
+//  210 *------------------------------------------------------------------*/
+//  211 
+//  212 /************************* END INITIALIZATION *************************/
+//  213 
+//  214 /*------------------------------------------------------------------*
+//  215 ************ START READ UNCOMPENSATED PRESSURE, TEMPERATURE
+//  216 AND HUMIDITY DATA ********
+//  217 *---------------------------------------------------------------------*/
+//  218 	/* API is used to read the uncompensated temperature*/
+//  219 	com_rslt += bme280_read_uncomp_temperature(&v_data_uncomp_temp_s32);
+        ; Setup parameters for call to function bme280_read_uncomp_temperature
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP101_8
+        LCALL   `??bme280_read_uncomp_temperature::?relay`; Banked call to: bme280_read_uncomp_temperature
+        MOV     A,R1
+        MOV     ?V1,A
+//  220 
+//  221 	/* API is used to read the uncompensated pressure*/
+//  222 	com_rslt += bme280_read_uncomp_pressure(&v_data_uncomp_pres_s32);
+        ; Setup parameters for call to function bme280_read_uncomp_pressure
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP101_8
+        LCALL   `??bme280_read_uncomp_pressure::?relay`; Banked call to: bme280_read_uncomp_pressure
+        MOV     A,R1
+        MOV     ?V0,A
+//  223 
+//  224 	/* API is used to read the uncompensated humidity*/
+//  225 	com_rslt += bme280_read_uncomp_humidity(&v_data_uncomp_hum_s32);
+        ; Setup parameters for call to function bme280_read_uncomp_humidity
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP101_8
+        LCALL   `??bme280_read_uncomp_humidity::?relay`; Banked call to: bme280_read_uncomp_humidity
+        MOV     A,R1
+        MOV     R7,A
+//  226 
+//  227 	/* API is used to read the uncompensated temperature,pressure
+//  228 	and humidity data */
+//  229 	com_rslt += bme280_read_uncomp_pressure_temperature_humidity(
+//  230 	&v_data_uncomp_temp_s32, &v_data_uncomp_pres_s32, &v_data_uncomp_hum_s32);
+        ; Setup parameters for call to function bme280_read_uncomp_pressure_temperature_humidity
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP100_8
+        MOV     ?V6,R0
+        MOV     ?V7,R1
+        MOV     R0,#?V6
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 58)
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP102_8
+        MOV     A,#0xb
+        LCALL   ?XSTACK_DISP101_8
+        LCALL   ??bme280_read_uncomp_pressure_temperature_humid; Banked call to: bme280_read_uncomp_pressure_temperature_humidity
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 56)
+        MOV     A,R1
+        MOV     R6,A
+//  231 /*--------------------------------------------------------------------*
+//  232 ************ END READ UNCOMPENSATED PRESSURE AND TEMPERATURE********
+//  233 *-------------------------------------------------------------------------*/
+//  234 
+//  235 /*------------------------------------------------------------------*
+//  236 ************ START READ COMPENSATED PRESSURE, TEMPERATURE
+//  237 AND HUMIDITY DATA ********
+//  238 *---------------------------------------------------------------------*/
+//  239 	/* API is used to compute the compensated temperature*/
+//  240 	v_comp_temp_s32[0] = bme280_compensate_temperature_int32(
+//  241 			v_data_uncomp_temp_s32);
+        ; Setup parameters for call to function bme280_compensate_temperature_int32
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XLOAD_R2345
+        LCALL   `??bme280_compensate_temperature_int32::?relay`; Banked call to: bme280_compensate_temperature_int32
+        MOV     A,R2
+        MOV     R0,A
+        MOV     A,R3
+        MOV     R1,A
+        MOV     A,R4
+        MOV     R2,A
+        MOV     A,R5
+        MOV     R3,A
+        MOV     A,#0x1d
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XSTORE_R0123
+//  242 
+//  243 	/* API is used to compute the compensated pressure*/
+//  244 	v_comp_press_u32[0] = bme280_compensate_pressure_int32(
+//  245 			v_data_uncomp_pres_s32);
+        ; Setup parameters for call to function bme280_compensate_pressure_int32
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XLOAD_R2345
+        LCALL   `??bme280_compensate_pressure_int32::?relay`; Banked call to: bme280_compensate_pressure_int32
+        MOV     A,#0x15
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XSTORE_R2345
+//  246 
+//  247 	/* API is used to compute the compensated humidity*/
+//  248 	v_comp_humidity_u32[0] = bme280_compensate_humidity_int32(
+//  249 			v_data_uncomp_hum_s32);
+        ; Setup parameters for call to function bme280_compensate_humidity_int32
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XLOAD_R2345
+        LCALL   `??bme280_compensate_humidity_int32::?relay`; Banked call to: bme280_compensate_humidity_int32
+        MOV     A,#0xd
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XSTORE_R2345
+//  250 
+//  251 	/* API is used to read the compensated temperature, humidity and pressure*/
+//  252 	com_rslt += bme280_read_pressure_temperature_humidity(
+//  253 	&v_comp_press_u32[1], &v_comp_temp_s32[1],  &v_comp_humidity_u32[1]);
+        ; Setup parameters for call to function bme280_read_pressure_temperature_humidity
+        MOV     A,#0x11
+        LCALL   ?XSTACK_DISP0_8
+        MOV     ?V6,DPL
+        MOV     ?V7,DPH
+        MOV     R0,#?V6
+        LCALL   ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 58)
+        MOV     A,#0x23
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     A,#0x1b
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   `??bme280_read_pressure_temperature_humidity::?r`; Banked call to: bme280_read_pressure_temperature_humidity
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 56)
+        MOV     A,R1
+        MOV     R4,A
+//  254 /*--------------------------------------------------------------------*
+//  255 ************ END READ COMPENSATED PRESSURE, TEMPERATURE AND HUMIDITY ********
+//  256 *-------------------------------------------------------------------------*/
+//  257 
+//  258 /*-----------------------------------------------------------------------*
+//  259 ************************* START DE-INITIALIZATION ***********************
+//  260 *-------------------------------------------------------------------------*/
+//  261 	/*	For de-initialization it is required to set the mode of
+//  262 	 *	the sensor as "SLEEP"
+//  263 	 *	the device reaches the lowest power consumption only
+//  264 	 *	In SLEEP mode no measurements are performed
+//  265 	 *	All registers are accessible
+//  266 	 *	by using the below API able to set the power mode as SLEEP*/
+//  267 	 /* Set the power mode as SLEEP*/
+//  268 	com_rslt += bme280_set_power_mode(BME280_SLEEP_MODE);
+//  269 /*---------------------------------------------------------------------*
+//  270 ************************* END DE-INITIALIZATION **********************
+//  271 *---------------------------------------------------------------------*/
+//  272 return com_rslt;
+        MOV     A,?V10
+        MOV     R0,A
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R1,A
+        MOV     A,?V9
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_0:
+        MOV     A,?V8
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_1:
+        MOV     A,?V5
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_2:
+        MOV     A,?V4
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_3:
+        MOV     A,?V3
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_4:
+        MOV     A,?V2
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_5:
+        MOV     A,?V1
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_6:
+        MOV     A,?V0
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_7:
+        MOV     A,R7
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R3,A
+        MOV     A,R0
+        ADD     A,R7
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     A,R6
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R3,A
+        MOV     A,R0
+        ADD     A,R6
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        MOV     A,R4
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R3,A
+        MOV     A,R0
+        ADD     A,R4
+        MOV     R6,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R7,A
+        ; Setup parameters for call to function bme280_set_power_mode
+        MOV     R1,#0x0
+        LCALL   `??bme280_set_power_mode::?relay`; Banked call to: bme280_set_power_mode
+        MOV     A,R1
+        MOV     R0,A
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R1,A
+        MOV     A,R6
+        ADD     A,R0
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,R1
+        MOV     R3,A
+        MOV     A,#0x25
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 19)
+        MOV     R7,#0xb
+        LJMP    ?BANKED_LEAVE_XDATA
+//  273 }
+          CFI EndBlock cfiBlock0
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine1:
+          CFI Block cfiCond1 Using cfiCommon0
+          CFI Function bme280_data_readout_template
+          CFI Conditional ??CrossCallReturnLabel_8
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI CFA_SP SP+-2
+          CFI CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond2 Using cfiCommon0
+          CFI (cfiCond2) Function bme280_data_readout_template
+          CFI (cfiCond2) Conditional ??CrossCallReturnLabel_9
+          CFI (cfiCond2) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond2) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond2) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond2) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond2) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond2) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond2) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond2) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond2) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond2) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond2) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond2) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond2) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond2) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond2) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond2) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond2) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond2) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond2) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond2) CFA_SP SP+-2
+          CFI (cfiCond2) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond3 Using cfiCommon0
+          CFI (cfiCond3) Function bme280_data_readout_template
+          CFI (cfiCond3) Conditional ??CrossCallReturnLabel_10
+          CFI (cfiCond3) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond3) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond3) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond3) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond3) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond3) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond3) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond3) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond3) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond3) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond3) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond3) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond3) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond3) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond3) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond3) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond3) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond3) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond3) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond3) CFA_SP SP+-2
+          CFI (cfiCond3) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiPicker4 Using cfiCommon1
+          CFI (cfiPicker4) NoFunction
+          CFI (cfiPicker4) Picker
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        RET
+          CFI EndBlock cfiCond1
+          CFI EndBlock cfiCond2
+          CFI EndBlock cfiCond3
+          CFI EndBlock cfiPicker4
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine0:
+          CFI Block cfiCond5 Using cfiCommon0
+          CFI Function bme280_data_readout_template
+          CFI Conditional ??CrossCallReturnLabel_0
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI CFA_SP SP+-2
+          CFI CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond6 Using cfiCommon0
+          CFI (cfiCond6) Function bme280_data_readout_template
+          CFI (cfiCond6) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond6) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond6) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond6) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond6) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond6) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond6) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond6) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond6) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond6) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond6) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond6) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond6) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond6) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond6) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond6) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond6) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond6) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond6) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond6) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond6) CFA_SP SP+-2
+          CFI (cfiCond6) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond7 Using cfiCommon0
+          CFI (cfiCond7) Function bme280_data_readout_template
+          CFI (cfiCond7) Conditional ??CrossCallReturnLabel_2
+          CFI (cfiCond7) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond7) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond7) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond7) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond7) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond7) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond7) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond7) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond7) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond7) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond7) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond7) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond7) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond7) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond7) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond7) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond7) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond7) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond7) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond7) CFA_SP SP+-2
+          CFI (cfiCond7) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond8 Using cfiCommon0
+          CFI (cfiCond8) Function bme280_data_readout_template
+          CFI (cfiCond8) Conditional ??CrossCallReturnLabel_3
+          CFI (cfiCond8) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond8) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond8) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond8) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond8) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond8) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond8) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond8) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond8) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond8) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond8) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond8) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond8) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond8) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond8) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond8) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond8) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond8) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond8) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond8) CFA_SP SP+-2
+          CFI (cfiCond8) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond9 Using cfiCommon0
+          CFI (cfiCond9) Function bme280_data_readout_template
+          CFI (cfiCond9) Conditional ??CrossCallReturnLabel_4
+          CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond9) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond9) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond9) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond9) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond9) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond9) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond9) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond9) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond9) CFA_SP SP+-2
+          CFI (cfiCond9) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond10 Using cfiCommon0
+          CFI (cfiCond10) Function bme280_data_readout_template
+          CFI (cfiCond10) Conditional ??CrossCallReturnLabel_5
+          CFI (cfiCond10) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond10) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond10) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond10) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond10) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond10) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond10) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond10) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond10) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond10) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond10) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond10) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond10) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond10) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond10) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond10) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond10) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond10) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond10) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond10) CFA_SP SP+-2
+          CFI (cfiCond10) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond11 Using cfiCommon0
+          CFI (cfiCond11) Function bme280_data_readout_template
+          CFI (cfiCond11) Conditional ??CrossCallReturnLabel_6
+          CFI (cfiCond11) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond11) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond11) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond11) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond11) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond11) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond11) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond11) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond11) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond11) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond11) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond11) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond11) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond11) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond11) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond11) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond11) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond11) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond11) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond11) CFA_SP SP+-2
+          CFI (cfiCond11) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiCond12 Using cfiCommon0
+          CFI (cfiCond12) Function bme280_data_readout_template
+          CFI (cfiCond12) Conditional ??CrossCallReturnLabel_7
+          CFI (cfiCond12) R6 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+          CFI (cfiCond12) VB load(1, XDATA, add(CFA_XSP16, literal(-18)))
+          CFI (cfiCond12) V0 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+          CFI (cfiCond12) V1 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+          CFI (cfiCond12) V2 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+          CFI (cfiCond12) V3 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+          CFI (cfiCond12) V4 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+          CFI (cfiCond12) V5 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI (cfiCond12) V6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond12) V7 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond12) V8 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond12) V9 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond12) V10 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond12) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond12) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond12) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond12) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond12) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond12) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond12) CFA_SP SP+-2
+          CFI (cfiCond12) CFA_XSP16 add(XSP16, 56)
+          CFI Block cfiPicker13 Using cfiCommon1
+          CFI (cfiPicker13) NoFunction
+          CFI (cfiPicker13) Picker
+        MOV     R2,A
+        RLC     A
+        SUBB    A,0xE0 /* A   */
+        MOV     R3,A
+        MOV     A,R0
+        ADD     A,R2
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,R3
+        MOV     R1,A
+        RET
+          CFI EndBlock cfiCond5
+          CFI EndBlock cfiCond6
+          CFI EndBlock cfiCond7
+          CFI EndBlock cfiCond8
+          CFI EndBlock cfiCond9
+          CFI EndBlock cfiCond10
+          CFI EndBlock cfiCond11
+          CFI EndBlock cfiCond12
+          CFI EndBlock cfiPicker13
+//  274 
+//  275 #ifdef BME280_API
+//  276 //#define SPI_READ	0x80
+//  277 //#define SPI_WRITE	0x7F
+//  278 #define BME280_DATA_INDEX					1
+//  279 #define BME280_ADDRESS_INDEX			2
+//  280 
+//  281 /*---------------------------------------------------------------------------*
+//  282  * The following function is used to map the SPI bus read, write and delay
+//  283  * with global structure bme280
+//  284  *--------------------------------------------------------------------------*/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  285 s8 SPI_routine(struct bme280_t *bme280) {
+SPI_routine:
+          CFI Block cfiBlock14 Using cfiCommon0
+          CFI Function SPI_routine
+        CODE
+        PUSH    DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH    DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  286 /*--------------------------------------------------------------------------*
+//  287  *  By using bme280 the following structure parameter can be accessed
+//  288  *	Bus write function pointer: BME280_WR_FUNC_PTR
+//  289  *	Bus read function pointer: BME280_RD_FUNC_PTR
+//  290  *	Delay function pointer: delay_msec
+//  291  *--------------------------------------------------------------------------*/
+//  292 
+//  293 	bme280->bus_write = BME280_SPI_bus_write;
+        MOV     A,R2
+        ADD     A,#0x2d
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R3
+        MOV     DPH,A
+        MOV     A,#`??BME280_SPI_bus_write::?relay` & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#(`??BME280_SPI_bus_write::?relay` >> 8) & 0xff
+        MOVX    @DPTR,A
+//  294 	bme280->bus_read = BME280_SPI_bus_read;
+        MOV     A,R2
+        ADD     A,#0x2f
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R3
+        MOV     DPH,A
+        MOV     A,#`??BME280_SPI_bus_read::?relay` & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#(`??BME280_SPI_bus_read::?relay` >> 8) & 0xff
+        MOVX    @DPTR,A
+//  295 	bme280->delay_msec = BME280_delay_msek;
+        MOV     A,R2
+        ADD     A,#0x31
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R3
+        MOV     DPH,A
+        MOV     A,#`??BME280_delay_msek::?relay` & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#(`??BME280_delay_msek::?relay` >> 8) & 0xff
+        MOVX    @DPTR,A
+//  296 
+//  297 	return BME280_INIT_VALUE;
+        MOV     R1,#0x0
+        POP     DPH
+          CFI DPH0 SameValue
+          CFI CFA_SP SP+-4
+        POP     DPL
+          CFI DPL0 SameValue
+          CFI CFA_SP SP+-3
+        LJMP    ?BRET
+//  298 }
+          CFI EndBlock cfiBlock14
+//  299 
+//  300 /************** I2C/SPI buffer length ******/
+//  301 #define	I2C_BUFFER_LEN 										8
+//  302 #define SPI_BUFFER_LEN 										10
+//  303 
+//  304 /*-------------------------------------------------------------------*
+//  305 *	This is a sample code for read and write the data by using I2C/SPI
+//  306 *	Use either I2C or SPI based on your need
+//  307 *	The device address defined in the bme280.h file
+//  308 *-----------------------------------------------------------------------*/
+//  309  /*	\Brief: The function is used as I2C bus write
+//  310  *	\Return : Status of the I2C write
+//  311  *	\param dev_addr : The device address of the sensor
+//  312  *	\param reg_addr : Address of the first register, will data is going to be written
+//  313  *	\param reg_data : It is a value hold in the array,
+//  314  *		will be used for write the value into the register
+//  315  *	\param cnt : The no of byte of data to be write
+//  316  */
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  317 s8 BME280_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+BME280_I2C_bus_write:
+          CFI Block cfiBlock15 Using cfiCommon0
+          CFI Function BME280_I2C_bus_write
+        CODE
+//  318 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  319 	s32 iError = BME280_INIT_VALUE;
+//  320 	u8 array[I2C_BUFFER_LEN];
+//  321 	u8 stringpos = BME280_INIT_VALUE;
+        MOV     R0,#0x0
+//  322 	array[BME280_INIT_VALUE] = reg_addr;
+//  323 	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+        SJMP    ??BME280_I2C_bus_write_0
+//  324 		array[stringpos + BME280_DATA_INDEX] = *(reg_data + stringpos);
+??BME280_I2C_bus_write_1:
+        INC     R0
+??BME280_I2C_bus_write_0:
+        MOV     A,R0
+        CLR     C
+        SUBB    A,R3
+        JC      ??BME280_I2C_bus_write_1
+//  325 	}
+//  326 	/*
+//  327 	* Please take the below function as your reference for
+//  328 	* write the data using I2C communication
+//  329 	* "IERROR = I2C_WRITE_STRING(DEV_ADDR, array, cnt+1)"
+//  330 	* add your I2C write function here
+//  331 	* iError is an return value of I2C read function
+//  332 	* Please select your valid return value
+//  333 	* In the driver SUCCESS defined as 0
+//  334     * and FAILURE defined as -1
+//  335 	* Note :
+//  336 	* This is a full duplex operation,
+//  337 	* The first read data is discarded, for that extra write operation
+//  338 	* have to be initiated. For that cnt+1 operation done in the I2C write string function
+//  339 	* For more information please refer data sheet SPI communication:
+//  340 	*/
+//  341 	return (s8)iError;
+        MOV     R1,#0x0
+        LJMP    ?BRET
+//  342 }
+          CFI EndBlock cfiBlock15
+//  343 
+//  344  /*	\Brief: The function is used as I2C bus read
+//  345  *	\Return : Status of the I2C read
+//  346  *	\param dev_addr : The device address of the sensor
+//  347  *	\param reg_addr : Address of the first register, will data is going to be read
+//  348  *	\param reg_data : This data read from the sensor, which is hold in an array
+//  349  *	\param cnt : The no of data byte of to be read
+//  350  */
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  351 s8 BME280_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+BME280_I2C_bus_read:
+          CFI Block cfiBlock16 Using cfiCommon0
+          CFI Function BME280_I2C_bus_read
+        CODE
+//  352 {
+        REQUIRE ?V0
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 8
+        MOV     A,#-0x8
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 17)
+        MOV     ?V0,R2
+        MOV     A,R4
+        MOV     R6,A
+        MOV     A,R5
+        MOV     R7,A
+//  353 	s32 iError = BME280_INIT_VALUE;
+//  354 	u8 array[I2C_BUFFER_LEN] = {BME280_INIT_VALUE};
+        MOV     DPTR,#`?<Constant {0, 0, 0, 0, 0, 0, 0, 0}>`
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     A,#0x8
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  355 	u8 stringpos = BME280_INIT_VALUE;
+        MOV     R2,#0x0
+//  356 	array[BME280_INIT_VALUE] = reg_addr;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,?V0
+        MOVX    @DPTR,A
+//  357 	/* Please take the below function as your reference
+//  358 	 * for read the data using I2C communication
+//  359 	 * add your I2C rad function here.
+//  360 	 * "IERROR = I2C_WRITE_READ_STRING(DEV_ADDR, ARRAY, ARRAY, 1, CNT)"
+//  361 	 * iError is an return value of SPI write function
+//  362 	 * Please select your valid return value
+//  363      * In the driver SUCCESS defined as 0
+//  364      * and FAILURE defined as -1
+//  365 	 */
+//  366 	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+        SJMP    ??BME280_I2C_bus_read_0
+//  367 		*(reg_data + stringpos) = array[stringpos];
+??BME280_I2C_bus_read_1:
+        MOV     A,R2
+        MOV     R0,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,DPL
+        ADD     A,R0
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,DPH
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,R6
+        ADD     A,R0
+        MOV     DPL,A
+        CLR     A
+        ADDC    A,R7
+        MOV     DPH,A
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  368 	}
+        INC     R2
+??BME280_I2C_bus_read_0:
+        MOV     A,R2
+        CLR     C
+        SUBB    A,R3
+        JC      ??BME280_I2C_bus_read_1
+//  369 	return (s8)iError;
+        MOV     R1,#0x0
+        MOV     A,#0x8
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 9)
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+//  370 }
+          CFI EndBlock cfiBlock16
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??bme280_data_readout_template::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    bme280_data_readout_template
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??SPI_routine::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    SPI_routine
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??BME280_I2C_bus_write::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    BME280_I2C_bus_write
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??BME280_I2C_bus_read::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    BME280_I2C_bus_read
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0}>`:
+        DATA32
+        DD 0
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0}>_1`:
+        DATA32
+        DD 0
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0}>_2`:
+        DATA32
+        DD 0
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0, 0, 0, 0, 0, 0, 0}>`:
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+
+        END
+//  371 
+//  372 /*	\Brief: The function is used as SPI bus read
+//  373  *	\Return : Status of the SPI read
+//  374  *	\param dev_addr : The device address of the sensor
+//  375  *	\param reg_addr : Address of the first register, will data is going to be read
+//  376  *	\param reg_data : This data read from the sensor, which is hold in an array
+//  377  *	\param cnt : The no of byte of data to be read
+//  378  */
+//  379 /*s8 BME280_SPI_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+//  380 {
+//  381 	s32 iError = BME280_INIT_VALUE;
+//  382 	unsigned long ulTmp;
+//  383 	u8 array [SPI_BUFFER_LEN] = {0,};
+//  384 	u8 stringpos; 
+//  385 	
+//  386 	/*	For the SPI mode only 7 bits of register addresses are used.
+//  387 	The MSB of register address is declared the bit what functionality it is
+//  388 	read/write (read as 1/write as BME280_INIT_VALUE)
+//  389 	
+//  390 	array[BME280_INIT_VALUE] = reg_addr|SPI_READ;   //read routine is initiated register address is mask with 0x80
+//  391 	
+//  392 	//GPIO_PORTD_DATA_R = 0x00;
+//  393 	
+//  394 	//SSIDataPut(SSI0_BASE, array[BME280_INIT_VALUE]);
+//  395 	//while(SSIBusy(SSI0_BASE))
+//  396 	{
+//  397 	}
+//  398 	
+//  399 	
+//  400 	* Please take the below function as your reference for
+//  401 	* read the data using SPI communication
+//  402 	* " IERROR = SPI_READ_WRITE_STRING(ARRAY, ARRAY, CNT+1)"
+//  403 	* add your SPI read function here
+//  404 	* iError is an return value of SPI read function
+//  405 	* Please select your valid return value
+//  406 	* In the driver SUCCESS defined as 0
+//  407 	* and FAILURE defined as -1
+//  408 	* Note :
+//  409 	* This is a full duplex operation,
+//  410 	* The first read data is discarded, for that extra write operation
+//  411 	* have to be initiated. For that cnt+1 operation done in the SPI read
+//  412 	* and write string function
+//  413 	* For more information please refer data sheet SPI communication:
+//  414 	
+//  415 	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) 
+//  416 	{
+//  417 		//SSIDataPut(SSI0_BASE, 0xAA);
+//  418 		//while(SSIBusy(SSI0_BASE))
+//  419 		{
+//  420 		} 
+//  421 		
+//  422 		//SSIDataGet(SSI0_BASE, &ulTmp);
+//  423 		array[stringpos + BME280_DATA_INDEX] = ulTmp & 0xFF;
+//  424 		*(reg_data + stringpos) = array[stringpos+BME280_DATA_INDEX];
+//  425 	}
+//  426 	
+//  427 	//GPIO_PORTD_DATA_R = 0x02;
+//  428 	
+//  429 	return (s8)iError;
+//  430 }
+//  431 */
+//  432 /*	\Brief: The function is used as SPI bus write
+//  433  *	\Return : Status of the SPI write
+//  434  *	\param dev_addr : The device address of the sensor
+//  435  *	\param reg_addr : Address of the first register, where data is to be written
+//  436  *	\param reg_data : It is a value hold in the array,
+//  437  *		will be used for write the value into the register
+//  438  *	\param cnt : The no of byte of data to be write
+//  439  */
+//  440    
+//  441 /*   
+//  442 s8 BME280_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+//  443 {
+//  444 	s32 iError = BME280_INIT_VALUE;
+//  445 	u8 array[SPI_BUFFER_LEN * BME280_ADDRESS_INDEX];
+//  446 	u8 stringpos = BME280_INIT_VALUE;
+//  447 	u8 index = BME280_INIT_VALUE;
+//  448 	for (stringpos = BME280_INIT_VALUE; stringpos < cnt; stringpos++) {
+//  449 		/* the operation of (reg_addr++)&0x7F done as per the
+//  450 		SPI communication protocol specified in the data sheet
+//  451 		index = stringpos * BME280_ADDRESS_INDEX;
+//  452 		array[index] = (reg_addr++) & SPI_WRITE;
+//  453 		array[index + BME280_DATA_INDEX] = *(reg_data + stringpos);
+//  454 	}
+//  455 	/* Please take the below function as your reference
+//  456 	 * for write the data using SPI communication
+//  457 	 * add your SPI write function here.
+//  458 	 * "IERROR = SPI_WRITE_STRING(ARRAY, CNT*2)"
+//  459 	 * iError is an return value of SPI write function
+//  460 	 * Please select your valid return value
+//  461 	 * In the driver SUCCESS defined as 0
+//  462 	 * and FAILURE defined as -1
+//  463 	 
+//  464 	return (s8)iError;
+//  465 }
+//  466 */
+//  467 /*	Brief : The delay routine
+//  468  *	\param : delay in ms
+//  469 */
+//  470    
+//  471  /*
+//  472 void BME280_delay_msek(u32 msek)
+//  473 {
+//  474 	//SysCtlDelay(msek * 16000 / 3);
+//  475 }
+//  476    */
+//  477 #endif
+// 
+// 617 bytes in segment BANKED_CODE
+//  24 bytes in segment BANK_RELAYS
+//  32 bytes in segment XDATA_ROM_C
+//  51 bytes in segment XDATA_Z
+// 
+//  24 bytes of CODE     memory
+//  32 bytes of CONST    memory
+// 617 bytes of HUGECODE memory
+//  51 bytes of XDATA    memory
+//
+//Errors: none
+//Warnings: 4

@@ -63,6 +63,8 @@
 #include "ZDApp.h"
 #include "ZDObject.h"
 #include "ZDProfile.h"
+#include "ZComDef.h"
+
 
 #include "GenericApp.h"
 #include "DebugTrace.h"
@@ -83,10 +85,21 @@
 #include "RTOS_App.h"
 #endif
 
+   
+#include "bme280.h"
+
+#include <stdio.h>
+#include <string.h>
+   
+   
 /*********************************************************************
  * MACROS
  */
 
+#define T_MIN 					        23
+#define T_MAX						24   
+   
+   
 
 #define GENERICAPP_ENDPOINT           10
 
@@ -110,11 +123,8 @@
 // magnetic switch macros end
 
 #define MOTION_DETECTION_PIN          P1_2  
-   
-#define MOTION_SENSOR                 0
-#define MAGNETIC_SENSOR               0
-#define OPTICAL_SENSOR                0
-#define HELLO_WORLD                   1 
+
+
 /*********************************************************************
  * CONSTANTS
  */
@@ -127,6 +137,12 @@
  * GLOBAL VARIABLES
  */
 
+extern struct bme280_t bme280;
+extern struct value Value;
+extern signed char flag;   
+
+ struct value prevValue;
+ 
 uint8 coin = 1;
 char prevData = 0;
 
@@ -384,7 +400,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
         case AF_INCOMING_MSG_CMD:
           
          //Receive "The" Message
-         //GenericApp_MessageMSGCB( MSGpkt );
+         GenericApp_MessageMSGCB( MSGpkt );
          
 
           break;
@@ -443,9 +459,7 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
                         GENERICAPP_PROFID,
                         GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
                         GENERICAPP_MAX_CLUSTERS, (cId_t *)GenericApp_ClusterList,
-                        FALSE );
-     
-   
+                        FALSE ); 
      */ 
       
       dstAddr.addrMode = Addr16Bit;
@@ -470,17 +484,25 @@ uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )
      
       
     // Send "the" message
-    //GenericApp_SendTheMessage();
+    GenericApp_SendTheMessage();
      
-    
+#if BME280_SENSOR    
      //Setup to send message again evry 1000 ms
-     //osal_start_timerEx( GenericApp_TaskID,
-     //                    GENERICAPP_SEND_MSG_EVT,
-     //                    2000);
+     osal_start_timerEx( GenericApp_TaskID,
+                         GENERICAPP_SEND_MSG_EVT,
+                         4000);
+#endif
+#if !BME280_SENSOR     
+     osal_start_timerEx( GenericApp_TaskID,
+                         GENERICAPP_SEND_MSG_EVT,
+                         1000);
     
     
-    }
-    // return unprocessed events
+    
+#endif
+    }    
+
+// return unprocessed events
     return (events ^ GENERICAPP_SEND_MSG_EVT);
   }
 
@@ -712,7 +734,7 @@ static void GenericApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
 void MotionSensor_SendTheMessage( void )
 {
 
-  char motionDetected[] = {'1'};
+  char motionDetected[] = {'M','1'};
   //char motionNotDetected[] = {'0'};
    
   if ( motionDetection() )
@@ -721,7 +743,7 @@ void MotionSensor_SendTheMessage( void )
    
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       
+                       3,                                                       
                        (byte *)&motionDetected,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
@@ -758,8 +780,8 @@ void MotionSensor_SendTheMessage( void )
 void MagneticSwitch_SendTheMessage( void )
 {
 
-  char doorOpened[] = {'1'};
-  char doorClosed[] = {'0'};
+  char doorOpened[] = {'D','1'};
+  char doorClosed[] = {'D','0'};
   
   if ( !magneticSwitch_DoorDetection() )
   {
@@ -767,12 +789,12 @@ void MagneticSwitch_SendTheMessage( void )
     //HalLcdWriteString("Podatak je poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       
+                       3,                                                       
                        (byte *)&doorOpened,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
     
-    HalLcdWriteString("######VRATA SU OTVORENA######",0);
+    HalLcdWriteString("Otvorena vrata.",0);
     
   }
   else
@@ -782,12 +804,12 @@ void MagneticSwitch_SendTheMessage( void )
     // HalLcdWriteString("Podatak nije poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       
+                       3,                                                       
                        (byte *)&doorClosed,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
   
-    HalLcdWriteString("######VRATA SU ZATVORENA######",0);
+    HalLcdWriteString("Zatvorena vrata.",0);
     
   }
 
@@ -809,20 +831,109 @@ static void GenericApp_SendTheMessage( void )
   
  
   char theMessageData[] = "Hello World";
-  char doorOpened[] = {'1'};
-  char doorClosed[] = {'0'};
+  //char doorOpened[3] = "D1";
+  //char doorClosed[3] = "D0"; 
   char motionDetected[] = {'1'};
   char motionNotDetected[] = {'0'};
   
   char theOpticalData[5];
   uint16 optDat;
   
+  uint8 dataFromBME280;
+  //s32 temperatura;
   
   
+  
+//*****************************************************************************
+//BME280
+//*****************************************************************************
+#if BME280_SENSOR
+  
+
+  
+  
+  char temperature[6];
+  char humidity[6];
+  char pressure[12];
+  
+ 
+  bme280_data_readout(&bme280, &Value);
+   
+  
+    sprintf(temperature,"T%d",Value.temp);
+    sprintf(humidity,"H%d",Value.humid/1024);
+    sprintf(pressure,"P%d",Value.press/100);
+    
+ 
+    //TEMPERATURE
+    if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                          GENERICAPP_CLUSTERID,
+                          (byte)osal_strlen( temperature ) + 1,
+                          (byte *)&temperature,
+                          &GenericApp_TransID,
+                          AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+    {
+      // Successfully requested to be sent.
+      HalLcdWriteString("Podatak je poslan.(Temperatura)",0);
+      //HalLcdWriteString(theMessageData,0);
+    }
+    else
+    {
+        // Error occurred in request to send.
+        HalLcdWriteString("Podatak nije poslan.(Temperatura)",0);
+    }
+   
+   //HUMIDITY
+   if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                        GENERICAPP_CLUSTERID,
+                        (byte)osal_strlen( humidity ) + 1,
+                        (byte *)&humidity,
+                        &GenericApp_TransID,
+                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   {
+      // Successfully requested to be sent.
+      HalLcdWriteString("Podatak je poslan.(Vlaga)",0);
+      //HalLcdWriteString(theMessageData,0);
+   }
+   else
+   {
+      // Error occurred in request to send.
+      HalLcdWriteString("Podatak nije poslan.(Vlaga)",0);
+   }
+  
+   //PRESSURE
+   if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
+                        GENERICAPP_CLUSTERID,
+                        (byte)osal_strlen( pressure ) + 1,
+                        (byte *)&pressure,
+                        &GenericApp_TransID,
+                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   {
+      // Successfully requested to be sent.
+      HalLcdWriteString("Podatak je poslan.(Pritisak)",0);
+      //HalLcdWriteString(theMessageData,0);
+   }
+   else
+   {
+      // Error occurred in request to send.
+      HalLcdWriteString("Podatak nije poslan.(Pritisak)",0);
+   }
+  
+  
+#endif  
+//*****************************************************************************
+//End BME280
+//*****************************************************************************
+
+   
+   
+   
+   
 //*****************************************************************************
 //Motion detection
 //*****************************************************************************
- #if MOTION_SENSOR
+/* 
+#if MOTION_SENSOR
 
 
   if ( motionDetection() )
@@ -856,32 +967,63 @@ static void GenericApp_SendTheMessage( void )
   }
   
 #endif   
+   */
 //*****************************************************************************
 //Motion detection end
 //*****************************************************************************  
+
+
   
+  
+//*****************************************************************************
+//   OPTICAL_SENSOR
+//*****************************************************************************    
 #if OPTICAL_SENSOR
   
   optDat = HalAdcRead(HAL_ADC_CHANNEL_1,HAL_ADC_RESOLUTION_12);
-
-   for(i = 0;i<4;i++)
-   {
-        theOpticalData[3-i] =  optDat % 10  + '0';
-        optDat /= 10;
-   }
-      
-   theOpticalData[4] = '\0';
-   
+  char jacina;
+  
+  if( optDat < 400)
+  {
+     theOpticalData[1] = '1';
+  }
+  else if( optDat < 800)
+  {
+    theOpticalData[1] = '2';
+  }
+  else if( optDat < 1200)
+  {
+    theOpticalData[1] = '3';
+  }
+  else
+  {
+    
+    theOpticalData[1] = '4';
+    
+  }
+    
+  theOpticalData[0]='O';
+  
+ //  for(i = 0;i<4;i++)
+   //{
+   //     theOpticalData[3-i] =  optDat % 10  + '0';
+    //       optDat /= 10;
+   //}
+  
+   theOpticalData[2] = '\0';
+ 
+  
+  
    if ( AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                         GENERICAPP_CLUSTERID,
-                        (byte)osal_strlen( theOpticalData ) + 1,
+                        3,
                         (byte *)&theOpticalData,
                         &GenericApp_TransID,
                         AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
    {
       // Successfully requested to be sent.
       HalLcdWriteString("Podatak je poslan.",0);
-      //HalLcdWriteString(theMessageData,0);
+     // HalLcdWriteString(theOpticalData,0);
    }
    else
    {
@@ -889,6 +1031,18 @@ static void GenericApp_SendTheMessage( void )
       HalLcdWriteString("Podatak nije poslan.",0);
    }
 #endif  
+//*****************************************************************************
+//   OPTICAL_SENSOR END
+//*****************************************************************************     
+   
+   
+   
+   
+//****************************************************************************  
+//    MAGNETIC_SENSOR
+//****************************************************************************
+
+   /*
 #if MAGNETIC_SENSOR
 
 
@@ -898,7 +1052,7 @@ static void GenericApp_SendTheMessage( void )
     //HalLcdWriteString("Podatak je poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       
+                       3,                                                       
                        (byte *)&doorOpened,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
@@ -913,7 +1067,7 @@ static void GenericApp_SendTheMessage( void )
     // HalLcdWriteString("Podatak nije poslan.",0);
     AF_DataRequest( &GenericApp_DstAddr, &GenericApp_epDesc,
                        GENERICAPP_CLUSTERID,
-                       2,                                                       
+                       3,                                                       
                        (byte *)&doorClosed,
                        &GenericApp_TransID,
                        AF_DISCV_ROUTE, AF_DEFAULT_RADIUS );
@@ -923,9 +1077,17 @@ static void GenericApp_SendTheMessage( void )
   }
   
 #endif 
+   
+   */
+//****************************************************************************  
+//    MAGNETIC_SENSOR END
+//****************************************************************************  
   
   
   
+//****************************************************************************  
+//    HELOO_WORLD
+//****************************************************************************
 #if HELLO_WORLD
 
   
@@ -950,6 +1112,12 @@ static void GenericApp_SendTheMessage( void )
 
 #endif
 }
+//****************************************************************************  
+//    HELOO_WORLD END
+//****************************************************************************
+
+
+
 
 #if defined( IAR_ARMCM3_LM )
 /*********************************************************************
@@ -1028,13 +1196,13 @@ uint8 magneticSwitch_DoorDetection()
 {
     
  if(TRUE == DOOR_CLOSED_DETECTION) 
-        { 
-          return 0;
+ { 
+    return 0;
  }
-        else
-        {
-          return 1;
-        }
+ else
+ {
+    return 1;
+ }
  
 } 
 /*********************************************************************

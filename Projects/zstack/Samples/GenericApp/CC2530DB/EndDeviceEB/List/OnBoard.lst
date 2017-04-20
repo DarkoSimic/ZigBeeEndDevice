@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  12:17:05
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                20/Apr/2017  12:17:46
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -87,6 +87,8 @@
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 #        -I
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 #        -Ohz --require_prototypes
 #    List file          =  
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\OnBoard.lst
@@ -338,18 +340,21 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
     136            {
     137              /* Initialize Key stuff */
     138              //#if defined (ISR_KEYINTERRUPT)
-    139              HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE , OnBoard_KeyCallback);
+    139              
+    140          
+    141              
+    142              HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE , OnBoard_KeyCallback);
    \                     ??InitBoard_0:
    \   000028                ; Setup parameters for call to function HalKeyConfig
    \   000028   7A..         MOV     R2,#`??OnBoard_KeyCallback::?relay` & 0xff
    \   00002A   7B..         MOV     R3,#(`??OnBoard_KeyCallback::?relay` >> 8) & 0xff
    \   00002C   7901         MOV     R1,#0x1
    \   00002E   12....       LCALL   `??HalKeyConfig::?relay`; Banked call to: HalKeyConfig
-    140              //#else
-    141              //HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);
-    142              //#endif
-    143            }
-    144          }
+    143          
+    144              //HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);
+    145          
+    146            }
+    147          }
    \                     ??InitBoard_1:
    \   000031                REQUIRE ?Subroutine0
    \   000031                REQUIRE SLEEPSTA
@@ -359,108 +364,108 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \                     ?Subroutine0:
    \   000000   7F01         MOV     R7,#0x1
    \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
-    145          
-    146          /*********************************************************************
-    147           * @fn      ChkReset()
-    148           * @brief   Check reset bits - if reset cause is unknown, assume a
-    149           *          brown-out (low power), assume batteries are not reliable,
-    150           *          hang in a loop and sequence through the LEDs.
-    151           * @param   None
-    152           * @return  None
-    153           *********************************************************************/
-    154          void ChkReset( void )
-    155          {
-    156            uint8 rib;
-    157          
-    158            // Isolate reset indicator bits
-    159            rib = SLEEPSTA & LRESET;
+    148          
+    149          /*********************************************************************
+    150           * @fn      ChkReset()
+    151           * @brief   Check reset bits - if reset cause is unknown, assume a
+    152           *          brown-out (low power), assume batteries are not reliable,
+    153           *          hang in a loop and sequence through the LEDs.
+    154           * @param   None
+    155           * @return  None
+    156           *********************************************************************/
+    157          void ChkReset( void )
+    158          {
+    159            uint8 rib;
     160          
-    161            if ( rib == RESETPO )
-    162            {
-    163              // Put code here to handle Power-On reset
-    164            }
-    165            else if ( rib == RESETEX )
-    166            {
-    167              // Put code here to handle External reset
-    168            }
-    169            else if ( rib == RESETWD )
-    170            {
-    171              // Put code here to handle WatchDog reset
-    172            }
-    173            else  // Unknown reason - not expected.
-    174            {
-    175              HAL_ASSERT(0);
-    176            }
-    177          }
-    178          
-    179          /*********************************************************************
-    180           *                        "Keyboard" Support
-    181           *********************************************************************/
-    182          
-    183          /*********************************************************************
-    184           * Keyboard Register function
-    185           *
-    186           * The keyboard handler is setup to send all keyboard changes to
-    187           * one task (if a task is registered).
+    161            // Isolate reset indicator bits
+    162            rib = SLEEPSTA & LRESET;
+    163          
+    164            if ( rib == RESETPO )
+    165            {
+    166              // Put code here to handle Power-On reset
+    167            }
+    168            else if ( rib == RESETEX )
+    169            {
+    170              // Put code here to handle External reset
+    171            }
+    172            else if ( rib == RESETWD )
+    173            {
+    174              // Put code here to handle WatchDog reset
+    175            }
+    176            else  // Unknown reason - not expected.
+    177            {
+    178              HAL_ASSERT(0);
+    179            }
+    180          }
+    181          
+    182          /*********************************************************************
+    183           *                        "Keyboard" Support
+    184           *********************************************************************/
+    185          
+    186          /*********************************************************************
+    187           * Keyboard Register function
     188           *
-    189           * If a task registers, it will get all the keys. You can change this
-    190           * to register for individual keys.
-    191           *********************************************************************/
+    189           * The keyboard handler is setup to send all keyboard changes to
+    190           * one task (if a task is registered).
+    191           *
+    192           * If a task registers, it will get all the keys. You can change this
+    193           * to register for individual keys.
+    194           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    192          uint8 RegisterForKeys( uint8 task_id )
+    195          uint8 RegisterForKeys( uint8 task_id )
    \                     RegisterForKeys:
-    193          {
+    196          {
    \   000000   C082         PUSH    DPL
    \   000002   C083         PUSH    DPH
    \   000004                ; Saved register size: 2
    \   000004                ; Auto size: 0
    \   000004   E9           MOV     A,R1
    \   000005   F8           MOV     R0,A
-    194            // Allow only the first task
-    195            if ( registeredKeysTaskID == NO_TASK_ID )
+    197            // Allow only the first task
+    198            if ( registeredKeysTaskID == NO_TASK_ID )
    \   000006   90....       MOV     DPTR,#registeredKeysTaskID
    \   000009   E0           MOVX    A,@DPTR
    \   00000A   F4           CPL     A
    \   00000B   7006         JNZ     ??RegisterForKeys_0
-    196            {
-    197              registeredKeysTaskID = task_id;
+    199            {
+    200              registeredKeysTaskID = task_id;
    \   00000D   E8           MOV     A,R0
    \   00000E   F0           MOVX    @DPTR,A
-    198              return ( true );
+    201              return ( true );
    \   00000F   7901         MOV     R1,#0x1
    \   000011   8002         SJMP    ??RegisterForKeys_1
-    199            }
-    200            else
-    201              return ( false );
+    202            }
+    203            else
+    204              return ( false );
    \                     ??RegisterForKeys_0:
    \   000013   7900         MOV     R1,#0x0
    \                     ??RegisterForKeys_1:
    \   000015                REQUIRE ?Subroutine1
    \   000015                ; // Fall through to label ?Subroutine1
-    202          }
+    205          }
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \                     ?Subroutine1:
    \   000000   D083         POP     DPH
    \   000002   D082         POP     DPL
    \   000004   02....       LJMP    ?BRET
-    203          
-    204          /*********************************************************************
-    205           * @fn      OnBoard_SendKeys
-    206           *
-    207           * @brief   Send "Key Pressed" message to application.
-    208           *
-    209           * @param   keys  - keys that were pressed
-    210           *          state - shifted
+    206          
+    207          /*********************************************************************
+    208           * @fn      OnBoard_SendKeys
+    209           *
+    210           * @brief   Send "Key Pressed" message to application.
     211           *
-    212           * @return  status
-    213           *********************************************************************/
+    212           * @param   keys  - keys that were pressed
+    213           *          state - shifted
+    214           *
+    215           * @return  status
+    216           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    214          uint8 OnBoard_SendKeys( uint8 keys, uint8 state )
+    217          uint8 OnBoard_SendKeys( uint8 keys, uint8 state )
    \                     OnBoard_SendKeys:
-    215          {
+    218          {
    \   000000                REQUIRE ?V0
    \   000000                REQUIRE ?V1
    \   000000   74F6         MOV     A,#-0xa
@@ -471,36 +476,36 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000006   FE           MOV     R6,A
    \   000007   EA           MOV     A,R2
    \   000008   FF           MOV     R7,A
-    216            keyChange_t *msgPtr;
-    217          
-    218            if ( registeredKeysTaskID != NO_TASK_ID )
+    219            keyChange_t *msgPtr;
+    220          
+    221            if ( registeredKeysTaskID != NO_TASK_ID )
    \   000009   90....       MOV     DPTR,#registeredKeysTaskID
    \   00000C   E0           MOVX    A,@DPTR
    \   00000D   F4           CPL     A
    \   00000E   602B         JZ      ??OnBoard_SendKeys_0
-    219            {
-    220              // Send the address to the task
-    221              msgPtr = (keyChange_t *)osal_msg_allocate( sizeof(keyChange_t) );
+    222            {
+    223              // Send the address to the task
+    224              msgPtr = (keyChange_t *)osal_msg_allocate( sizeof(keyChange_t) );
    \   000010                ; Setup parameters for call to function osal_msg_allocate
    \   000010   7A04         MOV     R2,#0x4
    \   000012   7B00         MOV     R3,#0x0
    \   000014   12....       LCALL   `??osal_msg_allocate::?relay`; Banked call to: osal_msg_allocate
-    222              if ( msgPtr )
+    225              if ( msgPtr )
    \   000017   EA           MOV     A,R2
    \   000018   4B           ORL     A,R3
    \   000019   601C         JZ      ??OnBoard_SendKeys_1
-    223              {
-    224                msgPtr->hdr.event = KEY_CHANGE;
+    226              {
+    227                msgPtr->hdr.event = KEY_CHANGE;
    \   00001B   8A82         MOV     DPL,R2
    \   00001D   8B83         MOV     DPH,R3
    \   00001F   74C0         MOV     A,#-0x40
    \   000021   F0           MOVX    @DPTR,A
-    225                msgPtr->state = state;
+    228                msgPtr->state = state;
    \   000022   EF           MOV     A,R7
    \   000023   A3           INC     DPTR
    \   000024   A3           INC     DPTR
    \   000025   F0           MOVX    @DPTR,A
-    226                msgPtr->keys = keys;
+    229                msgPtr->keys = keys;
    \   000026   EE           MOV     A,R6
    \   000027   8A82         MOV     DPL,R2
    \   000029   8B83         MOV     DPH,R3
@@ -508,130 +513,130 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   00002C   A3           INC     DPTR
    \   00002D   A3           INC     DPTR
    \   00002E   F0           MOVX    @DPTR,A
-    227          
-    228                osal_msg_send( registeredKeysTaskID, (uint8 *)msgPtr );
+    230          
+    231                osal_msg_send( registeredKeysTaskID, (uint8 *)msgPtr );
    \   00002F                ; Setup parameters for call to function osal_msg_send
    \   00002F   90....       MOV     DPTR,#registeredKeysTaskID
    \   000032   E0           MOVX    A,@DPTR
    \   000033   F9           MOV     R1,A
    \   000034   12....       LCALL   `??osal_msg_send::?relay`; Banked call to: osal_msg_send
-    229              }
-    230              return ( ZSuccess );
+    232              }
+    233              return ( ZSuccess );
    \                     ??OnBoard_SendKeys_1:
    \   000037   7900         MOV     R1,#0x0
    \   000039   8002         SJMP    ??OnBoard_SendKeys_2
-    231            }
-    232            else
-    233              return ( ZFailure );
+    234            }
+    235            else
+    236              return ( ZFailure );
    \                     ??OnBoard_SendKeys_0:
    \   00003B   7901         MOV     R1,#0x1
    \                     ??OnBoard_SendKeys_2:
    \   00003D   7F02         MOV     R7,#0x2
    \   00003F   02....       LJMP    ?BANKED_LEAVE_XDATA
-    234          }
-    235          
-    236          /*********************************************************************
-    237           * @fn      OnBoard_KeyCallback
-    238           *
-    239           * @brief   Callback service for keys
-    240           *
-    241           * @param   keys  - keys that were pressed
-    242           *          state - shifted
+    237          }
+    238          
+    239          /*********************************************************************
+    240           * @fn      OnBoard_KeyCallback
+    241           *
+    242           * @brief   Callback service for keys
     243           *
-    244           * @return  void
-    245           *********************************************************************/
+    244           * @param   keys  - keys that were pressed
+    245           *          state - shifted
+    246           *
+    247           * @return  void
+    248           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    246          void OnBoard_KeyCallback ( uint8 keys, uint8 state )
+    249          void OnBoard_KeyCallback ( uint8 keys, uint8 state )
    \                     OnBoard_KeyCallback:
-    247          {
+    250          {
    \   000000   74F7         MOV     A,#-0x9
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 9
    \   000005                ; Auto size: 0
    \   000005   E9           MOV     A,R1
-    248            uint8 shift;
-    249            (void)state;
-    250          
-    251            shift = (keys & HAL_KEY_SW_6) ? true : false;
-    252          
-    253            if ( OnBoard_SendKeys( keys, shift ) != ZSuccess )
+    251            uint8 shift;
+    252            (void)state;
+    253          
+    254            shift = (keys & HAL_KEY_SW_6) ? true : false;
+    255          
+    256            if ( OnBoard_SendKeys( keys, shift ) != ZSuccess )
    \   000006                ; Setup parameters for call to function OnBoard_SendKeys
    \   000006   A2E5         MOV     C,0xE0 /* A   */.5
    \   000008   E4           CLR     A
    \   000009   33           RLC     A
    \   00000A   FA           MOV     R2,A
    \   00000B   12....       LCALL   `??OnBoard_SendKeys::?relay`; Banked call to: OnBoard_SendKeys
-    254            {
-    255              // Process SW1 here
-    256              if ( keys & HAL_KEY_SW_1 )  // Switch 1
-    257              {
-    258              }
-    259              // Process SW2 here
-    260              if ( keys & HAL_KEY_SW_2 )  // Switch 2
-    261              {
-    262              }
-    263              // Process SW3 here
-    264              if ( keys & HAL_KEY_SW_3 )  // Switch 3
-    265              {
-    266              }
-    267              // Process SW4 here
-    268              if ( keys & HAL_KEY_SW_4 )  // Switch 4
-    269              {
-    270              }
-    271              // Process SW5 here
-    272              if ( keys & HAL_KEY_SW_5 )  // Switch 5
-    273              {
-    274              }
-    275              // Process SW6 here
-    276              if ( keys & HAL_KEY_SW_6 )  // Switch 6
-    277              {
-    278              }
-    279            }
-    280          }
+    257            {
+    258              // Process SW1 here
+    259              if ( keys & HAL_KEY_SW_1 )  // Switch 1
+    260              {
+    261              }
+    262              // Process SW2 here
+    263              if ( keys & HAL_KEY_SW_2 )  // Switch 2
+    264              {
+    265              }
+    266              // Process SW3 here
+    267              if ( keys & HAL_KEY_SW_3 )  // Switch 3
+    268              {
+    269              }
+    270              // Process SW4 here
+    271              if ( keys & HAL_KEY_SW_4 )  // Switch 4
+    272              {
+    273              }
+    274              // Process SW5 here
+    275              if ( keys & HAL_KEY_SW_5 )  // Switch 5
+    276              {
+    277              }
+    278              // Process SW6 here
+    279              if ( keys & HAL_KEY_SW_6 )  // Switch 6
+    280              {
+    281              }
+    282            }
+    283          }
    \   00000E   80..         SJMP    ?Subroutine0
-    281          
-    282          /*********************************************************************
-    283           * @fn      OnBoard_stack_used
-    284           *
-    285           * @brief   Runs through the stack looking for touched memory.
-    286           *
-    287           * @param   none
-    288           *
-    289           * @return  Maximum number of bytes used by the stack.
-    290           *********************************************************************/
+    284          
+    285          /*********************************************************************
+    286           * @fn      OnBoard_stack_used
+    287           *
+    288           * @brief   Runs through the stack looking for touched memory.
+    289           *
+    290           * @param   none
+    291           *
+    292           * @return  Maximum number of bytes used by the stack.
+    293           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    291          uint16 OnBoard_stack_used(void)
+    294          uint16 OnBoard_stack_used(void)
    \                     OnBoard_stack_used:
-    292          {
+    295          {
    \   000000   C082         PUSH    DPL
    \   000002   C083         PUSH    DPH
    \   000004                ; Saved register size: 2
    \   000004                ; Auto size: 0
-    293            uint8 const *ptr;
-    294            uint8 cnt = 0;
+    296            uint8 const *ptr;
+    297            uint8 cnt = 0;
    \   000004   7800         MOV     R0,#0x0
-    295          
-    296            for (ptr = CSTACK_END; ptr > CSTACK_BEG; ptr--)
+    298          
+    299            for (ptr = CSTACK_END; ptr > CSTACK_BEG; ptr--)
    \   000006   7582..       MOV     DPL,#(SFE(XSTACK) + 255) & 0xff
    \   000009   7583..       MOV     DPH,#((SFE(XSTACK) - 1) >> 8) & 0xff
    \   00000C   800E         SJMP    ??OnBoard_stack_used_0
-    297            {
-    298              if (STACK_INIT_VALUE == *ptr)
-    299              {
-    300                if (++cnt >= MIN_RAM_INIT)
-    301                {
-    302                  ptr += MIN_RAM_INIT;
-    303                  break;
-    304                }
-    305              }
-    306              else
-    307              {
-    308                cnt = 0;
+    300            {
+    301              if (STACK_INIT_VALUE == *ptr)
+    302              {
+    303                if (++cnt >= MIN_RAM_INIT)
+    304                {
+    305                  ptr += MIN_RAM_INIT;
+    306                  break;
+    307                }
+    308              }
+    309              else
+    310              {
+    311                cnt = 0;
    \                     ??OnBoard_stack_used_1:
    \   00000E   7800         MOV     R0,#0x0
-    309              }
+    312              }
    \                     ??OnBoard_stack_used_2:
    \   000010   E582         MOV     A,DPL
    \   000012   24FF         ADD     A,#-0x1
@@ -659,9 +664,9 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000037   F582         MOV     DPL,A
    \   000039   5002         JNC     ??OnBoard_stack_used_3
    \   00003B   0583         INC     DPH
-    310            }
-    311          
-    312            return (uint16)(CSTACK_END - ptr + 1);
+    313            }
+    314          
+    315            return (uint16)(CSTACK_END - ptr + 1);
    \                     ??OnBoard_stack_used_3:
    \   00003D   74..         MOV     A,#(SFE(XSTACK) + 255) & 0xff
    \   00003F   C3           CLR     C
@@ -677,25 +682,25 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   00004D   39           ADDC    A,R1
    \   00004E   FB           MOV     R3,A
    \   00004F   02....       LJMP    ?Subroutine1 & 0xFFFF
-    313          }
-    314          
-    315          /*********************************************************************
-    316           * @fn      _itoa
-    317           *
-    318           * @brief   convert a 16bit number to ASCII
-    319           *
-    320           * @param   num -
-    321           *          buf -
-    322           *          radix -
-    323           *
-    324           * @return  void
-    325           *
-    326           *********************************************************************/
+    316          }
+    317          
+    318          /*********************************************************************
+    319           * @fn      _itoa
+    320           *
+    321           * @brief   convert a 16bit number to ASCII
+    322           *
+    323           * @param   num -
+    324           *          buf -
+    325           *          radix -
+    326           *
+    327           * @return  void
+    328           *
+    329           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    327          void _itoa(uint16 num, uint8 *buf, uint8 radix)
+    330          void _itoa(uint16 num, uint8 *buf, uint8 radix)
    \                     _itoa:
-    328          {
+    331          {
    \   000000                REQUIRE ?V0
    \   000000                REQUIRE ?V1
    \   000000                REQUIRE ?V2
@@ -713,18 +718,18 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   00000C   EB           MOV     A,R3
    \   00000D   FF           MOV     R7,A
    \   00000E   89..         MOV     ?V3,R1
-    329            char c,i;
-    330            uint8 *p, rst[5];
-    331          
-    332            p = rst;
+    332            char c,i;
+    333            uint8 *p, rst[5];
+    334          
+    335            p = rst;
    \   000010   A8..         MOV     R0,?XSP + 0
    \   000012   A9..         MOV     R1,?XSP + 1
    \   000014   88..         MOV     ?V0,R0
    \   000016   89..         MOV     ?V1,R1
-    333            for ( i=0; i<5; i++,p++ )
+    336            for ( i=0; i<5; i++,p++ )
    \   000018   75..00       MOV     ?V2,#0x0
-    334            {
-    335              c = num % radix;  // Isolate a digit
+    337            {
+    338              c = num % radix;  // Isolate a digit
    \                     ??_itoa_0:
    \   00001B   EE           MOV     A,R6
    \   00001C   F8           MOV     R0,A
@@ -735,7 +740,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000023   12....       LCALL   ?US_DIV_MOD
    \   000026   EA           MOV     A,R2
    \   000027   F8           MOV     R0,A
-    336              *p = c + (( c < 10 ) ? '0' : '7');  // Convert to Ascii
+    339              *p = c + (( c < 10 ) ? '0' : '7');  // Convert to Ascii
    \   000028   940A         SUBB    A,#0xa
    \   00002A   5004         JNC     ??_itoa_1
    \   00002C   7A30         MOV     R2,#0x30
@@ -748,7 +753,7 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000034   85..82       MOV     DPL,?V0
    \   000037   85..83       MOV     DPH,?V1
    \   00003A   F0           MOVX    @DPTR,A
-    337              num /= radix;
+    340              num /= radix;
    \   00003B   EE           MOV     A,R6
    \   00003C   F8           MOV     R0,A
    \   00003D   EF           MOV     A,R7
@@ -760,12 +765,12 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000048   89..         MOV     ?V5,R1
    \   00004A   AE..         MOV     R6,?V4
    \   00004C   AF..         MOV     R7,?V5
-    338              if ( !num )
+    341              if ( !num )
    \   00004E   EE           MOV     A,R6
    \   00004F   4F           ORL     A,R7
    \   000050   600F         JZ      ??_itoa_3
-    339                break;
-    340            }
+    342                break;
+    343            }
    \   000052   05..         INC     ?V2
    \   000054   A3           INC     DPTR
    \   000055   8582..       MOV     ?V0,DPL
@@ -773,11 +778,11 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   00005B   E5..         MOV     A,?V2
    \   00005D   9405         SUBB    A,#0x5
    \   00005F   40BA         JC      ??_itoa_0
-    341          
-    342            for ( c=0 ; c<=i; c++ )
+    344          
+    345            for ( c=0 ; c<=i; c++ )
    \                     ??_itoa_3:
    \   000061   7800         MOV     R0,#0x0
-    343              *buf++ = *p--;  // Reverse character order
+    346              *buf++ = *p--;  // Reverse character order
    \                     ??_itoa_4:
    \   000063   85..82       MOV     DPL,?V0
    \   000066   85..83       MOV     DPH,?V1
@@ -799,69 +804,69 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000083   C3           CLR     C
    \   000084   98           SUBB    A,R0
    \   000085   50DC         JNC     ??_itoa_4
-    344          
-    345            *buf = '\0';
+    347          
+    348            *buf = '\0';
    \   000087   E4           CLR     A
    \   000088   F0           MOVX    @DPTR,A
-    346          }
+    349          }
    \   000089   7405         MOV     A,#0x5
    \   00008B   12....       LCALL   ?DEALLOC_XSTACK8
    \   00008E   7F06         MOV     R7,#0x6
    \   000090   02....       LJMP    ?BANKED_LEAVE_XDATA
-    347          
-    348          /*********************************************************************
-    349           * @fn        Onboard_rand
-    350           *
-    351           * @brief    Random number generator
-    352           *
-    353           * @param   none
-    354           *
-    355           * @return  uint16 - new random number
-    356           *
-    357           *********************************************************************/
+    350          
+    351          /*********************************************************************
+    352           * @fn        Onboard_rand
+    353           *
+    354           * @brief    Random number generator
+    355           *
+    356           * @param   none
+    357           *
+    358           * @return  uint16 - new random number
+    359           *
+    360           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    358          uint16 Onboard_rand( void )
+    361          uint16 Onboard_rand( void )
    \                     Onboard_rand:
-    359          {
+    362          {
    \   000000   C082         PUSH    DPL
    \   000002   C083         PUSH    DPH
    \   000004                ; Saved register size: 2
    \   000004                ; Auto size: 0
-    360            return ( MAC_RADIO_RANDOM_WORD() );
+    363            return ( MAC_RADIO_RANDOM_WORD() );
    \   000004                ; Setup parameters for call to function macMcuRandomWord
    \   000004   12....       LCALL   `??macMcuRandomWord::?relay`; Banked call to: macMcuRandomWord
    \   000007   02....       LJMP    ?Subroutine1 & 0xFFFF
-    361          }
-    362          
-    363          /*********************************************************************
-    364           * @fn        Onboard_wait
-    365           *
-    366           * @brief    Delay wait
-    367           *
-    368           * @param   uint16 - time to wait
-    369           *
-    370           * @return  none
-    371           *
-    372           *********************************************************************/
+    364          }
+    365          
+    366          /*********************************************************************
+    367           * @fn        Onboard_wait
+    368           *
+    369           * @brief    Delay wait
+    370           *
+    371           * @param   uint16 - time to wait
+    372           *
+    373           * @return  none
+    374           *
+    375           *********************************************************************/
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    373          void Onboard_wait( uint16 timeout )
+    376          void Onboard_wait( uint16 timeout )
    \                     Onboard_wait:
-    374          {
+    377          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
    \   000000   8003         SJMP    ??Onboard_wait_0
-    375            while (timeout--)
-    376            {
-    377              asm("NOP");
+    378            while (timeout--)
+    379            {
+    380              asm("NOP");
    \                     ??Onboard_wait_1:
    \   000002   00           NOP
-    378              asm("NOP");
+    381              asm("NOP");
    \   000003   00           NOP
-    379              asm("NOP");
+    382              asm("NOP");
    \   000004   00           NOP
-    380            }
+    383            }
    \                     ??Onboard_wait_0:
    \   000005   EA           MOV     A,R2
    \   000006   F8           MOV     R0,A
@@ -876,175 +881,175 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000011   E8           MOV     A,R0
    \   000012   49           ORL     A,R1
    \   000013   70ED         JNZ     ??Onboard_wait_1
-    381          }
+    384          }
    \   000015   02....       LJMP    ?BRET
-    382          
-    383          /*********************************************************************
-    384           * @fn      Onboard_soft_reset
-    385           *
-    386           * @brief   Effect a soft reset.
-    387           *
-    388           * @param   none
-    389           *
-    390           * @return  none
-    391           *
-    392           *********************************************************************/
+    385          
+    386          /*********************************************************************
+    387           * @fn      Onboard_soft_reset
+    388           *
+    389           * @brief   Effect a soft reset.
+    390           *
+    391           * @param   none
+    392           *
+    393           * @return  none
+    394           *
+    395           *********************************************************************/
 
    \                                 In  segment NEAR_CODE, align 1, keep-with-next
-    393          __near_func void Onboard_soft_reset( void )
+    396          __near_func void Onboard_soft_reset( void )
    \                     Onboard_soft_reset:
-    394          {
+    397          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    395            HAL_DISABLE_INTERRUPTS();
+    398            HAL_DISABLE_INTERRUPTS();
    \   000000   C2AF         CLR     0xa8.7
-    396            // Abort all DMA channels to insure that ongoing operations do not
-    397            // interfere with re-configuration.
-    398            DMAARM = 0x80 | 0x1F;
+    399            // Abort all DMA channels to insure that ongoing operations do not
+    400            // interfere with re-configuration.
+    401            DMAARM = 0x80 | 0x1F;
    \   000002   75D69F       MOV     0xd6,#-0x61
-    399            asm("LJMP 0x0");
+    402            asm("LJMP 0x0");
    \   000005   020000       LJMP 0x0
-    400          }
+    403          }
    \   000008   22           RET
    \   000009                REQUIRE _A_IEN0
    \   000009                REQUIRE DMAARM
-    401          
-    402          #if defined MT_UBL_FUNC
-    403          #if !defined UBL_RC_IMG_PG_BEG
-    404          #define UBL_RC_IMG_PG_BEG  (HAL_SB_CRC_ADDR / HAL_FLASH_PAGE_SIZE)
-    405          #endif
-    406          #if !defined UBL_MD_PG_OFFSET
-    407          #define UBL_MD_PG_OFFSET   (HAL_SB_CRC_ADDR % HAL_FLASH_PAGE_SIZE + 2)
+    404          
+    405          #if defined MT_UBL_FUNC
+    406          #if !defined UBL_RC_IMG_PG_BEG
+    407          #define UBL_RC_IMG_PG_BEG  (HAL_SB_CRC_ADDR / HAL_FLASH_PAGE_SIZE)
     408          #endif
-    409          #if !defined UBL_ADDR
-    410          #define UBL_MD_ADDR        (HAL_SB_CRC_ADDR + 2)
+    409          #if !defined UBL_MD_PG_OFFSET
+    410          #define UBL_MD_PG_OFFSET   (HAL_SB_CRC_ADDR % HAL_FLASH_PAGE_SIZE + 2)
     411          #endif
-    412          
-    413          /*********************************************************************
-    414           * @fn      MT_UblCommandProcessing
-    415           *
-    416           * @brief   Effect a soft reset.
-    417           *
-    418           * @param   pBuf - Pointer to the received MT buffer.
-    419           *
-    420           * @return  MT_RPC_ERR_COMMAND_ID if the MT command is not MT_UBL_ERASE.
-    421           *
-    422           *********************************************************************/
-    423          uint8 MT_UblCommandProcessing(uint8 *pBuf);
-    424          uint8 MT_UblCommandProcessing(uint8 *pBuf)
-    425          {
-    426            if (pBuf[MT_RPC_POS_CMD1] == MT_UBL_ERASE)
-    427            {
-    428              uint16 crc[2];
-    429              HalFlashRead(UBL_RC_IMG_PG_BEG, UBL_MD_PG_OFFSET, (uint8 *)(crc+1), 2);
-    430          
-    431              if (crc[1] != 0)
-    432              {
-    433                crc[1] ^= 0xFFFF;  // Only write to zero bits that are not already zero.
-    434                crc[0] = 0xFFFF;
-    435                HalFlashWrite((UBL_MD_ADDR - 2) / HAL_FLASH_WORD_SIZE, (uint8 *)crc, 1);
-    436              }
-    437          
-    438              Onboard_soft_reset();
-    439            }
+    412          #if !defined UBL_ADDR
+    413          #define UBL_MD_ADDR        (HAL_SB_CRC_ADDR + 2)
+    414          #endif
+    415          
+    416          /*********************************************************************
+    417           * @fn      MT_UblCommandProcessing
+    418           *
+    419           * @brief   Effect a soft reset.
+    420           *
+    421           * @param   pBuf - Pointer to the received MT buffer.
+    422           *
+    423           * @return  MT_RPC_ERR_COMMAND_ID if the MT command is not MT_UBL_ERASE.
+    424           *
+    425           *********************************************************************/
+    426          uint8 MT_UblCommandProcessing(uint8 *pBuf);
+    427          uint8 MT_UblCommandProcessing(uint8 *pBuf)
+    428          {
+    429            if (pBuf[MT_RPC_POS_CMD1] == MT_UBL_ERASE)
+    430            {
+    431              uint16 crc[2];
+    432              HalFlashRead(UBL_RC_IMG_PG_BEG, UBL_MD_PG_OFFSET, (uint8 *)(crc+1), 2);
+    433          
+    434              if (crc[1] != 0)
+    435              {
+    436                crc[1] ^= 0xFFFF;  // Only write to zero bits that are not already zero.
+    437                crc[0] = 0xFFFF;
+    438                HalFlashWrite((UBL_MD_ADDR - 2) / HAL_FLASH_WORD_SIZE, (uint8 *)crc, 1);
+    439              }
     440          
-    441            return MT_RPC_ERR_COMMAND_ID;
-    442          }
-    443          #endif
-    444          
-    445          /*********************************************************************
-    446           *                    EXTERNAL I/O FUNCTIONS
-    447           *
-    448           * User defined functions to control external devices. Add your code
-    449           * to the following functions to control devices wired to DB outputs.
+    441              Onboard_soft_reset();
+    442            }
+    443          
+    444            return MT_RPC_ERR_COMMAND_ID;
+    445          }
+    446          #endif
+    447          
+    448          /*********************************************************************
+    449           *                    EXTERNAL I/O FUNCTIONS
     450           *
-    451           *********************************************************************/
-    452          
+    451           * User defined functions to control external devices. Add your code
+    452           * to the following functions to control devices wired to DB outputs.
+    453           *
+    454           *********************************************************************/
+    455          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    453          void BigLight_On( void )
+    456          void BigLight_On( void )
    \                     BigLight_On:
-    454          {
+    457          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    455            // Put code here to turn on an external light
-    456          }
+    458            // Put code here to turn on an external light
+    459          }
    \   000000   02....       LJMP    ?BRET
-    457          
+    460          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    458          void BigLight_Off( void )
+    461          void BigLight_Off( void )
    \                     BigLight_Off:
-    459          {
+    462          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    460            // Put code here to turn off an external light
-    461          }
+    463            // Put code here to turn off an external light
+    464          }
    \   000000   02....       LJMP    ?BRET
-    462          
+    465          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    463          void BuzzerControl( uint8 on )
+    466          void BuzzerControl( uint8 on )
    \                     BuzzerControl:
-    464          {
+    467          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    465            // Put code here to turn a buzzer on/off
-    466            (void)on;
-    467          }
+    468            // Put code here to turn a buzzer on/off
+    469            (void)on;
+    470          }
    \   000000   02....       LJMP    ?BRET
-    468          
+    471          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    469          void Dimmer( uint8 lvl )
+    472          void Dimmer( uint8 lvl )
    \                     Dimmer:
-    470          {
+    473          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    471            // Put code here to control a dimmer
-    472            (void)lvl;
-    473          }
+    474            // Put code here to control a dimmer
+    475            (void)lvl;
+    476          }
    \   000000   02....       LJMP    ?BRET
-    474          
-    475          // No dip switches on this board
+    477          
+    478          // No dip switches on this board
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    476          uint8 GetUserDipSw( void )
+    479          uint8 GetUserDipSw( void )
    \                     GetUserDipSw:
-    477          {
+    480          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    478            return 0;
+    481            return 0;
    \   000000   7900         MOV     R1,#0x0
    \   000002   02....       LJMP    ?BRET
-    479          }
+    482          }
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    480          void uartInit(void)
+    483          void uartInit(void)
    \                     uartInit:
-    481          {
+    484          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    482           CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
+    485           CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
    \   000000   75C600       MOV     0xc6,#0x0
-    483              
-    484            
-    485              PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
+    486              
+    487            
+    488              PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
    \   000003   75F100       MOV     0xf1,#0x0
-    486              P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+    489              P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
    \   000006   75F30C       MOV     0xf3,#0xc
-    487              
-    488            
-    489              U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
+    490              
+    491            
+    492              U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
    \   000009   7586C0       MOV     0x86,#-0x40
-    490              U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
+    493              U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
    \   00000C   75C508       MOV     0xc5,#0x8
-    491           
-    492              
-    493              U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
+    494           
+    495              
+    496              U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
    \   00000F   75C23A       MOV     0xc2,#0x3a
-    494              
-    495          }
+    497              
+    498          }
    \   000012   02....       LJMP    ?BRET
    \   000015                REQUIRE CLKCONCMD
    \   000015                REQUIRE PERCFG
@@ -1054,23 +1059,23 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \   000015                REQUIRE U0BAUD
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    496          void uartSend(char data)
+    499          void uartSend(char data)
    \                     uartSend:
-    497          {
+    500          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    498          
-    499              U0DBUF = data;
+    501          
+    502              U0DBUF = data;
    \   000000   89C1         MOV     0xc1,R1
-    500              
-    501              while((U0CSR & 0x01) == 0x01)
+    503              
+    504              while((U0CSR & 0x01) == 0x01)
    \                     ??uartSend_0:
    \   000002   E586         MOV     A,0x86
    \   000004   A2E0         MOV     C,0xE0 /* A   */.0
    \   000006   40FA         JC      ??uartSend_0
-    502              {
-    503              }
-    504          }
+    505              {
+    506              }
+    507          }
    \   000008   02....       LJMP    ?BRET
    \   00000B                REQUIRE U0DBUF
    \   00000B                REQUIRE U0CSR
@@ -1153,13 +1158,13 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\ZMain\TI25
    \                     `??uartSend::?relay`:
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    uartSend
-    505          
-    506          
-    507          /*********************************************************************
-    508          *********************************************************************/
+    508          
     509          
-    510           
-    511          
+    510          /*********************************************************************
+    511          *********************************************************************/
+    512          
+    513           
+    514          
 
    Maximum stack usage in bytes:
 

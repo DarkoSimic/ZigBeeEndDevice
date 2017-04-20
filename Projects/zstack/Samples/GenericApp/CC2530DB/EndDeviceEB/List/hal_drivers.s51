@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:03
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               20/Apr/2017  12:17:44
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -87,6 +87,8 @@
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 //        -I
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 //        -Ohz --require_prototypes
 //    List file          =  
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_drivers.s51
@@ -247,14 +249,10 @@ HalDmaInit          SYMBOL "HalDmaInit"
 `??HalDmaInit::?relay` SYMBOL "?relay", HalDmaInit
 HalKeyInit          SYMBOL "HalKeyInit"
 `??HalKeyInit::?relay` SYMBOL "?relay", HalKeyInit
-HalLcdInit          SYMBOL "HalLcdInit"
-`??HalLcdInit::?relay` SYMBOL "?relay", HalLcdInit
 HalLedInit          SYMBOL "HalLedInit"
 `??HalLedInit::?relay` SYMBOL "?relay", HalLedInit
 HalLedUpdate        SYMBOL "HalLedUpdate"
 `??HalLedUpdate::?relay` SYMBOL "?relay", HalLedUpdate
-HalUARTInit         SYMBOL "HalUARTInit"
-`??HalUARTInit::?relay` SYMBOL "?relay", HalUARTInit
 HalUARTPoll         SYMBOL "HalUARTPoll"
 `??HalUARTPoll::?relay` SYMBOL "?relay", HalUARTPoll
 MagneticSwitch_SendTheMessage SYMBOL "MagneticSwitch_SendTheMessage"
@@ -284,14 +282,10 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         FUNCTION `??HalDmaInit::?relay`,00H
         EXTERN `??HalKeyInit::?relay`
         FUNCTION `??HalKeyInit::?relay`,00H
-        EXTERN `??HalLcdInit::?relay`
-        FUNCTION `??HalLcdInit::?relay`,00H
         EXTERN `??HalLedInit::?relay`
         FUNCTION `??HalLedInit::?relay`,00H
         EXTERN `??HalLedUpdate::?relay`
         FUNCTION `??HalLedUpdate::?relay`,00H
-        EXTERN `??HalUARTInit::?relay`
-        FUNCTION `??HalUARTInit::?relay`,00H
         EXTERN `??HalUARTPoll::?relay`
         FUNCTION `??HalUARTPoll::?relay`,00H
         EXTERN `??MagneticSwitch_SendTheMessage::?relay`
@@ -332,13 +326,6 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         ARGFRAME XSTACK, 0, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN HalLcdInit
-        FUNCTION HalLcdInit,0202H
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
         EXTERN HalLedInit
         FUNCTION HalLedInit,0202H
         ARGFRAME ISTACK, 2, STACK
@@ -351,13 +338,6 @@ Hal_ProcessPoll     SYMBOL "Hal_ProcessPoll"
         ARGFRAME ISTACK, 0, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 10, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN HalUARTInit
-        FUNCTION HalUARTInit,0202H
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN HalUARTPoll
@@ -620,29 +600,7 @@ HalDriverInit:
         ARGFRAME XSTACK, 0, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL HalDriverInit, HalLcdInit
-        LOCFRAME ISTACK, 2, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 0, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
         FUNCALL HalDriverInit, HalLedInit
-        LOCFRAME ISTACK, 2, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 0, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 2, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 0, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL HalDriverInit, HalUARTInit
         LOCFRAME ISTACK, 2, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 0, STACK
@@ -700,9 +658,7 @@ HalDriverInit:
 //  142 
 //  143   /* LCD */
 //  144 #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-//  145   HalLcdInit();
-        ; Setup parameters for call to function HalLcdInit
-        LCALL   `??HalLcdInit::?relay`; Banked call to: HalLcdInit
+//  145  // HalLcdInit();
 //  146 #endif
 //  147 
 //  148   /* LED */
@@ -714,9 +670,7 @@ HalDriverInit:
 //  152 
 //  153   /* UART */
 //  154 #if (defined HAL_UART) && (HAL_UART == TRUE)
-//  155   HalUARTInit();
-        ; Setup parameters for call to function HalUARTInit
-        LCALL   `??HalUARTInit::?relay`; Banked call to: HalUARTInit
+//  155   //HalUARTInit();
 //  156 #endif
 //  157 
 //  158   /* KEY */
@@ -1142,14 +1096,14 @@ __Constant_64:
 //  319 **************************************************************************************************/
 //  320 
 // 
-// 186 bytes in segment BANKED_CODE
+// 180 bytes in segment BANKED_CODE
 //  24 bytes in segment BANK_RELAYS
 //   4 bytes in segment XDATA_ROM_C
 //   3 bytes in segment XDATA_Z
 // 
 //  24 bytes of CODE     memory
 //   0 bytes of CONST    memory (+ 4 bytes shared)
-// 186 bytes of HUGECODE memory
+// 180 bytes of HUGECODE memory
 //   3 bytes of XDATA    memory
 //
 //Errors: none

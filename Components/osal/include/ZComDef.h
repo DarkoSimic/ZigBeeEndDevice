@@ -428,6 +428,16 @@ typedef struct
 // OSAL System Message IDs/Events Reserved for applications (user applications)
 // 0xE0 – 0xFC
 
+
+
+#define BME280_SENSOR                 1
+#define MOTION_SENSOR                 0
+#define MAGNETIC_SENSOR               0
+#define OPTICAL_SENSOR                0
+#define HELLO_WORLD                   0 
+
+
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */

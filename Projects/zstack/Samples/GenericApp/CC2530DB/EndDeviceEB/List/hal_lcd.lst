@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V9.30.3.3983 for 8051                06/Apr/2017  12:17:04
+# IAR C/C++ Compiler V9.30.3.3983 for 8051                20/Apr/2017  12:17:44
 # Copyright 2004-2016 IAR Systems AB.
 # Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 #
@@ -87,6 +87,8 @@
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 #        -I
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -I
+#        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 #        -Ohz --require_prototypes
 #    List file          =  
 #        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_lcd.lst
@@ -159,16 +161,6 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC25
    \                                 In  segment SFR_AN, at 0xc5
    \   unsigned char volatile __sfr U0GCR
    \                     U0GCR:
-   \   000000                DS 1
-
-   \                                 In  segment SFR_AN, at 0xc6
-   \   unsigned char volatile __sfr CLKCONCMD
-   \                     CLKCONCMD:
-   \   000000                DS 1
-
-   \                                 In  segment SFR_AN, at 0xf1
-   \   unsigned char volatile __sfr PERCFG
-   \                     PERCFG:
    \   000000                DS 1
 
    \                                 In  segment SFR_AN, at 0xf3
@@ -429,9 +421,22 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC25
     272          #if (HAL_LCD == TRUE)
     273          
     274            uint8 strLen = 0;
+                         ^
+Warning[Pe177]: variable "strLen" was declared but never referenced
     275            uint8 totalLen = 0;
+                         ^
+Warning[Pe177]: variable "totalLen" was declared but never referenced
     276            uint8 *buf;
+                          ^
+Warning[Pe177]: variable "buf" was declared but never referenced
     277            uint8 tmpLen;
+                         ^
+Warning[Pe177]: variable "tmpLen" was declared but never referenced
+
+  static uint8 *Lcd_Line1;
+                ^
+"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",202  Warning[Pe177]: 
+          variable "Lcd_Line1" was declared but never referenced
     278          
     279          #endif 
     280            
@@ -475,41 +480,31 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC25
     297          
     298            strLen = (uint8)osal_strlen( (char*)str );
     299          
-    300            /* Check boundries 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    300            // Check boundries 
     301            if ( strLen > HAL_LCD_MAX_CHARS )
     302              strLen = HAL_LCD_MAX_CHARS;
     303          
     304            if ( option == HAL_LCD_LINE_1 )
     305            {
-    306              /* Line 1 gets saved for later 
-                     ^
-Warning[Pe009]: nested comment is not allowed
+    306              // Line 1 gets saved for later 
     307              osal_memcpy( Lcd_Line1, str, strLen );
     308              Lcd_Line1[strLen] = '\0';
     309            }
     310            else
     311            {
-    312              /* Line 2 triggers action 
-                     ^
-Warning[Pe009]: nested comment is not allowed
+    312              // Line 2 triggers action 
     313              tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
     314              totalLen =  tmpLen + 1 + strLen + 1;
     315              buf = osal_mem_alloc( totalLen );
     316              if ( buf != NULL )
     317              {
-    318                /* Concatenate strings 
-                       ^
-Warning[Pe009]: nested comment is not allowed
+    318                // Concatenate strings 
     319                osal_memcpy( buf, Lcd_Line1, tmpLen );
     320                buf[tmpLen++] = ' ';
     321                osal_memcpy( &buf[tmpLen], str, strLen );
     322                buf[tmpLen+strLen] = '\0';
     323          
-    324                /* Send it out 
-                       ^
-Warning[Pe009]: nested comment is not allowed
+    324                // Send it out 
     325          #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
     326          
     327          #if defined(SERIAL_DEBUG_SUPPORTED)
@@ -518,36 +513,12 @@ Warning[Pe009]: nested comment is not allowed
     330          
     331          #endif //ZTOOL_P1
     332          
-    333                /* Free mem 
-                       ^
-Warning[Pe009]: nested comment is not allowed
+    333                // Free mem 
     334                osal_mem_free( buf );
     335              }
     336            }
     337          
-    338            /* Display the string 
-                   ^
-Warning[Pe009]: nested comment is not allowed
-
-    uint8 strLen = 0;
-          ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",274  Warning[Pe177]: 
-          variable "strLen" was declared but never referenced
-
-    uint8 totalLen = 0;
-          ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",275  Warning[Pe177]: 
-          variable "totalLen" was declared but never referenced
-
-    uint8 *buf;
-           ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",276  Warning[Pe177]: 
-          variable "buf" was declared but never referenced
-
-    uint8 tmpLen;
-          ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",277  Warning[Pe177]: 
-          variable "tmpLen" was declared but never referenced
+    338            // Display the string 
     339            HalLcd_HW_WriteLine (option, str);
     340          
     341          #endif //HAL_LCD
@@ -1132,10 +1103,10 @@ Warning[Pe009]: nested comment is not allowed
     536           * @return  None
     537           **************************************************************************************************/
     538          static void halLcd_ConfigIO(void)
+                             ^
+Warning[Pe177]: function "halLcd_ConfigIO" was declared but never referenced
     539          {/*
-    540            /* GPIO configuration *//*
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    540            //GPIO configuration
     541            HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
     542            HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
     543            HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
@@ -1152,42 +1123,32 @@ Warning[Pe009]: nested comment is not allowed
     554           * @return  None
     555           **************************************************************************************************/
     556          static void halLcd_ConfigSPI(void)
+                             ^
+Warning[Pe177]: function "halLcd_ConfigSPI" was declared but never referenced
     557          {
-    558            /* UART/SPI Peripheral configuration */
+    558            // UART/SPI Peripheral configuration
     559          /*
     560             uint8 baud_exponent;
     561             uint8 baud_mantissa;
     562          
-    563            /* Set SPI on UART 1 alternative 2 *//*
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    563            // Set SPI on UART 1 alternative 2 
     564            PERCFG |= 0x02;
     565          
-    566            /* Configure clk, master out and master in lines *//*
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    566            // Configure clk, master out and master in lines
     567            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
     568            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
     569            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
     570          
     571          
-    572            /* Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
-                   ^
-Warning[Pe009]: nested comment is not allowed
-    573             * Confirm on board that this results in 1MHz spi clk.
-    574             *//*
+    572            // Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
+    573            // Confirm on board that this results in 1MHz spi clk.
+    574             
     575            baud_exponent = 15;
     576            baud_mantissa =  0;
     577          
-    578            /* Configure SPI *//*
-                   ^
-Warning[Pe009]: nested comment is not allowed
-    579            U1UCR  = 0x80;      /* Flush and goto IDLE state. 8-N-1. *//*
-                                       ^
-Warning[Pe009]: nested comment is not allowed
-    580            U1CSR  = 0x00;      /* SPI mode, master. *//*
-                                       ^
-Warning[Pe009]: nested comment is not allowed
+    578            // Configure SPI 
+    579            U1UCR  = 0x80;      // Flush and goto IDLE state. 8-N-1. 
+    580            U1CSR  = 0x00;      // SPI mode, master.
     581            U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
     582            U1BAUD = baud_mantissa;
     583            */
@@ -1210,92 +1171,61 @@ Warning[Pe009]: nested comment is not allowed
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
     597            
-    598            CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
-   \   000000   75C600       MOV     0xc6,#0x0
+    598             // CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
     599              
     600            
-    601              PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
-   \   000003   75F100       MOV     0xf1,#0x0
+    601              //PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
     602              P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
-   \   000006   75F30C       MOV     0xf3,#0xc
+   \   000000   75F30C       MOV     0xf3,#0xc
     603              
     604            
     605              U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
-   \   000009   7586C0       MOV     0x86,#-0x40
+   \   000003   7586C0       MOV     0x86,#-0x40
     606              U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
-   \   00000C   75C508       MOV     0xc5,#0x8
+   \   000006   75C508       MOV     0xc5,#0x8
     607           
     608              
     609              U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
-   \   00000F   75C23A       MOV     0xc2,#0x3a
+   \   000009   75C23A       MOV     0xc2,#0x3a
     610              
     611            
     612            
     613            /* Initialize LCD IO lines 
     614            halLcd_ConfigIO();
     615          
-    616            /* Initialize SPI 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    616            // Initialize SPI 
     617            halLcd_ConfigSPI();
     618          
-    619            /* Perform reset 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    619            // Perform reset 
     620            LCD_ACTIVATE_RESET();
     621            HalLcd_HW_WaitUs(15000); // 15 ms
     622            LCD_RELEASE_RESET();
     623            HalLcd_HW_WaitUs(15); // 15 us
     624          
-    625            /* Perform the initialization sequence 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    625            // Perform the initialization sequence 
     626            FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
     627          
-    628            /* Set contrast 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    628            // Set contrast 
     629            HalLcd_HW_SetContrast(15);
     630          
-    631            /* Set power 
-                   ^
-Warning[Pe009]: nested comment is not allowed
+    631            // Set power 
     632            SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
     633            SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
     634            SET_BIAS_CTRL(BIAS_1_5);
     635            HalLcd_HW_WaitUs(21000);// 21 ms
     636          
-    637            /* Clear the display 
-                   ^
-Warning[Pe009]: nested comment is not allowed
-
-  static uint8 *Lcd_Line1;
-                ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",202  Warning[Pe177]: 
-          variable "Lcd_Line1" was declared but never referenced
-
-  static void halLcd_ConfigIO(void)
-              ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",538  Warning[Pe177]: 
-          function "halLcd_ConfigIO" was declared but never referenced
-
-  static void halLcd_ConfigSPI(void)
-              ^
-"C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\target\CC2530EB\hal_lcd.c",556  Warning[Pe177]: 
-          function "halLcd_ConfigSPI" was declared but never referenced
+    637            // Clear the display 
     638            HalLcd_HW_Clear();
     639            HalLcd_HW_ClearAllSpecChars();
     640            SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
     641          */
     642          
     643          }
-   \   000012   02....       LJMP    ?BRET
-   \   000015                REQUIRE CLKCONCMD
-   \   000015                REQUIRE PERCFG
-   \   000015                REQUIRE P0SEL
-   \   000015                REQUIRE U0CSR
-   \   000015                REQUIRE U0GCR
-   \   000015                REQUIRE U0BAUD
+   \   00000C   02....       LJMP    ?BRET
+   \   00000F                REQUIRE P0SEL
+   \   00000F                REQUIRE U0CSR
+   \   00000F                REQUIRE U0GCR
+   \   00000F                REQUIRE U0BAUD
     644          
     645          /**************************************************************************************************
     646           * @fn      HalLcd_HW_Control
@@ -1780,7 +1710,6 @@ Warning[Pe009]: nested comment is not allowed
       19  ?Subroutine3
        7  ?Subroutine4
       17  ?Subroutine5
-       1  CLKCONCMD
      166  HalLcdDisplayPercentBar
        6  HalLcdDisplayPercentBar::?relay
       14  HalLcdInit
@@ -1801,7 +1730,7 @@ Warning[Pe009]: nested comment is not allowed
        6  HalLcd_HW_ClearAllSpecChars::?relay
        3  HalLcd_HW_Control
        6  HalLcd_HW_Control::?relay
-      21  HalLcd_HW_Init
+      15  HalLcd_HW_Init
        6  HalLcd_HW_Init::?relay
        3  HalLcd_HW_SetContrast
        6  HalLcd_HW_SetContrast::?relay
@@ -1814,22 +1743,21 @@ Warning[Pe009]: nested comment is not allowed
       71  HalLcd_HW_WriteLine
        6  HalLcd_HW_WriteLine::?relay
        1  P0SEL
-       1  PERCFG
        1  U0BAUD
        1  U0CSR
        1  U0DBUF
        1  U0GCR
 
  
- 802 bytes in segment BANKED_CODE
+ 796 bytes in segment BANKED_CODE
   96 bytes in segment BANK_RELAYS
-   7 bytes in segment SFR_AN
+   5 bytes in segment SFR_AN
   15 bytes in segment XDATA_ROM_C
  
   96 bytes of CODE     memory
   15 bytes of CONST    memory
-   0 bytes of DATA     memory (+ 7 bytes shared)
- 802 bytes of HUGECODE memory
+   0 bytes of DATA     memory (+ 5 bytes shared)
+ 796 bytes of HUGECODE memory
 
 Errors: none
-Warnings: 27
+Warnings: 7

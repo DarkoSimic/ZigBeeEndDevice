@@ -44,6 +44,8 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\Ge
 -I
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w
 -I
+C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\8051\lib\dlib
@@ -91,6 +93,8 @@ C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\stack\zdo
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\zmac
 -I
 C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\zmac\f8w
+-I
+C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master
 -DNWK_AUTO_POLL=1
 -DZTOOL_P1=1
 -DMT_TASK=1

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:04
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               20/Apr/2017  12:17:44
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -87,6 +87,8 @@
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 //        -I
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 //        -Ohz --require_prototypes
 //    List file          =  
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\hal_lcd.s51
@@ -166,7 +168,6 @@
         FUNCTION `??HalLcd_HW_WriteChar::?relay`,0203H
         PUBLIC `??HalLcd_HW_WriteLine::?relay`
         FUNCTION `??HalLcd_HW_WriteLine::?relay`,0203H
-        PUBWEAK CLKCONCMD
         PUBLIC HalLcdDisplayPercentBar
         FUNCTION HalLcdDisplayPercentBar,0a1203H
         ARGFRAME XSTACK, 0, STACK
@@ -230,7 +231,6 @@
         ARGFRAME XSTACK, 0, STACK
         LOCFRAME XSTACK, 10, STACK
         PUBWEAK P0SEL
-        PUBWEAK PERCFG
         PUBWEAK U0BAUD
         PUBWEAK U0CSR
         PUBWEAK U0DBUF
@@ -525,18 +525,6 @@ U0BAUD:
         ASEGN SFR_AN:DATA:NOROOT,0c5H
 // unsigned char volatile __sfr U0GCR
 U0GCR:
-        DATA8
-        DS 1
-
-        ASEGN SFR_AN:DATA:NOROOT,0c6H
-// unsigned char volatile __sfr CLKCONCMD
-CLKCONCMD:
-        DATA8
-        DS 1
-
-        ASEGN SFR_AN:DATA:NOROOT,0f1H
-// unsigned char volatile __sfr PERCFG
-PERCFG:
         DATA8
         DS 1
 
@@ -905,31 +893,31 @@ HalLcdWriteString:
 //  297 
 //  298   strLen = (uint8)osal_strlen( (char*)str );
 //  299 
-//  300   /* Check boundries 
+//  300   // Check boundries 
 //  301   if ( strLen > HAL_LCD_MAX_CHARS )
 //  302     strLen = HAL_LCD_MAX_CHARS;
 //  303 
 //  304   if ( option == HAL_LCD_LINE_1 )
 //  305   {
-//  306     /* Line 1 gets saved for later 
+//  306     // Line 1 gets saved for later 
 //  307     osal_memcpy( Lcd_Line1, str, strLen );
 //  308     Lcd_Line1[strLen] = '\0';
 //  309   }
 //  310   else
 //  311   {
-//  312     /* Line 2 triggers action 
+//  312     // Line 2 triggers action 
 //  313     tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
 //  314     totalLen =  tmpLen + 1 + strLen + 1;
 //  315     buf = osal_mem_alloc( totalLen );
 //  316     if ( buf != NULL )
 //  317     {
-//  318       /* Concatenate strings 
+//  318       // Concatenate strings 
 //  319       osal_memcpy( buf, Lcd_Line1, tmpLen );
 //  320       buf[tmpLen++] = ' ';
 //  321       osal_memcpy( &buf[tmpLen], str, strLen );
 //  322       buf[tmpLen+strLen] = '\0';
 //  323 
-//  324       /* Send it out 
+//  324       // Send it out 
 //  325 #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
 //  326 
 //  327 #if defined(SERIAL_DEBUG_SUPPORTED)
@@ -938,12 +926,12 @@ HalLcdWriteString:
 //  330 
 //  331 #endif //ZTOOL_P1
 //  332 
-//  333       /* Free mem 
+//  333       // Free mem 
 //  334       osal_mem_free( buf );
 //  335     }
 //  336   }
 //  337 
-//  338   /* Display the string 
+//  338   // Display the string 
 //  339   HalLcd_HW_WriteLine (option, str);
 //  340 
 //  341 #endif //HAL_LCD
@@ -2150,7 +2138,7 @@ HalLcdDisplayPercentBar:
 //  537  **************************************************************************************************/
 //  538 static void halLcd_ConfigIO(void)
 //  539 {/*
-//  540   /* GPIO configuration *//*
+//  540   //GPIO configuration
 //  541   HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
 //  542   HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
 //  543   HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
@@ -2168,29 +2156,29 @@ HalLcdDisplayPercentBar:
 //  555  **************************************************************************************************/
 //  556 static void halLcd_ConfigSPI(void)
 //  557 {
-//  558   /* UART/SPI Peripheral configuration */
+//  558   // UART/SPI Peripheral configuration
 //  559 /*
 //  560    uint8 baud_exponent;
 //  561    uint8 baud_mantissa;
 //  562 
-//  563   /* Set SPI on UART 1 alternative 2 *//*
+//  563   // Set SPI on UART 1 alternative 2 
 //  564   PERCFG |= 0x02;
 //  565 
-//  566   /* Configure clk, master out and master in lines *//*
+//  566   // Configure clk, master out and master in lines
 //  567   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
 //  568   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
 //  569   HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
 //  570 
 //  571 
-//  572   /* Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
-//  573    * Confirm on board that this results in 1MHz spi clk.
-//  574    *//*
+//  572   // Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
+//  573   // Confirm on board that this results in 1MHz spi clk.
+//  574    
 //  575   baud_exponent = 15;
 //  576   baud_mantissa =  0;
 //  577 
-//  578   /* Configure SPI *//*
-//  579   U1UCR  = 0x80;      /* Flush and goto IDLE state. 8-N-1. *//*
-//  580   U1CSR  = 0x00;      /* SPI mode, master. *//*
+//  578   // Configure SPI 
+//  579   U1UCR  = 0x80;      // Flush and goto IDLE state. 8-N-1. 
+//  580   U1CSR  = 0x00;      // SPI mode, master.
 //  581   U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
 //  582   U1BAUD = baud_mantissa;
 //  583   */
@@ -2216,12 +2204,10 @@ HalLcd_HW_Init:
         ; Saved register size: 0
         ; Auto size: 0
 //  597   
-//  598   CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
-        MOV     0xc6,#0x0
+//  598    // CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
 //  599     
 //  600   
-//  601     PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
-        MOV     0xf1,#0x0
+//  601     //PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
 //  602     P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
         MOV     0xf3,#0xc
 //  603     
@@ -2240,28 +2226,28 @@ HalLcd_HW_Init:
 //  613   /* Initialize LCD IO lines 
 //  614   halLcd_ConfigIO();
 //  615 
-//  616   /* Initialize SPI 
+//  616   // Initialize SPI 
 //  617   halLcd_ConfigSPI();
 //  618 
-//  619   /* Perform reset 
+//  619   // Perform reset 
 //  620   LCD_ACTIVATE_RESET();
 //  621   HalLcd_HW_WaitUs(15000); // 15 ms
 //  622   LCD_RELEASE_RESET();
 //  623   HalLcd_HW_WaitUs(15); // 15 us
 //  624 
-//  625   /* Perform the initialization sequence 
+//  625   // Perform the initialization sequence 
 //  626   FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
 //  627 
-//  628   /* Set contrast 
+//  628   // Set contrast 
 //  629   HalLcd_HW_SetContrast(15);
 //  630 
-//  631   /* Set power 
+//  631   // Set power 
 //  632   SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
 //  633   SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
 //  634   SET_BIAS_CTRL(BIAS_1_5);
 //  635   HalLcd_HW_WaitUs(21000);// 21 ms
 //  636 
-//  637   /* Clear the display 
+//  637   // Clear the display 
 //  638   HalLcd_HW_Clear();
 //  639   HalLcd_HW_ClearAllSpecChars();
 //  640   SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
@@ -2270,8 +2256,6 @@ HalLcd_HW_Init:
 //  643 }
         LJMP    ?BRET
           CFI EndBlock cfiBlock25
-        REQUIRE CLKCONCMD
-        REQUIRE PERCFG
         REQUIRE P0SEL
         REQUIRE U0CSR
         REQUIRE U0GCR
@@ -2840,15 +2824,15 @@ HalLcd_HW_WaitUs:
 //  834 
 //  835 
 // 
-// 802 bytes in segment BANKED_CODE
+// 796 bytes in segment BANKED_CODE
 //  96 bytes in segment BANK_RELAYS
-//   7 bytes in segment SFR_AN
+//   5 bytes in segment SFR_AN
 //  15 bytes in segment XDATA_ROM_C
 // 
 //  96 bytes of CODE     memory
 //  15 bytes of CONST    memory
-//   0 bytes of DATA     memory (+ 7 bytes shared)
-// 802 bytes of HUGECODE memory
+//   0 bytes of DATA     memory (+ 5 bytes shared)
+// 796 bytes of HUGECODE memory
 //
 //Errors: none
-//Warnings: 27
+//Warnings: 7

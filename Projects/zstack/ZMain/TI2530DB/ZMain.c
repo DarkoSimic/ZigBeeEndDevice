@@ -23,7 +23,7 @@
   its documentation for any purpose.
 
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -57,22 +57,52 @@
 #include "ZMAC.h"
 #include "ioCC2530.h"
 
+#include "bme280.h"
+
+
+typedef uint8   u8;
+typedef int8    s8;
+
+/*********************************************************************
+ * DEFINES
+ */
+
+   
+ struct bme280_t bme280;
+ struct value Value;
+ signed char flag;   
+   
+
+//#define T_MIN 					23
+//#define T_MAX						24
+
+/*********************************************************************
+ * GLOBAL VARIABLES
+ */
+
 
 
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
 
+void tempCheck(struct value *val);
 
 
+/*********************************************************************
+ * EXTERN FUNCTIONS
+ */
+extern s8 BME280_SPI_bus_read(u8 , u8 , u8 *, u8 );
 
-
-
+extern void Onboard_wait( uint16 timeout );
 
 extern void uartInit(void);
 extern void uartSend(char);
 extern void magneticSwitchInit(void);
+extern void HalLcdWriteString ( char *, uint8 );
+extern void HalLcd_HW_Init(void);
 
+void WriteHex(char );
 
 static void zmain_ext_addr( void );
 #if defined ZCL_KEY_ESTABLISH
@@ -90,29 +120,60 @@ static void zmain_lcd_init( void );
  * @brief   First function called after startup.
  * @return  don't care
  */
+
+void WriteHex(char h)
+{
+  char str[3] = {0,0};
+  
+
+    str[1] = h % 16 + '0';
+    h/=16;
+    str[0] = h % 16 + '0';
+        
+    str[2] = '\0';
+    
+    HalLcdWriteString(str,0);
+    
+}
+static struct bme280_t *p_bme280; 
 int main( void )
 {
+
+  uint16 i;
+  uint8 chipID;
+  
+
   // Turn off interrupts
   osal_int_disable( INTS_ALL );
 
   // Initialization for board related stuff such as LEDs
   HAL_BOARD_INIT();
+
+#if  (MOTION_SENSOR || MAGNETIC_SENSOR)
   
   //Initialization for pins for magnetic switch
   //and initilization for motion sensor pins
   magneticSwitchInit();
-  
+
   //Initialization for analog to digital converter
   HalAdcInit();
+#endif
   
+//#if BME280_SENSOR  
+  
+  //Initialization of SPI
+  Hal_SPI_Master_Init();
+//#endif
+
   // Make sure supply voltage is high enough to run
   zmain_vdd_check();
 
   // Initialize board I/O
-  InitBoard( OB_COLD );
+//  InitBoard( OB_COLD ); //za interapte (magetik i motion)
 
   // Initialze HAL drivers
   HalDriverInit();
+  
 
   // Initialize NV System
   osal_nv_init( NULL );
@@ -141,23 +202,43 @@ int main( void )
 
   // Allow interrupts
   osal_int_enable( INTS_ALL );
-
+  
+#if (MOTION_SENSOR || MAGNETIC_SENSOR)
   // Final board initialization
   InitBoard( OB_READY );
-
+#endif
   // Display information about this device
   zmain_dev_info();
 
   /* Display the device info on the LCD */
 #ifdef LCD_SUPPORTED
-  zmain_lcd_init();
+  //zmain_lcd_init();
 #endif
 
 #ifdef WDT_IN_PM1
   /* If WDT is used, this is a good place to enable it. */
-  WatchDogEnable( WDTIMX );
+  //WatchDogEnable( WDTIMX );
 #endif
 
+
+#if BME280_SENSOR  
+  
+  flag = bme280_set(&bme280, &Value);
+
+  for(i=0;i<100;i++)
+  {
+    asm("NOP");
+  }
+
+  if (-1 == flag)
+  {
+    HalLcdWriteString("Nije dobro!",0);
+  }
+      
+  HalLcdWriteString("Dobro je",0);
+
+#endif
+  
  osal_start_system(); // No Return from here
 
   return 0;  // Shouldn't get here.
@@ -171,7 +252,7 @@ int main( void )
 static void zmain_vdd_check( void )
 {
   uint8 cnt = 16;
-  
+
   do {
     while (!HalAdcCheckVdd(VDD_MIN_RUN));
   } while (--cnt);
@@ -218,7 +299,7 @@ static void zmain_ext_addr(void)
       else  // No valid extended address was found.
       {
         uint8 idx;
-        
+
 #if !defined ( NV_RESTORE )
         writeNV = FALSE;  // Make this a temporary IEEE address
 #endif
@@ -383,7 +464,23 @@ static void zmain_lcd_init ( void )
 }
 #endif
 
+/*
+void tempCheck(struct value *val)
+{
+	if (T_MIN > val->temp / 100)
+	{
+		GPIO_PORTE_DATA_R |= 0x02;
+	}// end if
+	else if (T_MAX < val->temp / 100)
+		{
+			GPIO_PORTE_DATA_R |= 0x04;
+		}// end else if
+	else {
+	GPIO_PORTE_DATA_R = 0x00;
+	}
+}// end void tempCheck(struct bme280_t *bme280)
+
+*/
+
 /*********************************************************************
 *********************************************************************/
-
-

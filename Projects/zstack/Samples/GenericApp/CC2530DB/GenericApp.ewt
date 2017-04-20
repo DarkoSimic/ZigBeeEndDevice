@@ -5831,6 +5831,15 @@
   <group>
     <name>HAL</name>
     <group>
+      <name>BME280_driver-master</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\BME280_driver-master\bme280.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\BME280_driver-master\bme280.h</name>
+      </file>
+    </group>
+    <group>
       <name>Common</name>
       <file>
         <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\common\hal_assert.c</name>

@@ -2761,6 +2761,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\Components\stack\zdo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\Components\zmac</state>
           <state>$PROJ_DIR$\..\..\..\..\..\Components\zmac\f8w</state>
+          <state>C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -6821,6 +6822,15 @@
   </group>
   <group>
     <name>HAL</name>
+    <group>
+      <name>BME280_driver-master</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\BME280_driver-master\bme280.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\BME280_driver-master\bme280.h</name>
+      </file>
+    </group>
     <group>
       <name>Common</name>
       <file>

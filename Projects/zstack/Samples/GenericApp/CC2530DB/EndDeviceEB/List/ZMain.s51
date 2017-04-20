@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V9.30.3.3983 for 8051               06/Apr/2017  12:17:07
+// IAR C/C++ Compiler V9.30.3.3983 for 8051               20/Apr/2017  12:17:48
 // Copyright 2004-2016 IAR Systems AB.
 // Evaluation license - IAR Embedded Workbench for 8051, Evaluation version 9.30
 //
@@ -87,6 +87,8 @@
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\
 //        -I
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -I
+//        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Components\hal\BME280_driver-master\
 //        -Ohz --require_prototypes
 //    List file          =  
 //        C:\Users\bsavanovic\Desktop\EndDevice\ZigBeeEndDevice\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB\List\ZMain.s51
@@ -115,6 +117,7 @@
         EXTERN ?V0
         EXTERN ?V1
         EXTERN ?V2
+        EXTERN ?V3
         EXTERN ?ALLOC_XSTACK8
         EXTERN ?BANKED_ENTER_XDATA
         EXTERN ?BANKED_LEAVE_XDATA
@@ -126,7 +129,10 @@
         EXTERN ?PUSH_XSTACK_I_TWO
         EXTERN ?XSP
         EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_Z
 
+        PUBLIC `??WriteHex::?relay`
+        FUNCTION `??WriteHex::?relay`,0203H
         PUBLIC `??main::?relay`
         FUNCTION `??main::?relay`,0203H
         FUNCTION `??zmain_ext_addr::?relay`,0203H
@@ -136,7 +142,15 @@
         PUBWEAK P1DIR
         PUBWEAK SLEEPCMD
         PUBWEAK SLEEPSTA
+        PUBLIC Value
+        PUBLIC WriteHex
+        FUNCTION WriteHex,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 12, STACK
         PUBWEAK _A_P1
+        PUBLIC bme280
+        PUBLIC flag
         PUBLIC main
         FUNCTION main,0a1a03H
         ARGFRAME XSTACK, 0, STACK
@@ -172,73 +186,6 @@
           CFI EndNames cfiNames0
         
           CFI Common cfiCommon0 Using cfiNames0
-          CFI CodeAlign 1
-          CFI DataAlign -1
-          CFI ReturnAddress ?RET CODE
-          CFI CFA_DOVERLAY Used
-          CFI CFA_IOVERLAY Used
-          CFI CFA_SP SP+-3
-          CFI CFA_PSP16 PSP16+0
-          CFI CFA_XSP16 XSP16+0
-          CFI `PSW.CY` Undefined
-          CFI `B.BR0` Undefined
-          CFI `B.BR1` Undefined
-          CFI `B.BR2` Undefined
-          CFI `B.BR3` Undefined
-          CFI `B.BR4` Undefined
-          CFI `B.BR5` Undefined
-          CFI `B.BR6` Undefined
-          CFI `B.BR7` Undefined
-          CFI `VB.BR8` Undefined
-          CFI `VB.BR9` Undefined
-          CFI `VB.BR10` Undefined
-          CFI `VB.BR11` Undefined
-          CFI `VB.BR12` Undefined
-          CFI `VB.BR13` Undefined
-          CFI `VB.BR14` Undefined
-          CFI `VB.BR15` Undefined
-          CFI VB Undefined
-          CFI B Undefined
-          CFI A Undefined
-          CFI PSW Undefined
-          CFI DPL0 Undefined
-          CFI DPH0 Undefined
-          CFI R0 Undefined
-          CFI R1 Undefined
-          CFI R2 Undefined
-          CFI R3 Undefined
-          CFI R4 Undefined
-          CFI R5 Undefined
-          CFI R6 Undefined
-          CFI R7 Undefined
-          CFI V0 Undefined
-          CFI V1 Undefined
-          CFI V2 Undefined
-          CFI V3 Undefined
-          CFI V4 Undefined
-          CFI V5 Undefined
-          CFI V6 Undefined
-          CFI V7 Undefined
-          CFI V8 Undefined
-          CFI V9 Undefined
-          CFI V10 Undefined
-          CFI V11 Undefined
-          CFI V12 Undefined
-          CFI V13 Undefined
-          CFI V14 Undefined
-          CFI V15 Undefined
-          CFI PSPH Undefined
-          CFI PSPL Undefined
-          CFI XSPH Undefined
-          CFI XSPL Undefined
-          CFI ?RET Concat
-          CFI ?BRET_EXT Frame(CFA_SP, 3)
-          CFI ?RET_HIGH Frame(CFA_SP, 2)
-          CFI ?RET_LOW Frame(CFA_SP, 1)
-          CFI EndCommon cfiCommon0
-        
-        
-          CFI Common cfiCommon1 Using cfiNames0
           CFI CodeAlign 1
           CFI DataAlign -1
           CFI ReturnAddress ?RET CODE
@@ -294,6 +241,73 @@
           CFI V13 SameValue
           CFI V14 SameValue
           CFI V15 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+        
+          CFI Common cfiCommon1 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` Undefined
+          CFI `B.BR0` Undefined
+          CFI `B.BR1` Undefined
+          CFI `B.BR2` Undefined
+          CFI `B.BR3` Undefined
+          CFI `B.BR4` Undefined
+          CFI `B.BR5` Undefined
+          CFI `B.BR6` Undefined
+          CFI `B.BR7` Undefined
+          CFI `VB.BR8` Undefined
+          CFI `VB.BR9` Undefined
+          CFI `VB.BR10` Undefined
+          CFI `VB.BR11` Undefined
+          CFI `VB.BR12` Undefined
+          CFI `VB.BR13` Undefined
+          CFI `VB.BR14` Undefined
+          CFI `VB.BR15` Undefined
+          CFI VB Undefined
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW Undefined
+          CFI DPL0 Undefined
+          CFI DPH0 Undefined
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 Undefined
+          CFI R7 Undefined
+          CFI V0 Undefined
+          CFI V1 Undefined
+          CFI V2 Undefined
+          CFI V3 Undefined
+          CFI V4 Undefined
+          CFI V5 Undefined
+          CFI V6 Undefined
+          CFI V7 Undefined
+          CFI V8 Undefined
+          CFI V9 Undefined
+          CFI V10 Undefined
+          CFI V11 Undefined
+          CFI V12 Undefined
+          CFI V13 Undefined
+          CFI V14 Undefined
+          CFI V15 Undefined
           CFI PSPH Undefined
           CFI PSPL Undefined
           CFI XSPH Undefined
@@ -373,22 +387,20 @@
         
 HalAdcCheckVdd      SYMBOL "HalAdcCheckVdd"
 `??HalAdcCheckVdd::?relay` SYMBOL "?relay", HalAdcCheckVdd
-HalAdcInit          SYMBOL "HalAdcInit"
-`??HalAdcInit::?relay` SYMBOL "?relay", HalAdcInit
 HalDriverInit       SYMBOL "HalDriverInit"
 `??HalDriverInit::?relay` SYMBOL "?relay", HalDriverInit
 HalFlashRead        SYMBOL "HalFlashRead"
 `??HalFlashRead::?relay` SYMBOL "?relay", HalFlashRead
 HalLcdWriteString   SYMBOL "HalLcdWriteString"
 `??HalLcdWriteString::?relay` SYMBOL "?relay", HalLcdWriteString
-InitBoard           SYMBOL "InitBoard"
-`??InitBoard::?relay` SYMBOL "?relay", InitBoard
+Hal_SPI_Master_Init SYMBOL "Hal_SPI_Master_Init"
+`??Hal_SPI_Master_Init::?relay` SYMBOL "?relay", Hal_SPI_Master_Init
 ZMacInit            SYMBOL "ZMacInit"
 `??ZMacInit::?relay` SYMBOL "?relay", ZMacInit
 ZMacSetReq          SYMBOL "ZMacSetReq"
 `??ZMacSetReq::?relay` SYMBOL "?relay", ZMacSetReq
-magneticSwitchInit  SYMBOL "magneticSwitchInit"
-`??magneticSwitchInit::?relay` SYMBOL "?relay", magneticSwitchInit
+bme280_set          SYMBOL "bme280_set"
+`??bme280_set::?relay` SYMBOL "?relay", bme280_set
 osal_init_system    SYMBOL "osal_init_system"
 `??osal_init_system::?relay` SYMBOL "?relay", osal_init_system
 osal_int_disable    SYMBOL "osal_int_disable"
@@ -413,27 +425,27 @@ osal_start_system   SYMBOL "osal_start_system"
 `??osal_start_system::?relay` SYMBOL "?relay", osal_start_system
 zgInit              SYMBOL "zgInit"
 `??zgInit::?relay`  SYMBOL "?relay", zgInit
+WriteHex            SYMBOL "WriteHex"
+`??WriteHex::?relay` SYMBOL "?relay", WriteHex
 main                SYMBOL "main"
 `??main::?relay`    SYMBOL "?relay", main
 
         EXTERN `??HalAdcCheckVdd::?relay`
         FUNCTION `??HalAdcCheckVdd::?relay`,00H
-        EXTERN `??HalAdcInit::?relay`
-        FUNCTION `??HalAdcInit::?relay`,00H
         EXTERN `??HalDriverInit::?relay`
         FUNCTION `??HalDriverInit::?relay`,00H
         EXTERN `??HalFlashRead::?relay`
         FUNCTION `??HalFlashRead::?relay`,00H
         EXTERN `??HalLcdWriteString::?relay`
         FUNCTION `??HalLcdWriteString::?relay`,00H
-        EXTERN `??InitBoard::?relay`
-        FUNCTION `??InitBoard::?relay`,00H
+        EXTERN `??Hal_SPI_Master_Init::?relay`
+        FUNCTION `??Hal_SPI_Master_Init::?relay`,00H
         EXTERN `??ZMacInit::?relay`
         FUNCTION `??ZMacInit::?relay`,00H
         EXTERN `??ZMacSetReq::?relay`
         FUNCTION `??ZMacSetReq::?relay`,00H
-        EXTERN `??magneticSwitchInit::?relay`
-        FUNCTION `??magneticSwitchInit::?relay`,00H
+        EXTERN `??bme280_set::?relay`
+        FUNCTION `??bme280_set::?relay`,00H
         EXTERN `??osal_init_system::?relay`
         FUNCTION `??osal_init_system::?relay`,00H
         EXTERN `??osal_int_disable::?relay`
@@ -465,13 +477,6 @@ main                SYMBOL "main"
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN HalAdcInit
-        FUNCTION HalAdcInit,0202H
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 17, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
         EXTERN HalDriverInit
         FUNCTION HalDriverInit,0202H
         ARGFRAME ISTACK, 0, STACK
@@ -493,8 +498,8 @@ main                SYMBOL "main"
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        EXTERN InitBoard
-        FUNCTION InitBoard,0202H
+        EXTERN Hal_SPI_Master_Init
+        FUNCTION Hal_SPI_Master_Init,0202H
         ARGFRAME ISTACK, 0, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 17, STACK
@@ -515,8 +520,8 @@ main                SYMBOL "main"
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         EXTERN aExtendedAddress
-        EXTERN magneticSwitchInit
-        FUNCTION magneticSwitchInit,0202H
+        EXTERN bme280_set
+        FUNCTION bme280_set,0202H
         ARGFRAME ISTACK, 0, STACK
         ARGFRAME PSTACK, 0, STACK
         ARGFRAME XSTACK, 17, STACK
@@ -633,7 +638,7 @@ main                SYMBOL "main"
 //   23   its documentation for any purpose.
 //   24 
 //   25   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-//   26   PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//   26   PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
 //   27   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
 //   28   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
 //   29   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -709,47 +714,185 @@ P1DIR:
 //   57 #include "ZMAC.h"
 //   58 #include "ioCC2530.h"
 //   59 
-//   60 
+//   60 #include "bme280.h"
 //   61 
-//   62 /*********************************************************************
-//   63  * LOCAL FUNCTIONS
-//   64  */
+//   62 
+//   63 typedef uint8   u8;
+//   64 typedef int8    s8;
 //   65 
-//   66 
-//   67 
-//   68 
+//   66 /*********************************************************************
+//   67  * DEFINES
+//   68  */
 //   69 
-//   70 
-//   71 
-//   72 extern void uartInit(void);
-//   73 extern void uartSend(char);
-//   74 extern void magneticSwitchInit(void);
+//   70    
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   71  struct bme280_t bme280;
+bme280:
+        DS 51
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   72  struct value Value;
+Value:
+        DS 12
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   73  signed char flag;   
+flag:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   74    
 //   75 
-//   76 
-//   77 static void zmain_ext_addr( void );
-//   78 #if defined ZCL_KEY_ESTABLISH
-//   79 static void zmain_cert_init( void );
-//   80 #endif
-//   81 static void zmain_dev_info( void );
-//   82 static void zmain_vdd_check( void );
+//   76 //#define T_MIN 					23
+//   77 //#define T_MAX						24
+//   78 
+//   79 /*********************************************************************
+//   80  * GLOBAL VARIABLES
+//   81  */
+//   82 
 //   83 
-//   84 #ifdef LCD_SUPPORTED
-//   85 static void zmain_lcd_init( void );
-//   86 #endif
-//   87 
-//   88 /*********************************************************************
-//   89  * @fn      main
-//   90  * @brief   First function called after startup.
-//   91  * @return  don't care
-//   92  */
+//   84 
+//   85 /*********************************************************************
+//   86  * LOCAL FUNCTIONS
+//   87  */
+//   88 
+//   89 void tempCheck(struct value *val);
+//   90 
+//   91 
+//   92 /*********************************************************************
+//   93  * EXTERN FUNCTIONS
+//   94  */
+//   95 extern s8 BME280_SPI_bus_read(u8 , u8 , u8 *, u8 );
+//   96 
+//   97 extern void Onboard_wait( uint16 timeout );
+//   98 
+//   99 extern void uartInit(void);
+//  100 extern void uartSend(char);
+//  101 extern void magneticSwitchInit(void);
+//  102 extern void HalLcdWriteString ( char *, uint8 );
+//  103 extern void HalLcd_HW_Init(void);
+//  104 
+//  105 void WriteHex(char );
+//  106 
+//  107 static void zmain_ext_addr( void );
+//  108 #if defined ZCL_KEY_ESTABLISH
+//  109 static void zmain_cert_init( void );
+//  110 #endif
+//  111 static void zmain_dev_info( void );
+//  112 static void zmain_vdd_check( void );
+//  113 
+//  114 #ifdef LCD_SUPPORTED
+//  115 static void zmain_lcd_init( void );
+//  116 #endif
+//  117 
+//  118 /*********************************************************************
+//  119  * @fn      main
+//  120  * @brief   First function called after startup.
+//  121  * @return  don't care
+//  122  */
+//  123 
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//   93 int main( void )
-main:
+//  124 void WriteHex(char h)
+WriteHex:
           CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function WriteHex
+        CODE
+//  125 {
+        FUNCALL WriteHex, HalLcdWriteString
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 3
+        MOV     A,#-0x3
+        LCALL   ?ALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 12)
+        MOV     A,R1
+        MOV     R6,A
+//  126   char str[3] = {0,0};
+        MOV     DPTR,#`?<Constant {0, 0, 0}>`
+        MOV     R4,?XSP + 0
+        MOV     R5,?XSP + 1
+        MOV     A,#0x3
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+//  127   
+//  128 
+//  129     str[1] = h % 16 + '0';
+        MOV     A,#0xf
+        ANL     A,R6
+        ADD     A,#0x30
+        PUSH    A
+          CFI CFA_SP SP+-1
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+          CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  130     h/=16;
+//  131     str[0] = h % 16 + '0';
+        MOV     A,R6
+        SWAP    A
+        ANL     A,#0xf
+        ADD     A,#0x30
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    @DPTR,A
+//  132         
+//  133     str[2] = '\0';
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        CLR     A
+        MOVX    @DPTR,A
+//  134     
+//  135     HalLcdWriteString(str,0);
+        ; Setup parameters for call to function HalLcdWriteString
+        MOV     R1,A
+        MOV     R2,?XSP + 0
+        MOV     R3,?XSP + 1
+        LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+//  136     
+//  137 }
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 9)
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock0
+//  138 static struct bme280_t *p_bme280; 
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  139 int main( void )
+main:
+          CFI Block cfiBlock1 Using cfiCommon1
           CFI Function main
         CODE
-//   94 {
+//  140 {
         FUNCALL main, osal_int_disable
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -761,18 +904,7 @@ main:
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL main, magneticSwitchInit
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 17, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 17, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL main, HalAdcInit
+        FUNCALL main, Hal_SPI_Master_Init
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 17, STACK
@@ -784,17 +916,6 @@ main:
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         FUNCALL main, HalAdcCheckVdd
-        LOCFRAME ISTACK, 0, STACK
-        LOCFRAME PSTACK, 0, STACK
-        LOCFRAME XSTACK, 17, STACK
-        LOCFRAME IOVERLAY, 0, STATIC
-        LOCFRAME DOVERLAY, 0, STATIC
-        ARGFRAME ISTACK, 0, STACK
-        ARGFRAME PSTACK, 0, STACK
-        ARGFRAME XSTACK, 17, STACK
-        ARGFRAME IOVERLAY, 0, STATIC
-        ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL main, InitBoard
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 17, STACK
@@ -882,7 +1003,7 @@ main:
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
-        FUNCALL main, InitBoard
+        FUNCALL main, HalLcdWriteString
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 17, STACK
@@ -894,6 +1015,17 @@ main:
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
         FUNCALL main, HalLcdWriteString
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL main, bme280_set
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
         LOCFRAME XSTACK, 17, STACK
@@ -937,18 +1069,27 @@ main:
         ARGFRAME XSTACK, 17, STACK
         ARGFRAME IOVERLAY, 0, STATIC
         ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
         ; Auto size: 17
         MOV     A,#-0x11
         LCALL   ?ALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 17)
-//   95   // Turn off interrupts
-//   96   osal_int_disable( INTS_ALL );
+//  141 
+//  142   uint16 i;
+//  143   uint8 chipID;
+//  144   
+//  145 
+//  146   // Turn off interrupts
+//  147   osal_int_disable( INTS_ALL );
         ; Setup parameters for call to function osal_int_disable
         MOV     R1,#-0x1
         LCALL   `??osal_int_disable::?relay`; Banked call to: osal_int_disable
-//   97 
-//   98   // Initialization for board related stuff such as LEDs
-//   99   HAL_BOARD_INIT();
+//  148 
+//  149   // Initialization for board related stuff such as LEDs
+//  150   HAL_BOARD_INIT();
         ANL     0xbe,#0xfb
 ??main_0:
         MOV     A,0x9d
@@ -983,20 +1124,27 @@ main:
         CLR     0x90.4
         ORL     0xfe,#0x10
         ORL     0x8f,#0x1
-//  100   
-//  101   //Initialization for pins for magnetic switch
-//  102   //and initilization for motion sensor pins
-//  103   magneticSwitchInit();
-        ; Setup parameters for call to function magneticSwitchInit
-        LCALL   `??magneticSwitchInit::?relay`; Banked call to: magneticSwitchInit
-//  104   
-//  105   //Initialization for analog to digital converter
-//  106   HalAdcInit();
-        ; Setup parameters for call to function HalAdcInit
-        LCALL   `??HalAdcInit::?relay`; Banked call to: HalAdcInit
-//  107   
-//  108   // Make sure supply voltage is high enough to run
-//  109   zmain_vdd_check();
+//  151 
+//  152 #if  (MOTION_SENSOR || MAGNETIC_SENSOR)
+//  153   
+//  154   //Initialization for pins for magnetic switch
+//  155   //and initilization for motion sensor pins
+//  156   magneticSwitchInit();
+//  157 
+//  158   //Initialization for analog to digital converter
+//  159   HalAdcInit();
+//  160 #endif
+//  161   
+//  162 //#if BME280_SENSOR  
+//  163   
+//  164   //Initialization of SPI
+//  165   Hal_SPI_Master_Init();
+        ; Setup parameters for call to function Hal_SPI_Master_Init
+        LCALL   `??Hal_SPI_Master_Init::?relay`; Banked call to: Hal_SPI_Master_Init
+//  166 //#endif
+//  167 
+//  168   // Make sure supply voltage is high enough to run
+//  169   zmain_vdd_check();
         MOV     R6,#0x10
 ??main_3:
         ; Setup parameters for call to function HalAdcCheckVdd
@@ -1007,69 +1155,65 @@ main:
         DEC     R6
         MOV     A,R6
         JNZ     ??main_3
-//  110 
-//  111   // Initialize board I/O
-//  112   InitBoard( OB_COLD );
-        ; Setup parameters for call to function InitBoard
-        MOV     R1,#0x0
-        LCALL   `??InitBoard::?relay`; Banked call to: InitBoard
-//  113 
-//  114   // Initialze HAL drivers
-//  115   HalDriverInit();
+//  170 
+//  171   // Initialize board I/O
+//  172 //  InitBoard( OB_COLD ); //za interapte (magetik i motion)
+//  173 
+//  174   // Initialze HAL drivers
+//  175   HalDriverInit();
         ; Setup parameters for call to function HalDriverInit
         LCALL   `??HalDriverInit::?relay`; Banked call to: HalDriverInit
-//  116 
-//  117   // Initialize NV System
-//  118   osal_nv_init( NULL );
+//  176   
+//  177 
+//  178   // Initialize NV System
+//  179   osal_nv_init( NULL );
         ; Setup parameters for call to function osal_nv_init
         MOV     R2,#0x0
         MOV     R3,#0x0
         LCALL   `??osal_nv_init::?relay`; Banked call to: osal_nv_init
-//  119 
-//  120   // Initialize the MAC
-//  121   ZMacInit();
+//  180 
+//  181   // Initialize the MAC
+//  182   ZMacInit();
         ; Setup parameters for call to function ZMacInit
         LCALL   `??ZMacInit::?relay` ; Banked call to: ZMacInit
-//  122 
-//  123   // Determine the extended address
-//  124   zmain_ext_addr();
+//  183 
+//  184   // Determine the extended address
+//  185   zmain_ext_addr();
         ; Setup parameters for call to function zmain_ext_addr
         LCALL   `??zmain_ext_addr::?relay`; Banked call to: zmain_ext_addr
-//  125 
-//  126 #if defined ZCL_KEY_ESTABLISH
-//  127   // Initialize the Certicom certificate information.
-//  128   zmain_cert_init();
-//  129 #endif
-//  130 
-//  131   // Initialize basic NV items
-//  132   zgInit();
+//  186 
+//  187 #if defined ZCL_KEY_ESTABLISH
+//  188   // Initialize the Certicom certificate information.
+//  189   zmain_cert_init();
+//  190 #endif
+//  191 
+//  192   // Initialize basic NV items
+//  193   zgInit();
         ; Setup parameters for call to function zgInit
         LCALL   `??zgInit::?relay`   ; Banked call to: zgInit
-//  133 
-//  134 #ifndef NONWK
-//  135   // Since the AF isn't a task, call it's initialization routine
-//  136   afInit();
-//  137 #endif
-//  138 
-//  139   // Initialize the operating system
-//  140   osal_init_system();
+//  194 
+//  195 #ifndef NONWK
+//  196   // Since the AF isn't a task, call it's initialization routine
+//  197   afInit();
+//  198 #endif
+//  199 
+//  200   // Initialize the operating system
+//  201   osal_init_system();
         ; Setup parameters for call to function osal_init_system
         LCALL   `??osal_init_system::?relay`; Banked call to: osal_init_system
-//  141 
-//  142   // Allow interrupts
-//  143   osal_int_enable( INTS_ALL );
+//  202 
+//  203   // Allow interrupts
+//  204   osal_int_enable( INTS_ALL );
         ; Setup parameters for call to function osal_int_enable
         MOV     R1,#-0x1
         LCALL   `??osal_int_enable::?relay`; Banked call to: osal_int_enable
-//  144 
-//  145   // Final board initialization
-//  146   InitBoard( OB_READY );
-        ; Setup parameters for call to function InitBoard
-        MOV     R1,#0x2
-        LCALL   `??InitBoard::?relay`; Banked call to: InitBoard
-//  147 
-//  148   // Display information about this device
-//  149   zmain_dev_info();
+//  205   
+//  206 #if (MOTION_SENSOR || MAGNETIC_SENSOR)
+//  207   // Final board initialization
+//  208   InitBoard( OB_READY );
+//  209 #endif
+//  210   // Display information about this device
+//  211   zmain_dev_info();
         MOV     R2,#(aExtendedAddress + 7) & 0xff
         MOV     R3,#((aExtendedAddress + 7) >> 8) & 0xff
         MOV     R4,#0x0
@@ -1167,34 +1311,80 @@ main:
         MOV     R2,?XSP + 0
         MOV     R3,?XSP + 1
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  150 
-//  151   /* Display the device info on the LCD */
-//  152 #ifdef LCD_SUPPORTED
-//  153   zmain_lcd_init();
+//  212 
+//  213   /* Display the device info on the LCD */
+//  214 #ifdef LCD_SUPPORTED
+//  215   //zmain_lcd_init();
+//  216 #endif
+//  217 
+//  218 #ifdef WDT_IN_PM1
+//  219   /* If WDT is used, this is a good place to enable it. */
+//  220   //WatchDogEnable( WDTIMX );
+//  221 #endif
+//  222 
+//  223 
+//  224 #if BME280_SENSOR  
+//  225   
+//  226   flag = bme280_set(&bme280, &Value);
+        ; Setup parameters for call to function bme280_set
+        MOV     R4,#Value & 0xff
+        MOV     R5,#(Value >> 8) & 0xff
+        MOV     R2,#bme280 & 0xff
+        MOV     R3,#(bme280 >> 8) & 0xff
+        LCALL   `??bme280_set::?relay`; Banked call to: bme280_set
+        MOV     ?V0,R2
+        MOV     ?V1,R3
+        MOV     ?V2,R4
+        MOV     ?V3,R5
+        MOV     A,R2
+        MOV     DPTR,#flag
+        MOVX    @DPTR,A
+//  227 
+//  228   for(i=0;i<100;i++)
+        MOV     A,#0x64
+//  229   {
+//  230     asm("NOP");
+??main_9:
+        NOP
+//  231   }
+        DEC     A
+        JNZ     ??main_9
+//  232 
+//  233   if (-1 == flag)
+        MOVX    A,@DPTR
+        CPL     A
+        JNZ     ??main_10
+//  234   {
+//  235     HalLcdWriteString("Nije dobro!",0);
         ; Setup parameters for call to function HalLcdWriteString
-        MOV     R1,#0x1
-        MOV     R2,#`?<Constant "TexasInstruments">` & 0xff
-        MOV     R3,#(`?<Constant "TexasInstruments">` >> 8) & 0xff
+        MOV     R1,#0x0
+        MOV     R2,#`?<Constant "Nije dobro!">` & 0xff
+        MOV     R3,#(`?<Constant "Nije dobro!">` >> 8) & 0xff
         LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
-//  154 #endif
-//  155 
-//  156 #ifdef WDT_IN_PM1
-//  157   /* If WDT is used, this is a good place to enable it. */
-//  158   WatchDogEnable( WDTIMX );
-//  159 #endif
-//  160 
-//  161  osal_start_system(); // No Return from here
+//  236   }
+//  237       
+//  238   HalLcdWriteString("Dobro je",0);
+??main_10:
+        ; Setup parameters for call to function HalLcdWriteString
+        MOV     R1,#0x0
+        MOV     R2,#`?<Constant "Dobro je">` & 0xff
+        MOV     R3,#(`?<Constant "Dobro je">` >> 8) & 0xff
+        LCALL   `??HalLcdWriteString::?relay`; Banked call to: HalLcdWriteString
+//  239 
+//  240 #endif
+//  241   
+//  242  osal_start_system(); // No Return from here
         ; Setup parameters for call to function osal_start_system
         LCALL   `??osal_start_system::?relay`; Banked call to: osal_start_system
-//  162 
-//  163   return 0;  // Shouldn't get here.
+//  243 
+//  244   return 0;  // Shouldn't get here.
         MOV     R2,#0x0
         MOV     R3,#0x0
         MOV     A,#0x11
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 XSP16+0
         LJMP    ?BRET
-          CFI EndBlock cfiBlock0
+          CFI EndBlock cfiBlock1
         REQUIRE SLEEPCMD
         REQUIRE SLEEPSTA
         REQUIRE CLKCONCMD
@@ -1202,47 +1392,47 @@ main:
         REQUIRE _A_P1
         REQUIRE P1DIR
         REQUIRE P0INP
-//  164 } // main()
-//  165 
-//  166 /*********************************************************************
-//  167  * @fn      zmain_vdd_check
-//  168  * @brief   Check if the Vdd is OK to run the processor.
-//  169  * @return  Return if Vdd is ok; otherwise, flash LED, then reset
-//  170  *********************************************************************/
-//  171 static void zmain_vdd_check( void )
-//  172 {
-//  173   uint8 cnt = 16;
-//  174   
-//  175   do {
-//  176     while (!HalAdcCheckVdd(VDD_MIN_RUN));
-//  177   } while (--cnt);
-//  178 }
-//  179 
-//  180 /**************************************************************************************************
-//  181  * @fn          zmain_ext_addr
-//  182  *
-//  183  * @brief       Execute a prioritized search for a valid extended address and write the results
-//  184  *              into the OSAL NV system for use by the system. Temporary address not saved to NV.
-//  185  *
-//  186  * input parameters
-//  187  *
-//  188  * None.
-//  189  *
-//  190  * output parameters
-//  191  *
-//  192  * None.
-//  193  *
-//  194  * @return      None.
-//  195  **************************************************************************************************
-//  196  */
+//  245 } // main()
+//  246 
+//  247 /*********************************************************************
+//  248  * @fn      zmain_vdd_check
+//  249  * @brief   Check if the Vdd is OK to run the processor.
+//  250  * @return  Return if Vdd is ok; otherwise, flash LED, then reset
+//  251  *********************************************************************/
+//  252 static void zmain_vdd_check( void )
+//  253 {
+//  254   uint8 cnt = 16;
+//  255 
+//  256   do {
+//  257     while (!HalAdcCheckVdd(VDD_MIN_RUN));
+//  258   } while (--cnt);
+//  259 }
+//  260 
+//  261 /**************************************************************************************************
+//  262  * @fn          zmain_ext_addr
+//  263  *
+//  264  * @brief       Execute a prioritized search for a valid extended address and write the results
+//  265  *              into the OSAL NV system for use by the system. Temporary address not saved to NV.
+//  266  *
+//  267  * input parameters
+//  268  *
+//  269  * None.
+//  270  *
+//  271  * output parameters
+//  272  *
+//  273  * None.
+//  274  *
+//  275  * @return      None.
+//  276  **************************************************************************************************
+//  277  */
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
-//  197 static void zmain_ext_addr(void)
+//  278 static void zmain_ext_addr(void)
 zmain_ext_addr:
-          CFI Block cfiBlock1 Using cfiCommon1
+          CFI Block cfiBlock2 Using cfiCommon0
           CFI Function zmain_ext_addr
         CODE
-//  198 {
+//  279 {
         FUNCALL zmain_ext_addr, osal_nv_item_init
         LOCFRAME ISTACK, 0, STACK
         LOCFRAME PSTACK, 0, STACK
@@ -1376,18 +1566,18 @@ zmain_ext_addr:
         MOV     A,#-0x8
         LCALL   ?ALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 19)
-//  199   uint8 nullAddr[Z_EXTADDR_LEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+//  280   uint8 nullAddr[Z_EXTADDR_LEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
         MOV     DPTR,#`?<Constant {255, 255, 255, 255, 255, 255, 255,`
         MOV     R4,?XSP + 0
         MOV     R5,?XSP + 1
         MOV     A,#0x8
         LCALL   ?MOVE_LONG8_XDATA_XDATA
-//  200   uint8 writeNV = TRUE;
-//  201 
-//  202   // First check whether a non-erased extended address exists in the OSAL NV.
-//  203   if ((SUCCESS != osal_nv_item_init(ZCD_NV_EXTADDR, Z_EXTADDR_LEN, NULL))  ||
-//  204       (SUCCESS != osal_nv_read(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress)) ||
-//  205       (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN)))
+//  281   uint8 writeNV = TRUE;
+//  282 
+//  283   // First check whether a non-erased extended address exists in the OSAL NV.
+//  284   if ((SUCCESS != osal_nv_item_init(ZCD_NV_EXTADDR, Z_EXTADDR_LEN, NULL))  ||
+//  285       (SUCCESS != osal_nv_read(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress)) ||
+//  286       (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN)))
         ; Setup parameters for call to function osal_nv_item_init
         MOV     ?V0,A
         MOV     ?V1,A
@@ -1446,10 +1636,10 @@ zmain_ext_addr:
         MOV     A,R1
         JNZ     $+5
         LJMP    ??zmain_ext_addr_1 & 0xFFFF
-//  206   {
-//  207     // Attempt to read the extended address from the location on the lock bits page
-//  208     // where the programming tools know to reserve it.
-//  209     HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IEEE_OSET, aExtendedAddress, Z_EXTADDR_LEN);
+//  287   {
+//  288     // Attempt to read the extended address from the location on the lock bits page
+//  289     // where the programming tools know to reserve it.
+//  290     HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IEEE_OSET, aExtendedAddress, Z_EXTADDR_LEN);
 ??zmain_ext_addr_0:
         ; Setup parameters for call to function HalFlashRead
         MOV     ?V0,#0x8
@@ -1466,8 +1656,8 @@ zmain_ext_addr:
         MOV     A,#0x2
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 19)
-//  210 
-//  211     if (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN))
+//  291 
+//  292     if (osal_memcmp(aExtendedAddress, nullAddr, Z_EXTADDR_LEN))
         ; Setup parameters for call to function osal_memcmp
         MOV     R0,?XSP + 0
         MOV     R1,?XSP + 1
@@ -1488,9 +1678,9 @@ zmain_ext_addr:
           CFI CFA_XSP16 add(XSP16, 19)
         MOV     A,R1
         JZ      ??zmain_ext_addr_2
-//  212     {
-//  213       // Attempt to read the extended address from the designated location in the Info Page.
-//  214       if (!osal_memcmp((uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), nullAddr, Z_EXTADDR_LEN))
+//  293     {
+//  294       // Attempt to read the extended address from the designated location in the Info Page.
+//  295       if (!osal_memcmp((uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), nullAddr, Z_EXTADDR_LEN))
         ; Setup parameters for call to function osal_memcmp
         MOV     R0,#?V0
         LCALL   ?PUSH_XSTACK_I_THREE
@@ -1506,8 +1696,8 @@ zmain_ext_addr:
           CFI CFA_XSP16 add(XSP16, 19)
         MOV     A,R1
         JNZ     ??zmain_ext_addr_3
-//  215       {
-//  216         osal_memcpy(aExtendedAddress, (uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), Z_EXTADDR_LEN);
+//  296       {
+//  297         osal_memcpy(aExtendedAddress, (uint8 *)(P_INFOPAGE+HAL_INFOP_IEEE_OSET), Z_EXTADDR_LEN);
         ; Setup parameters for call to function osal_memcpy
         MOV     ?V0,#0xc
         MOV     ?V1,#0x78
@@ -1522,41 +1712,41 @@ zmain_ext_addr:
         MOV     A,#0x3
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 19)
-//  217       }
-//  218       else  // No valid extended address was found.
-//  219       {
-//  220         uint8 idx;
-//  221         
-//  222 #if !defined ( NV_RESTORE )
-//  223         writeNV = FALSE;  // Make this a temporary IEEE address
-//  224 #endif
-//  225 
-//  226         /* Attempt to create a sufficiently random extended address for expediency.
-//  227          * Note: this is only valid/legal in a test environment and
-//  228          *       must never be used for a commercial product.
-//  229          */
-//  230         for (idx = 0; idx < (Z_EXTADDR_LEN - 2);)
-//  231         {
-//  232           uint16 randy = osal_rand();
-//  233           aExtendedAddress[idx++] = LO_UINT16(randy);
-//  234           aExtendedAddress[idx++] = HI_UINT16(randy);
-//  235         }
-//  236         // Next-to-MSB identifies ZigBee devicetype.
-//  237 #if ZG_BUILD_COORDINATOR_TYPE && !ZG_BUILD_JOINING_TYPE
-//  238         aExtendedAddress[idx++] = 0x10;
-//  239 #elif ZG_BUILD_RTRONLY_TYPE
-//  240         aExtendedAddress[idx++] = 0x20;
-//  241 #else
-//  242         aExtendedAddress[idx++] = 0x30;
-//  243 #endif
-//  244         // MSB has historical signficance.
-//  245         aExtendedAddress[idx] = 0xF8;
-//  246       }
-//  247     }
-//  248 
-//  249     if (writeNV)
-//  250     {
-//  251       (void)osal_nv_write(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress);
+//  298       }
+//  299       else  // No valid extended address was found.
+//  300       {
+//  301         uint8 idx;
+//  302 
+//  303 #if !defined ( NV_RESTORE )
+//  304         writeNV = FALSE;  // Make this a temporary IEEE address
+//  305 #endif
+//  306 
+//  307         /* Attempt to create a sufficiently random extended address for expediency.
+//  308          * Note: this is only valid/legal in a test environment and
+//  309          *       must never be used for a commercial product.
+//  310          */
+//  311         for (idx = 0; idx < (Z_EXTADDR_LEN - 2);)
+//  312         {
+//  313           uint16 randy = osal_rand();
+//  314           aExtendedAddress[idx++] = LO_UINT16(randy);
+//  315           aExtendedAddress[idx++] = HI_UINT16(randy);
+//  316         }
+//  317         // Next-to-MSB identifies ZigBee devicetype.
+//  318 #if ZG_BUILD_COORDINATOR_TYPE && !ZG_BUILD_JOINING_TYPE
+//  319         aExtendedAddress[idx++] = 0x10;
+//  320 #elif ZG_BUILD_RTRONLY_TYPE
+//  321         aExtendedAddress[idx++] = 0x20;
+//  322 #else
+//  323         aExtendedAddress[idx++] = 0x30;
+//  324 #endif
+//  325         // MSB has historical signficance.
+//  326         aExtendedAddress[idx] = 0xF8;
+//  327       }
+//  328     }
+//  329 
+//  330     if (writeNV)
+//  331     {
+//  332       (void)osal_nv_write(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, aExtendedAddress);
 ??zmain_ext_addr_2:
         ; Setup parameters for call to function osal_nv_write
         MOV     ?V0,#aExtendedAddress & 0xff
@@ -1577,18 +1767,18 @@ zmain_ext_addr:
         MOV     A,#0x4
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 19)
-//  252     }
-//  253   }
-//  254 
-//  255   // Set the MAC PIB extended address according to results from above.
-//  256   (void)ZMacSetReq(MAC_EXTENDED_ADDRESS, aExtendedAddress);
+//  333     }
+//  334   }
+//  335 
+//  336   // Set the MAC PIB extended address according to results from above.
+//  337   (void)ZMacSetReq(MAC_EXTENDED_ADDRESS, aExtendedAddress);
 ??zmain_ext_addr_1:
         ; Setup parameters for call to function ZMacSetReq
         MOV     R2,#aExtendedAddress & 0xff
         MOV     R3,#(aExtendedAddress >> 8) & 0xff
         MOV     R1,#-0x1e
         LCALL   `??ZMacSetReq::?relay`; Banked call to: ZMacSetReq
-//  257 }
+//  338 }
         MOV     A,#0x8
         LCALL   ?DEALLOC_XSTACK8
           CFI CFA_XSP16 add(XSP16, 11)
@@ -1638,11 +1828,11 @@ zmain_ext_addr:
         MOV     A,#-0x8
         MOVX    @DPTR,A
         SJMP    ??zmain_ext_addr_1
-          CFI EndBlock cfiBlock1
+          CFI EndBlock cfiBlock2
 
         RSEG BANKED_CODE:HUGECODE:NOROOT(0)
 ?Subroutine0:
-          CFI Block cfiCond2 Using cfiCommon1
+          CFI Block cfiCond3 Using cfiCommon0
           CFI Function zmain_ext_addr
           CFI Conditional ??CrossCallReturnLabel_0
           CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
@@ -1658,25 +1848,25 @@ zmain_ext_addr:
           CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
           CFI CFA_SP SP+-2
           CFI CFA_XSP16 add(XSP16, 19)
-          CFI Block cfiCond3 Using cfiCommon1
-          CFI (cfiCond3) Function zmain_ext_addr
-          CFI (cfiCond3) Conditional ??CrossCallReturnLabel_1
-          CFI (cfiCond3) R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
-          CFI (cfiCond3) VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
-          CFI (cfiCond3) V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
-          CFI (cfiCond3) V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
-          CFI (cfiCond3) V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
-          CFI (cfiCond3) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
-          CFI (cfiCond3) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
-          CFI (cfiCond3) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
-          CFI (cfiCond3) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
-          CFI (cfiCond3) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
-          CFI (cfiCond3) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
-          CFI (cfiCond3) CFA_SP SP+-2
-          CFI (cfiCond3) CFA_XSP16 add(XSP16, 19)
-          CFI Block cfiPicker4 Using cfiCommon2
-          CFI (cfiPicker4) NoFunction
-          CFI (cfiPicker4) Picker
+          CFI Block cfiCond4 Using cfiCommon0
+          CFI (cfiCond4) Function zmain_ext_addr
+          CFI (cfiCond4) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond4) R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI (cfiCond4) VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI (cfiCond4) V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond4) V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond4) V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond4) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond4) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond4) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond4) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond4) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond4) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond4) CFA_SP SP+-2
+          CFI (cfiCond4) CFA_XSP16 add(XSP16, 19)
+          CFI Block cfiPicker5 Using cfiCommon2
+          CFI (cfiPicker5) NoFunction
+          CFI (cfiPicker5) Picker
         MOV     A,#aExtendedAddress & 0xff
         ADD     A,R6
         MOV     DPL,A
@@ -1684,9 +1874,16 @@ zmain_ext_addr:
         ADDC    A,#(aExtendedAddress >> 8) & 0xff
         MOV     DPH,A
         RET
-          CFI EndBlock cfiCond2
           CFI EndBlock cfiCond3
-          CFI EndBlock cfiPicker4
+          CFI EndBlock cfiCond4
+          CFI EndBlock cfiPicker5
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??WriteHex::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    WriteHex
 
         RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
 `??main::?relay`:
@@ -1701,6 +1898,23 @@ zmain_ext_addr:
         LCALL   ?BDISPATCH
         DATA24
         DC24    zmain_ext_addr
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant {0, 0, 0}>`:
+        DB 0
+        DB 0
+        DB 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant "Nije dobro!">`:
+        DB "Nije dobro!"
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant "Dobro je">`:
+        DB "Dobro je"
 
         RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
         DATA8
@@ -1719,154 +1933,167 @@ zmain_ext_addr:
 `?<Constant "IEEE: ">`:
         DB "IEEE: "
 
-        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
-        DATA8
-`?<Constant "TexasInstruments">`:
-        DB "TexasInstruments"
-
         END
-//  258 
-//  259 #if defined ZCL_KEY_ESTABLISH
-//  260 /**************************************************************************************************
-//  261  * @fn          zmain_cert_init
-//  262  *
-//  263  * @brief       Initialize the Certicom certificate information.
-//  264  *
-//  265  * input parameters
-//  266  *
-//  267  * None.
-//  268  *
-//  269  * output parameters
-//  270  *
-//  271  * None.
-//  272  *
-//  273  * @return      None.
-//  274  **************************************************************************************************
-//  275  */
-//  276 static void zmain_cert_init(void)
-//  277 {
-//  278   uint8 certData[ZCL_KE_IMPLICIT_CERTIFICATE_LEN];
-//  279   uint8 nullData[ZCL_KE_IMPLICIT_CERTIFICATE_LEN] = {
-//  280     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-//  281     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-//  282     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-//  283     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-//  284     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-//  285     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
-//  286   };
-//  287 
-//  288   (void)osal_nv_item_init(ZCD_NV_IMPLICIT_CERTIFICATE, ZCL_KE_IMPLICIT_CERTIFICATE_LEN, NULL);
-//  289   (void)osal_nv_item_init(ZCD_NV_DEVICE_PRIVATE_KEY, ZCL_KE_DEVICE_PRIVATE_KEY_LEN, NULL);
-//  290 
-//  291   // First check whether non-null certificate data exists in the OSAL NV. To save on code space,
-//  292   // just use the ZCD_NV_CA_PUBLIC_KEY as the bellwether for all three.
-//  293   if ((SUCCESS != osal_nv_item_init(ZCD_NV_CA_PUBLIC_KEY, ZCL_KE_CA_PUBLIC_KEY_LEN, NULL))    ||
-//  294       (SUCCESS != osal_nv_read(ZCD_NV_CA_PUBLIC_KEY, 0, ZCL_KE_CA_PUBLIC_KEY_LEN, certData))  ||
-//  295       (osal_memcmp(certData, nullData, ZCL_KE_CA_PUBLIC_KEY_LEN)))
-//  296   {
-//  297     // Attempt to read the certificate data from its corresponding location on the lock bits page.
-//  298     HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_CA_PUBLIC_KEY_OSET, certData,
-//  299                                          ZCL_KE_CA_PUBLIC_KEY_LEN);
-//  300     // If the certificate data is not NULL, use it to update the corresponding NV items.
-//  301     if (!osal_memcmp(certData, nullData, ZCL_KE_CA_PUBLIC_KEY_LEN))
-//  302     {
-//  303       (void)osal_nv_write(ZCD_NV_CA_PUBLIC_KEY, 0, ZCL_KE_CA_PUBLIC_KEY_LEN, certData);
-//  304       HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IMPLICIT_CERT_OSET, certData,
-//  305                                            ZCL_KE_IMPLICIT_CERTIFICATE_LEN);
-//  306       (void)osal_nv_write(ZCD_NV_IMPLICIT_CERTIFICATE, 0,
-//  307                           ZCL_KE_IMPLICIT_CERTIFICATE_LEN, certData);
-//  308       HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_DEV_PRIVATE_KEY_OSET, certData,
-//  309                                         ZCL_KE_DEVICE_PRIVATE_KEY_LEN);
-//  310       (void)osal_nv_write(ZCD_NV_DEVICE_PRIVATE_KEY, 0, ZCL_KE_DEVICE_PRIVATE_KEY_LEN, certData);
-//  311     }
-//  312   }
-//  313 }
-//  314 #endif
-//  315 
-//  316 /**************************************************************************************************
-//  317  * @fn          zmain_dev_info
-//  318  *
-//  319  * @brief       This displays the IEEE (MSB to LSB) on the LCD.
-//  320  *
-//  321  * input parameters
-//  322  *
-//  323  * None.
-//  324  *
-//  325  * output parameters
-//  326  *
-//  327  * None.
-//  328  *
-//  329  * @return      None.
-//  330  **************************************************************************************************
-//  331  */
-//  332 static void zmain_dev_info(void)
-//  333 {
-//  334 #ifdef LCD_SUPPORTED
-//  335   uint8 i;
-//  336   uint8 *xad;
-//  337   uint8 lcd_buf[Z_EXTADDR_LEN*2+1];
-//  338 
-//  339   // Display the extended address.
-//  340   xad = aExtendedAddress + Z_EXTADDR_LEN - 1;
-//  341 
-//  342   for (i = 0; i < Z_EXTADDR_LEN*2; xad--)
-//  343   {
-//  344     uint8 ch;
-//  345     ch = (*xad >> 4) & 0x0F;
-//  346     lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
-//  347     ch = *xad & 0x0F;
-//  348     lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
-//  349   }
-//  350   lcd_buf[Z_EXTADDR_LEN*2] = '\0';
-//  351   HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
-//  352   HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
-//  353 #endif
-//  354 }
-//  355 
-//  356 #ifdef LCD_SUPPORTED
-//  357 /*********************************************************************
-//  358  * @fn      zmain_lcd_init
-//  359  * @brief   Initialize LCD at start up.
-//  360  * @return  none
-//  361  *********************************************************************/
-//  362 static void zmain_lcd_init ( void )
-//  363 {
-//  364 #ifdef SERIAL_DEBUG_SUPPORTED
-//  365   {
-//  366     HalLcdWriteString( "TexasInstruments", HAL_LCD_LINE_1 );
-//  367 
-//  368 #if defined( MT_MAC_FUNC )
-//  369 #if defined( ZDO_COORDINATOR )
-//  370       HalLcdWriteString( "MAC-MT Coord", HAL_LCD_LINE_2 );
-//  371 #else
-//  372       HalLcdWriteString( "MAC-MT Device", HAL_LCD_LINE_2 );
-//  373 #endif // ZDO
-//  374 #elif defined( MT_NWK_FUNC )
-//  375 #if defined( ZDO_COORDINATOR )
-//  376       HalLcdWriteString( "NWK Coordinator", HAL_LCD_LINE_2 );
-//  377 #else
-//  378       HalLcdWriteString( "NWK Device", HAL_LCD_LINE_2 );
-//  379 #endif // ZDO
-//  380 #endif // MT_FUNC
-//  381   }
-//  382 #endif // SERIAL_DEBUG_SUPPORTED
-//  383 }
-//  384 #endif
-//  385 
-//  386 /*********************************************************************
-//  387 *********************************************************************/
-//  388 
-//  389 
+//  339 
+//  340 #if defined ZCL_KEY_ESTABLISH
+//  341 /**************************************************************************************************
+//  342  * @fn          zmain_cert_init
+//  343  *
+//  344  * @brief       Initialize the Certicom certificate information.
+//  345  *
+//  346  * input parameters
+//  347  *
+//  348  * None.
+//  349  *
+//  350  * output parameters
+//  351  *
+//  352  * None.
+//  353  *
+//  354  * @return      None.
+//  355  **************************************************************************************************
+//  356  */
+//  357 static void zmain_cert_init(void)
+//  358 {
+//  359   uint8 certData[ZCL_KE_IMPLICIT_CERTIFICATE_LEN];
+//  360   uint8 nullData[ZCL_KE_IMPLICIT_CERTIFICATE_LEN] = {
+//  361     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//  362     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//  363     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//  364     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//  365     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+//  366     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
+//  367   };
+//  368 
+//  369   (void)osal_nv_item_init(ZCD_NV_IMPLICIT_CERTIFICATE, ZCL_KE_IMPLICIT_CERTIFICATE_LEN, NULL);
+//  370   (void)osal_nv_item_init(ZCD_NV_DEVICE_PRIVATE_KEY, ZCL_KE_DEVICE_PRIVATE_KEY_LEN, NULL);
+//  371 
+//  372   // First check whether non-null certificate data exists in the OSAL NV. To save on code space,
+//  373   // just use the ZCD_NV_CA_PUBLIC_KEY as the bellwether for all three.
+//  374   if ((SUCCESS != osal_nv_item_init(ZCD_NV_CA_PUBLIC_KEY, ZCL_KE_CA_PUBLIC_KEY_LEN, NULL))    ||
+//  375       (SUCCESS != osal_nv_read(ZCD_NV_CA_PUBLIC_KEY, 0, ZCL_KE_CA_PUBLIC_KEY_LEN, certData))  ||
+//  376       (osal_memcmp(certData, nullData, ZCL_KE_CA_PUBLIC_KEY_LEN)))
+//  377   {
+//  378     // Attempt to read the certificate data from its corresponding location on the lock bits page.
+//  379     HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_CA_PUBLIC_KEY_OSET, certData,
+//  380                                          ZCL_KE_CA_PUBLIC_KEY_LEN);
+//  381     // If the certificate data is not NULL, use it to update the corresponding NV items.
+//  382     if (!osal_memcmp(certData, nullData, ZCL_KE_CA_PUBLIC_KEY_LEN))
+//  383     {
+//  384       (void)osal_nv_write(ZCD_NV_CA_PUBLIC_KEY, 0, ZCL_KE_CA_PUBLIC_KEY_LEN, certData);
+//  385       HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_IMPLICIT_CERT_OSET, certData,
+//  386                                            ZCL_KE_IMPLICIT_CERTIFICATE_LEN);
+//  387       (void)osal_nv_write(ZCD_NV_IMPLICIT_CERTIFICATE, 0,
+//  388                           ZCL_KE_IMPLICIT_CERTIFICATE_LEN, certData);
+//  389       HalFlashRead(HAL_FLASH_IEEE_PAGE, HAL_FLASH_DEV_PRIVATE_KEY_OSET, certData,
+//  390                                         ZCL_KE_DEVICE_PRIVATE_KEY_LEN);
+//  391       (void)osal_nv_write(ZCD_NV_DEVICE_PRIVATE_KEY, 0, ZCL_KE_DEVICE_PRIVATE_KEY_LEN, certData);
+//  392     }
+//  393   }
+//  394 }
+//  395 #endif
+//  396 
+//  397 /**************************************************************************************************
+//  398  * @fn          zmain_dev_info
+//  399  *
+//  400  * @brief       This displays the IEEE (MSB to LSB) on the LCD.
+//  401  *
+//  402  * input parameters
+//  403  *
+//  404  * None.
+//  405  *
+//  406  * output parameters
+//  407  *
+//  408  * None.
+//  409  *
+//  410  * @return      None.
+//  411  **************************************************************************************************
+//  412  */
+//  413 static void zmain_dev_info(void)
+//  414 {
+//  415 #ifdef LCD_SUPPORTED
+//  416   uint8 i;
+//  417   uint8 *xad;
+//  418   uint8 lcd_buf[Z_EXTADDR_LEN*2+1];
+//  419 
+//  420   // Display the extended address.
+//  421   xad = aExtendedAddress + Z_EXTADDR_LEN - 1;
+//  422 
+//  423   for (i = 0; i < Z_EXTADDR_LEN*2; xad--)
+//  424   {
+//  425     uint8 ch;
+//  426     ch = (*xad >> 4) & 0x0F;
+//  427     lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+//  428     ch = *xad & 0x0F;
+//  429     lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+//  430   }
+//  431   lcd_buf[Z_EXTADDR_LEN*2] = '\0';
+//  432   HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
+//  433   HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
+//  434 #endif
+//  435 }
+//  436 
+//  437 #ifdef LCD_SUPPORTED
+//  438 /*********************************************************************
+//  439  * @fn      zmain_lcd_init
+//  440  * @brief   Initialize LCD at start up.
+//  441  * @return  none
+//  442  *********************************************************************/
+//  443 static void zmain_lcd_init ( void )
+//  444 {
+//  445 #ifdef SERIAL_DEBUG_SUPPORTED
+//  446   {
+//  447     HalLcdWriteString( "TexasInstruments", HAL_LCD_LINE_1 );
+//  448 
+//  449 #if defined( MT_MAC_FUNC )
+//  450 #if defined( ZDO_COORDINATOR )
+//  451       HalLcdWriteString( "MAC-MT Coord", HAL_LCD_LINE_2 );
+//  452 #else
+//  453       HalLcdWriteString( "MAC-MT Device", HAL_LCD_LINE_2 );
+//  454 #endif // ZDO
+//  455 #elif defined( MT_NWK_FUNC )
+//  456 #if defined( ZDO_COORDINATOR )
+//  457       HalLcdWriteString( "NWK Coordinator", HAL_LCD_LINE_2 );
+//  458 #else
+//  459       HalLcdWriteString( "NWK Device", HAL_LCD_LINE_2 );
+//  460 #endif // ZDO
+//  461 #endif // MT_FUNC
+//  462   }
+//  463 #endif // SERIAL_DEBUG_SUPPORTED
+//  464 }
+//  465 #endif
+//  466 
+//  467 /*
+//  468 void tempCheck(struct value *val)
+//  469 {
+//  470 	if (T_MIN > val->temp / 100)
+//  471 	{
+//  472 		GPIO_PORTE_DATA_R |= 0x02;
+//  473 	}// end if
+//  474 	else if (T_MAX < val->temp / 100)
+//  475 		{
+//  476 			GPIO_PORTE_DATA_R |= 0x04;
+//  477 		}// end else if
+//  478 	else {
+//  479 	GPIO_PORTE_DATA_R = 0x00;
+//  480 	}
+//  481 }// end void tempCheck(struct bme280_t *bme280)
+//  482 
+//  483 */
+//  484 
+//  485 /*********************************************************************
+//  486 *********************************************************************/
 // 
-// 674 bytes in segment BANKED_CODE
-//  12 bytes in segment BANK_RELAYS
+// 781 bytes in segment BANKED_CODE
+//  18 bytes in segment BANK_RELAYS
 //   7 bytes in segment SFR_AN
-//  32 bytes in segment XDATA_ROM_C
+//  39 bytes in segment XDATA_ROM_C
+//  64 bytes in segment XDATA_Z
 // 
-//  12 bytes of CODE     memory
-//  32 bytes of CONST    memory
+//  18 bytes of CODE     memory
+//  39 bytes of CONST    memory
 //   0 bytes of DATA     memory (+ 7 bytes shared)
-// 674 bytes of HUGECODE memory
+// 781 bytes of HUGECODE memory
+//  64 bytes of XDATA    memory
 //
 //Errors: none
-//Warnings: none
+//Warnings: 6
