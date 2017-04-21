@@ -830,7 +830,7 @@ static void GenericApp_SendTheMessage( void )
   uint8 i;
   
  
-  char theMessageData[] = "Hello World";
+  char theMessageData[] = "WHello World";
   //char doorOpened[3] = "D1";
   //char doorClosed[3] = "D0"; 
   char motionDetected[] = {'1'};
