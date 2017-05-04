@@ -22,7 +22,7 @@
   its documentation for any purpose.
 
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -226,17 +226,10 @@ void HalLcd_HW_WriteLine(uint8 line, const char *pText);
  * @return  None
  **************************************************************************************************/
 void HalLcdInit(void)
-{ 
-  
+{
+  //Initilize UART0 on location P0
   HalLcd_HW_Init();
 
-/*
-#if (HAL_LCD == TRUE)
-  Lcd_Line1 = NULL;
- 
-#endif
-  
-  */
 }
 
 /*************************************************************************************************
@@ -271,76 +264,23 @@ void HalLcdWriteString ( char *str, uint8 option)
 {
 #if (HAL_LCD == TRUE)
 
-  uint8 strLen = 0;
-  uint8 totalLen = 0;
-  uint8 *buf;
-  uint8 tmpLen;
-
-#endif 
-  
   uint8 i = 0;
-  
-  
+
   while(*(str + i) != '\0')
   {
     HalLcd_HW_Write(*(str + i++));
   }
-  
-  HalLcd_HW_Write(10);
-  
- /*
-  if ( Lcd_Line1 == NULL )
+
+  if(0 == option)
   {
-    Lcd_Line1 = osal_mem_alloc( HAL_LCD_MAX_CHARS+1 );
-    HalLcdWriteString( "TexasInstruments", 1 );
+    HalLcd_HW_Write(10);
   }
-
-  strLen = (uint8)osal_strlen( (char*)str );
-
-  // Check boundries 
-  if ( strLen > HAL_LCD_MAX_CHARS )
-    strLen = HAL_LCD_MAX_CHARS;
-
-  if ( option == HAL_LCD_LINE_1 )
+  if(1 == option)
   {
-    // Line 1 gets saved for later 
-    osal_memcpy( Lcd_Line1, str, strLen );
-    Lcd_Line1[strLen] = '\0';
+    HalLcd_HW_Write(' ');
   }
-  else
-  {
-    // Line 2 triggers action 
-    tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
-    totalLen =  tmpLen + 1 + strLen + 1;
-    buf = osal_mem_alloc( totalLen );
-    if ( buf != NULL )
-    {
-      // Concatenate strings 
-      osal_memcpy( buf, Lcd_Line1, tmpLen );
-      buf[tmpLen++] = ' ';
-      osal_memcpy( &buf[tmpLen], str, strLen );
-      buf[tmpLen+strLen] = '\0';
+#endif//End HAL_LCD
 
-      // Send it out 
-#if defined (ZTOOL_P1) || defined (ZTOOL_P2)
-
-#if defined(SERIAL_DEBUG_SUPPORTED)
-      debug_str( (uint8*)buf );
-#endif //LCD_SUPPORTED
-
-#endif //ZTOOL_P1
-
-      // Free mem 
-      osal_mem_free( buf );
-    }
-  }
-
-  // Display the string 
-  HalLcd_HW_WriteLine (option, str);
-
-#endif //HAL_LCD
-*/
-  
 }
 
 /**************************************************************************************************
@@ -356,7 +296,7 @@ void HalLcdWriteString ( char *str, uint8 option)
  **************************************************************************************************/
 void HalLcdWriteValue ( uint32 value, const uint8 radix, uint8 option)
 {
-  
+
 #if (HAL_LCD == TRUE)
   uint8 buf[HAL_LCD_MAX_BUFF];
 
@@ -377,12 +317,7 @@ void HalLcdWriteValue ( uint32 value, const uint8 radix, uint8 option)
  **************************************************************************************************/
 void HalLcdWriteScreen( char *line1, char *line2 )
 {
-  /*
-#if (HAL_LCD == TRUE)
-  HalLcdWriteString( line1, 1 );
-  HalLcdWriteString( line2, 2 );
-#endif
-  */
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -409,21 +344,7 @@ void HalLcdWriteStringValue( char *title, uint16 value, uint8 format, uint8 line
   err = (uint32)(value);
   _ltoa( err, &buf[tmpLen+1], format );
   HalLcdWriteString( (char*)buf, line );
-  
- /* 
-#if (HAL_LCD == TRUE)
-  uint8 tmpLen;
-  uint8 buf[HAL_LCD_MAX_BUFF];
-  uint32 err;
 
-  tmpLen = (uint8)osal_strlen( (char*)title );
-  osal_memcpy( buf, title, tmpLen );
-  buf[tmpLen] = ' ';
-  err = (uint32)(value);
-  _ltoa( err, &buf[tmpLen+1], format );
-  HalLcdWriteString( (char*)buf, line );		
-#endif
-*/
 }
 
 /**************************************************************************************************
@@ -466,7 +387,7 @@ void HalLcdWriteStringValueValue( char *title, uint16 value1, uint8 format1,
   err = (uint32)(value2);
   _ltoa( err, &buf[tmpLen], format2 );
 
-  HalLcdWriteString( (char *)buf, line );		
+  HalLcdWriteString( (char *)buf, line );
 
 #endif
 }
@@ -536,12 +457,8 @@ void HalLcdDisplayPercentBar( char *title, uint8 value )
  * @return  None
  **************************************************************************************************/
 static void halLcd_ConfigIO(void)
-{/*
-  //GPIO configuration
-  HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
-  HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
-  HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
-*/
+{
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -555,32 +472,7 @@ static void halLcd_ConfigIO(void)
  **************************************************************************************************/
 static void halLcd_ConfigSPI(void)
 {
-  // UART/SPI Peripheral configuration
-/*
-   uint8 baud_exponent;
-   uint8 baud_mantissa;
-
-  // Set SPI on UART 1 alternative 2 
-  PERCFG |= 0x02;
-
-  // Configure clk, master out and master in lines
-  HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
-  HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
-  HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
-
-
-  // Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
-  // Confirm on board that this results in 1MHz spi clk.
-   
-  baud_exponent = 15;
-  baud_mantissa =  0;
-
-  // Configure SPI 
-  U1UCR  = 0x80;      // Flush and goto IDLE state. 8-N-1. 
-  U1CSR  = 0x00;      // SPI mode, master.
-  U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
-  U1BAUD = baud_mantissa;
-  */
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -594,51 +486,16 @@ static void halLcd_ConfigSPI(void)
  **************************************************************************************************/
 void HalLcd_HW_Init(void)
 {
-  
-   // CLKCONCMD =0x00;                                                            //Podesavanje clocka na 32MHz
-    
-  
-    //PERCFG = 0x00;                                                              //Podesavanje primarnih funkcija modula 
-    P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
-    
-  
-    U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
-    U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
- 
-    
-    U0BAUD = 0x3A;                                                              //Postavja baud rate na 9600
-    
-  
-  
-  /* Initialize LCD IO lines 
-  halLcd_ConfigIO();
+    //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+    P0SEL = 0x0C;
 
-  // Initialize SPI 
-  halLcd_ConfigSPI();
+    //Prvi bit 1 je UART mode
+    U0CSR = 0xC0;
+    //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
+    U0GCR = 0x08;
 
-  // Perform reset 
-  LCD_ACTIVATE_RESET();
-  HalLcd_HW_WaitUs(15000); // 15 ms
-  LCD_RELEASE_RESET();
-  HalLcd_HW_WaitUs(15); // 15 us
-
-  // Perform the initialization sequence 
-  FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
-
-  // Set contrast 
-  HalLcd_HW_SetContrast(15);
-
-  // Set power 
-  SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
-  SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
-  SET_BIAS_CTRL(BIAS_1_5);
-  HalLcd_HW_WaitUs(21000);// 21 ms
-
-  // Clear the display 
-  HalLcd_HW_Clear();
-  HalLcd_HW_ClearAllSpecChars();
-  SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
-*/
+    //Postavja baud rate na 9600
+    U0BAUD = 0x3A;
 
 }
 
@@ -652,13 +509,8 @@ void HalLcd_HW_Init(void)
  * @return  None
  **************************************************************************************************/
 void HalLcd_HW_Control(uint8 cmd)
-{/*
-  LCD_SPI_BEGIN();
-  LCD_DO_CONTROL();
-  LCD_SPI_TX(cmd);
-  LCD_SPI_WAIT_RXRDY();
-  LCD_SPI_END();
-*/
+{
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -672,19 +524,14 @@ void HalLcd_HW_Control(uint8 cmd)
  **************************************************************************************************/
 void HalLcd_HW_Write(uint8 data)
 {
-  U0DBUF = data;
-    
+    //Write data to sending register
+    U0DBUF = data;
+
+    //Weit while data is sending
     while((U0CSR & 0x01) == 0x01)
     {
     }
-  
-  /*
-  LCD_SPI_BEGIN();
-  LCD_DO_WRITE();
-  LCD_SPI_TX(data);
-  LCD_SPI_WAIT_RXRDY();
-  LCD_SPI_END();
-*/
+
 }
 
 /**************************************************************************************************
@@ -698,10 +545,7 @@ void HalLcd_HW_Write(uint8 data)
  **************************************************************************************************/
 void HalLcd_HW_SetContrast(uint8 value)
 {
-  /*
-  SET_ICONRAM_ADDR(CONTRAST_CTRL_REGISTER);
-  HalLcd_HW_Write(value);
-*/
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -714,15 +558,8 @@ void HalLcd_HW_SetContrast(uint8 value)
  * @return  None
  **************************************************************************************************/
 void HalLcd_HW_Clear(void)
-{/*
-  uint8 n;
-
-  SET_DDRAM_ADDR(0x00);
-  for (n = 0; n < (LCD_MAX_LINE_COUNT * HAL_LCD_MAX_CHARS); n++)
-  {
-    HalLcd_HW_Write(' ');
-  }
-  */
+{
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -736,15 +573,7 @@ void HalLcd_HW_Clear(void)
  **************************************************************************************************/
 void HalLcd_HW_ClearAllSpecChars(void)
 {
-  /*
-  uint8 n = 0;
-
-  SET_GCRAM_CHAR(0);
-  for (n = 0; n < (8 * 8); n++)
-  {
-    HalLcd_HW_Write(0x00);
-  }
-  */
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -760,18 +589,6 @@ void HalLcd_HW_ClearAllSpecChars(void)
 void HalLcd_HW_WriteChar(uint8 line, uint8 col, char text)
 {
   HalLcd_HW_Write(text);
-  
-  /*
-  if (col < HAL_LCD_MAX_CHARS)
-  {
-    SET_DDRAM_ADDR((line - 1) * HAL_LCD_MAX_CHARS + col);
-    HalLcd_HW_Write(text);
-  }
-  else
-  {
-    return;
-  }
-  */
 }
 
 /**************************************************************************************************
@@ -830,6 +647,3 @@ void HalLcd_HW_WaitUs(uint16 microSecs)
 
 /**************************************************************************************************
 **************************************************************************************************/
-
-
-
