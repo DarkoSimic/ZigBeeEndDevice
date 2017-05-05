@@ -95,17 +95,7 @@
  *****************************************************************************/
 void HalUARTInit(void)
 {
-  /*
-#if HAL_UART_DMA
-  HalUARTInitDMA();
-#endif
-#if HAL_UART_ISR
-  HalUARTInitISR();
-#endif
-#if HAL_UART_USB
-  HalUARTInitUSB();
-#endif
-  */
+    //Not in use
 }
 
 /******************************************************************************
@@ -119,27 +109,9 @@ void HalUARTInit(void)
  * @return  Status of the function call
  *****************************************************************************/
 uint8 HalUARTOpen(uint8 port, halUARTCfg_t *config)
-{/*
-  (void)port;
-  (void)config;
-
-#if (HAL_UART_DMA == 1)
-  if (port == HAL_UART_PORT_0)  HalUARTOpenDMA(config);
-#endif
-#if (HAL_UART_DMA == 2)
-  if (port == HAL_UART_PORT_1)  HalUARTOpenDMA(config);
-#endif
-#if (HAL_UART_ISR == 1)
-  if (port == HAL_UART_PORT_0)  HalUARTOpenISR(config);
-#endif
-#if (HAL_UART_ISR == 2)
-  if (port == HAL_UART_PORT_1)  HalUARTOpenISR(config);
-#endif
-#if (HAL_UART_USB)
-  HalUARTOpenUSB(config);
-#endif
-  */
-  return HAL_UART_SUCCESS;
+{
+  //Not in use
+  return 0;
 }
 
 /*****************************************************************************
@@ -155,29 +127,8 @@ uint8 HalUARTOpen(uint8 port, halUARTCfg_t *config)
  *****************************************************************************/
 uint16 HalUARTRead(uint8 port, uint8 *buf, uint16 len)
 {
-  (void)port;
-  (void)buf;
-  (void)len;
-/*
-#if (HAL_UART_DMA == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTReadDMA(buf, len);
-#endif
-#if (HAL_UART_DMA == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTReadDMA(buf, len);
-#endif
-#if (HAL_UART_ISR == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTReadISR(buf, len);
-#endif
-#if (HAL_UART_ISR == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTReadISR(buf, len);
-#endif
-
-#if HAL_UART_USB
-  return HalUARTRx(buf, len);
-#else
-  return 0;
-#endif
-*/
+      //Not in use
+      return 0;
 }
 
 /******************************************************************************
@@ -193,40 +144,8 @@ uint16 HalUARTRead(uint8 port, uint8 *buf, uint16 len)
  *****************************************************************************/
 uint16 HalUARTWrite(uint8 port, uint8 *buf, uint16 len)
 {
-  (void)port;
-  (void)buf;
-  (void)len;
-  uint8 i;
-
-  for(i=0;i<len;i++)
-  {
-   U0DBUF = *(buf + i);
-
-    while((U0CSR & 0x01) == 0x01)
-    {
-    }
-  }
-  /*
-#if (HAL_UART_DMA == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTWriteDMA(buf, len);
-#endif
-#if (HAL_UART_DMA == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTWriteDMA(buf, len);
-#endif
-#if (HAL_UART_ISR == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTWriteISR(buf, len);
-#endif
-#if (HAL_UART_ISR == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTWriteISR(buf, len);
-#endif
-
-#if HAL_UART_USB
-  HalUARTTx(buf, len);
-  return len;
-#else
+  //Not in use
   return 0;
-#endif
-*/
 }
 
 /******************************************************************************
@@ -240,15 +159,7 @@ uint16 HalUARTWrite(uint8 port, uint8 *buf, uint16 len)
  *****************************************************************************/
 void HalUARTSuspend( void )
 {
-
-  /*
-#if HAL_UART_DMA
-  HalUARTSuspendDMA();
-#endif
-#if HAL_UART_ISR
-  HalUARTSuspendISR();
-#endif
-*/
+    //Not in use
 }
 
 /******************************************************************************
@@ -262,15 +173,7 @@ void HalUARTSuspend( void )
  *****************************************************************************/
 void HalUARTResume( void )
 {
-
-  /*
-#if HAL_UART_DMA
-  HalUARTResumeDMA();
-#endif
-#if HAL_UART_ISR
-  HalUARTResumeISR();
-#endif
-  */
+    //Not in use
 }
 
 /***************************************************************************************************
@@ -284,17 +187,7 @@ void HalUARTResume( void )
  *****************************************************************************/
 void HalUARTPoll(void)
 {
-  /*
-#if HAL_UART_DMA
-  HalUARTPollDMA();
-#endif
-#if HAL_UART_ISR
-  HalUARTPollISR();
-#endif
-#if HAL_UART_USB
-  HalUARTPollUSB();
-#endif
-  */
+    //Not in use
 }
 
 /**************************************************************************************************
@@ -308,28 +201,7 @@ void HalUARTPoll(void)
  **************************************************************************************************/
 uint16 Hal_UART_RxBufLen( uint8 port )
 {
-  (void)port;
-
-  /*
-#if (HAL_UART_DMA == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTRxAvailDMA();
-#endif
-#if (HAL_UART_DMA == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTRxAvailDMA();
-#endif
-#if (HAL_UART_ISR == 1)
-  if (port == HAL_UART_PORT_0)  return HalUARTRxAvailISR();
-#endif
-#if (HAL_UART_ISR == 2)
-  if (port == HAL_UART_PORT_1)  return HalUARTRxAvailISR();
-#endif
-#if HAL_UART_USB
-  return HalUARTRxAvailUSB();
-#else
-  return 0;
-#endif
-  */
-
+  //Not in use
   return 0;
 }
 /**************************************************************************************************
@@ -360,16 +232,17 @@ void Hal_SPI_Master_Init()
      U1GCR = 0x28;
 
      P1DIR |= 0x08;
-    
-    
-    P0SEL = 0x0C;                                                               //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
-    
-  
-    U0CSR = 0xC0;                                                               //Prvi bit 1 je UART mode
-    U0GCR = 0x08;                                                               //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
- 
-    
-    U0BAUD = 0x3A;
+
+     //Podesavanje osnovne ili periferne funkcije odredjenog pina(0-osnovna ; 1-periferna)
+     P0SEL = 0x0C;
+
+     //Prvi bit 1 je UART mode
+     U0CSR = 0xC0;
+     //Poslednjih 5 bita odredjuje baud rate exponent vrijednost
+     U0GCR = 0x08;
+
+
+     U0BAUD = 0x3A;
 
 }
 /**************************************************************************************************
@@ -421,10 +294,7 @@ uint8 Hal_SPI_Master_Receive()
 
     P1_2 = 0;
 
-
     data = SPIDataGet();
-
-
 
     P1_2 = 1;
 
@@ -450,8 +320,8 @@ void SPIDataPut(uint8 data)
     while((U1CSR & 0x01) == 0x01)
     {
     }
-    
-    
+
+
 
 }
 /**************************************************************************************************
